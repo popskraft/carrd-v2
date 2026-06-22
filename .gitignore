@@ -1,0 +1,76 @@
+# Default: ignore everything, then explicitly open the working surface
+*
+
+# Keep directories traversable so selective allow-rules work
+!*/
+
+# Canon and project metadata
+!AGENTS.md
+!CLAUDE.md
+!DEFINITION-OF-DONE.md
+!OPEN-QUESTIONS.md
+!BREAKPOINTS.md
+!README.md
+!ROADMAP.md
+!CHANGELOG.md
+!VERSION
+!.gitignore
+!.agent-kit-validate.conf
+!bundle.config.json
+!package.json
+!pnpm-lock.yaml
+
+# GitHub Actions
+!.github/
+!.github/**
+
+# Active refactor working surface
+!src/
+!src/**
+!dist/
+!dist/**
+!docs/
+!docs/**
+!scripts/
+!scripts/**
+!tests/
+!tests/**
+!tests-js/
+!tests-js/**
+!custom-themes/
+!custom-themes/**
+
+# Module workspaces stay in the source project, not in the public v2 CDN repo
+admincarrd/
+cardbuilder/
+_docs/
+_temp/
+
+# Keep generated changelog out of dist tracking policy
+/dist/CHANGELOG.md
+
+# Always ignore secrets, local tool state, and heavy/generated folders
+.git/
+.DS_Store
+node_modules/
+node_modules*/
+.agent/
+.ai/
+.claude/
+.windsurf/
+.agent-kit-backup-*/
+scripts/__pycache__/
+tests/__pycache__/
+**/__pycache__/
+*.pyc
+
+# Non-plugin module tests are not part of the public v2 CDN repo
+tests/test_admincarrd_*.py
+tests/admincarrd_optimizer_harness.php
+tests-js/site-registry.test.js
+scripts/admincarrd/
+carrd/
+carrd.zip
+.obsidian*/
+.obsidian/
+.obsidian

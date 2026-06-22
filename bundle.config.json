@@ -1,0 +1,39 @@
+{
+  "css": {
+    "excludes": [
+      "_bundle/**"
+    ]
+  },
+  "js": {
+    "excludes": [
+      "_bundle/**",
+      "no-loadwaiting/script.js"
+    ]
+  },
+  "cdn_bundle": {
+    "enabled": true,
+    "name": "theme-core-v2",
+    "github_repo": "popskraft/carrd-v2",
+    "cdn_ref": "main",
+    "cdn_embed": true,
+    "shared_css": [
+      "theme-design-tokens.css",
+      "theme-ui.css"
+    ],
+    "prepend_js": [
+      "theme-config.js"
+    ],
+    "plugins": [
+      "accordeon-v2",
+      "cards-v2",
+      "faq-v2",
+      "floating-cta-v2",
+      "grid-cluster-v2",
+      "header-nav-v2",
+      "modal-v2",
+      "slider-v2",
+      "switcher-v2",
+      "typography-v2"
+    ]
+  }
+}

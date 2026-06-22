@@ -1,0 +1,243 @@
+(function() {
+  'use strict';
+
+  const DEFAULTS = {
+    enabled: true,
+    hashPrefix: '#data-accordeon-v2-',
+    legacyHashPrefix: '#accordeon-',
+    linkPrefix: '#data-accordeon-v2-',
+    linkSelector: null,
+    targetAttributes: ['data-accordeon-v2', 'data-accorderon-v2'],
+    defaultOpen: false,
+    scrollOnOpen: true,
+    scrollBehavior: 'smooth',
+    scrollBlock: 'start'
+  };
+
+  const externalOptions = (typeof window !== 'undefined' &&
+    window.CarrdPluginOptionsV2 &&
+    window.CarrdPluginOptionsV2.accordeon) || {};
+
+  const CONFIG = {
+    ...DEFAULTS,
+    ...externalOptions,
+    targetAttributes: externalOptions.targetAttributes || DEFAULTS.targetAttributes
+  };
+
+  const SELECTORS = {
+    toggle: 'theme-accordeon-toggle',
+    panel: 'theme-accordeon-panel',
+    open: 'is-open',
+    closed: 'is-closed'
+  };
+
+  const requestFrame = window.requestAnimationFrame || (cb => setTimeout(cb, 16));
+  const groups = new Map();
+  let listenerBound = false;
+  const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
+
+  const HASH_PREFIXES = [
+    CONFIG.hashPrefix,
+    CONFIG.linkPrefix,
+    CONFIG.legacyHashPrefix
+  ].filter((prefix, index, list) => prefix && list.indexOf(prefix) === index);
+
+  const LINK_SELECTOR = CONFIG.linkSelector ||
+    HASH_PREFIXES.map(prefix => `a[href^="${prefix}"]`).join(',');
+
+  function normalizeName(value) {
+    return (value || '')
+      .trim()
+      .replace(/&quot;/g, '"')
+      .replace(/^["']+|["']+$/g, '');
+  }
+
+  function decodeName(value) {
+    try {
+      return decodeURIComponent(value);
+    } catch (_error) {
+      return value;
+    }
+  }
+
+  function getLinkName(link) {
+    if (!link || !link.getAttribute) return '';
+    const href = (link.getAttribute('href') || '').trim();
+    const prefix = HASH_PREFIXES.find(candidate => href.startsWith(candidate));
+    if (!prefix) return '';
+    const name = normalizeName(decodeName(href.slice(prefix.length)));
+    return safeNamePattern.test(name) ? name : '';
+  }
+
+  function targetSelector() {
+    return CONFIG.targetAttributes
+      .map(attribute => `[${attribute}]`)
+      .join(',');
+  }
+
+  function isTargetForName(target, name) {
+    return CONFIG.targetAttributes.some(attribute => (
+      normalizeName(target.getAttribute(attribute)) === name
+    ));
+  }
+
+  function hasTargetAncestor(target, name) {
+    let parent = target.parentElement;
+    while (parent) {
+      if (isTargetForName(parent, name)) return true;
+      parent = parent.parentElement;
+    }
+    return false;
+  }
+
+  function findTargets(name) {
+    if (!name) return [];
+    return Array.from(document.querySelectorAll(targetSelector()))
+      .filter(target => isTargetForName(target, name))
+      .filter(target => !hasTargetAncestor(target, name));
+  }
+
+  function findControls(name) {
+    return Array.from(document.querySelectorAll(LINK_SELECTOR))
+      .filter(link => getLinkName(link) === name);
+  }
+
+  function discoverNames() {
+    const names = new Set();
+    document.querySelectorAll(LINK_SELECTOR).forEach(link => {
+      const name = getLinkName(link);
+      if (name && findTargets(name).length) {
+        names.add(name);
+      }
+    });
+    return Array.from(names);
+  }
+
+  function setControlState(control, open) {
+    control.classList.add(SELECTORS.toggle);
+    control.classList.toggle(SELECTORS.open, open);
+    control.classList.toggle(SELECTORS.closed, !open);
+    control.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  function setTargetState(target, open) {
+    target.classList.add(SELECTORS.panel);
+    target.classList.toggle(SELECTORS.open, open);
+    target.classList.toggle(SELECTORS.closed, !open);
+    target.hidden = !open;
+    target.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+
+  function buildGroup(name) {
+    const existing = groups.get(name);
+    const open = existing ? existing.open : CONFIG.defaultOpen === true;
+    const group = {
+      name,
+      controls: findControls(name),
+      targets: findTargets(name),
+      open
+    };
+
+    if (!group.targets.length) return null;
+
+    groups.set(name, group);
+    setGroupOpen(name, open);
+    return group;
+  }
+
+  function getGroup(name) {
+    const group = buildGroup(name);
+    if (!group) return null;
+    return groups.get(name);
+  }
+
+  function setGroupOpen(name, open) {
+    const group = groups.get(name);
+    if (!group) return;
+
+    group.open = open;
+    group.controls.forEach(control => setControlState(control, open));
+    group.targets.forEach(target => setTargetState(target, open));
+  }
+
+  function scrollToFirstTarget(group) {
+    if (!group || CONFIG.scrollOnOpen !== true || !group.targets.length) return;
+
+    const firstTarget = group.targets[0];
+    if (!firstTarget || typeof firstTarget.scrollIntoView !== 'function') return;
+
+    requestFrame(() => {
+      firstTarget.scrollIntoView({
+        behavior: CONFIG.scrollBehavior,
+        block: CONFIG.scrollBlock
+      });
+    });
+  }
+
+  function toggleGroup(name) {
+    const group = getGroup(name);
+    if (!group) return false;
+    const shouldOpen = !group.open;
+    setGroupOpen(name, shouldOpen);
+    if (shouldOpen) {
+      scrollToFirstTarget(group);
+    }
+    return true;
+  }
+
+  function closestLink(node) {
+    if (!node || node.nodeType !== 1) return null;
+    return node.closest(LINK_SELECTOR);
+  }
+
+  function handleClick(event) {
+    if (CONFIG.enabled === false || event.defaultPrevented) return;
+
+    const link = closestLink(event.target);
+    const name = getLinkName(link);
+    if (!name) return;
+
+    const group = getGroup(name);
+    if (!group || !group.targets.length) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    toggleGroup(name);
+  }
+
+  function init() {
+    if (CONFIG.enabled === false) return;
+
+    discoverNames().forEach(buildGroup);
+
+    if (!listenerBound) {
+      listenerBound = true;
+      document.addEventListener('click', handleClick);
+    }
+  }
+
+  window.CarrdAccordeonV2 = {
+    refresh: init,
+    open(name) {
+      if (getGroup(name)) setGroupOpen(name, true);
+    },
+    close(name) {
+      if (getGroup(name)) setGroupOpen(name, false);
+    },
+    toggle: toggleGroup,
+    isOpen(name) {
+      const group = groups.get(name);
+      return group ? group.open : false;
+    },
+    getTargets(name) {
+      const group = getGroup(name);
+      return group ? group.targets.slice() : [];
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

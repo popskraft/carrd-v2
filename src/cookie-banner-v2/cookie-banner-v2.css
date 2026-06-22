@@ -1,0 +1,22 @@
+/* Base styles */
+[data-cookie-v2],
+.theme-cookie-banner,
+.cookie-banner,
+#cookie-baner {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-cookie-v2],
+  .theme-cookie-banner,
+  .cookie-banner,
+  #cookie-baner {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,112 @@
+/*
+ * Header Nav - anti-jump mobile collapse.
+ *
+ * Activation model:
+ *   The plugin is active on any page where the embed is installed AND #header
+ *   contains at least one `.header-mobile-el-collapsing` element. No
+ *   `site-header` / `header-collapsing` classes are needed.
+ *
+ *   On mobile (<= breakpoint) every `.header-mobile-el-collapsing` inside
+ *   #header collapses behind a hamburger. That's it: no sticky, no spacer.
+ *
+ * Contract: the plugin ONLY hides/shows flagged elements. It must never
+ * restyle them. While open it applies zero overrides; while closed it only
+ * sets display:none. The single positioning helper below is an internal
+ * runtime class on the primary header row.
+ *
+ * Anti-jump:
+ *   The collapsed mobile layout is pure CSS. Until JS runs, the Head guard
+ *   (see embed) already collapses the flagged elements, so the first paint is
+ *   correct and there is no flash. JS only injects the hamburger and toggles
+ *   open/close.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Hamburger toggle. Fixed in the top-right corner of the viewport by
+ * default (frosted-glass pill). Hidden by default; shown only on mobile.
+ * Fixed positioning means its presence never reflows the layout.
+ * ------------------------------------------------------------------ */
+
+.theme-header-nav-toggle {
+  position: var(--theme-header-nav-toggle-position, fixed);
+  top: var(--theme-header-nav-toggle-top, 1rem);
+  right: var(--theme-header-nav-toggle-right, 1rem);
+  width: var(--theme-header-nav-toggle-size, 46px);
+  height: var(--theme-header-nav-toggle-size, 46px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--theme-header-nav-bar-gap, 5px);
+  padding: 0;
+  border: none;
+  border-radius: var(--theme-header-nav-toggle-radius, 0.5rem);
+  background: var(--theme-header-nav-toggle-bg, rgba(255, 255, 255, 0.2));
+  -webkit-backdrop-filter: var(--theme-header-nav-toggle-backdrop, blur(10px));
+  backdrop-filter: var(--theme-header-nav-toggle-backdrop, blur(10px));
+  color: var(--theme-header-nav-bar-color, var(--theme-color-primary-dark, currentColor));
+  cursor: pointer;
+  z-index: var(--theme-header-nav-toggle-z-index, 100000);
+}
+
+.theme-header-nav-toggle:focus-visible {
+  outline: var(--theme-header-nav-toggle-outline, 2px solid currentColor);
+  outline-offset: var(--theme-header-nav-toggle-outline-offset, 2px);
+}
+
+.theme-header-nav-toggle-bar {
+  width: var(--theme-header-nav-bar-width, 22px);
+  height: var(--theme-header-nav-bar-height, 2px);
+  background: var(--theme-header-nav-bar-color, var(--theme-color-primary-dark, currentColor));
+  border-radius: var(--theme-header-nav-bar-radius, 999px);
+  transition:
+    opacity var(--theme-header-nav-duration, 300ms) ease,
+    transform var(--theme-header-nav-duration, 300ms) ease;
+}
+
+/* ------------------------------------------------------------------ *
+ * MOBILE COLLAPSED STATE - the anti-jump core.
+ * The menu expands in-flow (it pushes content down), so there is no overlay.
+ * ------------------------------------------------------------------ */
+
+@media (max-width: 736px) {
+  /* Show the hamburger as soon as it exists in the DOM (it is JS-injected). */
+  #header .theme-header-nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Positioning anchor for optional absolute-position toggle overrides.
+   * position:relative adds no offset; it only establishes a containing block. */
+  #header .theme-header-nav-primary-section {
+    position: relative;
+  }
+
+  /* Hide flagged elements ONLY while the menu is closed. We scope the rule to
+   * `#header:not(.is-nav-open)`, so when the menu opens this selector simply
+   * stops matching and the plugin applies ZERO overrides to the element; its
+   * original Carrd styles (display:flex, gap, flex-direction, font-size, etc.)
+   * remain exactly as authored. This is the whole contract of the plugin:
+   * hide / show only, never restyle.
+   *
+   * display:none fully removes the element from flow: zero height, no
+   * margin/padding/wrapper leak (which is why max-height:0 wasn't enough).
+   * !important beats Carrd's own per-instance display rules while closed. */
+  #header:not(.is-nav-open) .header-mobile-el-collapsing {
+    display: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Hamburger icon -> X animation.
+ * ------------------------------------------------------------------ */
+
+#header.is-nav-open .theme-header-nav-toggle-bar:nth-child(1),
+#header.is-nav-open .theme-header-nav-toggle-bar:nth-child(3) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+#header.is-nav-open .theme-header-nav-toggle-bar:nth-child(2) {
+  opacity: 1;
+  transform: none;
+}

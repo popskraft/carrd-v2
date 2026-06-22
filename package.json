@@ -1,0 +1,22 @@
+{
+  "name": "carrd-v2",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jsdom": "^24.0.0"
+  },
+  "scripts": {
+    "build": "python3 scripts/minify_plugins.py",
+    "build:docs": "python3 scripts/minify_plugins.py --docs-only",
+    "check:legacy": "bash scripts/check_legacy_consistency.sh",
+    "lint": "eslint \"src/**/*.js\" \"tests-js/**/*.js\"",
+    "verify:dist": "python3 scripts/verify_dist.py",
+    "validate": "npm run verify:dist --silent && npm run test --silent && npm run lint --silent",
+    "test:py": "python3 -m unittest discover -s tests",
+    "test:js": "node --test $(find tests-js -name '*.test.js' | sort)",
+    "test": "npm run check:legacy && npm run test:py && npm run test:js",
+    "cdn:purge": "python3 scripts/purge_jsdelivr.py",
+    "deploy": "npm run build && git add dist/ && git commit -m 'Build: rebuild dist' && git push && npm run cdn:purge"
+  }
+}
