@@ -7,18 +7,45 @@ cd "${ROOT_DIR}"
 TARGETS=(src tests-js)
 FAILED=0
 
+search_pattern() {
+  local pattern="$1"
+  local output_file="$2"
+  local status
+
+  if command -v rg >/dev/null 2>&1; then
+    rg -n -e "${pattern}" "${TARGETS[@]}" >"${output_file}" && return 0
+    status="$?"
+  else
+    grep -RInE -- "${pattern}" "${TARGETS[@]}" >"${output_file}" && return 0
+    status="$?"
+  fi
+
+  if [[ "${status}" -eq 1 ]]; then
+    return 1
+  fi
+
+  echo "Search failed for pattern: ${pattern}" >&2
+  return "${status}"
+}
+
 check_absent() {
   local label="$1"
   local pattern="$2"
   local output_file
   output_file="$(mktemp)"
 
-  if rg -n -e "${pattern}" "${TARGETS[@]}" >"${output_file}"; then
+  if search_pattern "${pattern}" "${output_file}"; then
     echo "[FAIL] ${label}"
     cat "${output_file}"
     FAILED=1
   else
-    echo "[OK] ${label}"
+    local status="$?"
+    if [[ "${status}" -eq 1 ]]; then
+      echo "[OK] ${label}"
+    else
+      echo "[FAIL] ${label}"
+      FAILED=1
+    fi
   fi
 
   rm -f "${output_file}"

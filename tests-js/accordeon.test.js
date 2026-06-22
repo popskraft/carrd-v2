@@ -192,8 +192,14 @@ test('accordeon public API opens, closes, and refreshes groups', () => {
   assert.equal(dom.window.document.getElementById('added').hidden, true);
 });
 
-test('accordeon initializes the current carrd-source ppf structure', () => {
-  const html = fs.readFileSync(path.resolve(__dirname, '..', 'carrd-source', 'index.html'), 'utf-8');
+test('accordeon initializes the current carrd-source ppf structure', context => {
+  const carrdSourcePath = path.resolve(__dirname, '..', 'carrd-source', 'index.html');
+  if (!fs.existsSync(carrdSourcePath)) {
+    context.skip('carrd-source reference is not included in this repository');
+    return;
+  }
+
+  const html = fs.readFileSync(carrdSourcePath, 'utf-8');
   const dom = createDom(html);
 
   loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
