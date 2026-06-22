@@ -15,6 +15,7 @@
 !CHANGELOG.md
 !VERSION
 !.gitignore
+!.eslintrc.json
 !.agent-kit-validate.conf
 !bundle.config.json
 !package.json
