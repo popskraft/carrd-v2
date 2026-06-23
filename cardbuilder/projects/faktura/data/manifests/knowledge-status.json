@@ -1,38 +1,38 @@
 {
   "templateId": "faktura",
   "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
-  "publishedSiteUrl": null,
+  "publishedSiteUrl": "https://faktura-dev.crd.co/",
   "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
   "knowledgePolicyVersion": 1,
   "knowledgeDomains": {
     "builderStatic": {
       "status": "reused-shared-canon",
-      "lastScanAt": null,
+      "lastScanAt": "2026-06-23T15:29:00Z",
       "notes": "Reuse shared builder-static Carrd canon until the live Builder itself is re-verified."
     },
     "templateInstance": {
-      "status": "automation-first",
-      "lastScanAt": null,
-      "notes": "Automation probes exist under automation/, but a canonical scan package is not yet promoted."
+      "status": "draft-v2-updated",
+      "lastScanAt": "2026-06-23T15:32:18Z",
+      "notes": "Canonical Builder scan, DOM audit, tabs map, live plugin inventory, published-site inventory, and repo sync diff are captured. Plugin/theme embeds were updated to v2 in the Builder draft and verified by exact hash readback. Published page still needs operator publish and post-publish scan."
     }
   },
   "fullScanCompletedAt": null,
-  "lastPartialScanAt": null,
+  "lastPartialScanAt": "2026-06-23T15:32:18Z",
   "publicCarrdDocsIndexLastSeenAt": null,
-  "status": "automation-first",
-  "reason": "Live builder automation exists, but the canonical site-package scan and published-site verification are still pending.",
+  "status": "draft-v2-updated",
+  "reason": "Builder-side scan package exists and v2 plugin refresh is verified in draft. Full status is blocked until operator publish and post-publish verification.",
   "requiredArtifacts": [
     "builder component snapshot",
     "dom audit snapshot",
     "style map",
     "element tabs map",
     "live plugin inventory",
-    "published site plugin scan",
-    "repo-vs-template plugin sync diff",
+    "published site plugin scan before publish",
+    "repo-vs-template plugin sync diff for Builder draft",
     "template-instance scan report"
   ],
   "freshScanRequiredWhen": [
-    "no site-specific full scan exists",
+    "operator publishes the v2 draft",
     "active Builder URL changes for this site package",
     "plugin sync or deterministic audit is requested",
     "meaningful template or plugin changes happen after the latest scan"

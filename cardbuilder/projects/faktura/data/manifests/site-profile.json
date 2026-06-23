@@ -2,28 +2,28 @@
   "siteSlug": "faktura",
   "templateId": "faktura",
   "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
-  "publishedSiteUrl": null,
+  "publishedSiteUrl": "https://faktura-dev.crd.co/",
   "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
-  "projectDocs": null,
+  "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/faktura",
   "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/manifests/knowledge-status.json",
   "structure": {
-    "builderScan": null,
-    "domAudit": null,
-    "tabsMap": null,
+    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-builder-scan.json",
+    "domAudit": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-dom-audit.json",
+    "tabsMap": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-element-tabs-map.json",
     "styleMap": null,
     "containerRegistry": null
   },
   "semantic": {
     "containerRegistry": null,
     "notes": [
-      "Automation probes exist under automation/.",
-      "Canonical site scans are not yet promoted into the package."
+      "Builder-side canonical scan package exists.",
+      "Plugin embeds were updated to v2 in Builder draft and verified by exact hash readback."
     ]
   },
   "runtimeAssets": {
-    "liveInventory": null,
-    "publishedInventory": null,
-    "syncDiff": null
+    "liveInventory": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/inventories/live-plugin-inventory.json",
+    "publishedInventory": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/inventories/published-site-plugin-scan.json",
+    "syncDiff": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json"
   },
   "capabilities": {
     "scan": "state-read",
@@ -32,8 +32,8 @@
     "publish": "operator-only"
   },
   "caveats": [
-    "Published URL is not yet confirmed in canon.",
-    "No canonical scan package has been captured yet."
+    "Published-site scan reflects the currently published page before the v2 draft is published.",
+    "Publish remains operator-only."
   ],
-  "status": "automation-first"
+  "status": "draft-v2-updated"
 }

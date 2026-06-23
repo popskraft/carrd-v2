@@ -38,13 +38,31 @@ What it prints:
 - Port:
   - `9222`
 - Profile dir:
-  - `~/.codex/chrome-debug-profile`
+  - Resolved from `chromeProfileDir` in `cardbuilder/data/sites.json` for the active site.
+  - Falls back to `~/.codex/chrome-debug-profile` if the field is absent.
 - Registry:
   - `/Users/popskraft/Projects/carrd-v2/cardbuilder/data/sites.json`
 
+## Per-Site Chrome Profiles
+
+Each site in `sites.json` has a `chromeProfileDir` field pointing to a dedicated Chrome user-data directory.
+The script reads this field automatically — switching `active-template.json` to a different site will launch
+Chrome under the matching profile.
+
+Current profile mapping:
+
+| Site | Chrome profile dir |
+|---|---|
+| `main-template` | `~/.codex/chrome-debug-profile` |
+| `lunar-auto-film` | `~/.codex/chrome-debug-profile-lunar-auto-film` |
+| `faktura` | `~/.codex/chrome-debug-profile-faktura` |
+
+When adding a new site to the registry, set `chromeProfileDir` to a new unique path under `~/.codex/`.
+Chrome will create the directory on first launch.
+
 ## Optional Overrides
 
-You can override the defaults per run:
+You can override the profile per run:
 
 ```bash
 CARRD_DEBUG_PORT=9333 /Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/open-debug-chrome.sh

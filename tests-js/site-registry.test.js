@@ -1,5 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
@@ -59,5 +60,42 @@ test('site registry resolves faktura as a first-class live site package', async 
   assert.equal(resolved.site.siteSlug, 'faktura');
   assert.equal(resolved.matchedBy, 'site-ref-slug');
   assert.equal(resolved.site.builderUrl, 'https://carrd.co/dashboard/4778178033233108/build');
-  assert.equal(resolved.profile.status, 'automation-first');
+  assert.equal(resolved.site.publishedSiteUrl, 'https://faktura-dev.crd.co/');
+  assert.equal(resolved.site.status, 'draft-v2-updated');
+  assert.equal(
+    resolved.site.projectDocs,
+    '/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/faktura'
+  );
+  assert.equal(resolved.profile.status, 'draft-v2-updated');
+  assert.equal(
+    resolved.profile.runtimeAssets.syncDiff,
+    '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json'
+  );
+});
+
+test('cardbuilder operational canon does not depend on legacy workspace roots', () => {
+  const repoRoot = path.resolve(__dirname, '..');
+  const checkedFiles = [
+    'cardbuilder/AGENTS.md',
+    'cardbuilder/projects/faktura/AGENTS.md',
+    'cardbuilder/projects/koryphey-online/AGENTS.md',
+    'cardbuilder/projects/lunar-auto-film/AGENTS.md',
+    'cardbuilder/projects/main-template/AGENTS.md',
+    'cardbuilder/data/sites.json',
+    'cardbuilder/data/active-template.json'
+  ];
+
+  const forbiddenPatterns = [
+    /\/Users\/popskraft\/Projects\/AGENTS\.md/,
+    /\/Users\/popskraft\/Projects\/(?!carrd-v2(?:\/|"))/,
+    /docs-rag-mvp/
+  ];
+
+  for (const relativePath of checkedFiles) {
+    const filePath = path.join(repoRoot, relativePath);
+    const contents = fs.readFileSync(filePath, 'utf8');
+    for (const pattern of forbiddenPatterns) {
+      assert.equal(pattern.test(contents), false, `${relativePath} contains forbidden reference ${pattern}`);
+    }
+  }
 });

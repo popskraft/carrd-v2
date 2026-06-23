@@ -4,6 +4,7 @@ Reusable Carrd guidance shared across site packages.
 
 ## Active Guides
 
+- [guides/CARRD_KNOWLEDGE_SOURCES.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_KNOWLEDGE_SOURCES.md)
 - [guides/CARRD_BROWSER_CONTROL_ARCHITECTURE.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_BROWSER_CONTROL_ARCHITECTURE.md)
 - [guides/CARRD_BROWSER_CONTROL_IMPLEMENTATION_PLAN.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_BROWSER_CONTROL_IMPLEMENTATION_PLAN.md)
 - [guides/CARRD_DEBUG_CHROME_QUICKSTART.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_DEBUG_CHROME_QUICKSTART.md)

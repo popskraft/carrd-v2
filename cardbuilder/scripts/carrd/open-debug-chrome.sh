@@ -3,7 +3,6 @@
 set -euo pipefail
 
 PORT="${CARRD_DEBUG_PORT:-9222}"
-PROFILE_DIR="${CARRD_DEBUG_PROFILE:-$HOME/.codex/chrome-debug-profile}"
 CHROME_BIN="${CARRD_DEBUG_CHROME_BIN:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 ACTIVE_TEMPLATE="/Users/popskraft/Projects/carrd-v2/cardbuilder/data/active-template.json"
 SITE_REGISTRY="/Users/popskraft/Projects/carrd-v2/cardbuilder/data/sites.json"
@@ -13,8 +12,6 @@ if [[ ! -x "$CHROME_BIN" ]]; then
   echo "Chrome binary not found: $CHROME_BIN" >&2
   exit 1
 fi
-
-mkdir -p "$PROFILE_DIR"
 
 read_site_field() {
   local field="$1"
@@ -27,6 +24,11 @@ read_site_field() {
 SITE_SLUG="$(read_site_field siteSlug)"
 BUILDER_URL="$(read_site_field builderUrl)"
 PUBLISHED_URL="$(read_site_field publishedSiteUrl)"
+
+REGISTRY_PROFILE_DIR="$(read_site_field chromeProfileDir 2>/dev/null | tr -d '[:space:]')"
+PROFILE_DIR="${CARRD_DEBUG_PROFILE:-${REGISTRY_PROFILE_DIR:-$HOME/.codex/chrome-debug-profile}}"
+
+mkdir -p "$PROFILE_DIR"
 
 if [[ -z "$BUILDER_URL" ]]; then
   echo "Resolved site is missing a builder URL." >&2

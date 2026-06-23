@@ -170,14 +170,12 @@ The important point is that the site difference is not only raw DOM order. It is
 
 ## Current Gaps
 
-### Gap 1. Pointer model exists, but profile model is incomplete
+### Gap 1. Resolved — per-site Chrome profiles in place
 
-The repo already knows that `active-template.json` is only a pointer. However, runtime commands and some scripts still behave as if one active template is the main operating model.
-
-Impact:
-
-- easy to attach Chrome to one site while local canon still points at another
-- drift results become ambiguous
+Each site in `sites.json` now has a `chromeProfileDir` field. `open-debug-chrome.sh` reads that field
+and uses the matching Chrome user-data directory. Switching `active-template.json` to a different site
+automatically launches Chrome under the correct profile. The env var override `CARRD_DEBUG_PROFILE`
+remains available for one-off runs.
 
 ### Gap 2. Canon is internally inconsistent
 

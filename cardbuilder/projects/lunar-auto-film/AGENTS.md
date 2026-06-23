@@ -7,7 +7,7 @@ Human-facing explanations and long history live in `cardbuilder/docs/projects/lu
 
 1. Explicit user instruction.
 2. This project AGENTS.md.
-3. Parent/root AGENTS.md at `/Users/popskraft/Projects/AGENTS.md`.
+3. Parent/root AGENTS.md at `/Users/popskraft/Projects/carrd-v2/AGENTS.md`.
 4. `cardbuilder/docs/projects/lunar-auto-film/INDEX.md` and the site state manifests when needed.
 
 ## Identity

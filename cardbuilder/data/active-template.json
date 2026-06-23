@@ -9,13 +9,7 @@
   "knowledgeRoot": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data",
   "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/manifests/knowledge-status.json",
   "knowledgeRulesDoc": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/lunar-auto-film/KNOWLEDGE-SYSTEM.md",
-  "supplementalKnowledgeBases": [
-    {
-      "id": "docs-rag-mvp-carrd",
-      "path": "/Users/popskraft/Projects/docs-rag-mvp",
-      "role": "Supplemental Carrd documentation lookup for platform behavior and reference checks."
-    }
-  ],
+  "supplementalKnowledgeBases": [],
   "role": "Site-specific Carrd template instance for the Lunar auto film draft/copy, separated from the legacy universal main-template baseline.",
   "runtimeMode": "devtools-first",
   "savePublishPolicy": "operator-only",
@@ -25,7 +19,7 @@
     "preferredPublishedUrl": null
   },
   "updateRule": "If the template folder path or builder URL changes, update this file first before changing procedural docs.",
-  "knowledgeRule": "Store canonical deterministic builder knowledge in the local carrd-v2 repo first, then optionally export searchable summaries into docs-rag-mvp.",
+  "knowledgeRule": "Store canonical deterministic builder knowledge in the local carrd-v2 repo. External exports are optional and must not be required to operate this workspace.",
   "knowledgeDomainRule": "Separate builder-static Carrd Builder knowledge from template-instance project knowledge in every scan, artifact, and export.",
   "pluginSyncContract": {
     "compareLiveTemplateAgainst": [
