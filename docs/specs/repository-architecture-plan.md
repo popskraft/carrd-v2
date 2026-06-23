@@ -97,20 +97,21 @@ Migrated sites:
 - V2 remote is configured as `https://github.com/popskraft/carrd-v2.git`.
 - V2 source and dist use `*-v2` plugin folders and `theme-core-v2` bundle files.
 - V2 snippets point to `popskraft/carrd-v2@main`.
-- Legacy freeze/publish remains a publication gate because it requires external GitHub/jsDelivr action.
+- Legacy `popskraft/carrd-plugins` is preserved with the historical freeze tag `legacy-freeze-2026-06-23`.
+- V2 publish uses `popskraft/carrd-v2` main plus tag `v2.0.0`; jsDelivr purge is scoped to v2 paths only.
 
-## Remaining Publication Steps
+## Publication Steps
 
-1. Freeze legacy repo.
+1. Freeze legacy repo. Done.
    Record the current `popskraft/carrd-plugins@main` delivery state with a tag or branch.
 
-2. Publish v2.
+2. Publish v2. Done.
    Push validated `popskraft/carrd-v2@main`.
 
-3. Purge v2 CDN only.
+3. Purge v2 CDN only. Done.
    Run the v2 purge against `popskraft/carrd-v2@main/dist`.
 
-4. Keep legacy untouched.
+4. Keep legacy untouched. Active rule.
    Do not update legacy docs/snippets except to mark them as legacy if needed.
 
 ## What Not To Do

@@ -26,6 +26,3 @@
 ## Research
 - `docs/research/2026-02-17-cms-comparison.md`
 - `docs/research/2026-02-12-strapi5-astro-architecture-report.md`
-
-## Legacy
-- `_docs/` — grandfathered bridge layer; не добавлять новый durable content туда.

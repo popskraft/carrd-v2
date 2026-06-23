@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Modal V2**: Added public `refresh()` API for dynamic DOM rescans.
 - **FAQ V2**: Deferred open-state height measurement to the next animation frame.
 - **Cookie Banner V2**: Added the `Secure` cookie flag on HTTPS pages.
+- **Documentation Canon**: Aligned `ROADMAP.md`, `OPEN-QUESTIONS.md`, `docs/INDEX.md`, and release gates with the current `_documenter-rules` full-path documentation canon.
 
 ### Removed
 

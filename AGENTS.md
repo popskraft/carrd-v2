@@ -52,10 +52,11 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 
 ## Session End
 1. Update `ROADMAP.md` current status
-2. Remove closed tasks from `ROADMAP.md`; move history to `docs/archive/roadmap-history.md` only if the history matters
-3. Add new unresolved questions to `OPEN-QUESTIONS.md` if needed
-4. Run the repo's native validation for the touched surface
-5. Run `project-compact` when handing off a long-lived thread
+2. Keep `ROADMAP.md` in full-path mode: preserve work rows and change status to `done`, `active`, or `blocked`.
+3. Add or remove unresolved questions in `OPEN-QUESTIONS.md` when decisions change.
+4. Update `docs/INDEX.md` when durable docs are added, moved, renamed, or archived.
+5. Run the repo's native validation for the touched surface.
+6. Run `project-compact` when handing off a long-lived thread.
 
 ## Local Exceptions
 - `CHANGELOG.md` is root-level because build scripts copy it into `dist/CHANGELOG.md`.
