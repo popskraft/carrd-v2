@@ -96,6 +96,8 @@
     init() {
       this.wrapper = document.createElement('div');
       this.wrapper.className = S.wrap;
+      this.wrapper.setAttribute('role', 'region');
+      this.wrapper.setAttribute('aria-roledescription', 'carousel');
       if (this.config.equalHeight) this.wrapper.classList.add('is-equal-height');
       if (!this.config.hideOverflow) this.wrapper.classList.add('is-overflow-visible');
       this.slides[0].parentNode.insertBefore(this.wrapper, this.slides[0]);
@@ -546,6 +548,9 @@
     }
 
     updateDotsAndArrows() {
+      if (this.wrapper) {
+        this.wrapper.setAttribute('aria-label', `Slide ${this.currentIndex + 1} of ${this.getTotalPages()}`);
+      }
       if (this.dots) this.dots.forEach((d, i) => d.classList.toggle('is-active', i === this.currentIndex));
       if (this.prevBtn && this.nextBtn && !this.config.loop) {
         this.prevBtn.disabled = this.currentIndex === 0;

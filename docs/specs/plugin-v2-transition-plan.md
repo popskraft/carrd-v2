@@ -4,7 +4,7 @@
 
 Historical execution note for the first v2 rollout slice.
 
-Its active replacement is [docs/specs/plugin-unification-migration-plan.md](/Users/popskraft/Projects/CARRD/docs/specs/plugin-unification-migration-plan.md). This file stays only to record the original implementation scope and guardrails for the first compatibility-first pass.
+Its active replacement is [docs/specs/plugin-unification-migration-plan.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-unification-migration-plan.md). This file stays only to record the original implementation scope and guardrails for the first compatibility-first pass.
 
 ## What This Slice Introduced
 
@@ -43,9 +43,9 @@ Its active replacement is [docs/specs/plugin-unification-migration-plan.md](/Use
 
 These items are now owned by newer canon:
 
-- current migration execution: [docs/specs/plugin-unification-migration-plan.md](/Users/popskraft/Projects/CARRD/docs/specs/plugin-unification-migration-plan.md)
-- unresolved policy decisions: [OPEN-QUESTIONS.md](/Users/popskraft/Projects/CARRD/OPEN-QUESTIONS.md)
-- current shared public contract: [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/CARRD/docs/specs/plugin-v2-data-contract.md)
+- current migration execution: [docs/specs/plugin-unification-migration-plan.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-unification-migration-plan.md)
+- unresolved policy decisions: [OPEN-QUESTIONS.md](/Users/popskraft/Projects/carrd-v2/OPEN-QUESTIONS.md)
+- current shared public contract: [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-v2-data-contract.md)
 
 ## Status
 

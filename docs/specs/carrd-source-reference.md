@@ -1,7 +1,7 @@
 # Carrd Source Reference
 
 ## Purpose
-`/Users/popskraft/Projects/CARRD/carrd-source` is the reference template source for comparison and regression checks.
+`/Users/popskraft/Projects/carrd-v2/carrd-source` is the reference template source for comparison and regression checks.
 
 ## Status Rule
 The reference is not guaranteed to be current at every moment.

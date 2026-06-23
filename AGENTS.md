@@ -4,7 +4,7 @@
 Carrd Plugins V2 — репозиторий с `src/`-плагинами для Carrd, shared theme assets и generated `dist/`-пакетами.
 
 ## Root
-`/Users/popskraft/Projects/CARRD`
+`/Users/popskraft/Projects/carrd-v2`
 
 ## Stack / Environment
 - Vanilla JS и CSS
@@ -17,9 +17,6 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - `dist/` — generated distributive assets и public README
 - `scripts/` — build, verify, purge и README generation helpers
 - `docs/` — active durable internal docs; `docs/INDEX.md` is the navigator
-- `_docs/` — legacy compatibility layer and archival bridge only
-- `cardbuilder/` — separate browser-control / site-package workspace
-- `admincarrd/` — separate admin module workspace
 - `carrd-source/` — reference template source used for comparisons
 - `_temp/` — ephemeral scratch, keep out of git
 
@@ -27,8 +24,9 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - Keep root clean: no new durable docs at root except canonical start files and manifests.
 - `README.md` is the public orientation surface; keep it in sync with source docs and generated `dist/` docs.
 - Keep `docs/` as the only active docs root for durable non-sensitive documentation.
-- Treat `_docs/` as grandfathered legacy. Do not add new durable content there; replace any touched file with a pointer to `docs/` or a module owner doc.
+- Do not recreate legacy `_docs/`; migrated content belongs in `docs/`.
 - `CLAUDE.md` must stay a one-line pointer to `AGENTS.md`.
+- `CHANGELOG.md` stays at root as the build-owned source copied to `dist/CHANGELOG.md`.
 - Update `ROADMAP.md` after material changes.
 - Preserve `KI-NNN` IDs in `README.md`.
 - `src/<plugin>/README.md` is the source for public plugin guidance; `dist/<plugin>/README.md` is generated.
@@ -42,7 +40,7 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - `bundle` → generated CDN bundle assets in `dist/`
 - `source` → editable `src/`
 - `delivery` → generated `dist/`
-- `carrd-source` → reference template source at `/Users/popskraft/Projects/CARRD/carrd-source`
+- `carrd-source` → reference template source at `/Users/popskraft/Projects/carrd-v2/carrd-source`
 
 ## Session Start
 1. Read `AGENTS.md`
@@ -56,12 +54,11 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 1. Update `ROADMAP.md` current status
 2. Remove closed tasks from `ROADMAP.md`; move history to `docs/archive/roadmap-history.md` only if the history matters
 3. Add new unresolved questions to `OPEN-QUESTIONS.md` if needed
-4. Keep legacy `_docs/` pointers in sync if you touched them
-5. Run the repo's native validation for the touched surface
-6. Run `project-compact` when handing off a long-lived thread
+4. Run the repo's native validation for the touched surface
+5. Run `project-compact` when handing off a long-lived thread
 
 ## Local Exceptions
-- `_docs/` is grandfathered as a legacy bridge; `docs/` is the active durable-docs root.
+- `CHANGELOG.md` is root-level because build scripts copy it into `dist/CHANGELOG.md`.
 
 ## Ask Before
 - Irreversible data/schema changes.

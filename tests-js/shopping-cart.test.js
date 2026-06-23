@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { createDom, loadScript, triggerDomReady, click, keydown, useFakeTimers } = require('./helpers');
+const { createDom, loadScript, triggerDomReady, click, keydown, setPluginOptions, useFakeTimers } = require('./helpers');
 
 function stubHashAnchorClicks(dom) {
   const originalClick = dom.window.HTMLAnchorElement.prototype.click;
@@ -37,6 +37,30 @@ test('shopping cart injects widget and exposes API', () => {
   assert.equal(panel.getAttribute('role'), 'dialog');
   assert.ok(dom.window.CarrdShoppingCartV2);
   assert.equal(typeof dom.window.CarrdShoppingCartV2.add, 'function');
+});
+
+test('shopping cart escapes configured widget text labels', () => {
+  const dom = createDom('<textarea class="cart-output"></textarea>');
+  setPluginOptions(dom, {
+    shoppingCart: {
+      texts: {
+        title: '<img src=x onerror="window.__titleXss=1">',
+        total: '<img src=x onerror="window.__totalXss=1">',
+        checkout: '<img src=x onerror="window.__checkoutXss=1">'
+      }
+    }
+  });
+
+  loadScript(dom, 'src/shopping-cart-v2/shopping-cart-v2.js');
+  triggerDomReady(dom);
+
+  assert.equal(dom.window.document.querySelectorAll('.theme-shopcart-title img').length, 0);
+  assert.equal(dom.window.document.querySelectorAll('.theme-shopcart-total-row img').length, 0);
+  assert.equal(dom.window.document.querySelectorAll('.theme-shopcart-btn-checkout img').length, 0);
+  assert.match(
+    dom.window.document.querySelector('.theme-shopcart-btn-checkout').textContent,
+    /<img src=x/
+  );
 });
 
 test('shopping cart api updates items and totals', () => {

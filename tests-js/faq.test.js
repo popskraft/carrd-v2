@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { createDom, loadScript, triggerDomReady, setPluginOptions, click } = require('./helpers');
+const { createDom, loadScript, triggerDomReady, setPluginOptions, click, useFakeTimers } = require('./helpers');
 
 function faqHtml() {
   return (
@@ -37,6 +37,7 @@ test('faq initializes, applies classes and aria attributes', () => {
 
 test('faq toggles by click and enforces single-open accordion', () => {
   const dom = createDom(faqHtml());
+  const timers = useFakeTimers(dom);
   loadScript(dom, 'src/faq-v2/faq-v2.js');
   triggerDomReady(dom);
 
@@ -49,12 +50,16 @@ test('faq toggles by click and enforces single-open accordion', () => {
   assert.ok(q1.classList.contains('is-open'));
   assert.ok(a1.classList.contains('is-open'));
   assert.equal(t1.getAttribute('aria-expanded'), 'true');
+  assert.equal(a1.style.maxHeight, '');
+  timers.flush();
+  assert.match(a1.style.maxHeight, /px$/);
 
   click(dom, t2);
   assert.ok(q2.classList.contains('is-open'));
   assert.ok(a2.classList.contains('is-open'));
   assert.ok(q1.classList.contains('is-closed'));
   assert.ok(a1.classList.contains('is-closed'));
+  timers.restore();
 });
 
 test('faq supports data-faq-v2-allow-multiple per container', () => {

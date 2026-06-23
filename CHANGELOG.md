@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-06-23
+
+### Added
+
+- **Runtime Repo**: Promoted Carrd Plugins V2 as the `popskraft/carrd-v2` delivery surface with `*-v2` plugin slugs, `theme-core-v2` bundle assets, and `Carrd*V2` globals.
+- **Documentation**: Added a v2 publication contract that keeps legacy `popskraft/carrd-plugins` as the historical jsDelivr surface.
+
+### Fixed
+
+- **Shopping Cart V2**: Escaped configured widget text labels before inserting widget HTML.
+- **Slider V2**: Added carousel region ARIA metadata and dynamic slide position labels.
+- **Modal V2**: Added public `refresh()` API for dynamic DOM rescans.
+- **FAQ V2**: Deferred open-state height measurement to the next animation frame.
+- **Cookie Banner V2**: Added the `Secure` cookie flag on HTTPS pages.
+
+### Removed
+
+- **Root Docs**: Removed obsolete root `BREAKPOINTS.md`; the owner is `docs/specs/breakpoints-contract.md`.
+
 ### Added
 
 - **Accordeon**: Added a lightweight container toggle plugin for `#accordeon-*` links and matching `data-accordeon-v2` containers.

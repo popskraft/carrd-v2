@@ -71,7 +71,8 @@
       expires = '; expires=' + date.toUTCString();
     }
 
-    document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
+    const secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax' + secure;
   }
 
   function isMobile() {

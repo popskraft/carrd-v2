@@ -717,16 +717,16 @@
       <div class="${SELECTORS.overlay}" data-action="close" aria-hidden="true"></div>
       <div class="${SELECTORS.panel}" id="theme-shopcart-panel" role="dialog" aria-modal="true" aria-labelledby="theme-shopcart-title" aria-hidden="true" tabindex="-1">
         <div class="${SELECTORS.header}">
-          <div class="${SELECTORS.title}" id="theme-shopcart-title">${CONFIG.texts.title}</div>
+          <div class="${SELECTORS.title}" id="theme-shopcart-title">${escapeHtml(CONFIG.texts.title)}</div>
           <button class="${SELECTORS.close}" data-action="close" aria-label="Close Cart">${ICONS.close}</button>
         </div>
         <div class="${SELECTORS.body}"></div>
         <div class="${SELECTORS.footer}">
           <div class="${SELECTORS.totalRow}">
-            <span>${CONFIG.texts.total}</span>
+            <span>${escapeHtml(CONFIG.texts.total)}</span>
             <span class="${SELECTORS.totalAmount}">$0.00</span>
           </div>
-          <button class="${SELECTORS.btnMain} ${SELECTORS.btnCheckout}" data-action="checkout" type="button">${CONFIG.texts.checkout}</button>
+          <button class="${SELECTORS.btnMain} ${SELECTORS.btnCheckout}" data-action="checkout" type="button">${escapeHtml(CONFIG.texts.checkout)}</button>
         </div>
       </div>
       <div class="${SELECTORS.toast}"></div>

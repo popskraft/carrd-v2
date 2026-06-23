@@ -256,6 +256,10 @@
         return activeModal === normalizeModalRef(modalId);
       }
       return activeModal !== null;
+    },
+
+    refresh: function() {
+      init();
     }
   };
 

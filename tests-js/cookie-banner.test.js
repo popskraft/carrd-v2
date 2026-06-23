@@ -170,6 +170,7 @@ test('cookie banner uses per-banner data-cookie-v2-days when writing consent coo
 
   assert.match(cookieWrite, /cookies_accepted=1/);
   assert.match(cookieWrite, /expires=Wed, 01 Jul 2026 00:00:00 GMT/);
+  assert.match(cookieWrite, /; Secure$/);
   dom.window.Date = realDate;
   timers.restore();
 });

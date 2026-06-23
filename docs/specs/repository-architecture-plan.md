@@ -2,53 +2,59 @@
 
 ## Purpose
 
-Зафиксировать схему, при которой старые Carrd-сайты продолжают получать старые CDN-файлы по прежним URL, а новая версия плагинов получает отдельный репозиторий, отдельные CDN-ссылки и отдельную public identity.
+Keep historical Carrd sites on their existing jsDelivr files while Carrd Plugins V2 ships from a separate runtime repo with separate CDN links and public identity.
 
 ## Decision
 
-Использовать два runtime repo:
+Use two runtime repos:
 
-1. `popskraft/carrd-v2`
-   Frozen legacy CDN repo.
-   Его имя, ветка `main` и существующие paths нельзя переименовывать, потому что на них уже ссылаются опубликованные Carrd-сайты.
+1. `popskraft/carrd-plugins`
+   Legacy CDN repo. Its name, `main` branch, and existing `dist/...` paths must not be replaced by v2 output because published Carrd sites already reference them.
 
 2. `popskraft/carrd-v2`
-   Новый основной repo для второй версии.
-   Все новые сайты и новые install snippets должны ссылаться только на него.
+   V2 runtime repo. New sites and new install snippets use only this repo.
 
-Локальный workspace `/Users/popskraft/Projects/CARRD` сейчас остаётся местом проектирования и подготовки v2 до создания/публикации нового repo.
+Current local roots:
+
+```text
+/Users/popskraft/Projects/CARRD
+  planning/staging workspace and legacy project canon
+
+/Users/popskraft/Projects/carrd-v2
+  V2 runtime repo connected to https://github.com/popskraft/carrd-v2.git
+```
 
 ## Non-Negotiables
 
-- Не переименовывать `popskraft/carrd-v2`.
-- Не переносить старые CDN files на новый repo.
-- Не полагаться на GitHub redirects для runtime delivery.
-- Не обновлять старые сайты автоматически на v2.
-- Не менять существующие legacy paths вида `https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/...`.
+- Do not rename or replace `popskraft/carrd-plugins`.
+- Do not publish v2 bundles into legacy `popskraft/carrd-plugins` paths.
+- Do not rely on GitHub redirects for runtime delivery.
+- Do not update old Carrd sites automatically to v2.
+- Do not change existing legacy paths such as `https://cdn.jsdelivr.net/gh/popskraft/carrd-plugins@main/dist/...`.
 
 ## Target Runtime Model
 
-### Legacy: `popskraft/carrd-v2`
+### Legacy: `popskraft/carrd-plugins`
 
-Роль:
-- обслуживает уже опубликованные сайты;
-- хранит legacy `dist/...` files по старым именам;
-- остаётся доступным по тем же jsDelivr URL.
+Role:
+- serves already published sites;
+- keeps legacy `dist/...` files by old names;
+- remains available through the same jsDelivr URLs.
 
-Правила:
-- только критические fixes, если старые сайты сломаны;
-- никаких v2 plugin renames;
-- никаких новых install docs для новых проектов;
-- после freeze repo считается legacy runtime surface.
+Rules:
+- only critical fixes if old sites break;
+- no v2 plugin renames;
+- no new install docs for new projects;
+- after freeze, repo is a legacy runtime surface.
 
 ### V2: `popskraft/carrd-v2`
 
-Роль:
-- основной repo для новой версии;
-- источник новых CDN links;
-- место, где v2 plugins получают новые names, paths, globals и docs.
+Role:
+- main repo for new plugin delivery;
+- source of new CDN links;
+- owner of v2 plugin names, paths, globals, and docs.
 
-Пример новой CDN-ссылки:
+Example:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core-v2.min.css">
@@ -57,77 +63,27 @@
 
 ## V2 Naming Policy
 
-Чтобы v1 и v2 могли сосуществовать на уровне CDN, globals и markup, v2 получает явный suffix.
-
-### Repo and package
+V2 uses explicit suffixes so v1 and v2 can coexist on CDN, globals, and markup.
 
 - Repo: `popskraft/carrd-v2`
-- Package name: `carrd-v2` или `carrd-v2`
+- Package name: `carrd-v2`
 - Public docs title: `Carrd Plugins V2`
-
-### Bundle artifacts
-
-- `dist/theme-core-v2.min.css`
-- `dist/theme-core-v2.min.js`
-- `dist/theme-core-v2-cdn.html`
-
-### Plugin slugs and files
-
-Preferred v2 pattern:
-
-- `src/slider-v2/`
-- `dist/slider-v2/slider-v2.min.css`
-- `dist/slider-v2/slider-v2.min.js`
-- `dist/slider-v2/slider-v2-cdn.html`
-
-Apply the same pattern to every plugin:
-
-- `accordeon-v2`
-- `cards-v2`
-- `cookie-banner-v2`
-- `faq-v2`
-- `floating-cta-v2`
-- `grid-cluster-v2`
-- `header-nav-v2`
-- `modal-v2`
-- `no-loadwaiting-v2`
-- `shopping-cart-v2`
-- `slider-v2`
-- `switcher-v2`
-- `typography-v2`
-
-### JavaScript globals
-
-Use v2 globals, not legacy globals:
-
-- `window.CarrdSliderV2`
-- `window.CarrdModalV2`
-- `window.CarrdPluginOptionsV2`
-
-### Markup contract
-
-Use v2-prefixed public attrs where collision with v1 is possible:
-
-- `data-slider-v2`
-- `data-modal-v2`
-- `data-modal-v2-open`
-- `data-switcher-v2`
-- `data-switcher-v2-target`
-- `data-shopping-cart-v2-output`
-
-If a plugin cannot collide with v1 on the same page, it may keep the simpler semantic marker only after explicit approval in `plugin-v2-data-contract.md`.
+- Bundle: `theme-core-v2.min.css`, `theme-core-v2.min.js`, `theme-core-v2-cdn.html`
+- Plugin folders and files: `src/<plugin>-v2/`, `dist/<plugin>-v2/<plugin>-v2.min.*`
+- JavaScript globals: `window.Carrd<Plugin>V2`, `window.CarrdPluginOptionsV2`
+- Public attrs: `data-*-v2`, for example `data-slider-v2`, `data-modal-v2-open`, `data-switcher-v2-target`
 
 ## Migration Policy
 
 Old sites:
-- stay on `popskraft/carrd-v2`;
+- stay on `popskraft/carrd-plugins`;
 - keep old snippets;
 - receive only emergency legacy fixes.
 
 New sites:
 - use only `popskraft/carrd-v2`;
 - use v2 bundle and v2 plugin snippets;
-- use v2 names in docs, attrs and globals.
+- use v2 names in docs, attrs, and globals.
 
 Migrated sites:
 - are migrated manually;
@@ -135,47 +91,43 @@ Migrated sites:
 - replace legacy markup attrs/classes/hashes with v2 contract;
 - are validated before old snippets are removed.
 
-## Implementation Steps
+## Implementation State
+
+- V2 repo exists locally at `/Users/popskraft/Projects/carrd-v2`.
+- V2 remote is configured as `https://github.com/popskraft/carrd-v2.git`.
+- V2 source and dist use `*-v2` plugin folders and `theme-core-v2` bundle files.
+- V2 snippets point to `popskraft/carrd-v2@main`.
+- Legacy freeze/publish remains a publication gate because it requires external GitHub/jsDelivr action.
+
+## Remaining Publication Steps
 
 1. Freeze legacy repo.
-   Record current `popskraft/carrd-v2@main` state with a tag or branch.
+   Record the current `popskraft/carrd-plugins@main` delivery state with a tag or branch.
 
-2. Create `popskraft/carrd-v2`.
-   New repo starts from the current v2-ready source, not from the frozen legacy state.
+2. Publish v2.
+   Push validated `popskraft/carrd-v2@main`.
 
-3. Rename v2 plugin identities.
-   Apply `*-v2` slugs, bundle names, globals and docs in the new repo.
+3. Purge v2 CDN only.
+   Run the v2 purge against `popskraft/carrd-v2@main/dist`.
 
-4. Update v2 generators.
-   Change build scripts/templates so generated snippets point to `popskraft/carrd-v2@main`.
-
-5. Generate v2 `dist`.
-   Confirm every generated CDN snippet uses v2 repo and v2 artifact names.
-
-6. Validate v2.
-   Run build, dist verification, tests and lint in the v2 repo.
-
-7. Publish v2.
-   Push `popskraft/carrd-v2@main`, then purge only the v2 jsDelivr paths.
-
-8. Keep legacy untouched.
+4. Keep legacy untouched.
    Do not update legacy docs/snippets except to mark them as legacy if needed.
 
 ## What Not To Do
 
-- Не создавать `popskraft/carrd-v2-archive` вместо сохранения старого `popskraft/carrd-v2`.
-- Не переиспользовать старые CDN paths для v2.
-- Не публиковать v2 bundle в `popskraft/carrd-v2`.
-- Не менять old snippets на live Carrd-сайтах без ручной migration checklist.
-- Не держать v1 и v2 под одинаковыми globals, если они могут оказаться на одной странице.
+- Do not create `popskraft/carrd-plugins-archive` instead of freezing `popskraft/carrd-plugins`.
+- Do not reuse old CDN paths for v2.
+- Do not publish v2 bundle in `popskraft/carrd-plugins`.
+- Do not change old snippets on live Carrd sites without a manual migration checklist.
+- Do not keep v1 and v2 under identical globals when they may appear on one page.
 
 ## Done
 
-Архитектура считается внедрённой, когда:
+Architecture is implemented when:
 
-- `popskraft/carrd-v2@main/dist/...` продолжает обслуживать старые сайты;
-- `popskraft/carrd-v2@main/dist/...` обслуживает новые v2 сайты;
-- все v2 plugins имеют `*-v2` public identity;
-- v2 snippets не содержат ссылок на `popskraft/carrd-v2`;
-- legacy repo frozen и не используется для новой разработки;
-- v2 repo имеет отдельные build, verify, purge и release instructions.
+- `popskraft/carrd-plugins@main/dist/...` continues to serve old sites;
+- `popskraft/carrd-v2@main/dist/...` serves new v2 sites;
+- all v2 plugins have `*-v2` public identity;
+- v2 snippets contain no links to `popskraft/carrd-plugins`;
+- legacy repo has a named freeze ref;
+- v2 repo has separate build, verify, purge, and release instructions.

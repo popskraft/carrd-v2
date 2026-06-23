@@ -264,7 +264,7 @@
 
     if (willOpen) {
       openAnswers.add(answer);
-      adjustHeight(answer);
+      requestFrame(() => adjustHeight(answer));
       scheduleOpenAnswerSync();
     } else {
       openAnswers.delete(answer);

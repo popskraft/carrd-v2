@@ -9,10 +9,12 @@ Ready-to-use plugins for Carrd pages. `src/` is the source of truth; `dist/` is 
 - `KI-003 [active]` `src/` is the source of truth for plugin behavior, while `dist/` is generated delivery.
 - `KI-004 [active]` Plugin guidance is written for Carrd end users; shared build rules live in `scripts/templates/` and `docs/`.
 - `KI-005 [active]` New grouped plugin contracts use `data-*` bindings first; classes and plain hashes are legacy fallbacks.
+- `KI-006 [active]` V2 delivery uses `popskraft/carrd-v2` paths only; legacy `popskraft/carrd-plugins` remains a historical runtime surface.
 
 ## What This Repo Is
 
 - Carrd plugins with matching source and distributive assets.
+- A v2 runtime repo with `*-v2` plugin slugs, bundle files, globals, and jsDelivr snippets.
 - A shared theme layer for consistent styling and defaults.
 - A build pipeline that keeps public docs, embeds, and assets aligned.
 

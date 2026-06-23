@@ -39,7 +39,7 @@
 ## Coding и config rules
 - Vanilla JS only, без внешних runtime dependencies.
 - CSS variables используют префикс `--theme-` и всегда имеют fallback.
-- Public plugin globals используют формат `window.Carrd<Plugin>`.
+- Public plugin globals используют формат `window.Carrd<Plugin>V2`.
 - Configuration идёт через `window.CarrdPluginOptionsV2`.
 - Source JS/CSS не содержит HTML tag banners вверху файла.
 - Commit messages — English, формат `Action Component: Description`.

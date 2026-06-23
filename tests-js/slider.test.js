@@ -29,8 +29,12 @@ test('slider initializes and registers instance', () => {
   triggerDomReady(dom);
 
   const doc = dom.window.document;
+  const wrapper = doc.querySelector('.theme-slider-wrapper');
   assert.equal(doc.querySelectorAll('.theme-slider-wrapper').length, 1);
   assert.equal(doc.querySelectorAll('.theme-slider-track .theme-slider-slide').length, 2);
+  assert.equal(wrapper.getAttribute('role'), 'region');
+  assert.equal(wrapper.getAttribute('aria-roledescription'), 'carousel');
+  assert.equal(wrapper.getAttribute('aria-label'), 'Slide 1 of 1');
   assert.ok(dom.window.CarrdSliderV2);
   assert.equal(dom.window.CarrdSliderV2.getInstances().length, 1);
 });

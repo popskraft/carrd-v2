@@ -4,7 +4,7 @@
 
 Technical owner doc for the `switcher` plugin.
 
-This file defines what is specific to `switcher`. Shared v2 naming rules belong to [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/CARRD/docs/specs/plugin-v2-data-contract.md).
+This file defines what is specific to `switcher`. Shared v2 naming rules belong to [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-v2-data-contract.md).
 
 ## Scope
 
@@ -202,7 +202,7 @@ Core options:
 
 ## Confirmed Template Evidence
 
-Reference source: `/Users/popskraft/Projects/CARRD/carrd-source/index.html`.
+Reference source: `/Users/popskraft/Projects/carrd-v2/carrd-source/index.html`.
 
 Observed structure:
 

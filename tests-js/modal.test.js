@@ -181,3 +181,23 @@ test('modal init is idempotent for global bindings', () => {
   assert.equal(dom.window.document.querySelectorAll('.theme-modal-overlay').length, 1);
   assert.equal(dom.window.document.getElementById('modalContact').classList.contains('is-open'), true);
 });
+
+test('modal public API refresh scans new modals without duplicating overlay', () => {
+  const dom = createDom(
+    '<div id="modalContact" class="container-component modal"><div class="wrapper"><div class="inner"><h2>Contact</h2></div></div></div>'
+  );
+  mockRaf(dom);
+  loadScript(dom, 'src/modal-v2/modal-v2.js');
+  triggerDomReady(dom);
+
+  dom.window.document.body.insertAdjacentHTML(
+    'beforeend',
+    '<div id="modalDynamic" class="container-component modal"><div class="wrapper"><div class="inner"><h2>Dynamic</h2></div></div></div>'
+  );
+
+  assert.equal(typeof dom.window.CarrdModalV2.refresh, 'function');
+  dom.window.CarrdModalV2.refresh();
+
+  assert.equal(dom.window.document.querySelectorAll('.theme-modal-overlay').length, 1);
+  assert.equal(dom.window.document.getElementById('modalDynamic').dataset.modalInitialized, 'true');
+});
