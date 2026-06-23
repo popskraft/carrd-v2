@@ -1,9 +1,9 @@
-:is([data-faq-v2], .FAQContainer) .theme-faq-question {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-question {
   position: relative;
   margin: 0;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-trigger {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-trigger {
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -20,13 +20,13 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-trigger:focus,
-:is([data-faq-v2], .FAQContainer) .theme-faq-trigger:focus-visible {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-trigger:focus,
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-trigger:focus-visible {
   outline: none;
   box-shadow: none;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-question::after {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-question::after {
   content: '+';
   position: absolute;
   right: 0;
@@ -39,11 +39,11 @@
   font-weight: 400;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-question.is-open::after {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-question.is-open::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-answer {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
@@ -51,33 +51,33 @@
   transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.4s ease;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-answer.is-closed {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer.is-closed {
   margin-top: 0;
   margin-bottom: -.75rem !important;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-answer.is-open {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer.is-open {
   opacity: 1;
   visibility: visible;
   margin-top: var(--theme-faq-spacing, 0.75rem);
   margin-bottom: var(--theme-faq-spacing, 1rem);
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-answer>*:first-child {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer>*:first-child {
   margin-top: 0;
 }
 
-:is([data-faq-v2], .FAQContainer) .theme-faq-answer>*:last-child {
+:is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer>*:last-child {
   margin-bottom: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :is([data-faq-v2], .FAQContainer) .theme-faq-answer {
+  :is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-answer {
     transition: none;
   }
 
-  :is([data-faq-v2], .FAQContainer) .theme-faq-question::after,
-  :is([data-faq-v2], .FAQContainer) .theme-faq-trigger {
+  :is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-question::after,
+  :is([data-faq-v2], [data-faq], .FAQContainer) .theme-faq-trigger {
     transition: none;
   }
 }

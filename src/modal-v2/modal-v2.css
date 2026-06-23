@@ -1,13 +1,13 @@
 
 /* Modal container - hidden by default */
 .container-component.modal,
-.container-component[data-modal-v2] {
+.container-component:is([data-modal-v2], [data-modal]) {
   display: none !important;
 }
 
 /* Open state - positioning container */
 .container-component.modal.is-open,
-.container-component[data-modal-v2].is-open {
+.container-component:is([data-modal-v2], [data-modal]).is-open {
   display: flex !important;
   position: fixed;
   inset: 0;
@@ -47,7 +47,7 @@
 
 /* Modal content */
 .container-component.modal>.wrapper,
-.container-component[data-modal-v2]>.wrapper {
+.container-component:is([data-modal-v2], [data-modal])>.wrapper {
   pointer-events: auto;
   position: relative;
   max-height: var(--theme-modal-max-height, 90vh);
@@ -59,7 +59,7 @@
 }
 
 .container-component.modal.is-visible>.wrapper,
-.container-component[data-modal-v2].is-visible>.wrapper {
+.container-component:is([data-modal-v2], [data-modal]).is-visible>.wrapper {
   transform: translateY(0);
   opacity: 1;
 }
@@ -85,19 +85,19 @@ body.modal-open {
 /* Mobile */
 @media (max-width: 736px) {
   .container-component.modal.is-open,
-  .container-component[data-modal-v2].is-open {
+  .container-component:is([data-modal-v2], [data-modal]).is-open {
     padding: var(--theme-modal-padding-mobile, 1rem);
     align-items: center;
   }
 
   .container-component.modal>.wrapper,
-  .container-component[data-modal-v2]>.wrapper {
+  .container-component:is([data-modal-v2], [data-modal])>.wrapper {
     max-height: var(--theme-modal-max-height-mobile, 90vh);
     border-radius: var(--theme-modal-border-radius-mobile, 1rem);
   }
 
   .container-component.modal:not(.is-visible)>.wrapper,
-  .container-component[data-modal-v2]:not(.is-visible)>.wrapper {
+  .container-component:is([data-modal-v2], [data-modal]):not(.is-visible)>.wrapper {
     transform: translateY(-20px);
   }
 }
@@ -105,7 +105,7 @@ body.modal-open {
 @media (prefers-reduced-motion: reduce) {
   .theme-modal-overlay,
   .container-component.modal>.wrapper,
-  .container-component[data-modal-v2]>.wrapper {
+  .container-component:is([data-modal-v2], [data-modal])>.wrapper {
     transition: none;
   }
 }

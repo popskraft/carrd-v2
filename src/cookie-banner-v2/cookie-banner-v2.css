@@ -1,5 +1,6 @@
 /* Base styles */
 [data-cookie-v2],
+[data-cookie],
 .theme-cookie-banner,
 .cookie-banner,
 #cookie-baner {
@@ -13,6 +14,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   [data-cookie-v2],
+  [data-cookie],
   .theme-cookie-banner,
   .cookie-banner,
   #cookie-baner {
