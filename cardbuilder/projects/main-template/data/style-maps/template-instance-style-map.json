@@ -1,0 +1,1945 @@
+{
+  "meta": {
+    "generatedAt": "2026-04-06T15:45:28.810Z",
+    "url": "https://carrd.co/dashboard/4155176224428477/build",
+    "title": "minigree - My Sites - Dashboard - Carrd",
+    "viewport": {
+      "width": 1920,
+      "height": 934
+    },
+    "config": {
+      "waitMs": 260,
+      "maxElements": 9999,
+      "includePanelTabStats": false
+    }
+  },
+  "root": {
+    "bodyId": "builder",
+    "bodyClass": "template-default non-touch",
+    "hasCanvas": true,
+    "hasMenu": true,
+    "hasUiWrapper": true
+  },
+  "menu": {
+    "exists": true,
+    "className": "menu-bar",
+    "actions": [
+      {
+        "action": "add-text",
+        "label": "Text",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-text\"]"
+      },
+      {
+        "action": "add-image",
+        "label": "Image",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-image\"]"
+      },
+      {
+        "action": "add-video",
+        "label": "Video",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-video\"]"
+      },
+      {
+        "action": "add-audio",
+        "label": "Audio",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-audio\"]"
+      },
+      {
+        "action": "add-gallery",
+        "label": "Gallery",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-gallery\"]"
+      },
+      {
+        "action": "add-timer",
+        "label": "Timer",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-timer\"]"
+      },
+      {
+        "action": "add-slideshow",
+        "label": "Slideshow",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-slideshow\"]"
+      },
+      {
+        "action": "add-widget",
+        "label": "Widget",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-widget\"]"
+      },
+      {
+        "action": "add-container",
+        "label": "Container",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-container\"]"
+      },
+      {
+        "action": "add-list",
+        "label": "List",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-list\"]"
+      },
+      {
+        "action": "add-buttons",
+        "label": "Buttons",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-buttons\"]"
+      },
+      {
+        "action": "add-links",
+        "label": "Links",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-links\"]"
+      },
+      {
+        "action": "add-icons",
+        "label": "Icons",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-icons\"]"
+      },
+      {
+        "action": "add-table",
+        "label": "Table",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-table\"]"
+      },
+      {
+        "action": "add-divider",
+        "label": "Divider",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-divider\"]"
+      },
+      {
+        "action": "add-form",
+        "label": "Form",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-form\"]"
+      },
+      {
+        "action": "add-embed",
+        "label": "Embed",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-embed\"]"
+      },
+      {
+        "action": "add-control",
+        "label": "Control",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-control\"]"
+      },
+      {
+        "action": "undo",
+        "label": "Undo",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"undo\"]"
+      },
+      {
+        "action": "redo",
+        "label": "Redo",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"redo\"]"
+      },
+      {
+        "action": "play",
+        "label": "Preview Animation",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"play\"]"
+      },
+      {
+        "action": "deactivate-section",
+        "label": "Leave Section View",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"deactivate-section\"]"
+      },
+      {
+        "action": "sections",
+        "label": "Show sections",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"sections\"]"
+      },
+      {
+        "action": "crop-view",
+        "label": "Toggle Crop",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"crop-view\"]"
+      },
+      {
+        "action": "view",
+        "label": "Switch View",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view\"]"
+      },
+      {
+        "action": "background-properties",
+        "label": "Background Properties",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"background-properties\"]"
+      },
+      {
+        "action": "main-properties",
+        "label": "Page Properties",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"main-properties\"]"
+      },
+      {
+        "action": "view-site",
+        "label": "View Site",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view-site\"]"
+      },
+      {
+        "action": "publish",
+        "label": "Publish",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"publish\"]"
+      },
+      {
+        "action": "undo",
+        "label": "Undo",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"undo\"]"
+      },
+      {
+        "action": "redo",
+        "label": "Redo",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"redo\"]"
+      },
+      {
+        "action": "publish",
+        "label": "Publish …",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"publish\"]"
+      },
+      {
+        "action": "view-site",
+        "label": "View Site",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"view-site\"]"
+      },
+      {
+        "action": "start-over",
+        "label": "Start Over",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"start-over\"]"
+      },
+      {
+        "action": "background-properties",
+        "label": "Background …",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"background-properties\"]"
+      },
+      {
+        "action": "main-properties",
+        "label": "Page …",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"main-properties\"]"
+      },
+      {
+        "action": "instructions",
+        "label": "Instructions",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"instructions\"]"
+      },
+      {
+        "action": "keyboard-shortcuts",
+        "label": "Shortcuts",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"keyboard-shortcuts\"]"
+      },
+      {
+        "action": "docs",
+        "label": "Documentation",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"docs\"]"
+      },
+      {
+        "action": "dashboard",
+        "label": "Dashboard",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"dashboard\"]"
+      },
+      {
+        "action": "exit",
+        "label": "Exit",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"exit\"]"
+      }
+    ],
+    "uniqueActions": [
+      "add-audio",
+      "add-buttons",
+      "add-container",
+      "add-control",
+      "add-divider",
+      "add-embed",
+      "add-form",
+      "add-gallery",
+      "add-icons",
+      "add-image",
+      "add-links",
+      "add-list",
+      "add-slideshow",
+      "add-table",
+      "add-text",
+      "add-timer",
+      "add-video",
+      "add-widget",
+      "background-properties",
+      "crop-view",
+      "dashboard",
+      "deactivate-section",
+      "docs",
+      "exit",
+      "instructions",
+      "keyboard-shortcuts",
+      "main-properties",
+      "play",
+      "publish",
+      "redo",
+      "sections",
+      "start-over",
+      "undo",
+      "view",
+      "view-site"
+    ]
+  },
+  "controls": [
+    {
+      "index": 0,
+      "dataId": "control04",
+      "text": "Header End",
+      "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control04\"]"
+    },
+    {
+      "index": 1,
+      "dataId": "control03",
+      "text": "#shopping-cart",
+      "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control03\"]"
+    },
+    {
+      "index": 2,
+      "dataId": "control01",
+      "text": "(#exclude-section-bellow-the-line)",
+      "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]"
+    },
+    {
+      "index": 3,
+      "dataId": "control02",
+      "text": "Footer Start",
+      "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control02\"]"
+    }
+  ],
+  "components": {
+    "total": 80,
+    "byType": {
+      "container": 15,
+      "image": 10,
+      "links": 2,
+      "control": 4,
+      "text": 32,
+      "list": 1,
+      "buttons": 3,
+      "divider": 3,
+      "form": 1,
+      "embed": 9
+    },
+    "items": [
+      {
+        "index": 0,
+        "dataId": "container02",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper max is-first is-last",
+        "textSample": "AboutServicesModal Window",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container02\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 1,
+        "dataId": "image01",
+        "dataType": "image",
+        "parentDataId": "container02",
+        "className": "component-wrapper is-first is-last",
+        "textSample": "",
+        "selector": "div[data-id=\"container02\"] > div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"image01\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 2,
+        "dataId": "links02",
+        "dataType": "links",
+        "parentDataId": "container02",
+        "className": "component-wrapper is-first is-last",
+        "textSample": "AboutServicesModal Window",
+        "selector": "div[data-id=\"container02\"] > div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"links02\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 3,
+        "dataId": "control04",
+        "dataType": "control",
+        "parentDataId": null,
+        "className": "component-wrapper full screen",
+        "textSample": "Header End",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control04\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 4,
+        "dataId": "container01",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper max is-first",
+        "textSample": "AboutServicesGet a quoteHeading Level (h1) bold part link in headingHeading Level (h2) bold part link in headingHeading Level (h3) bold part link in headingHeading Level (h4) bold ",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container01\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 5,
+        "dataId": "links01",
+        "dataType": "links",
+        "parentDataId": "container01",
+        "className": "component-wrapper is-first",
+        "textSample": "AboutServicesGet a quote",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"links01\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 6,
+        "dataId": "text03",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "Heading Level (h1) bold part link in heading",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text03\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 7,
+        "dataId": "text06",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "Heading Level (h2) bold part link in heading",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text06\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 8,
+        "dataId": "text07",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "Heading Level (h3) bold part link in heading",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text07\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 9,
+        "dataId": "text04",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "Heading Level (h4) bold part link in heading",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text04\"]",
+        "styleFromClass": "style4",
+        "styleFromPanel": null,
+        "styleFinal": "style4",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 10,
+        "dataId": "text10",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text10\"]",
+        "styleFromClass": "style7",
+        "styleFromPanel": null,
+        "styleFinal": "style7",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 11,
+        "dataId": "text02",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "(Body) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. Line he",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text02\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 12,
+        "dataId": "list01",
+        "dataType": "list",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.Line height, le",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"list01\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 13,
+        "dataId": "text05",
+        "dataType": "text",
+        "parentDataId": "container01",
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text05\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 14,
+        "dataId": "buttons01",
+        "dataType": "buttons",
+        "parentDataId": "container01",
+        "className": "component-wrapper is-last",
+        "textSample": "Button Primary",
+        "selector": "div.--inner > div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons01\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 15,
+        "dataId": "text32",
+        "dataType": "text",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Columns (for single container)",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text32\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 16,
+        "dataId": "text26",
+        "dataType": "text",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "+ Shopping-cart buttons",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text26\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 17,
+        "dataId": "container06",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper max",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.(Lea",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container06\"]",
+        "styleFromClass": "style4",
+        "styleFromPanel": null,
+        "styleFinal": "style4",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 18,
+        "dataId": "text21",
+        "dataType": "text",
+        "parentDataId": "container06",
+        "className": "component-wrapper is-first is-last",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text21\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 19,
+        "dataId": "text22",
+        "dataType": "text",
+        "parentDataId": "container06",
+        "className": "component-wrapper is-first",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text22\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 20,
+        "dataId": "buttons03",
+        "dataType": "buttons",
+        "parentDataId": "container06",
+        "className": "component-wrapper is-last",
+        "textSample": "Quick order product 1",
+        "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"buttons03\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 21,
+        "dataId": "text01",
+        "dataType": "text",
+        "parentDataId": "container06",
+        "className": "component-wrapper is-first",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text01\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 22,
+        "dataId": "buttons02",
+        "dataType": "buttons",
+        "parentDataId": "container06",
+        "className": "component-wrapper is-last",
+        "textSample": "Quick order product 2",
+        "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"buttons02\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 23,
+        "dataId": "text27",
+        "dataType": "text",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Columns (for multi-containers)",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text27\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 24,
+        "dataId": "container13",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container13\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 25,
+        "dataId": "image08",
+        "dataType": "image",
+        "parentDataId": "container13",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"image08\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 26,
+        "dataId": "text29",
+        "dataType": "text",
+        "parentDataId": "container13",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"text29\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 27,
+        "dataId": "container14",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container14\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 28,
+        "dataId": "image09",
+        "dataType": "image",
+        "parentDataId": "container14",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"image09\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 29,
+        "dataId": "text30",
+        "dataType": "text",
+        "parentDataId": "container14",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"text30\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 30,
+        "dataId": "container15",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container15\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 31,
+        "dataId": "image10",
+        "dataType": "image",
+        "parentDataId": "container15",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"image10\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 32,
+        "dataId": "text31",
+        "dataType": "text",
+        "parentDataId": "container15",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"text31\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 33,
+        "dataId": "container04",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container04\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 34,
+        "dataId": "image05",
+        "dataType": "image",
+        "parentDataId": "container04",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container04\"] > div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div[data-id=\"image05\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 35,
+        "dataId": "text08",
+        "dataType": "text",
+        "parentDataId": "container04",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container04\"] > div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div[data-id=\"text08\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 36,
+        "dataId": "text24",
+        "dataType": "text",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Slider",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text24\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 37,
+        "dataId": "container11",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container11\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 38,
+        "dataId": "image03",
+        "dataType": "image",
+        "parentDataId": "container11",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container11\"] > div.component > div.--container-component.--instance-container11 > div.--wrapper > div.--inner > div[data-id=\"image03\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 39,
+        "dataId": "text28",
+        "dataType": "text",
+        "parentDataId": "container11",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container11\"] > div.component > div.--container-component.--instance-container11 > div.--wrapper > div.--inner > div[data-id=\"text28\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 40,
+        "dataId": "container05",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container05\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 41,
+        "dataId": "image04",
+        "dataType": "image",
+        "parentDataId": "container05",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"image04\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 42,
+        "dataId": "text11",
+        "dataType": "text",
+        "parentDataId": "container05",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"text11\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 43,
+        "dataId": "container07",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container07\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 44,
+        "dataId": "image02",
+        "dataType": "image",
+        "parentDataId": "container07",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container07\"] > div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div[data-id=\"image02\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 45,
+        "dataId": "text18",
+        "dataType": "text",
+        "parentDataId": "container07",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container07\"] > div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div[data-id=\"text18\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 46,
+        "dataId": "container08",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container08\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 47,
+        "dataId": "image06",
+        "dataType": "image",
+        "parentDataId": "container08",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container08\"] > div.component > div.--container-component.--instance-container08 > div.--wrapper > div.--inner > div[data-id=\"image06\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 48,
+        "dataId": "text19",
+        "dataType": "text",
+        "parentDataId": "container08",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container08\"] > div.component > div.--container-component.--instance-container08 > div.--wrapper > div.--inner > div[data-id=\"text19\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 49,
+        "dataId": "container09",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container09\"]",
+        "styleFromClass": "style3",
+        "styleFromPanel": null,
+        "styleFinal": "style3",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 50,
+        "dataId": "image07",
+        "dataType": "image",
+        "parentDataId": "container09",
+        "className": "component-wrapper full is-first",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"image07\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 51,
+        "dataId": "text20",
+        "dataType": "text",
+        "parentDataId": "container09",
+        "className": "component-wrapper is-last",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "selector": "div.--inner > div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"text20\"]",
+        "styleFromClass": "style6",
+        "styleFromPanel": null,
+        "styleFinal": "style6",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 52,
+        "dataId": "container03",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper max is-last",
+        "textSample": "FAQ sectionQ. What is this FAQ Toggle?It's a special script for Carrd. It automatically transforms your list of questions and answers into a clean, interactive \"accordion\" (where a",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container03\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 53,
+        "dataId": "text12",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper is-first",
+        "textSample": "FAQ section",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text12\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 54,
+        "dataId": "divider02",
+        "dataType": "divider",
+        "parentDataId": "container03",
+        "className": "component-wrapper full",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"divider02\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 55,
+        "dataId": "text14",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "Q. What is this FAQ Toggle?",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text14\"]",
+        "styleFromClass": "style4",
+        "styleFromPanel": null,
+        "styleFinal": "style4",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 56,
+        "dataId": "text15",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "It's a special script for Carrd. It automatically transforms your list of questions and answers into a clean, interactive \"accordion\" (where answers smoothly appear when you click ",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text15\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 57,
+        "dataId": "divider03",
+        "dataType": "divider",
+        "parentDataId": "container03",
+        "className": "component-wrapper full",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"divider03\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 58,
+        "dataId": "text17",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "Q. How do I format my content?",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text17\"]",
+        "styleFromClass": "style4",
+        "styleFromPanel": null,
+        "styleFinal": "style4",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 59,
+        "dataId": "text23",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "It's simple. You must wrap the entire block in a class=\"FAQContainer\". Then, insert a divider-component before each question (your H1-H3 heading) and after each answer (your text/n",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text23\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 60,
+        "dataId": "text16",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "It's simple. You must wrap the entire block in a class=\"FAQContainer\". Then, insert a divider-component before each question (your H1-H3 heading) and after each answer (your text/n",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text16\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 61,
+        "dataId": "divider01",
+        "dataType": "divider",
+        "parentDataId": "container03",
+        "className": "component-wrapper full",
+        "textSample": "",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"divider01\"]",
+        "styleFromClass": "style1",
+        "styleFromPanel": null,
+        "styleFinal": "style1",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 62,
+        "dataId": "text13",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper",
+        "textSample": "Q. How do I add the script to my Carrd site?",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text13\"]",
+        "styleFromClass": "style4",
+        "styleFromPanel": null,
+        "styleFinal": "style4",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 63,
+        "dataId": "text09",
+        "dataType": "text",
+        "parentDataId": "container03",
+        "className": "component-wrapper is-last",
+        "textSample": "You can use the CDN method. Add one Embed (Style: Hidden) element to the Head section for the CSS file. Then, add a second Embed (Style: Hidden) element to the Body End section for",
+        "selector": "div.--inner > div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text09\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 64,
+        "dataId": "control03",
+        "dataType": "control",
+        "parentDataId": null,
+        "className": "component-wrapper full screen",
+        "textSample": "#shopping-cart",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control03\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 65,
+        "dataId": "container10",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper max is-first is-last",
+        "textSample": "EmailName (optional)Order DetailsSubmit",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container10\"]",
+        "styleFromClass": "style2",
+        "styleFromPanel": null,
+        "styleFinal": "style2",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 66,
+        "dataId": "form01",
+        "dataType": "form",
+        "parentDataId": "container10",
+        "className": "component-wrapper is-first is-last",
+        "textSample": "EmailName (optional)Order DetailsSubmit",
+        "selector": "div.--inner > div[data-id=\"container10\"] > div.component > div.--container-component.--instance-container10 > div.--wrapper > div.--inner > div[data-id=\"form01\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 67,
+        "dataId": "control01",
+        "dataType": "control",
+        "parentDataId": null,
+        "className": "component-wrapper full screen",
+        "textSample": "(#exclude-section-bellow-the-line)",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 68,
+        "dataId": "control02",
+        "dataType": "control",
+        "parentDataId": null,
+        "className": "component-wrapper full screen",
+        "textSample": "Footer Start",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control02\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 69,
+        "dataId": "container12",
+        "dataType": "container",
+        "parentDataId": null,
+        "className": "component-wrapper is-first",
+        "textSample": "Modal 1 Content is here",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container12\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 70,
+        "dataId": "text25",
+        "dataType": "text",
+        "parentDataId": "container12",
+        "className": "component-wrapper is-first is-last",
+        "textSample": "Modal 1 Content is here",
+        "selector": "div.--inner > div[data-id=\"container12\"] > div.component > div.--container-component.--instance-container12 > div.--wrapper > div.--inner > div[data-id=\"text25\"]",
+        "styleFromClass": "style5",
+        "styleFromPanel": null,
+        "styleFinal": "style5",
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 71,
+        "dataId": "embed02",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Theme CSS Variables in HEAD",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed02\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 72,
+        "dataId": "embed08",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "No Load Waiting in HEAD",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed08\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 73,
+        "dataId": "embed04",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Shopping Card CSS",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed04\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 74,
+        "dataId": "embed03",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Shopping Card JS",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed03\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 75,
+        "dataId": "embed06",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Slider",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed06\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 76,
+        "dataId": "embed05",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Cards",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed05\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 77,
+        "dataId": "embed09",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Grid Cluster",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed09\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 78,
+        "dataId": "embed07",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper",
+        "textSample": "Modal",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed07\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      },
+      {
+        "index": 79,
+        "dataId": "embed01",
+        "dataType": "embed",
+        "parentDataId": null,
+        "className": "component-wrapper is-last",
+        "textSample": "FAQ",
+        "selector": "body.template-default.non-touch > div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed01\"]",
+        "styleFromClass": null,
+        "styleFromPanel": null,
+        "styleFinal": null,
+        "panel": {
+          "visible": false,
+          "title": ""
+        }
+      }
+    ]
+  },
+  "styleMap": {
+    "byStyle": {
+      "(none)": [
+        "container02",
+        "image01",
+        "control04",
+        "control03",
+        "form01",
+        "control01",
+        "control02",
+        "embed02",
+        "embed08",
+        "embed04",
+        "embed03",
+        "embed06",
+        "embed05",
+        "embed09",
+        "embed07",
+        "embed01"
+      ],
+      "style1": [
+        "links02",
+        "links01",
+        "text03",
+        "list01",
+        "buttons01",
+        "text32",
+        "buttons03",
+        "buttons02",
+        "text27",
+        "image08",
+        "image09",
+        "image10",
+        "image05",
+        "text24",
+        "image03",
+        "image04",
+        "image02",
+        "image06",
+        "image07",
+        "divider02",
+        "divider03",
+        "divider01"
+      ],
+      "style2": [
+        "container01",
+        "text06",
+        "text26",
+        "container03",
+        "text12",
+        "container10"
+      ],
+      "style3": [
+        "text07",
+        "container13",
+        "container14",
+        "container15",
+        "container04",
+        "container11",
+        "container05",
+        "container07",
+        "container08",
+        "container09"
+      ],
+      "style4": [
+        "text04",
+        "container06",
+        "text14",
+        "text17",
+        "text13"
+      ],
+      "style7": [
+        "text10"
+      ],
+      "style5": [
+        "text02",
+        "text21",
+        "text22",
+        "text01",
+        "text15",
+        "text23",
+        "text16",
+        "text09",
+        "container12",
+        "text25"
+      ],
+      "style6": [
+        "text05",
+        "text29",
+        "text30",
+        "text31",
+        "text08",
+        "text28",
+        "text11",
+        "text18",
+        "text19",
+        "text20"
+      ]
+    },
+    "noStyleCount": 16
+  },
+  "topLevel": {
+    "count": 32,
+    "items": [
+      {
+        "dataId": "container02",
+        "dataType": "container",
+        "style": null,
+        "textSample": "AboutServicesModal Window"
+      },
+      {
+        "dataId": "control04",
+        "dataType": "control",
+        "style": null,
+        "textSample": "Header End"
+      },
+      {
+        "dataId": "container01",
+        "dataType": "container",
+        "style": "style2",
+        "textSample": "AboutServicesGet a quoteHeading Level (h1) bold part link in headingHeading Level (h2) bold part link in headingHeading Level (h3) bold part link in headingHeading Level (h4) bold "
+      },
+      {
+        "dataId": "text32",
+        "dataType": "text",
+        "style": "style1",
+        "textSample": "Columns (for single container)"
+      },
+      {
+        "dataId": "text26",
+        "dataType": "text",
+        "style": "style2",
+        "textSample": "+ Shopping-cart buttons"
+      },
+      {
+        "dataId": "container06",
+        "dataType": "container",
+        "style": "style4",
+        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.(Lea"
+      },
+      {
+        "dataId": "text27",
+        "dataType": "text",
+        "style": "style1",
+        "textSample": "Columns (for multi-containers)"
+      },
+      {
+        "dataId": "container13",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container14",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container15",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container04",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "text24",
+        "dataType": "text",
+        "style": "style1",
+        "textSample": "Slider"
+      },
+      {
+        "dataId": "container11",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container05",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container07",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container08",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container09",
+        "dataType": "container",
+        "style": "style3",
+        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L"
+      },
+      {
+        "dataId": "container03",
+        "dataType": "container",
+        "style": "style2",
+        "textSample": "FAQ sectionQ. What is this FAQ Toggle?It's a special script for Carrd. It automatically transforms your list of questions and answers into a clean, interactive \"accordion\" (where a"
+      },
+      {
+        "dataId": "control03",
+        "dataType": "control",
+        "style": null,
+        "textSample": "#shopping-cart"
+      },
+      {
+        "dataId": "container10",
+        "dataType": "container",
+        "style": "style2",
+        "textSample": "EmailName (optional)Order DetailsSubmit"
+      },
+      {
+        "dataId": "control01",
+        "dataType": "control",
+        "style": null,
+        "textSample": "(#exclude-section-bellow-the-line)"
+      },
+      {
+        "dataId": "control02",
+        "dataType": "control",
+        "style": null,
+        "textSample": "Footer Start"
+      },
+      {
+        "dataId": "container12",
+        "dataType": "container",
+        "style": "style5",
+        "textSample": "Modal 1 Content is here"
+      },
+      {
+        "dataId": "embed02",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Theme CSS Variables in HEAD"
+      },
+      {
+        "dataId": "embed08",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "No Load Waiting in HEAD"
+      },
+      {
+        "dataId": "embed04",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Shopping Card CSS"
+      },
+      {
+        "dataId": "embed03",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Shopping Card JS"
+      },
+      {
+        "dataId": "embed06",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Slider"
+      },
+      {
+        "dataId": "embed05",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Cards"
+      },
+      {
+        "dataId": "embed09",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Grid Cluster"
+      },
+      {
+        "dataId": "embed07",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "Modal"
+      },
+      {
+        "dataId": "embed01",
+        "dataType": "embed",
+        "style": null,
+        "textSample": "FAQ"
+      }
+    ]
+  },
+  "anchors": {
+    "headerEndDataId": "control04",
+    "footerStartDataId": "control02",
+    "suggestedInsertAfter": "control04",
+    "suggestedInsertBefore": "container01",
+    "controlByText": {
+      "header end": "control04",
+      "#shopping-cart": "control03",
+      "(#exclude-section-bellow-the-line)": "control01",
+      "footer start": "control02"
+    }
+  }
+}

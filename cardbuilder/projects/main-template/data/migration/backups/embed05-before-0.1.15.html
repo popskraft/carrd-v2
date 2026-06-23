@@ -1,0 +1,196 @@
+<style>
+.custom-grid-container{--grid-columns:1;--local-row-gap:var(--mini-grid-row-gap, 1rem);--local-column-gap:var(--mini-grid-column-gap, 1rem);--grid-template:repeat(var(--grid-columns), minmax(0, 1fr));display:grid;grid-template-columns:var(--grid-template);row-gap:var(--local-row-gap);column-gap:var(--local-column-gap)}@media (max-width:736px){.custom-grid-container.grid-sm-2{--grid-columns:2;--local-row-gap:var(--mini-grid-row-gap, 1rem);--local-column-gap:var(--mini-grid-column-gap-sm, 0.5rem)}}@media (min-width:737px){.custom-grid-container.grid-2, .custom-grid-container.grid-3, .custom-grid-container.grid-4, .custom-grid-container.grid-5, .custom-grid-container.grid-6{--grid-columns:2}}@media (min-width:1025px){.custom-grid-container{--local-row-gap:var(--mini-grid-row-gap-desktop, 2rem);--local-column-gap:var(--mini-grid-column-gap-desktop, 1.5rem)}.custom-grid-container.grid-3, .custom-grid-container.grid-5, .custom-grid-container.grid-6{--grid-columns:3}.custom-grid-container.grid-4{--grid-columns:4}}@media (min-width:1280px){.custom-grid-container{--local-column-gap:var(--mini-grid-column-gap-desktop-large, 2rem)}.custom-grid-container.grid-5{--grid-columns:5;--local-column-gap:var(--mini-grid-column-gap-desktop, 1.5rem)}.custom-grid-container.grid-6{--grid-columns:6;--local-column-gap:var(--mini-grid-column-gap, 1rem)}.custom-grid-container.custom-grid-container--desktop-widths{--grid-template:var(--custom-desktop-template)}}.custom-grid-container>.container-component>.wrapper{width:100% !important;display:flex;flex-direction:column;height:100%}.custom-grid-container>.container-component{overflow:hidden;margin:0}.custom-grid-container+.custom-grid-container{margin-top:var(--local-row-gap)}.custom-grid-container .image-component>.frame.constrain-width{width:auto !important;max-width:100%}.card-item{padding:var(--mini-card-padding, 2rem);border-radius:var(--mini-card-border-radius, 0);height:100%;box-sizing:border-box}.cards .inner{align-items:stretch !important}@media screen and (max-width:736px){.card-item{padding:var(--mini-card-padding-mobile, var(--mini-card-padding, 2rem))}}
+</style>
+<script>
+/**
+* Columns Plugin
+* Combines Grid Cluster and Cards functionality.
+*
+* - Grid Cluster: Wraps consecutive `.grid-*` containers into a responsive grid.
+* - Cards: Applies styling (padding, border radius, background) to card items.
+*/
+(function() {
+'use strict';
+const DEFAULTS = {
+gridClasses: ['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6'],
+cardSelector: '.cards',
+defaultCardBg: 'var(--mini-card-bg-default)',
+widthClasses: {
+'w-20': '20%',
+'w-25': '25%',
+'w-30': '33%',
+'w-40': '40%',
+'w-50': '50%',
+'w-60': '60%',
+'w-70': '67%',
+'w-75': '75%',
+'w-80': '80%'
+}
+};
+const externalOptions = (typeof window !== 'undefined' &&
+window.CarrdPluginOptions &&
+window.CarrdPluginOptions.columns) || {};
+const CONFIG = { ...DEFAULTS, ...externalOptions };
+const GRID_CLASSES = CONFIG.gridClasses;
+const WIDTH_CLASS_MAP = CONFIG.widthClasses;
+const GRID_SELECTOR = GRID_CLASSES.map(cls => `.${cls}`).join(',');
+const WIDTH_CLASSES = Object.keys(WIDTH_CLASS_MAP);
+const isGridBlock = element =>
+element && GRID_CLASSES.some(cls => element.classList && element.classList.contains(cls));
+const getGridSize = element => {
+if (!element || !element.classList) return null;
+const sizeClass = GRID_CLASSES.find(cls => element.classList.contains(cls));
+if (!sizeClass) return null;
+const numeric = parseInt(sizeClass.split('-')[1], 10);
+return Number.isNaN(numeric) ? null : numeric;
+};
+const widthValueForElement = element => {
+if (!element || !element.classList) return null;
+const widthClass = WIDTH_CLASSES.find(cls => element.classList.contains(cls));
+return widthClass ? WIDTH_CLASS_MAP[widthClass] : null;
+};
+function wrapCluster(cluster, gridSize) {
+if (!cluster.length || !cluster[0].parentNode) return;
+const container = document.createElement('div');
+const classList = ['custom-grid-container'];
+if (gridSize && gridSize >= 2) {
+classList.push(`grid-${gridSize}`);
+}
+if (cluster.some(el => el.classList.contains('grid-sm-2'))) {
+classList.push('grid-sm-2');
+}
+container.className = classList.join(' ');
+cluster[0].parentNode.insertBefore(container, cluster[0]);
+cluster.forEach(node => container.appendChild(node));
+applyDesktopWidths(container, cluster, gridSize);
+}
+function applyDesktopWidths(container, cluster, gridSize) {
+if (!gridSize || gridSize < 2 || cluster.length < gridSize) return;
+const initialRow = cluster.slice(0, gridSize);
+const columnWidths = initialRow.map(widthValueForElement);
+if (!columnWidths.some(Boolean)) return;
+const templateParts = columnWidths.map(value => value || 'minmax(0, 1fr)');
+container.classList.add('custom-grid-container--desktop-widths');
+container.style.setProperty('--custom-desktop-template', templateParts.join(' '));
+}
+function constrainImageFrames() {
+document.querySelectorAll('.custom-grid-container .image-component > .frame').forEach(frame => {
+const computedWidth = window.getComputedStyle(frame).width;
+const widthInRem = parseFloat(computedWidth) / parseFloat(getComputedStyle(document.documentElement).fontSize);
+if (widthInRem > 20) {
+frame.classList.add('constrain-width');
+}
+});
+}
+function initGridCluster() {
+const collected = new Set();
+const gridBlocks = document.querySelectorAll(GRID_SELECTOR);
+gridBlocks.forEach(block => {
+if (collected.has(block)) return;
+if (block.dataset.gridInitialized === 'true') return;
+const cluster = [block];
+const baseSize = getGridSize(block);
+let sibling = block.nextElementSibling;
+while (isGridBlock(sibling)) {
+const siblingSize = getGridSize(sibling);
+if (baseSize !== null && siblingSize !== baseSize) {
+break;
+}
+cluster.push(sibling);
+collected.add(sibling);
+sibling = sibling.nextElementSibling;
+}
+collected.add(block);
+cluster.forEach(node => node.dataset.gridInitialized = 'true');
+wrapCluster(cluster, baseSize);
+});
+constrainImageFrames();
+}
+const parsePadding = (val) => {
+if (!val) return null;
+return val.split(' ').map(v => !isNaN(v) ? v + 'rem' : v).join(' ');
+};
+const initCards = () => {
+const cardContainers = document.querySelectorAll(CONFIG.cardSelector);
+cardContainers.forEach(container => {
+if (container.dataset.cardsInitialized === 'true') return;
+container.dataset.cardsInitialized = 'true';
+const style = window.getComputedStyle(container);
+const backgroundColor = style.backgroundColor;
+const borderRadius = style.borderRadius;
+const borderTopWidth = style.borderTopWidth;
+const borderTopStyle = style.borderTopStyle;
+const borderTopColor = style.borderTopColor;
+const boxShadow = style.boxShadow;
+const backgroundImage = style.backgroundImage;
+const backgroundPosition = style.backgroundPosition;
+const backgroundRepeat = style.backgroundRepeat;
+const backgroundSize = style.backgroundSize;
+const dataPadding = parsePadding(container.dataset.padding);
+const dataPaddingMobile = parsePadding(container.dataset.paddingMobile);
+const dataColor = container.dataset.color;
+container.style.setProperty('border', 'none', 'important');
+container.style.setProperty('box-shadow', 'none', 'important');
+if (!dataColor) {
+container.style.setProperty('background-color', 'transparent', 'important');
+container.style.setProperty('background', 'none', 'important');
+}
+const inner = container.querySelector('.inner');
+if (!inner) return;
+const columns = Array.from(inner.children);
+columns.forEach((column, index) => {
+if (column.querySelector('.card-item')) return;
+const cardItem = document.createElement('div');
+cardItem.classList.add('card-item');
+const specificColor = container.getAttribute(`data-color-${index + 1}`);
+const specificBorderColor = container.getAttribute(`data-border-color-${index + 1}`);
+if (specificColor) {
+cardItem.style.backgroundColor = specificColor;
+} else if (dataColor) {
+cardItem.style.backgroundColor = dataColor;
+} else if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)' && backgroundColor !== 'transparent') {
+cardItem.style.backgroundColor = backgroundColor;
+} else {
+cardItem.style.backgroundColor = CONFIG.defaultCardBg;
+}
+if (borderRadius && borderRadius !== '0px') {
+cardItem.style.setProperty('--mini-card-border-radius', borderRadius);
+}
+if (borderTopWidth && borderTopWidth !== '0px' && borderTopStyle !== 'none') {
+cardItem.style.borderWidth = borderTopWidth;
+cardItem.style.borderStyle = borderTopStyle;
+cardItem.style.borderColor = specificBorderColor || borderTopColor;
+}
+if (boxShadow && boxShadow !== 'none') {
+cardItem.style.boxShadow = boxShadow;
+}
+if (!dataColor && !specificColor && backgroundImage && backgroundImage !== 'none') {
+cardItem.style.backgroundImage = backgroundImage;
+cardItem.style.backgroundPosition = backgroundPosition;
+cardItem.style.backgroundRepeat = backgroundRepeat;
+cardItem.style.backgroundSize = backgroundSize;
+}
+if (dataPadding) {
+cardItem.style.setProperty('--mini-card-padding', dataPadding);
+}
+if (dataPaddingMobile) {
+cardItem.style.setProperty('--mini-card-padding-mobile', dataPaddingMobile);
+}
+while (column.firstChild) {
+cardItem.appendChild(column.firstChild);
+}
+column.appendChild(cardItem);
+});
+});
+};
+function init() {
+initGridCluster();
+initCards();
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', init);
+} else {
+init();
+}
+})();
+</script>

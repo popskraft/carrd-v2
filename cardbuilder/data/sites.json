@@ -1,0 +1,50 @@
+[
+  {
+    "siteSlug": "main-template",
+    "templateId": "main-template",
+    "kind": "live-site",
+    "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+    "publishedSiteUrl": "https://mini.crd.co/",
+    "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template",
+    "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template",
+    "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/manifests/knowledge-status.json",
+    "profilePath": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/manifests/site-profile.json",
+    "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+    "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+    "runtimeMode": "devtools-first",
+    "savePublishPolicy": "operator-only",
+    "status": "scan-complete"
+  },
+  {
+    "siteSlug": "lunar-auto-film",
+    "templateId": "lunar-auto-film",
+    "kind": "live-site",
+    "builderUrl": "https://carrd.co/dashboard/6380178126096476/build",
+    "publishedSiteUrl": null,
+    "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film",
+    "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/lunar-auto-film",
+    "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/manifests/knowledge-status.json",
+    "profilePath": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/manifests/site-profile.json",
+    "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+    "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+    "runtimeMode": "devtools-first",
+    "savePublishPolicy": "operator-only",
+    "status": "partial-scan-complete"
+  },
+  {
+    "siteSlug": "faktura",
+    "templateId": "faktura",
+    "kind": "live-site",
+    "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+    "publishedSiteUrl": null,
+    "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
+    "projectDocs": null,
+    "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/manifests/knowledge-status.json",
+    "profilePath": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/manifests/site-profile.json",
+    "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+    "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+    "runtimeMode": "devtools-first",
+    "savePublishPolicy": "operator-only",
+    "status": "automation-first"
+  }
+]

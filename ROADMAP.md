@@ -14,7 +14,8 @@
 | 6 | Применить audit fixes: shopping-cart text escaping, slider ARIA region label, modal refresh API, FAQ rAF height adjustment, cookie Secure flag | done |
 | 7 | Сохранить legacy `popskraft/carrd-plugins` историческим freeze ref перед публичным v2 rollout | done |
 | 8 | Опубликовать validated `popskraft/carrd-v2` main/tag `v2.0.0` и purge только v2 jsDelivr paths | done |
-| 9 | Проверить live-синхронизацию нескольких controllers с одинаковым `data-switcher-v2` | active |
-| 10 | Проверить live cluster-переключение целых containers через `data-switcher-v2-cluster` | active |
-| 11 | Проверить `accordeon` на рабочем Carrd-сайте на группе `ppf` | active |
-| 12 | Проверить promoted `header-nav` anti-jump mobile collapse на рабочем Carrd-сайте | active |
+| 9 | Перенести `admincarrd` и `cardbuilder` из legacy workspace в `carrd-v2` и обновить локальные связи | done |
+| 10 | Проверить live-синхронизацию нескольких controllers с одинаковым `data-switcher-v2` | active |
+| 11 | Проверить live cluster-переключение целых containers через `data-switcher-v2-cluster` | active |
+| 12 | Проверить `accordeon` на рабочем Carrd-сайте на группе `ppf` | active |
+| 13 | Проверить promoted `header-nav` anti-jump mobile collapse на рабочем Carrd-сайте | active |

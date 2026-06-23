@@ -1,0 +1,45 @@
+{
+  "tab": {
+    "id": "28C6D0F8CC6BC18E086FFD305F2AC26F",
+    "title": "minigree - My Sites - Dashboard - Carrd",
+    "url": "https://carrd.co/dashboard/4155176224428477/build"
+  },
+  "value": {
+    "control03": {
+      "id": "control03",
+      "classes": "",
+      "elementId": "",
+      "sectionBreak": "shopping-cart",
+      "mode": "section-break",
+      "childIds": []
+    },
+    "container10": {
+      "id": "container10",
+      "classes": "shopping-cart-target",
+      "elementId": "",
+      "sectionBreak": "",
+      "mode": "default",
+      "childIds": [
+        "form01"
+      ]
+    },
+    "form01": {
+      "id": "form01",
+      "classes": "",
+      "elementId": "form-shopping-cart",
+      "sectionBreak": "",
+      "mode": "custom",
+      "childIds": []
+    },
+    "container12": {
+      "id": "container12",
+      "classes": "modal",
+      "elementId": "modalContact",
+      "sectionBreak": "",
+      "mode": "default",
+      "childIds": [
+        "text25"
+      ]
+    }
+  }
+}

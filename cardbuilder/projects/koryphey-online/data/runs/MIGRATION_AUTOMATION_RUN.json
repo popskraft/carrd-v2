@@ -1,0 +1,1217 @@
+{
+  "startedAt": "2026-02-14T06:52:47.988Z",
+  "mode": "execute",
+  "total": 41,
+  "results": [
+    {
+      "dataId": "container01",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container01",
+        "type": "container",
+        "text": "Домашняя онлайн-школа \"Корифей\"Платформа для учеников 1–11 классов с поддержкой кураторов, живыми уроками и госаттестатом.Учись из дома — в комфортной обстановке и без потери в качестве. Попробовать бесплатно",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container52"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container52"
+    },
+    {
+      "dataId": "container03",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container03",
+        "type": "container",
+        "text": "34 года учим детей – теперь онлайнВ ТОП‑200 школ России – по версии крупнейшего агентства RAEXОбучаем по федеральному стандарту с инновационными решениямиВозможность оплатить маткапиталом или оформить рассрочкуОнлайн-уроки в прямом эфире и записи – для удобстваБесплатная пробная неделя, чтобы протестировать без риска",
+        "styleFromClass": "style7"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container53"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container53"
+    },
+    {
+      "dataId": "container20",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container20",
+        "type": "container",
+        "text": "Мягкий старт для будущих первоклассниковПервый класс по самой выгодной цене!Получите февраль в подарок и скидку 25% на март.А ещё май в подарок – при оплате учебного года единым платежом до конца февраля. Записаться на консультацию",
+        "styleFromClass": "style18"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container54"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container54"
+    },
+    {
+      "dataId": "container42",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container42",
+        "type": "container",
+        "text": "Экзамены без стрессаПредложение для учеников 9-х и 11-х классов – сдаём ОГЭ и ЕГЭ с уверенностью и спокойствием:Скидка 15% на пакет от 5 занятий по подготовке к ОГЭ/ЕГЭПервый месяц в подарокСкидка 25% на март при оплате до конца февраляМай в подарок – при оплате двумя платежами или единым платежом Хочу готовиться с вами!",
+        "styleFromClass": "style7"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container55"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container55"
+    },
+    {
+      "dataId": "container24",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container24",
+        "type": "container",
+        "text": "Почему мы? Объясняем в цифрах:",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container56"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container56"
+    },
+    {
+      "dataId": "divider19",
+      "dataType": "divider",
+      "sourceStyle": "style4",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "divider19",
+        "type": "divider",
+        "text": "",
+        "styleFromClass": "style4"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "divider10"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_not_found:style4"
+      },
+      "targetContent": {
+        "ok": true,
+        "note": "empty_text"
+      },
+      "targetId": "divider10"
+    },
+    {
+      "dataId": "container16",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container16",
+        "type": "container",
+        "text": "34 года34 года работы: онлайн-проект на базе гимназии “Корифей”ТОП-200Входим в рейтинг лучших школ страны по версии RAEX83 балласредний балл ЕГЭ наших выпускников90%выпускников учатся в топовых вузах (МГУ, ВШЭ, СПбГУ, МФТИ)",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container57"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container57"
+    },
+    {
+      "dataId": "divider18",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "divider18",
+        "type": "divider",
+        "text": "",
+        "styleFromClass": "style2"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "divider12"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_not_found:style2"
+      },
+      "targetContent": {
+        "ok": true,
+        "note": "empty_text"
+      },
+      "targetId": "divider12"
+    },
+    {
+      "dataId": "container39",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container39",
+        "type": "container",
+        "text": "Онлайн-школа \"Корифей\" подходит тем, кто:Часто в разъездах или проживает за рубежомСтремится получать знания — всегда и вездеЗанимается спортом или творчеством профессиональноНе нашел общий язык с системой обычной школыХочет больше времени на репетиторов или олимпиадную подготовкуМы создали школу, где детям удобно, а родителям — легко.Индивидуальный подход, живые уроки и реальные результаты. Посмотреть, как всё устроено",
+        "styleFromClass": "style3"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container58"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_dropdown_not_found"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "container58"
+    },
+    {
+      "dataId": "container32",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container32",
+        "type": "container",
+        "text": "Чем онлайн-формат лучше очного?",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container59"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_dropdown_not_found"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "container59"
+    },
+    {
+      "dataId": "container28",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container28",
+        "type": "container",
+        "text": "Обычная школаКласс от 25 человекОбязательные кружкиНет гибкостиУтренние сборы и дорогаОнлайн‑школа «Корифей»До 15 учениковДополнительные кружки по желаниюГибкий график + запись уроковБез затрат на форму и дорогу",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container60"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container60"
+    },
+    {
+      "dataId": "container33",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container33",
+        "type": "container",
+        "text": "Получить бесплатную неделю онлайн",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container61"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container61"
+    },
+    {
+      "dataId": "container29",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container29",
+        "type": "container",
+        "text": "Цены*стоимость при единоразовой оплате за учебный год",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container62"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container62"
+    },
+    {
+      "dataId": "container12",
+      "dataType": "container",
+      "sourceStyle": "style10",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container12",
+        "type": "container",
+        "text": "1-4 классыДелаем первые шаги в обучении вместеДо 15 учеников в классе10 часов уроков в неделюИгровой формат обученияСопровождение куратораЖивые уроки: развитие soft skills и Разговоры о важномРегулярные отчеты об успеваемостиРучная проверка заданий с развернутой обратной связью20 800 р/мес.*вместо 21 900 р.5-9 классыРазвиваем навыки и выбираем предметы по душеДо 15 учеников в классе14-15 часов уроков в неделюСопровождение куратора и персональная поддержка в чатахЖивые уроки + полезные материалы в свободном доступеПромежуточная аттестация и регулярные отчеты об успеваемостиУсиленная подготовка к ОГЭАттестация по семейной/заочной форме24 000 р/мес.*вместо 25 200 р.10-11 классыГотовимся к важнейшему этапу в жизниДо 15 учеников в классе16 часов уроков в неделюСопровождение куратора и персональная поддержка в чатахУглубленное изучение предметов по выбору + полезные материалы в свободном доступеПромежуточная аттестация и регулярные отчеты об успеваемостиУсиленная подготовка к ЕГЭАттестация по семейной/заочной форме25 000 р/мес.*вместо 26 300 р.",
+        "styleFromClass": "style10"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container63"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_dropdown_not_found"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "container63"
+    },
+    {
+      "dataId": "container41",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container41",
+        "type": "container",
+        "text": "Предметы эстетикиБлок дисциплин, объединенных общей идеей — воспитание культуры чувств, вкуса, движения и созидания. Каждый предмет помогает ребёнку раскрыться в своём направлении и увидеть красоту в разных формах жизни.Музыка — это эстетика звука и духовного переживанияИзобразительное искусство — эстетика визуального образа и восприятияФизическая культура — эстетика тела и движенияТруд — эстетика созидания и практической формыОБЗР — эстетика социализации и ответственности перед собой и другимиПространство, где ребёнок учится чувствовать, создавать и понимать красоту, развивая эмоциональный интеллект и вкус к жизни.",
+        "styleFromClass": "style3"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container64"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container64"
+    },
+    {
+      "dataId": "container26",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container26",
+        "type": "container",
+        "text": "BOOKR class — современный подход к изучению английского языкаПрограмма объединяет чтение, аудирование и развитие речи через анимированные книги и игру.Развивает речевой слух«Ставит» максимально близкое произношение к произношению носителейПоказывает слова в контексте ситуаций общенияПредлагает игровую форму усвоения языкового материалаФормирует навыки правильного и выразительного чтения на английском языке",
+        "styleFromClass": "style3"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container65"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container65"
+    },
+    {
+      "dataId": "container23",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container23",
+        "type": "container",
+        "text": "Кто ведет занятия?Учителя, которые любят своё дело и уважают учениковНаши преподаватели — это эксперты с многолетним стажем, авторы учебных программ и просто увлечённые наставники. Они не читают по шаблону — а умеют объяснять, поддерживать и вдохновлять.",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container66"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container66"
+    },
+    {
+      "dataId": "container18",
+      "dataType": "container",
+      "sourceStyle": "style5",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container18",
+        "type": "container",
+        "text": "Ваулина Екатерина МихайловнаУчитель математикиУчитель с природным обаянием, с которым комфортно каждому ученикуОбъяснит непонятную тему и ответит на вопросыПодготовит к контрольной работе и повысит уровень школьных оценокМинец Диана ВладимировнаМетодист образовательных программ, учитель русского языка и литературы выпускных классовКандидат филологических наукЦифровой учитель года России-2020Главный редактор образовательного блога \"Фауст\"Член Всероссийского сообщества наставников-просветителейЛукина Екатерина НиколаевнаУчитель русского языка и литературыЭксперт ОГЭЭксперт по проверке итогового сочинения выпускников по русскому языкуПреподаватель курсов \"Мнемотехника\", \"Лидер 21 века\", \"Мастер публичных выступлений\".Готовит высокобалльников по ОГЭ и ЕГЭАлешникова Анастасия АлексеевнаУчитель математикиМагистр с красным дипломом по специальности \"Физическое образование в современной школе\", учитель первой категорииУчастник Всероссийского профессионального конкурса \"Флагманы образования. Школа\", 2021 год",
+        "styleFromClass": "style5"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container67"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container67"
+    },
+    {
+      "dataId": "container25",
+      "dataType": "container",
+      "sourceStyle": "style5",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container25",
+        "type": "container",
+        "text": "Лебединцева Ирина Николаевнаучитель информатикиЭксперт ОГЭ и ЕГЭПреподаватель профиля \"Программирование\"классников по темам \"Экономика\", \"Виды республик\"Член жюри областных и городских конкурсов в сфере гуманитарных наукХолманскихАнастасия ЕвгеньевнаУчитель истории и обществознанияЭксперт ОГЭКуратор проектного обучения студентов и школьниковОрганизатор интенсивов для старшеклассников по темам \"Экономика\", \"Виды республик\"Член жюри областных и городских конкурсов в сфере гуманитарных наукАсаёнок Артур АндреевичУчитель химии и биологииПреподаватель кафедры химии в БГПУ им.ТанкаГотовит победителей и призеров олимпиад и конкурсовТатьяна Сергеевна СинявинаУчитель биологииГотовит к ЕГЭ по биологии с 2015 годаАвтор образовательных курсов по биологии для онлайн-школРуководитель проектов на конкурсах \"Старт в медицину\" и другихПодготовила более 30 учеников, которые набрали на ЕГЭ по биологии 80+ баллов",
+        "styleFromClass": "style5"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container68"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container68"
+    },
+    {
+      "dataId": "divider10",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "divider10",
+        "type": "divider",
+        "text": "",
+        "styleFromClass": "style2"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "divider13"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_not_found:style2"
+      },
+      "targetContent": {
+        "ok": true,
+        "note": "empty_text"
+      },
+      "targetId": "divider13"
+    },
+    {
+      "dataId": "container31",
+      "dataType": "container",
+      "sourceStyle": "style19",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container31",
+        "type": "container",
+        "text": "Как поступить в Онлайн-школу?Оставьте заявку — менеджер свяжется с Вами и расскажет все подробностиМы отправим вам анкету и договорПодпишите договор онлайнОплатите удобным способом (маткапитал, рассрочка, единоразово)Познакомьтесь с куратором и начните обучениеХотите попробовать? У нас есть демо-неделя без оплаты. Попробовать неделю бесплатно",
+        "styleFromClass": "style19"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container69"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container69"
+    },
+    {
+      "dataId": "container36",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container36",
+        "type": "container",
+        "text": "Как оплатить обучение",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container70"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container70"
+    },
+    {
+      "dataId": "container34",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container34",
+        "type": "container",
+        "text": "Банковской картойОплатите обучение сразу за весь год и получите приятный бонус. Доступна оплата картами РФ и зарубежными картами.В рассрочку от онлайн-школыОплачивайте первый месяц занятий и не теряйте ни дня обучения. Далее платежи разбиваются в комфортном для вас формате по согласованию с условиями внутренней рассрочки.Материнским капиталомОбучение в школе можно оплатить маткапиталом полностью или частично. Не нужно никуда идти — проверим сертификат онлайн.В рассрочку от Банка на срок до 1 годаНачните учиться уже сейчас — платите потом. Для уточнения информации и оформления рассрочки необходимо обратиться к менеджеру.",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container71"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_dropdown_not_found"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "container71"
+    },
+    {
+      "dataId": "container09",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container09",
+        "type": "container",
+        "text": "Налоговый вычетВы можете вернуть 13% от стоимости обучения.Наша школа предоставляет все необходимые документы для подачи в ФНС, а заботливые сотрудники помогут разобраться во всех тонкостях.",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container72"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container72"
+    },
+    {
+      "dataId": "container17",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container17",
+        "type": "container",
+        "text": "Частые вопросы",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container73"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container73"
+    },
+    {
+      "dataId": "container27",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container27",
+        "type": "container",
+        "text": "В. Как перевестись на семейное обучение?Семейное образование — это альтернатива традиционной школе, при которой ребёнок не посещает офлайн-уроки, а проходит школьную программу в удобном ритме — под руководством родителей, кураторов или онлайн-школы.Шаг 1. Обратиться в департамент или отдел образования по месту жительстваШаг 2. Оформить уведомление о переводе на семейное обучениеШаг 3. Дождаться письменного ответа о получении уведомления, если вы отправляете документы по почте.Шаг 4. Отчислиться из школыШаг 5. Выбрать школу для прохождения аттестацииШаг 6. Уведомить новую школу о переходе на семейное обучениеПодробнее обязательно расскажет наш менеджер – просто оставьте заявку.В. Как осуществляется документооборот при зачислении в основную школу?При семейной форме образования – весь документооборот электронный, при заочной форме оригинал личного дела необходимо предоставить в школу.В. Какая техника у меня должна быть?Ноутбук или моноблок с микрофоном и камерой, наличие графического планшета и стилуса приветствуется.В. Как я смогу отследить, что мой ребенок учится?У Вас будет родительский доступ к обучающей платформе. Вы сможете видеть все работы Вашего ребёнка, обратную связь от учителей и прогресс в развитии жизненных навыков. Кроме того, в Онлайн-школе «Корифей» создана Служба заботы, в функции которой входит контроль учебного процесса. А куратор предоставляет ежемесячную отчётность перед родителями о динамике успехов ребёнка.В. Нужно ли проходить входное тестирование при поступлении?Входного тестирования нет – вместо него входная диагностика знаний на первых двух неделях обучения. Попробовать бесплатно",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container74"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container74"
+    },
+    {
+      "dataId": "divider38",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "divider38",
+        "type": "divider",
+        "text": "",
+        "styleFromClass": "style2"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "divider14"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_not_found:style2"
+      },
+      "targetContent": {
+        "ok": true,
+        "note": "empty_text"
+      },
+      "targetId": "divider14"
+    },
+    {
+      "dataId": "container19",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container19",
+        "type": "container",
+        "text": "Наши партнёры НИУ «Высшая школа экономики»Благотворительный фонд имени доктора Леконцевой Людмилы ЕвдокимовныФонд развития Физтех-школ",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container75"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container75"
+    },
+    {
+      "dataId": "container10",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container10",
+        "type": "container",
+        "text": "Закрыть",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container76"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container76"
+    },
+    {
+      "dataId": "container21",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container21",
+        "type": "container",
+        "text": "Как проходит обучение",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container77"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_dropdown_not_found"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "container77"
+    },
+    {
+      "dataId": "container22",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container22",
+        "type": "container",
+        "text": "Обучение в Онлайн-школе проходит на современной платформе и по стандарту. С живыми уроками и персональным вниманием преподавателей и кураторов. Попробовать бесплатно",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container78"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container78"
+    },
+    {
+      "dataId": "container13",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container13",
+        "type": "container",
+        "text": "Для родителей:Мы обучаем строго по ФГОСПрисылаем отчётность об успехах ребенка каждый месяцСтавим оценки за работу на уроке и домашние заданияРаботаем на электронной платформе с заданиями, с обратной связью и журналомПоддерживаем олимпиадников и используем репетиторский форматДля учеников:Наши уроки живые и в хорошем качестве — почти как в киноКуратор поможет справиться с проблемами и решит трудностиЗапишем урок, если не успеваешь на него — посмотри потомВыбирай любимые предметы для углубленного изученияГотовься к ЕГЭ или ОГЭ вместе с нашими, уже знакомыми тебе экспертами",
+        "styleFromClass": "style7"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container79"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container79"
+    },
+    {
+      "dataId": "container11",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container11",
+        "type": "container",
+        "text": "График занятий и документыУчимся по расписаниюсдаём аттестацииполучаем госаттестатЗанятия с понедельника по четверг, с 08:00 по МосквеПо окончании учебного года — аттестация и зачетная ведомостьПо итогам 9 и 11 классов — аттестат государственного образцаВсе документы оформляются официально. Договор — через ЭЦП или на месте",
+        "styleFromClass": "style18"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container80"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container80"
+    },
+    {
+      "dataId": "buttons16",
+      "dataType": "buttons",
+      "sourceStyle": "style4",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "buttons16",
+        "type": "buttons",
+        "text": "Попробовать бесплатноНазад",
+        "styleFromClass": "style4"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "buttons17"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": false,
+        "error": "style_not_found:style4"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "textarea"
+      },
+      "targetId": "buttons17"
+    },
+    {
+      "dataId": "container35",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container35",
+        "type": "container",
+        "text": "Скрытый Контент! РезервВнимание! Все, что находится ниже разделителя hiden-bellow-theline и выше разделителя футера будет скрыто. Тут можно хранить неиспользуемые элементы в разумных количествах.",
+        "styleFromClass": "style6"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container81"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container81"
+    },
+    {
+      "dataId": "container05",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container05",
+        "type": "container",
+        "text": "Денис РябинВыпускник гимназии «Корифей» 2016 г. В 2022 г. окончил лечебный факультет ПСПбГМУ им. акад. И.П.Павлова. Репетитор по биологии, разработчик онлайн курсов. Готовит высокобалльников, поступающих в топовые медицинские вузы.Привет! Меня зовут Денис Рябин, я выпускник гимназии «Корифей». В 2022 году закончил Первый Санкт-Петербургский государственный медицинский университет им. акад. И.П. Павлова по специальности «Лечебное дело». Сейчас работаю врачом-ординатором по направлению «Анестезиология-реаниматология».Мне безумно нравится медицина: она формирует ответственность, даёт поле для самореализации и воплощения вашего творческого потенциала.Я очень советую связать свою жизнь с медициной и пройти этот интересный путь вместе с Онлайн школой Корифей!",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container82"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container82"
+    },
+    {
+      "dataId": "container07",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container07",
+        "type": "container",
+        "text": "Анастасия Евгеньевна В.Очень нравится формат обучения, дружелюбная обстановка и углубленные знания!Анастасия Евгеньевна В.Учусь в медицинском классе уже половину учебного года. учителя и тот материал, который подготовлен, очень полезны. особенно хочу выделить профориентацию, которая помогает более точно и глубоко узнать о всех тонкостях данной профессии. всем очень довольна! советую!Анастасия Евгеньевна В.Очень нравится данная онлайн школа!Преподаватели объясняют все хорошо, атмосфера дружная,а самое главное -материал понятный и доступныйЛяйсан ИсхаковаУ меня трое детей, мы часто переезжаем, старшие сменили две школы из-за переездов в разных городах, выбирали онлайн-школу для троих, выбор был в пользу Корифей-онлайн, нам повезло с кураторами, они же классные руководители детей, всегда помогают в решении вопросов, за что огромное спасибо, детям нравятся одноклассники, учителя, атмосфера во время уроков, может быть не всё получается с первого раза, стараются исправить ошибки, учителя всегда помогут.Татьяна РовшеноваСын учится на заочном обучение уже второй год. Говорит, что это лучшая школа)) Замечательные педагоги. Хороший, небезразличный куратор, всегда с детьми на связи. Ещё в этом году сын пошёл на курс по Искусственному интеллекту, в рамках онлайн обучения в школе. Очень интересно, в планах создать собственный проект, занятия ждёт с нетерпениемОльга УстиноваОчень рады, что уже два года обучаемся в школе «Корифей». Благоприятный климат в детском коллективе, комфортный режим обучения и замечательные учителя с доброжелательным отношением, всегда нацеленные на успешный результат обучения детей.WandersmannЗаканчивали заочку в корифее, все понравилось. Сейчас переходим в онлайн, тк проживаем в отдаленном населенном пункте. Хорошие учителя, которые могут доступно объяснять в дистанционном режиме, также как и в очной школе.Дияна НургалиеваОчень нравится формат обучения, дружелюбная обстановка и углубленные знания!",
+        "styleFromClass": null
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container83"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main"
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container83"
+    },
+    {
+      "dataId": "container40",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container40",
+        "type": "container",
+        "text": "Почему нас выбираютОнлайн-школа сегодня — это уникальное сочетание 32-летнего педагогического опыта и современной цифровой образовательной платформы. Школа создана на базе Гимназии «Корифей», которая работает с 1994 года.Миссия \"Корифея\" — создание открытой и творческой образовательной среды, в которой каждый человек учится принимать нестандартные решения, делать выбор и расти над собой. Цель работы школы — научить детей применять знания, опыт совместной работы и личных достижений в реальной социально-значимой деятельности. Фокус педагогических усилий направлен на развитие навыков XXI века.",
+        "styleFromClass": "style18"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container84"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container84"
+    },
+    {
+      "dataId": "container02",
+      "dataType": "container",
+      "sourceStyle": "style14",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container02",
+        "type": "container",
+        "text": "Онлайн школа КорифейОбщеобразовательная онлайн-школа: учись в онлайне в комфортном темпе. ПодробноПрофильный класcВ дополнение к общеобразовательной школе. Углубленное изучение профильных предметов и профориентация. Бонусы за отличную успеваемость. ПодробноПодготовка к ЕГЭ и ОГЭПолноценные годовые курсы, которые помогут подготовиться с любого уровня знаний до желаемого балла. Подробно",
+        "styleFromClass": "style14"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container85"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container85"
+    },
+    {
+      "dataId": "container46",
+      "dataType": "container",
+      "sourceStyle": "style15",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container46",
+        "type": "container",
+        "text": "",
+        "styleFromClass": "style15"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container86"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "note": "empty_text"
+      },
+      "targetId": "container86"
+    },
+    {
+      "dataId": "container06",
+      "dataType": "container",
+      "sourceStyle": "style11",
+      "status": "ok",
+      "source": {
+        "ok": true,
+        "dataId": "container06",
+        "type": "container",
+        "text": "cancel-lightyoutube.com/watch?v=OYMmDRfZhVg Закрыть",
+        "styleFromClass": "style11"
+      },
+      "targetCreate": {
+        "ok": true,
+        "newId": "container87"
+      },
+      "targetMove": {
+        "ok": true
+      },
+      "targetStyle": {
+        "ok": true,
+        "applied": "Main",
+        "fallback": true
+      },
+      "targetContent": {
+        "ok": true,
+        "mode": "input"
+      },
+      "targetId": "container87"
+    }
+  ],
+  "finishedAt": "2026-02-14T06:55:34.715Z"
+}

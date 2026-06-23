@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "domain": "template-instance",
+    "generatedAt": "2026-04-06T15:45:49.858Z",
+    "url": "https://mini.crd.co/#",
+    "title": "minigree"
+  },
+  "assets": {
+    "scripts": [],
+    "stylesheets": [
+      {
+        "href": "https://fonts.googleapis.com/css2?display=swap&family=Wix+Madefor+Display:ital,wght@0,400;0,700;1,400;1,700",
+        "matchedPlugins": []
+      }
+    ],
+    "inlineEmbeds": [
+      {
+        "index": 0,
+        "tag": "style",
+        "textSample": "html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,d",
+        "matchedPlugins": [
+          "columns"
+        ]
+      },
+      {
+        "index": 1,
+        "tag": "style",
+        "textSample": "/* * File: Carrd Theme Variables * Version: 0.1.15 * Purpose: Required CSS variables for Mini theme plugins. * Admin placement: Code element in HEAD (load before plugin CSS). */ :root { /* Colors */ --theme-color-primary: #EF4444; --theme-color-primary-hover: #AD3624; --theme-color-primary-dark: #04",
+        "matchedPlugins": [
+          "faq",
+          "modal",
+          "slider",
+          "typography"
+        ]
+      },
+      {
+        "index": 2,
+        "tag": "script",
+        "textSample": "/* No-loadwaiting v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={animationDuration:750,observerTimeout:5000,scrollPulseInterval:60,scrollPulseCount:10,rafPulseCount:4};const externalOptions=(typeof window!=='undefined'&&window.CarrdPluginOptions&&window.CarrdPluginOptions.noLoadwait",
+        "matchedPlugins": [
+          "no-loadwaiting"
+        ]
+      },
+      {
+        "index": 3,
+        "tag": "style",
+        "textSample": "",
+        "matchedPlugins": []
+      },
+      {
+        "index": 4,
+        "tag": "script",
+        "textSample": "(function() {var on = addEventListener,off = removeEventListener,$ = function(q) { return document.querySelector(q) },$$ = function(q) { return document.querySelectorAll(q) },$body = document.body,$inner = $('.inner'),client = (function() {var o = {browser: 'other',browserVersion: 0,os: 'other',osVe",
+        "matchedPlugins": [
+          "shopping-cart"
+        ]
+      },
+      {
+        "index": 5,
+        "tag": "style",
+        "textSample": "/* Shopping Cart v0.1.15 (2026-04-06) */.theme-shopcart-widget{position:fixed;z-index:999990;background:var(--theme-color-primary-dark);color:var(--theme-shopcart-widget-color,#ffffff);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-",
+        "matchedPlugins": []
+      },
+      {
+        "index": 6,
+        "tag": "script",
+        "textSample": "/* Shopping Cart v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={currency:'$',currencyPosition:'before',position:'top-right',storageKey:'carrd_cart_v1',orderInputSelector:'[name=\"order-details\"], #order-details',orderInputClass:'.cart-output',texts:{title:'Shopping Cart',empty:'Your ",
+        "matchedPlugins": [
+          "shopping-cart"
+        ]
+      },
+      {
+        "index": 7,
+        "tag": "style",
+        "textSample": "/* Slider v0.1.15 (2026-04-06) */.theme-slider-wrapper{position:relative;overflow:hidden;width:100%;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}.theme-slider-wrapper.is-overflow-visible{overflow:visible}.theme-slider-wrapper.is-dragging{cursor:grabbing}.theme-slider-trac",
+        "matchedPlugins": [
+          "slider"
+        ]
+      },
+      {
+        "index": 8,
+        "tag": "script",
+        "textSample": "/* Slider v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={showDots:true,showArrows:true,loop:false,autoplay:false,autoplayInterval:5000,gap:16,hideOverflow:false,slidesPerView:1,peek:0.1,maxSlideWidth:400,equalHeight:true,breakpoints:{737:{slidesPerView:4},1280:{slidesPerView:5}}};co",
+        "matchedPlugins": [
+          "slider"
+        ]
+      },
+      {
+        "index": 9,
+        "tag": "style",
+        "textSample": "/* Cards v0.1.15 (2026-04-06) */.theme-card-item{padding:var(--theme-card-padding,2rem);border-radius:var(--theme-card-border-radius,0);height:100%;box-sizing:border-box}.cards .inner{align-items:stretch !important}@media screen and (max-width:736px){.theme-card-item{padding:var(--theme-card-padding",
+        "matchedPlugins": [
+          "cards"
+        ]
+      },
+      {
+        "index": 10,
+        "tag": "script",
+        "textSample": "/* Cards v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={enabled:true,cardSelector:'.cards',defaultCardBg:'var(--theme-card-bg-default)'};const externalOptions=(typeof window!=='undefined'&&window.CarrdPluginOptions&&window.CarrdPluginOptions.cards)||{};const legacyColumnsOptions=(ty",
+        "matchedPlugins": [
+          "cards",
+          "columns"
+        ]
+      },
+      {
+        "index": 11,
+        "tag": "style",
+        "textSample": "/* Grid Cluster v0.1.15 (2026-04-06) */.theme-grid{--grid-columns:1;--local-row-gap:var(--theme-grid-row-gap,1rem);--local-column-gap:var(--theme-grid-column-gap,1rem);--grid-template:repeat(var(--grid-columns),minmax(0,1fr));display:grid;grid-template-columns:var(--grid-template);row-gap:var(--loca",
+        "matchedPlugins": [
+          "columns"
+        ]
+      },
+      {
+        "index": 12,
+        "tag": "script",
+        "textSample": "/* Grid Cluster v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={enabled:true,gridClasses:['grid-2','grid-3','grid-4','grid-5','grid-6'],widthClasses:{'w-20':'20%','w-25':'25%','w-30':'33%','w-40':'40%','w-50':'50%','w-60':'60%','w-70':'67%','w-75':'75%','w-80':'80%'}};const externalO",
+        "matchedPlugins": [
+          "columns"
+        ]
+      },
+      {
+        "index": 13,
+        "tag": "style",
+        "textSample": "/* Modal v0.1.15 (2026-04-06) */.container-component.modal{display:none !important}.container-component.modal.is-open{display:flex !important;position:fixed;inset:0;z-index:1000001;align-items:center;justify-content:center;padding:var(--theme-modal-padding,1rem);pointer-events:none;margin:0 !importa",
+        "matchedPlugins": [
+          "modal"
+        ]
+      },
+      {
+        "index": 14,
+        "tag": "script",
+        "textSample": "/* Modal v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={modalSelector:'.container-component.modal',closeOnOverlay:true,closeOnEscape:true,showCloseButton:true,lockBodyScroll:true,preventWhenCartOpen:false};const externalOptions=(typeof window!=='undefined'&&window.CarrdPluginOptions",
+        "matchedPlugins": [
+          "modal"
+        ]
+      },
+      {
+        "index": 15,
+        "tag": "style",
+        "textSample": "/* FAQ v0.1.15 (2026-04-06) */.FAQContainer .theme-faq-question{cursor:pointer;position:relative;padding-right:2.75rem;margin:0;color:var(--theme-color-headlines,#19355A);transition:color 0.2s ease}.FAQContainer .theme-faq-question:focus-visible{outline:2px solid var(--theme-color-primary);outline-o",
+        "matchedPlugins": [
+          "faq"
+        ]
+      },
+      {
+        "index": 16,
+        "tag": "script",
+        "textSample": "/* FAQ v0.1.15 (2026-04-06) */(function(){'use strict';const DEFAULTS={containerSelector:'.FAQContainer',dividerSelector:'hr.divider-component',headerTags:['H1','H2','H3'],allowMultipleOpen:false,defaultOpen:false};const externalOptions=(typeof window!=='undefined'&&window.CarrdPluginOptions&&window",
+        "matchedPlugins": [
+          "faq"
+        ]
+      }
+    ]
+  },
+  "runtime": {
+    "candidateGlobals": [
+      "CarrdModal",
+      "CarrdShoppingCart",
+      "CarrdSlider"
+    ],
+    "bodyClasses": [
+      "is-ready"
+    ],
+    "matchedBodyClasses": []
+  },
+  "pluginSummary": [
+    {
+      "plugin": "cards",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:9",
+        "script:10"
+      ],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "columns",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:0",
+        "script:10",
+        "style:11",
+        "script:12"
+      ],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "cookie-banner",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "faq",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:1",
+        "style:15",
+        "script:16"
+      ],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "grid-cluster",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "header-nav",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "modal",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:1",
+        "style:13",
+        "script:14"
+      ],
+      "globalHits": [
+        "CarrdModal"
+      ],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "no-loadwaiting",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "script:2"
+      ],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "shopping-cart",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "script:4",
+        "script:6"
+      ],
+      "globalHits": [
+        "CarrdShoppingCart"
+      ],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "slider",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:1",
+        "style:7",
+        "script:8"
+      ],
+      "globalHits": [
+        "CarrdSlider"
+      ],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "stacker",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [],
+      "globalHits": [],
+      "bodyClassHits": []
+    },
+    {
+      "plugin": "typography",
+      "scriptHits": [],
+      "styleHits": [],
+      "inlineHits": [
+        "style:1"
+      ],
+      "globalHits": [],
+      "bodyClassHits": []
+    }
+  ]
+}

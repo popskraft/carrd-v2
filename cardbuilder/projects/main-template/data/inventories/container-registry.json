@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "domain": "template-instance",
+    "artifact": "container-registry",
+    "templateId": "main-template",
+    "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+    "publishedUrl": "https://mini.crd.co/",
+    "generatedAt": "2026-04-06T17:14:13Z",
+    "sourceArtifacts": [
+      "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json",
+      "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-dom-audit.json",
+      "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/style-maps/template-instance-style-map.json"
+    ],
+    "namingPolicy": {
+      "principle": "Prefer semantic names. Add numeric suffixes only when multiple containers share the same function and content does not provide a clearer distinction.",
+      "idLifecycle": "Canonical ids stay stable across scans. New containers receive new canonical ids; removed containers are marked removed rather than renumbering older records."
+    },
+    "currentNotes": [
+      "The active template has no dedicated footer content container in the current scan package.",
+      "Grid-cluster and slider demo items are materially duplicated placeholder cards, so numeric suffixes are currently required inside those semantic groups."
+    ]
+  },
+  "items": [
+    {
+      "canonicalId": "site-header-container",
+      "liveDataId": "container02",
+      "currentElementId": "SiteHeader",
+      "proposedElementId": "site-header-container",
+      "topLevelIndex": 0,
+      "sectionScope": "header",
+      "semanticGroup": "site-header",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image01",
+        "links02"
+      ],
+      "evidence": [
+        "Contains the logo image and the primary navigation links About / Services / Modal Window.",
+        "Appears before the Header End control."
+      ]
+    },
+    {
+      "canonicalId": "hero-content-container",
+      "liveDataId": "container01",
+      "currentElementId": "",
+      "proposedElementId": "hero-content-container",
+      "topLevelIndex": 2,
+      "sectionScope": "main",
+      "semanticGroup": "hero",
+      "classes": [],
+      "status": "active",
+      "childCount": 10,
+      "childIds": [
+        "text03",
+        "text06",
+        "text07",
+        "text02",
+        "list01",
+        "text04",
+        "text05",
+        "text10",
+        "buttons01",
+        "links01"
+      ],
+      "evidence": [
+        "Contains the main heading stack, body copy, lead text, CTA button, and supporting navigation links.",
+        "Serves as the main introductory content block after the header marker."
+      ]
+    },
+    {
+      "canonicalId": "quick-order-cards-container",
+      "liveDataId": "container06",
+      "currentElementId": "",
+      "proposedElementId": "quick-order-cards-container",
+      "topLevelIndex": 5,
+      "sectionScope": "main",
+      "semanticGroup": "cards",
+      "classes": [
+        "cards"
+      ],
+      "status": "active",
+      "childCount": 5,
+      "childIds": [
+        "text21",
+        "text22",
+        "buttons03",
+        "text01",
+        "buttons02"
+      ],
+      "evidence": [
+        "Follows the labels Columns (for single container) and + Shopping-cart buttons.",
+        "Contains quick-order button elements and carries the cards class."
+      ]
+    },
+    {
+      "canonicalId": "grid-feature-card-1",
+      "liveDataId": "container13",
+      "currentElementId": "",
+      "proposedElementId": "grid-feature-card-1",
+      "topLevelIndex": 7,
+      "sectionScope": "main",
+      "semanticGroup": "grid-cluster",
+      "classes": [
+        "grid-2"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image08",
+        "text29"
+      ],
+      "evidence": [
+        "Appears immediately after the label Columns (for multi-containers).",
+        "Two-column placeholder card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "grid-feature-card-2",
+      "liveDataId": "container14",
+      "currentElementId": "",
+      "proposedElementId": "grid-feature-card-2",
+      "topLevelIndex": 8,
+      "sectionScope": "main",
+      "semanticGroup": "grid-cluster",
+      "classes": [
+        "grid-2"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image09",
+        "text30"
+      ],
+      "evidence": [
+        "Second duplicated grid-cluster demo item under the multi-container group.",
+        "Two-column placeholder card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "grid-feature-card-3",
+      "liveDataId": "container15",
+      "currentElementId": "",
+      "proposedElementId": "grid-feature-card-3",
+      "topLevelIndex": 9,
+      "sectionScope": "main",
+      "semanticGroup": "grid-cluster",
+      "classes": [
+        "grid-2"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image10",
+        "text31"
+      ],
+      "evidence": [
+        "Third duplicated grid-cluster demo item under the multi-container group.",
+        "Two-column placeholder card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "grid-feature-card-reversed",
+      "liveDataId": "container04",
+      "currentElementId": "",
+      "proposedElementId": "grid-feature-card-reversed",
+      "topLevelIndex": 10,
+      "sectionScope": "main",
+      "semanticGroup": "grid-cluster",
+      "classes": [
+        "grid-2"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text08",
+        "image05"
+      ],
+      "evidence": [
+        "Part of the same grid-cluster demo run as containers 13-15.",
+        "Uses reversed text-left / image-right layout, so it can avoid a fourth numeric suffix."
+      ]
+    },
+    {
+      "canonicalId": "slider-card-1",
+      "liveDataId": "container11",
+      "currentElementId": "",
+      "proposedElementId": "slider-card-1",
+      "topLevelIndex": 12,
+      "sectionScope": "main",
+      "semanticGroup": "slider",
+      "classes": [
+        "slider"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image03",
+        "text28"
+      ],
+      "evidence": [
+        "Appears immediately after the Slider label.",
+        "Carries the slider class and uses image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "slider-card-reversed",
+      "liveDataId": "container05",
+      "currentElementId": "",
+      "proposedElementId": "slider-card-reversed",
+      "topLevelIndex": 13,
+      "sectionScope": "main",
+      "semanticGroup": "slider",
+      "classes": [
+        "slider"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text11",
+        "image04"
+      ],
+      "evidence": [
+        "Part of the slider run and uniquely uses reversed text-left / image-right layout."
+      ]
+    },
+    {
+      "canonicalId": "slider-card-2",
+      "liveDataId": "container07",
+      "currentElementId": "",
+      "proposedElementId": "slider-card-2",
+      "topLevelIndex": 14,
+      "sectionScope": "main",
+      "semanticGroup": "slider",
+      "classes": [
+        "slider"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image02",
+        "text18"
+      ],
+      "evidence": [
+        "Duplicate slider demo card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "slider-card-3",
+      "liveDataId": "container08",
+      "currentElementId": "",
+      "proposedElementId": "slider-card-3",
+      "topLevelIndex": 15,
+      "sectionScope": "main",
+      "semanticGroup": "slider",
+      "classes": [
+        "slider"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image06",
+        "text19"
+      ],
+      "evidence": [
+        "Duplicate slider demo card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "slider-card-4",
+      "liveDataId": "container09",
+      "currentElementId": "",
+      "proposedElementId": "slider-card-4",
+      "topLevelIndex": 16,
+      "sectionScope": "main",
+      "semanticGroup": "slider",
+      "classes": [
+        "slider"
+      ],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "image07",
+        "text20"
+      ],
+      "evidence": [
+        "Duplicate slider demo card with image-left / text-right layout."
+      ]
+    },
+    {
+      "canonicalId": "faq-container",
+      "liveDataId": "container03",
+      "currentElementId": "",
+      "proposedElementId": "faq-container",
+      "topLevelIndex": 17,
+      "sectionScope": "main",
+      "semanticGroup": "faq",
+      "classes": [
+        "FAQContainer"
+      ],
+      "status": "active",
+      "childCount": 11,
+      "childIds": [
+        "text12",
+        "divider02",
+        "text14",
+        "text15",
+        "text09",
+        "text16",
+        "text17",
+        "divider03",
+        "text13",
+        "divider01",
+        "text23"
+      ],
+      "evidence": [
+        "Contains the FAQ section heading and question-answer content.",
+        "Carries the FAQContainer class used by the FAQ plugin."
+      ]
+    },
+    {
+      "canonicalId": "shopping-cart-order-form-container",
+      "liveDataId": "container10",
+      "currentElementId": "",
+      "proposedElementId": "shopping-cart-order-form-container",
+      "topLevelIndex": 19,
+      "sectionScope": "shopping-cart",
+      "semanticGroup": "shopping-cart",
+      "classes": [],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "form01"
+      ],
+      "evidence": [
+        "Lives immediately after the #shopping-cart section break.",
+        "Contains the order form fields Email / Name / Order Details / Submit."
+      ]
+    },
+    {
+      "canonicalId": "modal-contact-container",
+      "liveDataId": "container12",
+      "currentElementId": "modalContact",
+      "proposedElementId": "modal-contact-container",
+      "topLevelIndex": 22,
+      "sectionScope": "utility-modal",
+      "semanticGroup": "modal",
+      "classes": [
+        "modal"
+      ],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text25"
+      ],
+      "evidence": [
+        "Carries the modal class and the live element id modalContact.",
+        "Contains the modal body content used by the contact/modal demo flow."
+      ]
+    }
+  ]
+}

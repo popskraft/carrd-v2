@@ -34,6 +34,8 @@ Ready-to-use plugins for Carrd pages. `src/` is the source of truth; `dist/` is 
 | `dist/` | Generated plugin assets, embed snippets, and public READMEs |
 | `scripts/` | Build, verification, purge, and README generation scripts |
 | `docs/` | Durable internal docs, specs, templates, and research |
+| `cardbuilder/` | Carrd Builder automation workspace, site registry, project docs, snapshots, and scripts |
+| `admincarrd/` | Remote browser admin module source and installer package inputs |
 
 ## Install Paths
 

@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-04-07T08:10:19.948Z",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "publishedUrl": "https://mini.crd.co/",
+  "target": {
+    "embedId": "embed02",
+    "title": "Theme Design System (in HEAD)",
+    "location": "head",
+    "style": "hidden"
+  },
+  "paths": {
+    "localHtml": "/Users/popskraft/Projects/carrd-v2/dist/theme-design-system.html",
+    "liveDraftBackup": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/backups/embed02-live-theme-design-system-0.1.16.html"
+  },
+  "hashes": {
+    "localHtml": "ff8ed3f3f43f3d42b86ae485185d3733011f9a07e8c3f9eb4587e69f33888c75",
+    "draftHtml": "63dac680e7c450539eda59d7c68ee3b55a2badd66bef0aab11e38f34be53ea1a",
+    "localCss": "0670cfa3bbe34ef931d73f85774904e2386e6190f59ad4818629bfe1ac9db67c",
+    "draftCss": "f07ac89d2e168512b5439c10ca3f5374fe25f7c9fb5adbebb657c67ed88f6425",
+    "publishedCss": "f892be15ffb5b4a7329f2b2783cdde3e053ec7701386e105181a54f070a4446b"
+  },
+  "comparisons": {
+    "draftHtmlExact": false,
+    "draftHtmlNormalized": true,
+    "draftCssNormalized": true,
+    "draftCssSquashed": true,
+    "publishedCssNormalizedToLocal": false,
+    "publishedCssSquashedToLocal": true,
+    "publishedCssNormalizedToDraft": false,
+    "publishedCssSquashedToDraft": true
+  },
+  "lengths": {
+    "localHtml": 7178,
+    "draftHtml": 6915,
+    "localCss": 7043,
+    "draftCss": 6789,
+    "publishedCss": 6770
+  }
+}

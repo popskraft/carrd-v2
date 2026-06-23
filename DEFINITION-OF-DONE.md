@@ -21,3 +21,8 @@
 - [x] Legacy `popskraft/carrd-plugins` has a named historical freeze ref before public v2 rollout.
 - [x] `popskraft/carrd-v2` main and tag `v2.0.0` are pushed.
 - [x] Only v2 jsDelivr paths are purged after publish.
+
+## Module Workspace Done
+- [x] `admincarrd/` lives in `carrd-v2` without local runtime logs, sessions, uploads, or private password state.
+- [x] `cardbuilder/` lives in `carrd-v2` and points site registry paths at `/Users/popskraft/Projects/carrd-v2`.
+- [x] `test:cardbuilder` owns the local site-registry test outside the default JS suite.

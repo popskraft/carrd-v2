@@ -21,7 +21,8 @@ Current local roots:
   planning/staging workspace and legacy project canon
 
 /Users/popskraft/Projects/carrd-v2
-  V2 runtime repo connected to https://github.com/popskraft/carrd-v2.git
+  V2 runtime repo connected to https://github.com/popskraft/carrd-v2.git;
+  owns plugin runtime, admincarrd, and cardbuilder workspaces
 ```
 
 ## Non-Negotiables
@@ -97,6 +98,7 @@ Migrated sites:
 - V2 remote is configured as `https://github.com/popskraft/carrd-v2.git`.
 - V2 source and dist use `*-v2` plugin folders and `theme-core-v2` bundle files.
 - V2 snippets point to `popskraft/carrd-v2@main`.
+- `admincarrd` and `cardbuilder` module workspaces live under `/Users/popskraft/Projects/carrd-v2`.
 - Legacy `popskraft/carrd-plugins` is preserved with the historical freeze tag `legacy-freeze-2026-06-23`.
 - V2 publish uses `popskraft/carrd-v2` main plus tag `v2.0.0`; jsDelivr purge is scoped to v2 paths only.
 

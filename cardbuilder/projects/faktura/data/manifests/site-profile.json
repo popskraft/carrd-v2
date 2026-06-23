@@ -1,0 +1,39 @@
+{
+  "siteSlug": "faktura",
+  "templateId": "faktura",
+  "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+  "publishedSiteUrl": null,
+  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
+  "projectDocs": null,
+  "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/manifests/knowledge-status.json",
+  "structure": {
+    "builderScan": null,
+    "domAudit": null,
+    "tabsMap": null,
+    "styleMap": null,
+    "containerRegistry": null
+  },
+  "semantic": {
+    "containerRegistry": null,
+    "notes": [
+      "Automation probes exist under automation/.",
+      "Canonical site scans are not yet promoted into the package."
+    ]
+  },
+  "runtimeAssets": {
+    "liveInventory": null,
+    "publishedInventory": null,
+    "syncDiff": null
+  },
+  "capabilities": {
+    "scan": "state-read",
+    "contentPatch": "ui-automation",
+    "layoutMutation": "ui-automation",
+    "publish": "operator-only"
+  },
+  "caveats": [
+    "Published URL is not yet confirmed in canon.",
+    "No canonical scan package has been captured yet."
+  ],
+  "status": "automation-first"
+}

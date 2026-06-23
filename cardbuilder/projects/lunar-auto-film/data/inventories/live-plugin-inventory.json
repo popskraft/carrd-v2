@@ -1,0 +1,354 @@
+{
+  "meta": {
+    "domain": "template-instance",
+    "templateId": "lunar-auto-film",
+    "generatedAt": "2026-06-17T08:55:10.885Z",
+    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/snapshots/template-instance-builder-scan.json",
+    "publishedScan": null,
+    "method": "site-bootstrap-builder-only-strong-detection"
+  },
+  "plugins": [
+    {
+      "plugin": "accordeon",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed05 Accordeon"
+        },
+        {
+          "source": "builder:embed-code",
+          "detail": "embed05"
+        }
+      ],
+      "weakSignals": []
+    },
+    {
+      "plugin": "cards",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "columns",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": [
+        {
+          "source": "document-html",
+          "detail": "matched plugin token in builder DOM"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container04"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container06"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container45"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container23"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container08"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container43"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container28"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container47"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container24"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container02"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container19"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container30"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container21"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container07"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container12"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container13"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container15"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container03"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container01"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "gallery01"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container27"
+        }
+      ]
+    },
+    {
+      "plugin": "cookie-banner",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "faq",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed02 FAQ"
+        },
+        {
+          "source": "builder:embed-code",
+          "detail": "embed02"
+        }
+      ],
+      "weakSignals": [
+        {
+          "source": "document-html",
+          "detail": "matched plugin token in builder DOM"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "container11"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed01"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed02"
+        }
+      ]
+    },
+    {
+      "plugin": "floating-cta",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed07 Floating CTA"
+        },
+        {
+          "source": "builder:embed-code",
+          "detail": "embed07"
+        }
+      ],
+      "weakSignals": []
+    },
+    {
+      "plugin": "grid-cluster",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "header-nav",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": [
+        {
+          "source": "component-safe-json",
+          "detail": "embed08"
+        }
+      ]
+    },
+    {
+      "plugin": "header-nav-v2",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "modal",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": [
+        {
+          "source": "document-html",
+          "detail": "matched plugin token in builder DOM"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed08"
+        }
+      ]
+    },
+    {
+      "plugin": "no-loadwaiting",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed03 No-loadwaiting"
+        },
+        {
+          "source": "builder:embed-code",
+          "detail": "embed03"
+        }
+      ],
+      "weakSignals": [
+        {
+          "source": "document-html",
+          "detail": "matched plugin token in builder DOM"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed03"
+        }
+      ]
+    },
+    {
+      "plugin": "shopping-cart",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "slider",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed04 JS Stop Slider On Start"
+        },
+        {
+          "source": "builder:embed-code",
+          "detail": "embed04"
+        }
+      ],
+      "weakSignals": [
+        {
+          "source": "document-html",
+          "detail": "matched plugin token in builder DOM"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed08"
+        },
+        {
+          "source": "component-safe-json",
+          "detail": "embed04"
+        }
+      ]
+    },
+    {
+      "plugin": "switcher",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": []
+    },
+    {
+      "plugin": "typography",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": null,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": [],
+      "weakSignals": [
+        {
+          "source": "component-safe-json",
+          "detail": "embed08"
+        }
+      ]
+    }
+  ]
+}

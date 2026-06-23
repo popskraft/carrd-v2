@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Runtime Repo**: Promoted Carrd Plugins V2 as the `popskraft/carrd-v2` delivery surface with `*-v2` plugin slugs, `theme-core-v2` bundle assets, and `Carrd*V2` globals.
 - **Documentation**: Added a v2 publication contract that keeps legacy `popskraft/carrd-plugins` as the historical jsDelivr surface.
+- **Module Workspaces**: Moved `admincarrd` and `cardbuilder` into the v2 repo, with sanitized admin defaults and updated local path bindings.
 
 ### Fixed
 

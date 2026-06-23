@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "generatedAt": "2026-04-09T07:05:44.099Z",
+    "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+    "tabId": "28C6D0F8CC6BC18E086FFD305F2AC26F",
+    "title": "minigree - My Sites - Dashboard - Carrd"
+  },
+  "inputs": [
+    {
+      "id": "embed02",
+      "title": "Theme Design System (in HEAD)",
+      "location": "head",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/theme-design-system.html",
+      "sha256": "45d87f0eb475dd54d43723e2ce05c35bafd01f62fe0a447fe4995b2b794bc718"
+    },
+    {
+      "id": "embed08",
+      "title": "No Load Waiting (in HEAD)",
+      "location": "head",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/no-loadwaiting/no-loadwaiting-embed.html",
+      "sha256": "d02c6009c1ab2d9b9773e7267675ee15e06eab1d7ad7718c51bbf8338d6c2884"
+    },
+    {
+      "id": "embed04",
+      "title": "Shopping Cart CSS",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart.min.css",
+      "sha256": "c87eee6a1e28ee10759c05aa28828be41a3dd450592bc8dab6422182d7f7d039"
+    },
+    {
+      "id": "embed03",
+      "title": "Shopping Cart JS",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart.min.js",
+      "sha256": "61f5c7653eae7a2de53f865b867b24efcca68d0f77f91cb6a79b84f9b72dfa0e"
+    },
+    {
+      "id": "embed06",
+      "title": "Slider",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/slider/slider-embed.html",
+      "sha256": "3aff9a8da490ec1c720e01d7627ac08b026cf707f84b0d735ca67dfd5369ee0b"
+    },
+    {
+      "id": "embed05",
+      "title": "Cards",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/cards/cards-embed.html",
+      "sha256": "60fa00fe0d57125be27d65ba93e42add623d4f10ce3a88bcb10fcd7d08f343fa"
+    },
+    {
+      "id": "embed09",
+      "title": "Grid Cluster",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/grid-cluster/grid-cluster-embed.html",
+      "sha256": "8b68e12e33961cfcd24b3f8008f9fe02dbc2ce73635b77e3a073bbc6be8f8a5c"
+    },
+    {
+      "id": "embed07",
+      "title": "Modal",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/modal/modal-embed.html",
+      "sha256": "e3bb2ee341cf1a5827f8f62924b1634be7e8094398033dee36df74f65f60606f"
+    },
+    {
+      "id": "embed01",
+      "title": "FAQ",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/faq/faq-embed.html",
+      "sha256": "39d49fbe9c575e037f77d4ea0adc0008207493af9033f28753db5947f0c5e3ed"
+    },
+    {
+      "id": null,
+      "title": "Typography",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/typography/typography-embed.html",
+      "sha256": "6728c1bf65e30c6704091bc9bf8c6626cdb07d39aa7faa3f31872d2caf2f3f76"
+    },
+    {
+      "id": null,
+      "title": "Header Nav",
+      "location": "body-end",
+      "sourcePath": "/Users/popskraft/Projects/carrd-v2/dist/header-nav/header-nav-embed.html",
+      "sha256": "9f55c732ec69143c8554c38557dc7b19f8bc22606a13cb6612061f07b1f2fa2e"
+    }
+  ],
+  "result": {
+    "dirtyPublishButton": false,
+    "topLevelEmbeds": [
+      "embed02",
+      "embed08",
+      "embed13",
+      "embed11",
+      "embed12",
+      "embed05",
+      "embed01",
+      "embed09",
+      "embed07",
+      "embed04",
+      "embed03",
+      "embed06",
+      "embed10",
+      "embed14"
+    ],
+    "applied": [
+      {
+        "id": "embed02",
+        "title": "Theme Design System (in HEAD)",
+        "location": "head",
+        "sha256": "45d87f0eb475dd54d43723e2ce05c35bafd01f62fe0a447fe4995b2b794bc718"
+      },
+      {
+        "id": "embed08",
+        "title": "No Load Waiting (in HEAD)",
+        "location": "head",
+        "sha256": "d02c6009c1ab2d9b9773e7267675ee15e06eab1d7ad7718c51bbf8338d6c2884"
+      },
+      {
+        "id": "embed04",
+        "title": "Shopping Cart CSS",
+        "location": "body-end",
+        "sha256": "c87eee6a1e28ee10759c05aa28828be41a3dd450592bc8dab6422182d7f7d039"
+      },
+      {
+        "id": "embed03",
+        "title": "Shopping Cart JS",
+        "location": "body-end",
+        "sha256": "61f5c7653eae7a2de53f865b867b24efcca68d0f77f91cb6a79b84f9b72dfa0e"
+      },
+      {
+        "id": "embed06",
+        "title": "Slider",
+        "location": "body-end",
+        "sha256": "3aff9a8da490ec1c720e01d7627ac08b026cf707f84b0d735ca67dfd5369ee0b"
+      },
+      {
+        "id": "embed05",
+        "title": "Cards",
+        "location": "body-end",
+        "sha256": "60fa00fe0d57125be27d65ba93e42add623d4f10ce3a88bcb10fcd7d08f343fa"
+      },
+      {
+        "id": "embed09",
+        "title": "Grid Cluster",
+        "location": "body-end",
+        "sha256": "8b68e12e33961cfcd24b3f8008f9fe02dbc2ce73635b77e3a073bbc6be8f8a5c"
+      },
+      {
+        "id": "embed07",
+        "title": "Modal",
+        "location": "body-end",
+        "sha256": "e3bb2ee341cf1a5827f8f62924b1634be7e8094398033dee36df74f65f60606f"
+      },
+      {
+        "id": "embed01",
+        "title": "FAQ",
+        "location": "body-end",
+        "sha256": "39d49fbe9c575e037f77d4ea0adc0008207493af9033f28753db5947f0c5e3ed"
+      },
+      {
+        "id": "embed10",
+        "title": "Typography",
+        "location": "body-end",
+        "sha256": "6728c1bf65e30c6704091bc9bf8c6626cdb07d39aa7faa3f31872d2caf2f3f76"
+      },
+      {
+        "id": "embed14",
+        "title": "Header Nav",
+        "location": "body-end",
+        "sha256": "9f55c732ec69143c8554c38557dc7b19f8bc22606a13cb6612061f07b1f2fa2e"
+      }
+    ],
+    "afterChecks": [
+      {
+        "id": "embed02",
+        "title": "Theme Design System (in HEAD)",
+        "location": "head",
+        "actualHash": "45d87f0eb475dd54d43723e2ce05c35bafd01f62fe0a447fe4995b2b794bc718",
+        "expectedHash": "45d87f0eb475dd54d43723e2ce05c35bafd01f62fe0a447fe4995b2b794bc718",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed08",
+        "title": "No Load Waiting (in HEAD)",
+        "location": "head",
+        "actualHash": "d02c6009c1ab2d9b9773e7267675ee15e06eab1d7ad7718c51bbf8338d6c2884",
+        "expectedHash": "d02c6009c1ab2d9b9773e7267675ee15e06eab1d7ad7718c51bbf8338d6c2884",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed04",
+        "title": "Shopping Cart CSS",
+        "location": "body-end",
+        "actualHash": "c87eee6a1e28ee10759c05aa28828be41a3dd450592bc8dab6422182d7f7d039",
+        "expectedHash": "c87eee6a1e28ee10759c05aa28828be41a3dd450592bc8dab6422182d7f7d039",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed03",
+        "title": "Shopping Cart JS",
+        "location": "body-end",
+        "actualHash": "61f5c7653eae7a2de53f865b867b24efcca68d0f77f91cb6a79b84f9b72dfa0e",
+        "expectedHash": "61f5c7653eae7a2de53f865b867b24efcca68d0f77f91cb6a79b84f9b72dfa0e",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed06",
+        "title": "Slider",
+        "location": "body-end",
+        "actualHash": "3aff9a8da490ec1c720e01d7627ac08b026cf707f84b0d735ca67dfd5369ee0b",
+        "expectedHash": "3aff9a8da490ec1c720e01d7627ac08b026cf707f84b0d735ca67dfd5369ee0b",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed05",
+        "title": "Cards",
+        "location": "body-end",
+        "actualHash": "60fa00fe0d57125be27d65ba93e42add623d4f10ce3a88bcb10fcd7d08f343fa",
+        "expectedHash": "60fa00fe0d57125be27d65ba93e42add623d4f10ce3a88bcb10fcd7d08f343fa",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed09",
+        "title": "Grid Cluster",
+        "location": "body-end",
+        "actualHash": "8b68e12e33961cfcd24b3f8008f9fe02dbc2ce73635b77e3a073bbc6be8f8a5c",
+        "expectedHash": "8b68e12e33961cfcd24b3f8008f9fe02dbc2ce73635b77e3a073bbc6be8f8a5c",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed07",
+        "title": "Modal",
+        "location": "body-end",
+        "actualHash": "e3bb2ee341cf1a5827f8f62924b1634be7e8094398033dee36df74f65f60606f",
+        "expectedHash": "e3bb2ee341cf1a5827f8f62924b1634be7e8094398033dee36df74f65f60606f",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed01",
+        "title": "FAQ",
+        "location": "body-end",
+        "actualHash": "39d49fbe9c575e037f77d4ea0adc0008207493af9033f28753db5947f0c5e3ed",
+        "expectedHash": "39d49fbe9c575e037f77d4ea0adc0008207493af9033f28753db5947f0c5e3ed",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed10",
+        "title": "Typography",
+        "location": "body-end",
+        "actualHash": "6728c1bf65e30c6704091bc9bf8c6626cdb07d39aa7faa3f31872d2caf2f3f76",
+        "expectedHash": "6728c1bf65e30c6704091bc9bf8c6626cdb07d39aa7faa3f31872d2caf2f3f76",
+        "matchesExpected": true
+      },
+      {
+        "id": "embed14",
+        "title": "Header Nav",
+        "location": "body-end",
+        "actualHash": "9f55c732ec69143c8554c38557dc7b19f8bc22606a13cb6612061f07b1f2fa2e",
+        "expectedHash": "9f55c732ec69143c8554c38557dc7b19f8bc22606a13cb6612061f07b1f2fa2e",
+        "matchesExpected": true
+      }
+    ]
+  }
+}

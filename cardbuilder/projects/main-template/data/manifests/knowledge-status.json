@@ -1,0 +1,44 @@
+{
+  "templateId": "main-template",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "publishedSiteUrl": "https://mini.crd.co/",
+  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template",
+  "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+  "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+  "knowledgePolicyVersion": 1,
+  "knowledgeDomains": {
+    "builderStatic": {
+      "status": "accepted-external-verification",
+      "lastScanAt": "2026-04-06T09:20:00+04:00",
+      "notes": "Builder-static residual questions were resolved via accepted external live-verification evidence. A later broader GUI reconnaissance report was critically normalized into a builder action map without promoting mixed-confidence or template-instance details into canon. Current canon includes publish-panel structure, sections-panel structure, viewport-dependent background/page action visibility, panel docking semantics for do-ui-previous/do-ui-next, and a normalized Builder GUI action map with explicit caveats."
+    },
+    "templateInstance": {
+      "status": "scan-complete",
+      "lastScanAt": "2026-04-06T15:47:35.060Z",
+      "notes": "Post-publish scan package refreshed after the successful columns-to-grid-cluster migration and broader live plugin refresh. Current canonical live baseline now includes cards, grid-cluster, faq, modal, no-loadwaiting, shopping-cart, and slider; columns is intentionally absent from the live baseline. A later draft-only `0.1.17` plugin rollout also proved the local Chrome CDP workflow can reliably inspect Carrd, refresh existing embeds, insert new ones, and verify exact hash matches on readback, but that draft remains ahead of the canonical published baseline until owner publish and post-publish rescan."
+    }
+  },
+  "fullScanCompletedAt": "2026-04-06T15:47:35.060Z",
+  "lastPartialScanAt": "2026-04-07T11:13:43.869Z",
+  "publicCarrdDocsIndexLastSeenAt": "2026-03-21T06:04:42.105Z",
+  "status": "scan-complete",
+  "reason": "Canonical post-publish template-instance scan package exists for the active template after the successful columns-to-grid-cluster migration and live plugin refresh. A newer draft-only plugin rollout has verified the Builder automation path but still requires publish and a fresh post-publish scan before canonical template-instance truth is advanced.",
+  "requiredArtifacts": [
+    "builder-static knowledge manifest",
+    "builder-components snapshot",
+    "dom audit snapshot",
+    "style map",
+    "controls and anchors map",
+    "live plugin inventory",
+    "published site plugin scan",
+    "repo-vs-template plugin sync diff",
+    "template-instance scan report"
+  ],
+  "freshScanRequiredWhen": [
+    "active template URL changes",
+    "active template project path changes",
+    "no prior full scan exists",
+    "plugin sync or deterministic audit is requested and artifacts are incomplete",
+    "meaningful template or plugin changes happened after the latest full scan"
+  ]
+}

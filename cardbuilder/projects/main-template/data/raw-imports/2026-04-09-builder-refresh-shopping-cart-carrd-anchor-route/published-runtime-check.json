@@ -1,0 +1,75 @@
+{
+  "tab": {
+    "id": "8A6CA63D4D1EEDB6A69AF2AFD0F243C3",
+    "title": "minigree",
+    "url": "https://mini.crd.co/#shopping-cart"
+  },
+  "value": {
+    "identity": {
+      "shopping-cart": null,
+      "form-shopping-cart": {
+        "tag": "FORM",
+        "classes": "form-component instance-1"
+      },
+      "order-details": null,
+      "modalContact": {
+        "tag": "DIV",
+        "classes": "container-component instance-12 style-5 modal default"
+      }
+    },
+    "target": {
+      "tag": "DIV",
+      "id": "container10",
+      "classes": "container-component instance-10 style-2 shopping-cart-target default"
+    },
+    "afterHomeClick": [
+      {
+        "id": "home-section",
+        "classes": "active",
+        "display": "block"
+      },
+      {
+        "id": "shopping-cart-section",
+        "classes": "inactive",
+        "display": "none"
+      }
+    ],
+    "afterCartClick": [
+      {
+        "id": "home-section",
+        "classes": "active",
+        "display": "block"
+      },
+      {
+        "id": "shopping-cart-section",
+        "classes": "inactive",
+        "display": "none"
+      }
+    ],
+    "afterHomeReset": [
+      {
+        "id": "home-section",
+        "classes": "active",
+        "display": "block"
+      },
+      {
+        "id": "shopping-cart-section",
+        "classes": "inactive",
+        "display": "none"
+      }
+    ],
+    "afterHrefMutation": [
+      {
+        "id": "home-section",
+        "classes": "inactive",
+        "display": "none"
+      },
+      {
+        "id": "shopping-cart-section",
+        "classes": "active",
+        "display": "block"
+      }
+    ],
+    "hash": "#shopping-cart"
+  }
+}

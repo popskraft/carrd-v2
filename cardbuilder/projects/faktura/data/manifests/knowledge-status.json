@@ -1,0 +1,40 @@
+{
+  "templateId": "faktura",
+  "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+  "publishedSiteUrl": null,
+  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
+  "knowledgePolicyVersion": 1,
+  "knowledgeDomains": {
+    "builderStatic": {
+      "status": "reused-shared-canon",
+      "lastScanAt": null,
+      "notes": "Reuse shared builder-static Carrd canon until the live Builder itself is re-verified."
+    },
+    "templateInstance": {
+      "status": "automation-first",
+      "lastScanAt": null,
+      "notes": "Automation probes exist under automation/, but a canonical scan package is not yet promoted."
+    }
+  },
+  "fullScanCompletedAt": null,
+  "lastPartialScanAt": null,
+  "publicCarrdDocsIndexLastSeenAt": null,
+  "status": "automation-first",
+  "reason": "Live builder automation exists, but the canonical site-package scan and published-site verification are still pending.",
+  "requiredArtifacts": [
+    "builder component snapshot",
+    "dom audit snapshot",
+    "style map",
+    "element tabs map",
+    "live plugin inventory",
+    "published site plugin scan",
+    "repo-vs-template plugin sync diff",
+    "template-instance scan report"
+  ],
+  "freshScanRequiredWhen": [
+    "no site-specific full scan exists",
+    "active Builder URL changes for this site package",
+    "plugin sync or deterministic audit is requested",
+    "meaningful template or plugin changes happen after the latest scan"
+  ]
+}

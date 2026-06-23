@@ -17,6 +17,8 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - `dist/` — generated distributive assets и public README
 - `scripts/` — build, verify, purge и README generation helpers
 - `docs/` — active durable internal docs; `docs/INDEX.md` is the navigator
+- `cardbuilder/` — browser-control, site-package docs, data manifests, and Carrd automation workspace
+- `admincarrd/` — remote browser admin module source and installer package inputs
 - `carrd-source/` — reference template source used for comparisons
 - `_temp/` — ephemeral scratch, keep out of git
 
@@ -31,6 +33,8 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - Preserve `KI-NNN` IDs in `README.md`.
 - `src/<plugin>/README.md` is the source for public plugin guidance; `dist/<plugin>/README.md` is generated.
 - `scripts/templates/root_readme.md` and `scripts/templates/plugin_readme.md` own the shared README scaffolding.
+- `cardbuilder/data/sites.json` is the active site registry for Carrd Builder automation.
+- `admincarrd/app/config/config.php` is tracked only as a sanitized default config; runtime logs, sessions, uploads, and local secrets stay out of git.
 - Keep secrets, tokens, cookies, and `.env` values out of docs.
 - Validate the touched surface with the repository's native checks.
 
@@ -41,6 +45,8 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - `source` → editable `src/`
 - `delivery` → generated `dist/`
 - `carrd-source` → reference template source at `/Users/popskraft/Projects/carrd-v2/carrd-source`
+- `cardbuilder` → Carrd Builder automation workspace at `/Users/popskraft/Projects/carrd-v2/cardbuilder`
+- `admincarrd` → browser admin module at `/Users/popskraft/Projects/carrd-v2/admincarrd`
 
 ## Session Start
 1. Read `AGENTS.md`

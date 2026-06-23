@@ -1,0 +1,401 @@
+[
+  {
+    "dataId": "container13",
+    "plan": {
+      "dataId": "container13",
+      "expectId": "promos-header",
+      "addClasses": [
+        "section-header"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "promos-header",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "promos-header",
+      "classes": "section-header"
+    }
+  },
+  {
+    "dataId": "container06",
+    "plan": {
+      "dataId": "container06",
+      "expectId": "fabrics-header",
+      "addClasses": [
+        "section-header"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "fabrics-header",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "fabrics-header",
+      "classes": "section-header"
+    }
+  },
+  {
+    "dataId": "container08",
+    "plan": {
+      "dataId": "container08",
+      "expectId": "portfolio-header",
+      "addClasses": [
+        "section-header"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "portfolio-header",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "portfolio-header",
+      "classes": "section-header"
+    }
+  },
+  {
+    "dataId": "container09",
+    "plan": {
+      "dataId": "container09",
+      "expectId": "process-header",
+      "addClasses": [
+        "section-header"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "process-header",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "process-header",
+      "classes": "section-header"
+    }
+  },
+  {
+    "dataId": "container31",
+    "plan": {
+      "dataId": "container31",
+      "expectId": "about",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "about",
+      "classes": "grid-3\njustify\ncard-border",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "about",
+      "classes": "grid-3\njustify\ncard-border\nabout-item"
+    }
+  },
+  {
+    "dataId": "container29",
+    "plan": {
+      "dataId": "container29",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "SKIP: no-clickable-point",
+    "before": {},
+    "after": {}
+  },
+  {
+    "dataId": "container30",
+    "plan": {
+      "dataId": "container30",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\nbg-primary-light\ncard-border",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\nbg-primary-light\ncard-border\nabout-item"
+    }
+  },
+  {
+    "dataId": "container32",
+    "plan": {
+      "dataId": "container32",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\nbg-primary-light\ncard-border",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\nbg-primary-light\ncard-border\nabout-item"
+    }
+  },
+  {
+    "dataId": "container33",
+    "plan": {
+      "dataId": "container33",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "SKIP: no-clickable-point",
+    "before": {},
+    "after": {}
+  },
+  {
+    "dataId": "container34",
+    "plan": {
+      "dataId": "container34",
+      "addClasses": [
+        "about-item"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\ncard-border",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "",
+      "classes": "grid-3\njustify\nbetween\ncard-border\nabout-item"
+    }
+  },
+  {
+    "dataId": "image24",
+    "plan": {
+      "dataId": "image24",
+      "setId": "image-fabrics"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "rounded",
+      "panel": "Image"
+    },
+    "after": {
+      "id": "image-fabrics",
+      "classes": "rounded"
+    }
+  },
+  {
+    "dataId": "image05",
+    "plan": {
+      "dataId": "image05",
+      "setId": "image-product-hero"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "",
+      "panel": "Image"
+    },
+    "after": {
+      "id": "image-product-hero",
+      "classes": ""
+    }
+  },
+  {
+    "dataId": "image02",
+    "plan": {
+      "dataId": "image02",
+      "setId": "image-page-cover"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "rounded",
+      "panel": "Image"
+    },
+    "after": {
+      "id": "image-page-cover",
+      "classes": "rounded"
+    }
+  },
+  {
+    "dataId": "image12",
+    "plan": {
+      "dataId": "image12",
+      "setId": "image-seo-text"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "rounded",
+      "panel": "Image"
+    },
+    "after": {
+      "id": "image-seo-text",
+      "classes": "rounded"
+    }
+  },
+  {
+    "dataId": "image22",
+    "plan": {
+      "dataId": "image22",
+      "setId": "image-category-grid"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "",
+      "panel": "Image"
+    },
+    "after": {
+      "id": "image-category-grid",
+      "classes": ""
+    }
+  },
+  {
+    "dataId": "container19",
+    "plan": {
+      "dataId": "container19",
+      "setId": "benefits-cards"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "grid-3\njustify\nflex-card-horizont",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "benefits-cards",
+      "classes": "grid-3\njustify\nflex-card-horizont"
+    }
+  },
+  {
+    "dataId": "container01",
+    "plan": {
+      "dataId": "container01",
+      "setId": "seo-text"
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "txt",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "seo-text",
+      "classes": "txt"
+    }
+  },
+  {
+    "dataId": "container04",
+    "plan": {
+      "dataId": "container04",
+      "setId": "category-grid",
+      "addClasses": [
+        "tpl-home",
+        "tpl-category"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "grid-4\ngrid-sm-2\njustify\ncategory-item",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "category-grid",
+      "classes": "grid-4\ngrid-sm-2\njustify\ncategory-item\ntpl-home\ntpl-category"
+    }
+  },
+  {
+    "dataId": "container16",
+    "plan": {
+      "dataId": "container16",
+      "expectId": "product-hero",
+      "addClasses": [
+        "tpl-product"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "product-hero",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "product-hero",
+      "classes": "tpl-product"
+    }
+  },
+  {
+    "dataId": "gallery02",
+    "plan": {
+      "dataId": "gallery02",
+      "addClasses": [
+        "tpl-product"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "",
+      "panel": "Gallery"
+    },
+    "after": {
+      "id": "",
+      "classes": "tpl-product"
+    }
+  },
+  {
+    "dataId": "table01",
+    "plan": {
+      "dataId": "table01",
+      "addClasses": [
+        "tpl-product"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "",
+      "classes": "",
+      "panel": "Table"
+    },
+    "after": {
+      "id": "",
+      "classes": "tpl-product"
+    }
+  },
+  {
+    "dataId": "container36",
+    "plan": {
+      "dataId": "container36",
+      "expectId": "page-filters",
+      "addClasses": [
+        "tpl-category"
+      ]
+    },
+    "status": "PLANNED",
+    "before": {
+      "id": "page-filters",
+      "classes": "",
+      "panel": "Container"
+    },
+    "after": {
+      "id": "page-filters",
+      "classes": "tpl-category"
+    }
+  }
+]

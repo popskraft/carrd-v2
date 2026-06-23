@@ -1,0 +1,460 @@
+{
+  "startedAt": "2026-02-14T07:05:06.771Z",
+  "mode": "execute",
+  "strategy": "copy-paste",
+  "total": 41,
+  "results": [
+    {
+      "dataId": "container01",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container03",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container20",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container42",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container24",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "divider19",
+      "dataType": "divider",
+      "sourceStyle": "style4",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container16",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "divider18",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container39",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container32",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container28",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container33",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container29",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container12",
+      "dataType": "container",
+      "sourceStyle": "style10",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container41",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container26",
+      "dataType": "container",
+      "sourceStyle": "style3",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container23",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container18",
+      "dataType": "container",
+      "sourceStyle": "style5",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container25",
+      "dataType": "container",
+      "sourceStyle": "style5",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "divider10",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container31",
+      "dataType": "container",
+      "sourceStyle": "style19",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container36",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container34",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container09",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container17",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container27",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "divider38",
+      "dataType": "divider",
+      "sourceStyle": "style2",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container19",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container10",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container21",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container22",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container13",
+      "dataType": "container",
+      "sourceStyle": "style7",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container11",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "buttons16",
+      "dataType": "buttons",
+      "sourceStyle": "style4",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container35",
+      "dataType": "container",
+      "sourceStyle": "style6",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container05",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container07",
+      "dataType": "container",
+      "sourceStyle": "(none)",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container40",
+      "dataType": "container",
+      "sourceStyle": "style18",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container02",
+      "dataType": "container",
+      "sourceStyle": "style14",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container46",
+      "dataType": "container",
+      "sourceStyle": "style15",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    },
+    {
+      "dataId": "container06",
+      "dataType": "container",
+      "sourceStyle": "style11",
+      "status": "ok",
+      "targetId": null,
+      "targetStyle": {
+        "ok": false,
+        "error": "panel_not_visible"
+      }
+    }
+  ],
+  "finishedAt": "2026-02-14T07:05:57.712Z"
+}

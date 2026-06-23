@@ -23,6 +23,10 @@
 ## Templates
 - `docs/templates/plugin-readme-template.md`
 
+## Module Workspaces
+- `admincarrd/docs/INDEX.md`
+- `cardbuilder/docs/INDEX.md`
+
 ## Research
 - `docs/research/2026-02-17-cms-comparison.md`
 - `docs/research/2026-02-12-strapi5-astro-architecture-report.md`

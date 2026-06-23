@@ -1,0 +1,39 @@
+{
+  "siteSlug": "lunar-auto-film",
+  "templateId": "lunar-auto-film",
+  "builderUrl": "https://carrd.co/dashboard/6380178126096476/build",
+  "publishedSiteUrl": null,
+  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film",
+  "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/lunar-auto-film",
+  "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/manifests/knowledge-status.json",
+  "structure": {
+    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/snapshots/template-instance-builder-scan.json",
+    "domAudit": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/snapshots/template-instance-dom-audit.json",
+    "tabsMap": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/snapshots/template-instance-element-tabs-map-2026-06-17.json",
+    "styleMap": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/style-maps/template-instance-style-map.json",
+    "containerRegistry": null
+  },
+  "semantic": {
+    "containerRegistry": null,
+    "notes": [
+      "Builder-side canonical baseline exists, but published-site verification is still pending.",
+      "Use the tabs map and style map for deterministic panel/structure reads."
+    ]
+  },
+  "runtimeAssets": {
+    "liveInventory": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/inventories/live-plugin-inventory.json",
+    "publishedInventory": null,
+    "syncDiff": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/diffs/template-vs-repo-plugin-sync.json"
+  },
+  "capabilities": {
+    "scan": "state-read",
+    "pluginSync": "state-write",
+    "contentPatch": "state-write",
+    "layoutMutation": "ui-automation",
+    "publish": "operator-only"
+  },
+  "caveats": [
+    "Published site URL is not yet confirmed in canon."
+  ],
+  "status": "partial-scan-complete"
+}

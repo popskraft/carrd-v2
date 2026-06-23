@@ -39,10 +39,12 @@
 !tests-js/**
 !custom-themes/
 !custom-themes/**
+!admincarrd/
+!admincarrd/**
+!cardbuilder/
+!cardbuilder/**
 
-# Module workspaces stay in the source project, not in the public v2 CDN repo
-admincarrd/
-cardbuilder/
+# Legacy bridge docs are not active project docs
 _docs/
 _temp/
 
@@ -63,14 +65,28 @@ scripts/__pycache__/
 tests/__pycache__/
 **/__pycache__/
 *.pyc
+.DS_Store
+admincarrd/.DS_Store
+cardbuilder/.DS_Store
+cardbuilder/**/.DS_Store
+cardbuilder/.claude/
+admincarrd/_docs/
+cardbuilder/_docs/
+admincarrd/var/**
+!admincarrd/var/
+!admincarrd/var/.htaccess
+!admincarrd/var/logs/
+!admincarrd/var/logs/.htaccess
+!admincarrd/var/uploads/
+!admincarrd/var/uploads/tmp/
+!admincarrd/var/uploads/tmp/.htaccess
+!admincarrd/var/uploads/original-backups/
+!admincarrd/var/uploads/original-backups/.htaccess
+!admincarrd/var/uploads/publish-backups/
+!admincarrd/var/uploads/publish-backups/.htaccess
 
-# Non-plugin module tests are not part of the public v2 CDN repo
-tests/test_admincarrd_*.py
-tests/admincarrd_optimizer_harness.php
-tests-js/site-registry.test.js
-scripts/admincarrd/
-carrd/
-carrd.zip
+/carrd/
+/carrd.zip
 .obsidian*/
 .obsidian/
 .obsidian

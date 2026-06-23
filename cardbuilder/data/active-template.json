@@ -1,0 +1,40 @@
+{
+  "activeTemplateId": "lunar-auto-film",
+  "builderUrl": "https://carrd.co/dashboard/6380178126096476/build",
+  "publishedSiteUrl": null,
+  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film",
+  "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/lunar-auto-film",
+  "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+  "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+  "knowledgeRoot": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data",
+  "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/manifests/knowledge-status.json",
+  "knowledgeRulesDoc": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/lunar-auto-film/KNOWLEDGE-SYSTEM.md",
+  "supplementalKnowledgeBases": [
+    {
+      "id": "docs-rag-mvp-carrd",
+      "path": "/Users/popskraft/Projects/docs-rag-mvp",
+      "role": "Supplemental Carrd documentation lookup for platform behavior and reference checks."
+    }
+  ],
+  "role": "Site-specific Carrd template instance for the Lunar auto film draft/copy, separated from the legacy universal main-template baseline.",
+  "runtimeMode": "devtools-first",
+  "savePublishPolicy": "operator-only",
+  "finalValidation": {
+    "builderMenuAction": "view-site",
+    "builderMenuSelector": "#menu [data-action=\"view-site\"]",
+    "preferredPublishedUrl": null
+  },
+  "updateRule": "If the template folder path or builder URL changes, update this file first before changing procedural docs.",
+  "knowledgeRule": "Store canonical deterministic builder knowledge in the local carrd-v2 repo first, then optionally export searchable summaries into docs-rag-mvp.",
+  "knowledgeDomainRule": "Separate builder-static Carrd Builder knowledge from template-instance project knowledge in every scan, artifact, and export.",
+  "pluginSyncContract": {
+    "compareLiveTemplateAgainst": [
+      "plugin inventory and configuration in the live template",
+      "source folders under /Users/popskraft/Projects/carrd-v2/src",
+      "generated distributives under /Users/popskraft/Projects/carrd-v2/dist"
+    ],
+    "sourceOfTruth": "/Users/popskraft/Projects/carrd-v2/src",
+    "distributionOfTruth": "/Users/popskraft/Projects/carrd-v2/dist",
+    "verificationTarget": "live-template"
+  }
+}

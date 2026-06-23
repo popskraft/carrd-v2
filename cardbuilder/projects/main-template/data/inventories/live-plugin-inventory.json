@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "domain": "template-instance",
+    "templateId": "main-template",
+    "generatedAt": "2026-04-07T00:00:00.000Z",
+    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json",
+    "publishedScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/inventories/published-site-plugin-scan.json",
+    "method": "normalized-post-migration-inventory"
+  },
+  "plugins": [
+    {
+      "plugin": "cards",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed05 Cards"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:9"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:10"
+        }
+      ]
+    },
+    {
+      "plugin": "columns",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": []
+    },
+    {
+      "plugin": "cookie-banner",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": []
+    },
+    {
+      "plugin": "faq",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed01 FAQ"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:15"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:16"
+        }
+      ]
+    },
+    {
+      "plugin": "grid-cluster",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed09 Grid Cluster"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:11"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:12"
+        }
+      ]
+    },
+    {
+      "plugin": "header-nav",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": []
+    },
+    {
+      "plugin": "modal",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdModal"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed07 Modal"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:13"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:14"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdModal"
+        }
+      ]
+    },
+    {
+      "plugin": "no-loadwaiting",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed08 No Load Waiting in HEAD"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:2"
+        }
+      ]
+    },
+    {
+      "plugin": "shopping-cart",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdShoppingCart"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed04 Shopping Cart CSS"
+        },
+        {
+          "source": "builder:embed-title",
+          "detail": "embed03 Shopping Cart JS"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:5"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:6"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdShoppingCart"
+        }
+      ]
+    },
+    {
+      "plugin": "slider",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdSlider"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed06 Slider"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:7"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:8"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdSlider"
+        }
+      ]
+    },
+    {
+      "plugin": "typography",
+      "detectedInBuilderScan": false,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "low",
+      "evidence": []
+    }
+  ]
+}

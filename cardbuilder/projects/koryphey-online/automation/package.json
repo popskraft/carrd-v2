@@ -1,0 +1,17 @@
+{
+  "name": "koryphey-carrd-migration-automation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playwright CDP runner for Site2 -> Site1 Carrd migration",
+  "main": "run-migration.js",
+  "scripts": {
+    "dry-run": "node run-migration.js --dry-run",
+    "execute": "node run-migration.js --execute",
+    "dry-run-cp": "node run-migration-copy-paste.js --dry-run",
+    "execute-cp": "node run-migration-copy-paste.js --execute",
+    "rollback-last-run": "node rollback-last-run.js"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}

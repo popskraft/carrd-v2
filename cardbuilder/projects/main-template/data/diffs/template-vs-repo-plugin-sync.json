@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "domain": "template-instance",
+    "templateId": "main-template",
+    "generatedAt": "2026-04-06T15:47:35.060Z",
+    "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
+    "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
+    "method": "normalized-post-migration-sync-diff"
+  },
+  "plugins": [
+    {
+      "plugin": "cards",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed05 Cards"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:9"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:10"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "columns",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": false,
+      "mismatchType": "repo-only",
+      "evidence": [],
+      "recommendedNextAction": "none; legacy plugin intentionally removed from live baseline"
+    },
+    {
+      "plugin": "cookie-banner",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": false,
+      "mismatchType": "repo-only",
+      "evidence": [],
+      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+    },
+    {
+      "plugin": "faq",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed01 FAQ"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:15"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:16"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "grid-cluster",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed09 Grid Cluster"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:11"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:12"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "header-nav",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": false,
+      "mismatchType": "repo-only",
+      "evidence": [],
+      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+    },
+    {
+      "plugin": "modal",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed07 Modal"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:13"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:14"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdModal"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "no-loadwaiting",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed08 No Load Waiting in HEAD"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:2"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "shopping-cart",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed04 Shopping Cart CSS"
+        },
+        {
+          "source": "builder:embed-title",
+          "detail": "embed03 Shopping Cart JS"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:5"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:6"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdShoppingCart"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "slider",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed-title",
+          "detail": "embed06 Slider"
+        },
+        {
+          "source": "published:inline",
+          "detail": "style:7"
+        },
+        {
+          "source": "published:inline",
+          "detail": "script:8"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdSlider"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "stacker",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": false,
+      "mismatchType": "repo-only",
+      "evidence": [],
+      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+    },
+    {
+      "plugin": "typography",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": false,
+      "mismatchType": "repo-only",
+      "evidence": [],
+      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+    }
+  ]
+}

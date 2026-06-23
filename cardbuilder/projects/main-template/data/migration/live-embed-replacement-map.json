@@ -1,0 +1,66 @@
+{
+  "templateId": "main-template",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "generatedAt": "2026-04-06T12:45:00+04:00",
+  "purpose": "Prepared replacement map for live Builder embeds before plugin refresh and columns-to-grid-cluster migration.",
+  "head": [
+    {
+      "embedId": "embed02",
+      "currentTitle": "Theme CSS Variables in HEAD",
+      "currentState": "legacy mini-token theme variables",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/head-theme-foundation-0.1.15.html",
+      "notes": "Bridges current live mini token values into the newer theme token layer so old and new plugin embeds can coexist during migration."
+    },
+    {
+      "embedId": "embed08",
+      "currentTitle": "No Load Waiting in HEAD",
+      "currentState": "legacy inline plugin",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/no-loadwaiting/no-loadwaiting-embed.html",
+      "notes": "Optional refresh; not required for the columns-to-grid-cluster swap."
+    }
+  ],
+  "bodyEnd": [
+    {
+      "embedId": "embed01",
+      "currentTitle": "FAQ",
+      "currentState": "legacy inline plugin",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/faq/faq-embed.html",
+      "notes": "Optional broader plugin refresh."
+    },
+    {
+      "embedId": "embed03",
+      "currentTitle": "Shopping Card JS",
+      "currentState": "legacy split JS half",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed.html",
+      "notes": "Broader plugin refresh target; likely merged with embed04 into one current embed."
+    },
+    {
+      "embedId": "embed04",
+      "currentTitle": "Shopping Card CSS",
+      "currentState": "legacy split CSS half",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed.html",
+      "notes": "Broader plugin refresh target; likely merged with embed03 into one current embed."
+    },
+    {
+      "embedId": "embed05",
+      "currentTitle": "Columns",
+      "currentState": "legacy combined columns + cards inline plugin",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/embed05-cards-grid-cluster-0.1.15.html",
+      "notes": "Primary migration target for replacing legacy columns with cards + grid-cluster."
+    },
+    {
+      "embedId": "embed06",
+      "currentTitle": "Slider",
+      "currentState": "legacy inline plugin",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/slider/slider-embed.html",
+      "notes": "Optional broader plugin refresh."
+    },
+    {
+      "embedId": "embed07",
+      "currentTitle": "Modal",
+      "currentState": "legacy inline plugin",
+      "targetAsset": "/Users/popskraft/Projects/carrd-v2/dist/modal/modal-embed.html",
+      "notes": "Optional broader plugin refresh."
+    }
+  ]
+}
