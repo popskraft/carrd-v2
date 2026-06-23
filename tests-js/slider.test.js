@@ -330,6 +330,37 @@ test('slider navigation controls do not start or interrupt dragging', () => {
   assert.equal(instance.translateX, -232);
 });
 
+test('slider keeps moving when initial slide offsetWidth is zero', () => {
+  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  mockViewport(dom, 375);
+  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  triggerDomReady(dom);
+
+  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  instance.goToSlide(1);
+
+  assert.equal(instance.currentIndex, 1);
+  assert.ok(instance.translateX < 0);
+  assert.match(instance.track.style.transform, /^translateX\(-/);
+});
+
+test('slider public refresh recalculates position after late layout', () => {
+  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  mockViewport(dom, 375);
+  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  triggerDomReady(dom);
+
+  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  instance.goToSlide(1);
+  const fallbackTranslate = instance.translateX;
+  setSlideWidths(instance, 100);
+  dom.window.CarrdSliderV2.refresh();
+
+  assert.equal(instance.currentIndex, 1);
+  assert.equal(instance.translateX, -116);
+  assert.notEqual(instance.translateX, fallbackTranslate);
+});
+
 test('slider starts a new drag from the rendered in-flight position', () => {
   const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
   mockViewport(dom, 375);

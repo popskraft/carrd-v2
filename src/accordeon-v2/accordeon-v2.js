@@ -7,16 +7,17 @@
     legacyHashPrefix: '#accordeon-',
     linkPrefix: '#data-accordeon-v2-',
     linkSelector: null,
-    targetAttributes: ['data-accordeon-v2', 'data-accorderon-v2'],
+    targetAttributes: ['data-accordeon-v2', 'data-accorderon-v2', 'data-accordeon', 'data-accorderon'],
     defaultOpen: false,
     scrollOnOpen: true,
     scrollBehavior: 'smooth',
     scrollBlock: 'start'
   };
 
-  const externalOptions = (typeof window !== 'undefined' &&
-    window.CarrdPluginOptionsV2 &&
-    window.CarrdPluginOptionsV2.accordeon) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.accordeon) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.accordeon)
+  )) || {};
 
   const CONFIG = {
     ...DEFAULTS,
@@ -39,7 +40,8 @@
   const HASH_PREFIXES = [
     CONFIG.hashPrefix,
     CONFIG.linkPrefix,
-    CONFIG.legacyHashPrefix
+    CONFIG.legacyHashPrefix,
+    '#data-accordeon-'
   ].filter((prefix, index, list) => prefix && list.indexOf(prefix) === index);
 
   const LINK_SELECTOR = CONFIG.linkSelector ||

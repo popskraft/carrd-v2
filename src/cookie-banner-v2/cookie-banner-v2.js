@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  const DATA_SELECTOR = '[data-cookie-v2]';
+  const DATA_SELECTOR = '[data-cookie-v2], [data-cookie]';
   const LEGACY_SELECTOR = '.theme-cookie-banner, .cookie-banner';
   const LEGACY_ID = 'cookie-baner';
   const POSITIONS = new Set([
@@ -26,10 +26,10 @@
   };
 
   const externalOptions =
-    (typeof window !== 'undefined' &&
-      window.CarrdPluginOptionsV2 &&
-      window.CarrdPluginOptionsV2.cookieBanner) ||
-    {};
+    (typeof window !== 'undefined' && (
+      (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.cookieBanner) ||
+      (window.CarrdPluginOptions && window.CarrdPluginOptions.cookieBanner)
+    )) || {};
 
   const CONFIG = {
     ...DEFAULTS,
@@ -128,18 +128,20 @@
   }
 
   function isNamedBanner(banner) {
-    if (!banner || !banner.hasAttribute || !banner.hasAttribute('data-cookie-v2')) return false;
-    return safeNamePattern.test(normalizeName(banner.getAttribute('data-cookie-v2')));
+    if (!banner || !banner.hasAttribute) return false;
+    const val = banner.getAttribute('data-cookie-v2') || banner.getAttribute('data-cookie');
+    if (!val) return false;
+    return safeNamePattern.test(normalizeName(val));
   }
 
   function resolveIndent(banner) {
     const desktopIndent =
-      parseIndent(banner.getAttribute('data-cookie-v2-indent')) ||
+      parseIndent(banner.getAttribute('data-cookie-v2-indent') || banner.getAttribute('data-cookie-indent')) ||
       parseIndent(CONFIG.indent) ||
       parseIndent(DEFAULTS.indent);
 
     const mobileIndent =
-      parseIndent(banner.getAttribute('data-cookie-v2-indent-mobile')) ||
+      parseIndent(banner.getAttribute('data-cookie-v2-indent-mobile') || banner.getAttribute('data-cookie-indent-mobile')) ||
       parseIndent(CONFIG.indentMobile) ||
       desktopIndent;
 
@@ -226,12 +228,12 @@
   }
 
   function resolvePosition(banner) {
-    return normalizePosition(banner.getAttribute('data-cookie-v2-position') || CONFIG.position);
+    return normalizePosition(banner.getAttribute('data-cookie-v2-position') || banner.getAttribute('data-cookie-position') || CONFIG.position);
   }
 
   function resolveShowDelay(banner) {
     return (
-      parseInteger(banner.getAttribute('data-cookie-v2-delay'), { min: 0 }) ??
+      parseInteger(banner.getAttribute('data-cookie-v2-delay') || banner.getAttribute('data-cookie-delay'), { min: 0 }) ??
       parseInteger(CONFIG.showDelay, { min: 0 }) ??
       DEFAULTS.showDelay
     );
@@ -239,7 +241,7 @@
 
   function resolveCookieDays(banner) {
     return (
-      parseInteger(banner.getAttribute('data-cookie-v2-days'), { min: 1 }) ??
+      parseInteger(banner.getAttribute('data-cookie-v2-days') || banner.getAttribute('data-cookie-days'), { min: 1 }) ??
       parseInteger(CONFIG.cookieDays, { min: 1 }) ??
       DEFAULTS.cookieDays
     );
@@ -297,6 +299,7 @@
     const acceptBtn =
       banner.querySelector('a[role="button"]') ||
       banner.querySelector('[data-cookie-v2-accept]') ||
+      banner.querySelector('[data-cookie-accept]') ||
       banner.querySelector('.icons-component a');
 
     if (acceptBtn) {

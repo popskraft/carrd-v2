@@ -1,15 +1,15 @@
-[data-switcher-v2] .theme-switcher-button {
+:is([data-switcher-v2], [data-switcher]) .theme-switcher-button {
   cursor: pointer;
 }
 
-[data-switcher-v2] .theme-switcher-button.is-active,
-[data-switcher-v2] .theme-switcher-button.is-active:hover {
+:is([data-switcher-v2], [data-switcher]) .theme-switcher-button.is-active,
+:is([data-switcher-v2], [data-switcher]) .theme-switcher-button.is-active:hover {
   background-color: var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838)) !important;
   border-color: var(--theme-switcher-active-border, var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838))) !important;
   color: var(--theme-switcher-active-color, var(--theme-btn-text, #ffffff)) !important;
 }
 
-[data-switcher-v2] .theme-switcher-button.is-inactive {
+:is([data-switcher-v2], [data-switcher]) .theme-switcher-button.is-inactive {
   background-color: var(--theme-switcher-inactive-bg, inherit);
 }
 

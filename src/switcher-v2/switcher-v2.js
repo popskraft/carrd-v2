@@ -3,7 +3,7 @@
 
   const DEFAULTS = {
     enabled: true,
-    controllerSelector: '[data-switcher-v2]',
+    controllerSelector: '[data-switcher-v2], [data-switcher]',
     defaultIndex: 1,
     warnOnMismatch: true,
     scopeSelector: 'section',
@@ -14,9 +14,10 @@
     clusterScopeSelector: '.site-main'
   };
 
-  const externalOptions = (typeof window !== 'undefined' &&
-    window.CarrdPluginOptionsV2 &&
-    window.CarrdPluginOptionsV2.switcher) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.switcher) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.switcher)
+  )) || {};
 
   const globalOptions = { ...externalOptions };
   delete globalOptions.instances;
@@ -274,7 +275,7 @@
   }
 
   function buildInstance(controller) {
-    const switcherName = (controller.getAttribute('data-switcher-v2') || '').trim();
+    const switcherName = (controller.getAttribute('data-switcher-v2') || controller.getAttribute('data-switcher') || '').trim();
     const config = getConfig(switcherName);
 
     if (!switcherName) {
@@ -366,7 +367,7 @@
 
     if (typeof controllerOrName === 'string') {
       const controller = document.querySelector(
-        `${CONFIG.controllerSelector}[data-switcher-v2="${cssEscape(controllerOrName)}"]`
+        `[data-switcher-v2="${cssEscape(controllerOrName)}"], [data-switcher="${cssEscape(controllerOrName)}"]`
       );
       return controller ? (instances.get(controller) || initController(controller)) : null;
     }

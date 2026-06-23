@@ -14,9 +14,10 @@
   };
 
   // Merge with external options
-  const externalOptions = (typeof window !== 'undefined' && 
-    window.CarrdPluginOptionsV2 && 
-    window.CarrdPluginOptionsV2.noLoadwaiting) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.noLoadwaiting) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.noLoadwaiting)
+  )) || {};
     
   const CONFIG = {};
   for (const key in DEFAULTS) {

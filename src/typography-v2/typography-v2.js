@@ -21,9 +21,10 @@
 
   // Merge with external options
   const externalOptions =
-    (typeof window !== 'undefined' &&
-      window.CarrdPluginOptionsV2 &&
-      window.CarrdPluginOptionsV2.typography) ||
+    (typeof window !== 'undefined' && (
+      (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.typography) ||
+      (window.CarrdPluginOptions && window.CarrdPluginOptions.typography)
+    )) ||
     {};
   const CONFIG = {
     ...DEFAULTS,

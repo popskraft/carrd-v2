@@ -6,7 +6,7 @@
   // ==========================================
   
   const DEFAULTS = {
-    modalSelector: '.container-component.modal, .container-component[data-modal-v2]',
+    modalSelector: '.container-component.modal, .container-component[data-modal-v2], .container-component[data-modal]',
     targetAttribute: 'data-modal-v2',
     triggerAttribute: 'data-modal-v2-open',
     legacyTriggerAttribute: 'data-modal-v2-target',
@@ -20,9 +20,10 @@
   };
 
   // Merge with external options
-  const externalOptions = (typeof window !== 'undefined' && 
-    window.CarrdPluginOptionsV2 && 
-    window.CarrdPluginOptionsV2.modal) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.modal) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.modal)
+  )) || {};
   
   const CONFIG = { ...DEFAULTS, ...externalOptions };
   const SELECTORS = {
@@ -76,11 +77,15 @@
     if (hashPrefix && name.startsWith(hashPrefix)) {
       name = name.slice(hashPrefix.length);
     }
+    const v1HashPrefix = 'data-modal-';
+    if (name.startsWith(v1HashPrefix) && !name.startsWith('data-modal-v2-')) {
+      name = name.slice(v1HashPrefix.length);
+    }
     return normalizeName(name);
   }
 
   function getModalKey(modal) {
-    const dataName = normalizeName(modal.getAttribute(CONFIG.targetAttribute));
+    const dataName = normalizeName(modal.getAttribute(CONFIG.targetAttribute) || modal.getAttribute('data-modal'));
     if (dataName && isSafeName(dataName)) return dataName;
     return normalizeModalRef(modal.id);
   }
@@ -404,7 +409,7 @@
       if (trigger.hasAttribute('href')) {
         const href = trigger.getAttribute('href');
         if (href && href.startsWith('#') && href.length > 1) {
-          if (CONFIG.hashPrefix && href.startsWith(CONFIG.hashPrefix)) {
+          if ((CONFIG.hashPrefix && href.startsWith(CONFIG.hashPrefix)) || href.startsWith('#data-modal-')) {
             modalId = normalizeModalRef(href);
           } else if (!modalId && CONFIG.legacyHashTargets === true) {
             const targetId = href.substring(1);
@@ -494,7 +499,7 @@
 
     if (isSafeName(id)) {
       const dataModal = document.querySelector(
-        `[${CONFIG.targetAttribute}="${cssEscape(id)}"]`
+        `[${CONFIG.targetAttribute}="${cssEscape(id)}"], [data-modal="${cssEscape(id)}"]`
       );
       if (dataModal && dataModal.matches && dataModal.matches(CONFIG.modalSelector)) {
         return setupModal(dataModal);

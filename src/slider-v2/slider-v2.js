@@ -2,7 +2,7 @@
   'use strict';
 
   const DEFAULTS = {
-    slideSelector: '[data-slider-v2], .slider',
+    slideSelector: '[data-slider-v2], [data-slider], .slider',
     sliderAttribute: 'data-slider-v2',
     showDots: true,
     showArrows: true,
@@ -19,12 +19,15 @@
     freeScroll: false,
     wheelScroll: false,
     breakpoints: {
-      737: { slidesPerView: 4 },
-      1280: { slidesPerView: 5 }
+      737: { slidesPerView: 3 },
+      1280: { slidesPerView: 4 }
     }
   };
 
-  const ext = (typeof window !== 'undefined' && window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.slider) || {};
+  const ext = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.slider) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.slider)
+  )) || {};
   const BASE_CONFIG = { ...DEFAULTS, ...ext, breakpoints: { ...DEFAULTS.breakpoints, ...(ext.breakpoints || {}) } };
   const INSTANCE_CONFIGS = ext.instances || {};
 
@@ -53,7 +56,9 @@
   }
 
   function getSliderName(slide) {
-    const name = normalizeName(slide.getAttribute(BASE_CONFIG.sliderAttribute));
+    const name = normalizeName(
+      slide.getAttribute(BASE_CONFIG.sliderAttribute) || slide.getAttribute('data-slider')
+    );
     return safeNamePattern.test(name) ? name : '';
   }
 
@@ -81,6 +86,8 @@
       this.eventHandlers = [];
       this.dotHandlers = [];
       this.resizeTimeout = null;
+      this.layoutRefreshId = null;
+      this.layoutRefreshType = null;
       this.velocity = 0;
       this.lastDragTime = 0;
       this.lastDragX = 0;
@@ -184,10 +191,11 @@
       this.addListener(window, 'resize', () => {
         clearTimeout(this.resizeTimeout);
         this.resizeTimeout = setTimeout(() => {
-          this.updateSlidesPerView();
-          this.updateSlider();
+          this.refreshLayout();
         }, 100);
       });
+      this.addListener(window, 'load', () => this.scheduleLayoutRefresh(), { once: true });
+      this.scheduleLayoutRefresh();
     }
 
     addListener(target, event, handler, options) {
@@ -204,11 +212,41 @@
       this.eventHandlers = [];
       clearTimeout(this.resizeTimeout);
       clearTimeout(this.suppressClickTimer);
+      this.cancelLayoutRefresh();
       this.slides.forEach(slide => {
         slide.removeAttribute('data-slider-v2-initialized');
         this.wrapper.parentNode.insertBefore(slide, this.wrapper);
       });
       this.wrapper.remove();
+    }
+
+    cancelLayoutRefresh() {
+      if (!this.layoutRefreshId) return;
+      if (this.layoutRefreshType === 'raf') cancelAnimationFrame(this.layoutRefreshId);
+      else clearTimeout(this.layoutRefreshId);
+      this.layoutRefreshId = null;
+      this.layoutRefreshType = null;
+    }
+
+    scheduleLayoutRefresh() {
+      this.cancelLayoutRefresh();
+      const refresh = () => {
+        this.layoutRefreshId = null;
+        this.layoutRefreshType = null;
+        this.refreshLayout();
+      };
+      if (typeof requestAnimationFrame === 'function') {
+        this.layoutRefreshType = 'raf';
+        this.layoutRefreshId = requestAnimationFrame(refresh);
+        return;
+      }
+      this.layoutRefreshType = 'timeout';
+      this.layoutRefreshId = setTimeout(refresh, 0);
+    }
+
+    refreshLayout() {
+      this.updateSlidesPerView();
+      this.updateSlider();
     }
 
     updateSlidesPerView() {
@@ -230,6 +268,7 @@
       if (peek) spv += peek;
       this.slidesPerView = Math.min(spv, this.slides.length);
       this.currentGap = gap;
+      this.currentMaxSlideWidth = msw;
 
       // Update slide widths
       const totalGaps = Math.ceil(this.slidesPerView) - 1;
@@ -280,7 +319,29 @@
     }
 
     getSlideWidth() {
-      return this.slideElements[0] ? this.slideElements[0].offsetWidth + this.currentGap : 0;
+      const slide = this.slideElements[0];
+      if (!slide) return 0;
+
+      let width = slide.offsetWidth;
+      if (!width && slide.getBoundingClientRect) {
+        width = slide.getBoundingClientRect().width;
+      }
+      if (!width) {
+        const viewportWidth = Math.max(
+          this.wrapper?.clientWidth || 0,
+          this.wrapper?.getBoundingClientRect?.().width || 0,
+          window.innerWidth || 0
+        );
+        if (viewportWidth > 0 && this.slidesPerView > 0) {
+          const totalGaps = Math.ceil(this.slidesPerView) - 1;
+          width = (viewportWidth - (totalGaps * this.currentGap)) / this.slidesPerView;
+          if (window.innerWidth > 736 && Number.isFinite(+this.currentMaxSlideWidth) && +this.currentMaxSlideWidth > 0) {
+            width = Math.min(+this.currentMaxSlideWidth, width);
+          }
+        }
+      }
+
+      return width > 0 ? width + this.currentGap : 0;
     }
 
     getMinTranslate() {
@@ -594,7 +655,7 @@
 
   function init() {
     findSliderClusters().forEach(cluster => {
-      const id = getSliderName(cluster[0]) || cluster[0].getAttribute('data-slider-v2-id') || '';
+      const id = getSliderName(cluster[0]) || cluster[0].getAttribute('data-slider-v2-id') || cluster[0].getAttribute('data-slider-id') || '';
       const opts = (id && INSTANCE_CONFIGS[id]) || {};
       const cfg = { ...BASE_CONFIG, ...opts, breakpoints: { ...BASE_CONFIG.breakpoints, ...(opts.breakpoints || {}) } };
       SLIDER_INSTANCES.push({ instance: new Slider(cluster, cfg), instanceId: id });
@@ -614,7 +675,11 @@
     SLIDER_INSTANCES.length = 0;
   }
 
-  window.CarrdSliderV2 = { init, destroyAll, destroyById, getInstances: () => SLIDER_INSTANCES.map(e => e.instance) };
+  function refresh() {
+    SLIDER_INSTANCES.forEach(e => e.instance.refreshLayout());
+  }
+
+  window.CarrdSliderV2 = { init, destroyAll, destroyById, refresh, getInstances: () => SLIDER_INSTANCES.map(e => e.instance) };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

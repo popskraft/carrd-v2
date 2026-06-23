@@ -34,6 +34,11 @@ function setPluginOptions(dom, options = {}) {
   dom.window.CarrdPluginOptionsV2 = options;
 }
 
+// Sets the v1 (legacy) config namespace, to exercise backward-compat fallbacks.
+function setLegacyPluginOptions(dom, options = {}) {
+  dom.window.CarrdPluginOptions = options;
+}
+
 function loadScript(dom, relativePath) {
   const scriptPath = path.resolve(__dirname, '..', relativePath);
   const code = fs.readFileSync(scriptPath, 'utf-8');
@@ -195,6 +200,7 @@ module.exports = {
   installBrowserMocks,
   loadScript,
   setPluginOptions,
+  setLegacyPluginOptions,
   triggerDomReady,
   click,
   keydown,

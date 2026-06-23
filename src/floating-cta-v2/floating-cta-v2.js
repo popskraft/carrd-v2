@@ -7,11 +7,12 @@
   window.__themeFloatingCtaInitialized = true;
 
   const CONFIG = {
-    selector: '[data-floating-v2]',
+    selector: '[data-floating-v2], [data-floating]',
     defaultPosition: 'bottom-right',
     scrollY: 800,
     breakpoint: 736,
-    ...((window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.floatingCta) || {})
+    ...((window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.floatingCta) ||
+       (window.CarrdPluginOptions && window.CarrdPluginOptions.floatingCta) || {})
   };
 
   const hasFixedHeader = () => !!document.querySelector('.site-header.header-fixed');
@@ -63,18 +64,19 @@
   }
 
   function isNamedSource(source) {
-    return safeNamePattern.test(normalizeName(source.getAttribute('data-floating-v2')));
+    const val = source.getAttribute('data-floating-v2') || source.getAttribute('data-floating');
+    return safeNamePattern.test(normalizeName(val));
   }
 
   function isElementEnabledForViewport(element) {
-    const hide = normalizeHide(element.getAttribute('data-floating-v2-hide'));
+    const hide = normalizeHide(element.getAttribute('data-floating-v2-hide') || element.getAttribute('data-floating-hide'));
     if (isMobile()) return hide !== 'mobile';
     return hide !== 'desktop';
   }
 
   function resolvePositionForViewport(element) {
-    const mobilePosition = normalizePositionOverride(element.getAttribute('data-floating-v2-position-mobile'));
-    const basePosition = normalizePositionOverride(element.getAttribute('data-floating-v2-position-base'));
+    const mobilePosition = normalizePositionOverride(element.getAttribute('data-floating-v2-position-mobile') || element.getAttribute('data-floating-position-mobile'));
+    const basePosition = normalizePositionOverride(element.getAttribute('data-floating-v2-position-base') || element.getAttribute('data-floating-position'));
 
     if (isMobile()) {
       return mobilePosition || basePosition || normalizePosition('');
@@ -120,12 +122,16 @@
       const clone = source.cloneNode(true);
       clone.removeAttribute('id');
       clone.removeAttribute('data-floating-v2');
+      clone.removeAttribute('data-floating');
       clone.classList.add(CLASSNAMES.root, CLASSNAMES.clone);
+      const srcPosition = source.getAttribute('data-floating-v2-position') || source.getAttribute('data-floating-position');
+      const srcPositionMobile = source.getAttribute('data-floating-v2-position-mobile') || source.getAttribute('data-floating-position-mobile');
+      const srcHide = source.getAttribute('data-floating-v2-hide') || source.getAttribute('data-floating-hide');
       clone.setAttribute('data-floating-v2-clone', 'true');
-      clone.setAttribute('data-floating-v2-position-base', normalizePosition(source.getAttribute('data-floating-v2-position')));
-      clone.setAttribute('data-floating-v2-position-mobile', normalizePositionOverride(source.getAttribute('data-floating-v2-position-mobile')));
-      clone.setAttribute('data-floating-v2-position', normalizePosition(source.getAttribute('data-floating-v2-position')));
-      clone.setAttribute('data-floating-v2-hide', normalizeHide(source.getAttribute('data-floating-v2-hide')));
+      clone.setAttribute('data-floating-v2-position-base', normalizePosition(srcPosition));
+      clone.setAttribute('data-floating-v2-position-mobile', normalizePositionOverride(srcPositionMobile));
+      clone.setAttribute('data-floating-v2-position', normalizePosition(srcPosition));
+      clone.setAttribute('data-floating-v2-hide', normalizeHide(srcHide));
       clone.setAttribute('aria-hidden', 'true');
       clone.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
 

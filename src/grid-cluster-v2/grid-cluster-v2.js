@@ -18,9 +18,10 @@
     }
   };
 
-  const externalOptions = (typeof window !== 'undefined' &&
-    window.CarrdPluginOptionsV2 &&
-    window.CarrdPluginOptionsV2.gridCluster) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.gridCluster) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.gridCluster)
+  )) || {};
 
   const CONFIG = { ...DEFAULTS, ...externalOptions };
   const SELECTORS = {
@@ -34,13 +35,18 @@
   const GRID_CLASSES = CONFIG.gridClasses;
   const GRID_ATTRIBUTE = CONFIG.gridAttribute || 'data-grid-v2';
   const WIDTH_CLASS_MAP = { ...DEFAULTS.widthClasses, ...(externalOptions.widthClasses || {}) };
-  const GRID_SELECTOR = [`[${GRID_ATTRIBUTE}]`, ...GRID_CLASSES.map(cls => `.${cls}`)].join(',');
+  const GRID_SELECTOR = [`[${GRID_ATTRIBUTE}]`, '[data-grid]', ...GRID_CLASSES.map(cls => `.${cls}`)].join(',');
   const WIDTH_CLASSES = Object.keys(WIDTH_CLASS_MAP);
   const RESPONSIVE_GRID_CLASS_PATTERN = /^grid-(sm|md|lg)-([1-6])$/;
   const RESPONSIVE_GRID_ATTRIBUTES = {
     sm: 'data-grid-v2-sm',
     md: 'data-grid-v2-md',
     lg: 'data-grid-v2-lg'
+  };
+  const RESPONSIVE_GRID_ATTRIBUTES_V1 = {
+    sm: 'data-grid-sm',
+    md: 'data-grid-md',
+    lg: 'data-grid-lg'
   };
   const requestFrame = window.requestAnimationFrame || (cb => setTimeout(cb, 16));
   let pendingFrame = null;
@@ -74,20 +80,22 @@
 
   const getGridName = element => {
     const name = normalizeName(
-      element && element.getAttribute ? element.getAttribute(GRID_ATTRIBUTE) : ''
+      element && element.getAttribute
+        ? (element.getAttribute(GRID_ATTRIBUTE) || element.getAttribute('data-grid'))
+        : ''
     );
     return safeNamePattern.test(name) ? name : '';
   };
 
   const isGridBlock = element =>
     element && (
-      (element.hasAttribute && element.hasAttribute(GRID_ATTRIBUTE)) ||
+      (element.hasAttribute && (element.hasAttribute(GRID_ATTRIBUTE) || element.hasAttribute('data-grid'))) ||
       GRID_CLASSES.some(cls => element.classList && element.classList.contains(cls))
     );
 
   const getGridSize = (element, fallbackLength = null) => {
     if (!element || !element.classList) return null;
-    const dataColumns = parseGridCount(element.getAttribute('data-grid-v2-columns'));
+    const dataColumns = parseGridCount(element.getAttribute('data-grid-v2-columns') || element.getAttribute('data-grid-columns'));
     if (dataColumns) return dataColumns;
 
     const sizeClass = GRID_CLASSES.find(cls => element.classList.contains(cls));
@@ -105,7 +113,7 @@
 
   const widthValueForElement = element => {
     if (!element || !element.classList) return null;
-    const dataWidth = element.getAttribute('data-grid-v2-width');
+    const dataWidth = element.getAttribute('data-grid-v2-width') || element.getAttribute('data-grid-width');
     if (dataWidth) return dataWidth;
 
     const widthClass = WIDTH_CLASSES.find(cls => element.classList.contains(cls));
@@ -117,7 +125,7 @@
     cluster.forEach(element => {
       if (!element || !element.classList) return;
       Object.entries(RESPONSIVE_GRID_ATTRIBUTES).forEach(([breakpoint, attribute]) => {
-        const count = parseGridCount(element.getAttribute(attribute));
+        const count = parseGridCount(element.getAttribute(attribute) || element.getAttribute(RESPONSIVE_GRID_ATTRIBUTES_V1[breakpoint]));
         if (count) responsiveClasses.add(`grid-${breakpoint}-${count}`);
       });
       element.classList.forEach(className => {
@@ -142,7 +150,7 @@
 
     if (
       cluster[0].classList.contains('justify') ||
-      cluster[0].getAttribute('data-grid-v2-justify') === 'true'
+      (cluster[0].getAttribute('data-grid-v2-justify') === 'true' || cluster[0].getAttribute('data-grid-justify') === 'true')
     ) {
       cluster.forEach(node => node.classList.add(SELECTORS.justify));
     }
@@ -161,8 +169,8 @@
     cluster[0].parentNode.insertBefore(container, cluster[0]);
     cluster.forEach(node => container.appendChild(node));
 
-    const gap = parseGap(getFirstAttribute(cluster[0], ['data-grid-v2-gap', 'data-gap']));
-    const gapMobile = parseGap(getFirstAttribute(cluster[0], ['data-grid-v2-gap-mobile', 'data-gap-mobile']));
+    const gap = parseGap(getFirstAttribute(cluster[0], ['data-grid-v2-gap', 'data-grid-gap', 'data-gap']));
+    const gapMobile = parseGap(getFirstAttribute(cluster[0], ['data-grid-v2-gap-mobile', 'data-grid-gap-mobile', 'data-gap-mobile']));
     if (gap) container.style.setProperty('--gap-override', gap);
     if (gapMobile) container.style.setProperty('--gap-mobile-override', gapMobile);
 

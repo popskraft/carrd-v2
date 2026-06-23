@@ -19,7 +19,8 @@
   const CONFIG = {
     breakpoint: 736,
     closeOnLinkClick: true,
-    ...((window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.headerNav) || {})
+    ...((window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.headerNav) ||
+       (window.CarrdPluginOptions && window.CarrdPluginOptions.headerNav) || {})
   };
 
   const HEADER_SELECTOR = '#header';

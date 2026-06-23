@@ -15,10 +15,10 @@
     storageKey: 'carrd_cart_v1',
     
     // Checkout Form Settings
-    orderInputSelector: '[name="order-details"], .cart-output, [data-shopping-cart-v2-output="order-details"], [data-cart-v2-output="order-details"]',
+    orderInputSelector: '[name="order-details"], .cart-output, [data-shopping-cart-v2-output="order-details"], [data-cart-v2-output="order-details"], [data-shopping-cart-output="order-details"], [data-cart-output="order-details"]',
     orderInputClass: '.cart-output',
     orderInputId: 'order-details',
-    checkoutTargetSelector: '.shopping-cart-target, [data-shopping-cart-v2-target]',
+    checkoutTargetSelector: '.shopping-cart-target, [data-shopping-cart-v2-target], [data-shopping-cart-target]',
     checkoutTargetId: 'shopping-cart',
     
     // Text labels for easy translation
@@ -91,9 +91,10 @@
   }
 
   // Get external options if available (loaded before this script)
-  const externalOptions = (typeof window !== 'undefined' && 
-    window.CarrdPluginOptionsV2 && 
-    window.CarrdPluginOptionsV2.shoppingCart) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.shoppingCart) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.shoppingCart)
+  )) || {};
 
   // Final merged configuration
   const CONFIG = deepMerge(DEFAULTS, externalOptions);
@@ -336,6 +337,8 @@
 
   // Expose public API
   window.CarrdShoppingCartV2 = CartAPI;
+  // Backward-compat alias for v1 inline handlers (window.CarrdShoppingCart.add(...))
+  if (!window.CarrdShoppingCart) window.CarrdShoppingCart = CartAPI;
 
   // ==========================================
   // UI INJECTION & RENDERING

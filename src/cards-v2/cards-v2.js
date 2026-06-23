@@ -3,13 +3,14 @@
 
   const DEFAULTS = {
     enabled: true,
-    cardSelector: '[data-cards-v2], .cards',
+    cardSelector: '[data-cards-v2], [data-cards], .cards',
     defaultCardBg: 'var(--theme-card-bg-default)'
   };
 
-  const externalOptions = (typeof window !== 'undefined' &&
-    window.CarrdPluginOptionsV2 &&
-    window.CarrdPluginOptionsV2.cards) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.cards) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.cards)
+  )) || {};
 
   const CONFIG = { ...DEFAULTS, ...externalOptions };
   const SELECTORS = {
@@ -119,10 +120,12 @@
     } else {
       const dataPadding = getFirstAttribute(container, [
         'data-cards-v2-padding',
+        'data-cards-padding',
         'data-padding'
       ]);
       const dataPaddingMobile = getFirstAttribute(container, [
         'data-cards-v2-padding-mobile',
+        'data-cards-padding-mobile',
         'data-padding-mobile'
       ]);
 
@@ -195,6 +198,7 @@
       const backgroundSize = style.backgroundSize;
       const dataColor = getFirstAttribute(container, [
         'data-cards-v2-color',
+        'data-cards-color',
         'data-color'
       ]);
 
@@ -221,10 +225,12 @@
 
         const specificColor = getFirstAttribute(container, [
           `data-cards-v2-color-${index + 1}`,
+          `data-cards-color-${index + 1}`,
           `data-color-${index + 1}`
         ]);
         const specificBorderColor = getFirstAttribute(container, [
           `data-cards-v2-border-color-${index + 1}`,
+          `data-cards-border-color-${index + 1}`,
           `data-border-color-${index + 1}`
         ]);
 

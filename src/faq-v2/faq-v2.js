@@ -7,12 +7,13 @@
     defaultOpen: false,
     headerTags: ['H1', 'H2', 'H3']
   };
-  const CONTAINER_SELECTOR = '[data-faq-v2], .FAQContainer';
+  const CONTAINER_SELECTOR = '[data-faq-v2], [data-faq], .FAQContainer';
   const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
 
-  const externalOptions = (typeof window !== 'undefined' &&
-    window.CarrdPluginOptionsV2 &&
-    window.CarrdPluginOptionsV2.faq) || {};
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptionsV2 && window.CarrdPluginOptionsV2.faq) ||
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.faq)
+  )) || {};
   const CONFIG = { ...DEFAULTS, ...externalOptions };
   const HEADER_TAGS = new Set(CONFIG.headerTags);
   const CLASSES = {
@@ -322,10 +323,10 @@
   function getContainerConfig(container) {
     return {
       allowMultipleOpen:
-        parseBooleanAttr(container.getAttribute('data-faq-v2-allow-multiple')) ??
+        parseBooleanAttr(container.getAttribute('data-faq-v2-allow-multiple') ?? container.getAttribute('data-faq-allow-multiple')) ??
         CONFIG.allowMultipleOpen === true,
       defaultOpen:
-        parseBooleanAttr(container.getAttribute('data-faq-v2-default-open')) ??
+        parseBooleanAttr(container.getAttribute('data-faq-v2-default-open') ?? container.getAttribute('data-faq-default-open')) ??
         CONFIG.defaultOpen === true
     };
   }
@@ -334,11 +335,11 @@
     if (!container || container.nodeType !== 1) {
       return false;
     }
-    if (!container.hasAttribute('data-faq-v2')) {
+    if (!container.hasAttribute('data-faq-v2') && !container.hasAttribute('data-faq')) {
       return container.classList.contains('FAQContainer');
     }
 
-    const name = (container.getAttribute('data-faq-v2') || '').trim();
+    const name = (container.getAttribute('data-faq-v2') || container.getAttribute('data-faq') || '').trim();
     return safeNamePattern.test(name);
   }
 

@@ -103,7 +103,9 @@ test('switcher keeps pointer cursor even when Carrd button has no href', () => {
   loadScript(dom, 'src/switcher-v2/switcher-v2.js');
   triggerDomReady(dom);
 
-  assert.match(css, /\[data-switcher-v2\]\s+\.theme-switcher-button\s*{[^}]*cursor:\s*pointer;/s);
+  assert.match(css, /\[data-switcher-v2\][^{]*\.theme-switcher-button\s*{[^}]*cursor:\s*pointer;/s);
+  // legacy [data-switcher] alias must share the same container-scoped styling (no styling tail)
+  assert.match(css, /:is\(\[data-switcher-v2\],\s*\[data-switcher\]\)\s+\.theme-switcher-button\.is-active/s);
   assert.equal(dom.window.document.querySelector('.theme-switcher-button').hasAttribute('href'), false);
 });
 
