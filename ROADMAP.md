@@ -31,4 +31,4 @@
 | 21 | Полный readiness-аудит v2 (4 параллельные проверки + adversarial verify): расширить config-fallback на typography/header-nav/no-loadwaiting/shopping-cart, legacy data-attrs + `CarrdShoppingCart` alias для shopping-cart, modal lazy `[data-modal]` lookup | done |
 | 22 | Добавить backward-compat тесты (`tests-js/backward-compat.test.js`, helper `setLegacyPluginOptions`): v1-атрибуты + v1-config + V2-precedence, 13 тестов | done |
 | 25 | Закрыть container-scoped CSS alias-гэп: faq/cookie/modal (`1ac3dd4`) + найденный switcher гэп (`eca34b3`); systematic-скан подтвердил отсутствие других tails; пересобрать dist (`ab0eee6`); validate 189/189 | done |
-| 26 | Синхронизировать faktura Builder DRAFT с alias-fixed dist (`automation/sync-v2-embeds.mjs`, embed02/03/07, hash-readback 3/3, FAQ scope fixed, Publish dirty); publish + post-publish curl остаются operator-only | active |
+| 26 | Синхронизировать faktura Builder с alias-fixed dist (`automation/sync-v2-embeds.mjs`, embed02/03/07, hash-readback 3/3); опубликовано оператором; live verify `faktura-dev.crd.co` подтверждает fixed FAQ/modal/cookie scope | done |
