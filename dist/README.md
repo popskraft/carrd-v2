@@ -1,7 +1,7 @@
 ## Version
 
 - Version: `2.0.0`
-- Build date (UTC): `2026-06-23`
+- Build date (UTC): `2026-06-27`
 - [View Changelog](CHANGELOG.md)
 
 ---
@@ -171,14 +171,16 @@ Plugin README files include `:root { ... }` examples for optional overrides.
 
 ## Validation
 
-For documentation and distributive checks:
+For documentation, distributive, and code checks:
 
 ```bash
-npm run build:docs
+npm run build
 npm run verify:dist
 npm run test
 npm run lint
 ```
+
+`npm run build:docs` is the faster docs-only subset when only README/source docs changed.
 
 ## Key Documents
 

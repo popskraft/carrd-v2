@@ -3,7 +3,7 @@
 ## Version
 
 - Version: `2.0.0`
-- Build date (UTC): `2026-06-23`
+- Build date (UTC): `2026-06-27`
 
 ## Installation
 

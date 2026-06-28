@@ -1,0 +1,361 @@
+{
+  "tab": {
+    "id": "EA25C54F72A9A82C389818BAB8FE5FB1",
+    "title": "Faktura Template",
+    "url": "https://faktura-dev.crd.co/"
+  },
+  "value": {
+    "meta": {
+      "generatedAt": "2026-06-23T15:29:01.992Z",
+      "url": "https://faktura-dev.crd.co/",
+      "title": "Faktura Template"
+    },
+    "assets": {
+      "scripts": [
+        {
+          "src": "https://mc.yandex.ru/metrika/tag_phono.js",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "src": "https://code.jivosite.com/script/widget/wARUK8TGS3",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "src": "https://mc.yandex.ru/metrika/tag.js",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "src": "",
+          "inlineLength": 3131,
+          "matchedPlugins": []
+        },
+        {
+          "src": "",
+          "inlineLength": 72746,
+          "matchedPlugins": [
+            "modal"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 200,
+          "matchedPlugins": [
+            "slider"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 7010,
+          "matchedPlugins": [
+            "columns",
+            "cookie-banner"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 8221,
+          "matchedPlugins": [
+            "faq"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 4280,
+          "matchedPlugins": []
+        },
+        {
+          "src": "",
+          "inlineLength": 6762,
+          "matchedPlugins": [
+            "columns"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 3096,
+          "matchedPlugins": [
+            "header-nav"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 8867,
+          "matchedPlugins": [
+            "modal"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 8183,
+          "matchedPlugins": [
+            "slider"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 11584,
+          "matchedPlugins": [
+            "slider"
+          ]
+        },
+        {
+          "src": "",
+          "inlineLength": 450,
+          "matchedPlugins": []
+        },
+        {
+          "src": "",
+          "inlineLength": 564,
+          "matchedPlugins": []
+        },
+        {
+          "src": "https://cdn.callibri.ru/callibri.js",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        }
+      ],
+      "styles": [
+        {
+          "href": "",
+          "inlineLength": 264556,
+          "matchedPlugins": [
+            "columns",
+            "modal"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 7655,
+          "matchedPlugins": [
+            "modal",
+            "slider",
+            "typography"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "href": "https://code.jivo.ru/css/7513ccf/widget.css",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "href": "https://code.jivo.ru/css/7513ccf/chatcontainer.widget.css",
+          "inlineLength": 0,
+          "matchedPlugins": []
+        },
+        {
+          "href": "",
+          "inlineLength": 291,
+          "matchedPlugins": [
+            "cookie-banner"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 1793,
+          "matchedPlugins": [
+            "faq"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 2871,
+          "matchedPlugins": []
+        },
+        {
+          "href": "",
+          "inlineLength": 2835,
+          "matchedPlugins": [
+            "columns"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 1844,
+          "matchedPlugins": [
+            "header-nav"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 2189,
+          "matchedPlugins": [
+            "modal"
+          ]
+        },
+        {
+          "href": "",
+          "inlineLength": 2670,
+          "matchedPlugins": [
+            "slider"
+          ]
+        }
+      ]
+    },
+    "runtime": {
+      "bodyClass": "is-ready",
+      "globals": [
+        "$modalCaption",
+        "CarrdCookieBanner",
+        "CarrdFloatingCta",
+        "CarrdModal",
+        "CarrdPluginOptions",
+        "CarrdSlider",
+        "__themeSplitEmbedSlider"
+      ]
+    },
+    "pluginSummary": [
+      {
+        "plugin": "accordeon-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "cards-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "cookie-banner-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "faq-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "floating-cta-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "grid-cluster-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "header-nav-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "modal-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "no-loadwaiting-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "shopping-cart-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "slider-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "switcher-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "typography-v2",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "cards",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "columns",
+        "scriptHits": 2,
+        "styleHits": 2,
+        "globalHits": 0
+      },
+      {
+        "plugin": "cookie-banner",
+        "scriptHits": 1,
+        "styleHits": 1,
+        "globalHits": 1
+      },
+      {
+        "plugin": "faq",
+        "scriptHits": 1,
+        "styleHits": 1,
+        "globalHits": 0
+      },
+      {
+        "plugin": "grid-cluster",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "header-nav",
+        "scriptHits": 1,
+        "styleHits": 1,
+        "globalHits": 0
+      },
+      {
+        "plugin": "modal",
+        "scriptHits": 2,
+        "styleHits": 3,
+        "globalHits": 2
+      },
+      {
+        "plugin": "no-loadwaiting",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "shopping-cart",
+        "scriptHits": 0,
+        "styleHits": 0,
+        "globalHits": 0
+      },
+      {
+        "plugin": "slider",
+        "scriptHits": 3,
+        "styleHits": 2,
+        "globalHits": 2
+      },
+      {
+        "plugin": "typography",
+        "scriptHits": 0,
+        "styleHits": 1,
+        "globalHits": 0
+      }
+    ]
+  }
+}

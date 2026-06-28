@@ -3,7 +3,7 @@
 ## Version
 
 - Version: `2.0.0`
-- Build date (UTC): `2026-06-23`
+- Build date (UTC): `2026-06-27`
 
 ## Installation
 
@@ -170,3 +170,7 @@ Add a separate **Head** style embed below `theme-design-system.html` and overrid
 | `--theme-header-nav-bar-height` | `2px` | Hamburger bar thickness |
 | `--theme-header-nav-bar-gap` | `5px` | Space between hamburger bars |
 | `--theme-header-nav-duration` | `300ms` | Hamburger animation speed |
+
+## Troubleshooting
+
+Avoid Carrd background blur on the authored header container when you use the default fixed hamburger toggle. A blurred header container can become the containing block for the toggle during scroll, which makes the button move away with the header instead of staying pinned to the viewport.

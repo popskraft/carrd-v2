@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-23T20:53:24.339Z",
+    "mode": "write",
+    "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+    "tabId": "7C9565DBE61083A5EA785553771010B7",
+    "title": "Faktura Template - My Sites - Dashboard - Carrd",
+    "backupDir": "cardbuilder/projects/faktura/data/raw-imports/2026-06-23T20-53-12-638Z-alias-sync-before"
+  },
+  "inputs": [
+    {
+      "id": "embed02",
+      "label": "Cookie Banner",
+      "sourcePath": "dist/cookie-banner-v2/cookie-banner-v2-embed.html",
+      "sha256": "c997cefd1359749073847c6750beb119b2147f007cba66c08624d00ed2e75511",
+      "contentLength": 7898
+    },
+    {
+      "id": "embed03",
+      "label": "FAQ",
+      "sourcePath": "dist/faq-v2/faq-v2-embed.html",
+      "sha256": "1048a8285744c8ef765b1370deb066559259352b3428b4b7242105f412526810",
+      "contentLength": 10567
+    },
+    {
+      "id": "embed07",
+      "label": "Modal",
+      "sourcePath": "dist/modal-v2/modal-v2-embed.html",
+      "sha256": "c1c59df18e703cb547b402fa8dd7adb00063d69a7dc1218318b42b9db36fa33c",
+      "contentLength": 11702
+    }
+  ],
+  "result": {
+    "dirtyPublishButton": false,
+    "checks": [
+      {
+        "id": "embed02",
+        "label": "Cookie Banner",
+        "title": "Cookie Banner",
+        "location": "body-end",
+        "expectedHash": "c997cefd1359749073847c6750beb119b2147f007cba66c08624d00ed2e75511",
+        "actualHash": "c997cefd1359749073847c6750beb119b2147f007cba66c08624d00ed2e75511",
+        "matchesExpected": true,
+        "beforeOldFaqScope": false
+      },
+      {
+        "id": "embed03",
+        "label": "FAQ",
+        "title": "FAQ",
+        "location": "body-end",
+        "expectedHash": "1048a8285744c8ef765b1370deb066559259352b3428b4b7242105f412526810",
+        "actualHash": "1048a8285744c8ef765b1370deb066559259352b3428b4b7242105f412526810",
+        "matchesExpected": true,
+        "beforeOldFaqScope": true
+      },
+      {
+        "id": "embed07",
+        "label": "Modal",
+        "title": "Modal",
+        "location": "body-end",
+        "expectedHash": "c1c59df18e703cb547b402fa8dd7adb00063d69a7dc1218318b42b9db36fa33c",
+        "actualHash": "c1c59df18e703cb547b402fa8dd7adb00063d69a7dc1218318b42b9db36fa33c",
+        "matchesExpected": true,
+        "beforeOldFaqScope": false
+      }
+    ]
+  }
+}

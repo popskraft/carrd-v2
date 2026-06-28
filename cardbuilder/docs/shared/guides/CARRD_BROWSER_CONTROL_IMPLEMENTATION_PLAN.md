@@ -15,7 +15,7 @@ This plan implements the architecture recorded in:
 | Resolve every Builder URL to the correct local site package | a command can map a live Builder URL or explicit slug to one `cardbuilder/projects/<site-slug>/` and one `cardbuilder/docs/projects/<site-slug>/` |
 | Stop relying on one global template path for all operations | `active-template.json` remains a pointer, while known sites are listed in a registry and site truth lives in site packages |
 | Make operation mode selection explicit | every scan/edit command declares `state-read`, `state-write`, `ui-automation`, or `operator-only` before it runs |
-| Preserve current working flows | existing `main-template` and `lunar-auto-film` scans still work after resolver changes |
+| Preserve current working flows | existing `main-template` and `faktura` scans still work after resolver changes |
 | Reduce wrong-action risk | docs and scripts agree on `propertiesPanel.showById`, DOM click limits, and Playwright/UI automation boundaries |
 | Keep future changes testable | profile schema, registry resolver, and drift resolver have automated tests or deterministic smoke checks |
 
@@ -40,7 +40,7 @@ The repo already has the correct raw materials:
 Existing packages:
 
 - `main-template`
-- `lunar-auto-film`
+- `faktura`
 - `faktura`
 
 Separate migration workspace:
@@ -99,7 +99,7 @@ Implementation should wait for owner approval because the work changes project a
 - resolver utilities
 - readiness and drift commands that resolve site package by URL or slug
 - documentation canon cleanup for browser-control behavior
-- migration path for `main-template` and `lunar-auto-film`
+- migration path for `main-template` and `faktura`
 - test/smoke coverage for registry/profile behavior
 
 ### Out of Scope
@@ -116,7 +116,7 @@ Implementation should wait for owner approval because the work changes project a
 - `active-template.json` remains as an operator convenience pointer.
 - A new registry file is allowed under `cardbuilder/data/`.
 - Per-site canonical profile files belong under `cardbuilder/projects/<site-slug>/data/manifests/`.
-- Existing `main-template` and `lunar-auto-film` package paths should not be renamed.
+- Existing `main-template` and `faktura` package paths should not be renamed.
 - `propertiesPanel.showById` is currently valid for panel/tabs reads, but scripts must verify it at runtime before relying on it.
 - DOM `.click()` examples in shared docs should be downgraded or marked as UI-specific, not used as generic deterministic guidance.
 
@@ -159,9 +159,9 @@ Implementation should wait for owner approval because the work changes project a
 |---|---|---|
 | AC-01 | `cardbuilder/data/sites.json` or equivalent registry must exist and include known site packages. | registry file plus resolver output |
 | AC-02 | `active-template.json` must validate against the registry entry for the active site. | validator command output |
-| AC-03 | `site-profile.json` must exist for `main-template` and `lunar-auto-film`. | file existence plus schema validation |
+| AC-03 | `site-profile.json` must exist for `main-template` and `faktura`. | file existence plus schema validation |
 | AC-04 | resolver must resolve by site slug, exact Builder URL, active pointer, and live debug tab URL when a Builder tab is open. | resolver test output |
-| AC-05 | `check-element-tabs-drift.mjs` must accept a site package or profile path and must not silently default all work to `main-template`. | command output for `main-template` and `lunar-auto-film` |
+| AC-05 | `check-element-tabs-drift.mjs` must accept a site package or profile path and must not silently default all work to `main-template`. | command output for `main-template` and `faktura` |
 | AC-06 | `open-debug-chrome.sh` must still open the active pointer with current environment variables. | dry or live smoke output |
 | AC-07 | readiness checks must report `connected`, `authenticated`, `builder-ready`, `site-resolved`, `profile-freshness`, and `safe-to-edit`. | readiness command output |
 | AC-08 | active docs must not contain contradictory executable guidance for `propertiesPanel.showById` and generic DOM `.click()` use. | `rg` check plus reviewed doc diff |
@@ -230,7 +230,7 @@ Outputs:
 
 Validation gate:
 
-- resolver maps `main-template` and `lunar-auto-film` correctly
+- resolver maps `main-template` and `faktura` correctly
 - resolver rejects unknown Builder URL with clear error
 - `active-template.json` still parses and points to one registry entry
 
@@ -263,7 +263,7 @@ Inputs:
 Outputs:
 
 - `cardbuilder/projects/main-template/data/manifests/site-profile.json`
-- `cardbuilder/projects/lunar-auto-film/data/manifests/site-profile.json`
+- `cardbuilder/projects/faktura/data/manifests/site-profile.json`
 - shared profile schema or validator
 
 Validation gate:
@@ -310,7 +310,7 @@ Outputs:
 Validation gate:
 
 - `check-element-tabs-drift.mjs --site main-template` works
-- `check-element-tabs-drift.mjs --site lunar-auto-film` works
+- `check-element-tabs-drift.mjs --site faktura` works
 - default behavior is explicit:
   - active pointer
   - live tab
@@ -336,7 +336,6 @@ Owner:
 
 Inputs:
 
-- `CARRD_AGENT_INSTRUCTION.md` (legacy bridge only; do not use as active source of truth)
 - `CARRD_BROWSER_CONTROL_ARCHITECTURE.md`
 - `CARRD_PER_SITE_PROCESS.md`
 - `TEMPLATE-INSTANCE-SCAN-RUNBOOK.md`
@@ -426,7 +425,7 @@ Validation gate:
 - `npm run lint --silent`
 - targeted Node tests for resolver/profile
 - `node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site main-template --no-fail-on-drift`
-- `node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site lunar-auto-film --no-fail-on-drift`
+- `node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site faktura --no-fail-on-drift`
 
 Related criteria:
 
@@ -479,7 +478,7 @@ Minimum validation before implementation is accepted:
 cd /Users/popskraft/Projects/carrd-v2
 npm run lint --silent
 node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site main-template --no-fail-on-drift
-node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site lunar-auto-film --no-fail-on-drift
+node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site faktura --no-fail-on-drift
 ```
 
 Additional validation when current repo blockers are fixed:

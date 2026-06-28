@@ -12,7 +12,6 @@
 | Registry resolution | done | Keep `cardbuilder/data/sites.json` as the first source for site packages. |
 | External workspace references | guarded | Do not require external project roots for normal operation. |
 | `main-template` package | stable baseline | Run fresh live smoke checks after plugin or Builder behavior changes. |
-| `lunar-auto-film` package | partial | Confirm published URL, run published-site scan, and promote full-scan status only after evidence exists. |
 | `faktura` package | automation-first | Capture canonical builder scan package, live plugin inventory, published URL, and published-site scan. |
 | `koryphey-online` package | migration workspace | Keep as migration package unless owner promotes it to first-class live-site registry entry. |
 | Broken legacy links | partially checked | Extend automated checks from operational canon to docs indexes and critical runbooks. |

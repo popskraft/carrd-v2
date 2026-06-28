@@ -15,6 +15,7 @@ Canonical navigation for the `main-template` site package.
 - [CONTAINER-REGISTRY.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/CONTAINER-REGISTRY.md)
 - [LIVE-PLUGIN-REFRESH-MAP.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/LIVE-PLUGIN-REFRESH-MAP.md)
 - [PLUGIN-ID-VS-CLASS-AUDIT.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/PLUGIN-ID-VS-CLASS-AUDIT.md)
+- [BUILDER-GUI-RECON-CRITICAL-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-GUI-RECON-CRITICAL-REVIEW.md)
 
 ## Execution Packages
 
@@ -24,14 +25,6 @@ Canonical navigation for the `main-template` site package.
 - [THEME-DESIGN-SYSTEM-ROLLOUT-PLAN.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/THEME-DESIGN-SYSTEM-ROLLOUT-PLAN.md)
 - [THEME-DESIGN-SYSTEM-ROLLOUT-EXECUTION.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/THEME-DESIGN-SYSTEM-ROLLOUT-EXECUTION.md)
 - [CLASS-FIRST-REFACTOR-EXECUTION.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/CLASS-FIRST-REFACTOR-EXECUTION.md)
-
-## Historical Bridge
-
-- [BUILDER-LIVE-VERIFICATION.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-LIVE-VERIFICATION.md)
-- [BUILDER-STATIC-FIRST-PASS.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-STATIC-FIRST-PASS.md)
-- [BUILDER-STATIC-HYPOTHESIS-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-STATIC-HYPOTHESIS-REVIEW.md)
-- [BUILDER-STATIC-UNKNOWNS.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-STATIC-UNKNOWNS.md)
-- [BUILDER-STATIC-UNRESOLVED-AFTER-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-STATIC-UNRESOLVED-AFTER-REVIEW.md)
 
 ## Historical Evidence
 

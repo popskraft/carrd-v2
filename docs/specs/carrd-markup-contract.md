@@ -37,15 +37,17 @@ If a plugin needs a new public marker to stay reliable, escalate the contract ch
 
 ## Active Plugin Contracts
 
-| Plugin | Contract type | Notes |
+Contract types and escalation notes only. The authoritative per-plugin binding syntax, options, and the full Naming Matrix live in `docs/specs/plugin-v2-data-contract.md`.
+
+| Plugin | Contract type | Escalation / exception notes |
 |--------|--------------|-------|
-| `accordeon` | V2 hash + attribute group | `#data-accordeon-v2-<name>` toggles containers marked `data-accordeon-v2="<name>"`; `#accordeon-<name>` and `data-accorderon-v2` remain legacy fallback |
-| `header-nav` | Header scope + collapse marker | `#header` activates only when it contains `.header-mobile-el-collapsing`; mobile anti-jump collapse only, no sticky shell |
-| `floating-cta` | V2 data marker + position | `data-floating-v2="<name>"` marks each source element to clone; `data-floating-v2-position` sets the base position; `data-floating-v2-position-mobile` can override it on mobile; `data-floating-v2-hide` can hide the clone on `mobile` or `desktop` |
-| `cookie-banner` | V2 data marker + legacy fallback | `data-cookie-v2="<name>"` is primary; `data-cookie-v2-indent`, `data-cookie-v2-indent-mobile`, `data-cookie-v2-delay`, `data-cookie-v2-days`, and `data-cookie-v2-position` configure each banner; literal `data-cookie-v2="banner"`, old `.cookie-banner`, and `#cookie-baner` remain fallback |
-| `shopping-cart` | Class/name-first + ID fallback | Legacy ID fallbacks for older installs |
-| `modal` | V2 hash + data modal | `#data-modal-v2-<name>` opens `.container-component[data-modal-v2="<name>"]`; legacy `.modal` + `id` hash remains fallback |
-| `grid-cluster` | V2 data grid + legacy grid classes | `data-grid-v2="<name>"` groups consecutive containers; `grid-N` remains fallback; `columns` is archived legacy |
-| `cards` | V2 data marker + legacy class | `[data-cards-v2="<name>"]` is the preferred container marker; `data-cards-v2-color*` and `data-cards-v2-padding*` are primary options; `.cards` and older generic `data-*` attrs remain fallback |
-| `faq` | V2 data marker + legacy class | `data-faq-v2="<name>"` marks FAQ containers; question blocks use Carrd dividers plus headings; `.FAQContainer` remains fallback |
-| `switcher` | V2 data targets + legacy class/cluster fallback | `data-switcher-v2-target="<name>"` targets are primary; class-index and `data-switcher-v2-cluster` remain fallback. See `docs/specs/plugin-v2-data-contract.md` |
+| `accordeon` | V2 hash + attribute group | Legacy `#accordeon-<name>` and `data-accorderon-v2` remain fallback |
+| `header-nav` | Header scope + collapse marker | `#header` activates only with `.header-mobile-el-collapsing`; mobile anti-jump collapse only, no sticky shell. See `docs/decisions/header-nav-structural-contract.md` |
+| `floating-cta` | V2 data marker + position | Runtime clones source elements to fixed position; position/hide options per instance |
+| `cookie-banner` | V2 data marker + legacy fallback | Per-banner indent/delay/days/position options; shared consent cookie |
+| `shopping-cart` | V2 output/target marker + legacy ID fallback | Long-term role of `data-shopping-cart-v2-target` is open (Q003) |
+| `modal` | V2 hash + data marker | Lazy `[data-modal]` lookup; legacy `.modal` + `id` hash remains fallback |
+| `grid-cluster` | V2 data grid + legacy grid classes | `grid-N` remains fallback |
+| `cards` | V2 data marker + legacy class | Per-container color/border/padding options |
+| `faq` | V2 data marker + legacy class | Divider + heading based question blocks |
+| `switcher` | V2 data targets + legacy class/cluster fallback | Cluster mode policy is open (Q002). See `docs/specs/switcher-contract.md` |

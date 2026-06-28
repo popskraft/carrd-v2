@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-23T15:32:18.895Z",
+    "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+    "tabId": "B96C6D22B78633B4E1488439B484E19B",
+    "backupDir": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/raw-imports/2026-06-23T15-32-18-742Z-v2-refresh-backup"
+  },
+  "result": {
+    "dirtyPublishButton": false,
+    "applied": [
+      {
+        "id": "embed14",
+        "title": "Theme Design System V2 Custom (in HEAD)",
+        "location": "head"
+      },
+      {
+        "id": "embed10",
+        "title": "Theme JS Custom V2 (BODY END)",
+        "location": "body-end"
+      },
+      {
+        "id": "embed08",
+        "title": "No Loadwaiting V2 (in HEAD)",
+        "location": "head"
+      },
+      {
+        "id": "embed02",
+        "title": "Cookie Banner V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed03",
+        "title": "FAQ V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed04",
+        "title": "Floating CTA V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed06",
+        "title": "Grid Cluster V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed05",
+        "title": "Header Nav V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed07",
+        "title": "Modal V2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed13",
+        "title": "Slider V2 | Part: 1/2",
+        "location": "body-end"
+      },
+      {
+        "id": "embed09",
+        "title": "Slider V2 | Part: 2/2",
+        "location": "body-end"
+      }
+    ],
+    "afterChecks": [
+      {
+        "id": "embed14",
+        "title": "Theme Design System V2 Custom (in HEAD)",
+        "location": "head",
+        "actualHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
+        "expectedHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
+        "matchesExpected": true,
+        "contentLength": 9910
+      },
+      {
+        "id": "embed10",
+        "title": "Theme JS Custom V2 (BODY END)",
+        "location": "body-end",
+        "actualHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
+        "expectedHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
+        "matchesExpected": true,
+        "contentLength": 443
+      },
+      {
+        "id": "embed08",
+        "title": "No Loadwaiting V2 (in HEAD)",
+        "location": "head",
+        "actualHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
+        "expectedHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
+        "matchesExpected": true,
+        "contentLength": 3201
+      },
+      {
+        "id": "embed02",
+        "title": "Cookie Banner V2",
+        "location": "body-end",
+        "actualHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
+        "expectedHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
+        "matchesExpected": true,
+        "contentLength": 7484
+      },
+      {
+        "id": "embed03",
+        "title": "FAQ V2",
+        "location": "body-end",
+        "actualHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
+        "expectedHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
+        "matchesExpected": true,
+        "contentLength": 10164
+      },
+      {
+        "id": "embed04",
+        "title": "Floating CTA V2",
+        "location": "body-end",
+        "actualHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
+        "expectedHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
+        "matchesExpected": true,
+        "contentLength": 7433
+      },
+      {
+        "id": "embed06",
+        "title": "Grid Cluster V2",
+        "location": "body-end",
+        "actualHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
+        "expectedHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
+        "matchesExpected": true,
+        "contentLength": 9711
+      },
+      {
+        "id": "embed05",
+        "title": "Header Nav V2",
+        "location": "body-end",
+        "actualHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
+        "expectedHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
+        "matchesExpected": true,
+        "contentLength": 5028
+      },
+      {
+        "id": "embed07",
+        "title": "Modal V2",
+        "location": "body-end",
+        "actualHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
+        "expectedHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
+        "matchesExpected": true,
+        "contentLength": 11211
+      },
+      {
+        "id": "embed13",
+        "title": "Slider V2 | Part: 1/2",
+        "location": "body-end",
+        "actualHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
+        "expectedHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
+        "matchesExpected": true,
+        "contentLength": 10941
+      },
+      {
+        "id": "embed09",
+        "title": "Slider V2 | Part: 2/2",
+        "location": "body-end",
+        "actualHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
+        "expectedHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
+        "matchesExpected": true,
+        "contentLength": 8998
+      }
+    ]
+  }
+}

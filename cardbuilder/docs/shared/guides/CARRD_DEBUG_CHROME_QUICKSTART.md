@@ -54,7 +54,6 @@ Current profile mapping:
 | Site | Chrome profile dir |
 |---|---|
 | `main-template` | `~/.codex/chrome-debug-profile` |
-| `lunar-auto-film` | `~/.codex/chrome-debug-profile-lunar-auto-film` |
 | `faktura` | `~/.codex/chrome-debug-profile-faktura` |
 
 When adding a new site to the registry, set `chromeProfileDir` to a new unique path under `~/.codex/`.

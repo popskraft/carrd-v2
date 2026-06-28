@@ -1,0 +1,241 @@
+<style>
+:root {
+/* Colors */
+--theme-color-primary: #AC947B;
+--theme-color-primary-hover: #000000;
+--theme-color-primary-dark: #8C8176;
+--theme-color-primary-light: #eeeae5;
+--theme-color-text: #444444;
+--theme-color-headlines: #222222;
+--theme-color-border: #E0D6CE;
+--theme-color-danger: #bf1a1a;
+--theme-color-success: #029b68;
+--theme-color-black: #000000;
+--theme-color-bg: #ffffff;
+--theme-color-accent: var(--theme-color-primary);
+--theme-overlay-bg: rgba(234, 227, 214, 0.875);
+--theme-card-bg-default: var(--theme-color-primary-light);
+
+/* Typography */
+--theme-font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+--theme-font-size-base: 16px;
+--theme-line-height-base: 1.6;
+
+/* Buttons */
+--theme-btn-primary-bg: var(--theme-color-primary);
+--theme-btn-primary-hover-bg: var(--theme-color-primary-hover);
+--theme-btn-text: var(--theme-color-bg, #ffffff);
+
+/* Links */
+--theme-link-color: var(--theme-color-primary);
+--theme-link-hover-color: var(--theme-color-primary-hover);
+
+/* UI Controls */
+--theme-ui-control-size: 40px;
+--theme-ui-control-radius: 999px;
+--theme-ui-control-bg: var(--theme-color-bg);
+--theme-ui-control-bg-hover: var(--theme-color-primary-light);
+--theme-ui-control-color: var(--theme-color-text);
+--theme-ui-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+--theme-ui-icon-size: 20px;
+--theme-ui-icon-stroke: 2;
+
+/* UI Dots */
+--theme-ui-dot-size: 10px;
+--theme-ui-dot-bg: rgba(0, 0, 0, 0.2);
+--theme-ui-dot-hover-bg: rgba(0, 0, 0, 0.4);
+--theme-ui-dot-active-bg: var(--theme-color-primary);
+
+/* UI Surfaces */
+--theme-ui-surface-muted: rgba(227, 228, 230, 0.2);
+--theme-ui-surface-muted-hover: rgba(227, 228, 230, 0.4);
+
+/* Slider Defaults */
+--theme-slider-dot-size: var(--theme-ui-dot-size);
+--theme-slider-dot-bg: var(--theme-ui-dot-bg);
+--theme-slider-dot-hover-bg: var(--theme-ui-dot-hover-bg);
+--theme-slider-dot-active-bg: var(--theme-ui-dot-active-bg);
+--theme-slider-dots-margin: 1rem;
+--theme-slider-dots-margin-mobile: 0.75rem;
+--theme-slider-arrow-size: var(--theme-ui-control-size);
+--theme-slider-arrow-bg: var(--theme-ui-control-bg);
+--theme-slider-arrow-hover-bg: var(--theme-ui-control-bg-hover);
+--theme-slider-arrow-color: var(--theme-ui-control-color);
+--theme-slider-arrow-radius: var(--theme-ui-control-radius);
+--theme-slider-arrow-shadow: var(--theme-ui-control-shadow);
+--theme-slider-arrow-offset: 0.5rem;
+--theme-slider-arrow-icon-size: var(--theme-ui-icon-size);
+
+/* Modal Defaults */
+--theme-modal-close-size: var(--theme-ui-control-size);
+--theme-modal-close-bg: var(--theme-ui-control-bg);
+--theme-modal-close-hover-bg: var(--theme-ui-control-bg-hover);
+--theme-modal-close-color: var(--theme-ui-control-color);
+--theme-modal-close-radius: var(--theme-ui-control-radius);
+--theme-modal-close-icon-size: 24px;
+--theme-modal-close-icon-stroke: var(--theme-ui-icon-stroke);
+}
+
+/* UTILITIES */
+.rounded {
+border-radius:.25rem;
+}
+/* Theme styles */
+/*
+body {
+-webkit-font-smoothing: antialiased;
+}
+*/
+
+/* Slider dots */
+.theme-slider-dot {
+width: var(--theme-slider-dot-size, var(--theme-ui-dot-size, 10px));
+height: var(--theme-slider-dot-size, var(--theme-ui-dot-size, 10px));
+border-radius: 50%;
+background: var(--theme-slider-dot-bg, var(--theme-ui-dot-bg, rgba(0, 0, 0, 0.2)));
+border: none;
+padding: 0;
+cursor: pointer;
+transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.theme-slider-dot:hover {
+background: var(--theme-slider-dot-hover-bg, var(--theme-ui-dot-hover-bg, rgba(0, 0, 0, 0.4)));
+}
+
+.theme-slider-dot.is-active {
+background: var(--theme-slider-dot-active-bg, var(--theme-ui-dot-active-bg, var(--theme-color-primary, #EF4444)));
+transform: scale(1.2);
+}
+
+/* Slider arrows */
+.theme-slider-nav {
+width: var(--theme-slider-arrow-size, var(--theme-ui-control-size, 48px));
+height: var(--theme-slider-arrow-size, var(--theme-ui-control-size, 48px));
+background: var(--theme-slider-arrow-bg, var(--theme-ui-control-bg, var(--theme-color-bg, #ffffff)));
+border: none;
+border-radius: var(--theme-slider-arrow-radius, var(--theme-ui-control-radius, 999px));
+color: var(--theme-slider-arrow-color, var(--theme-ui-control-color, var(--theme-color-text, #5D6878)));
+box-shadow: var(--theme-slider-arrow-shadow, var(--theme-ui-control-shadow, 0 2px 8px rgba(0, 0, 0, 0.15)));
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+}
+
+.theme-slider-nav:hover {
+background: var(--theme-slider-arrow-hover-bg, var(--theme-ui-control-bg-hover, var(--theme-color-primary-light, #f5f5f5)));
+}
+
+.theme-slider-nav svg {
+width: var(--theme-slider-arrow-icon-size, var(--theme-ui-icon-size, 20px));
+height: var(--theme-slider-arrow-icon-size, var(--theme-ui-icon-size, 20px));
+stroke: currentColor;
+stroke-width: var(--theme-ui-icon-stroke, 2);
+fill: none;
+}
+
+/* Modal close button */
+.theme-modal-close {
+width: var(--theme-modal-close-size, var(--theme-ui-control-size, 40px));
+height: var(--theme-modal-close-size, var(--theme-ui-control-size, 40px));
+border: none;
+border-radius: var(--theme-modal-close-radius, var(--theme-ui-control-radius, 999px));
+background: var(--theme-modal-close-bg, var(--theme-ui-control-bg, var(--theme-color-bg, #ffffff)));
+color: var(--theme-modal-close-color, var(--theme-ui-control-color, var(--theme-color-text, #5D6878)));
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.theme-modal-close:hover {
+background: var(--theme-modal-close-hover-bg, var(--theme-ui-control-bg-hover, var(--theme-color-primary-light, #f5f5f5)));
+transform: scale(1.1);
+}
+
+.theme-modal-close svg {
+width: var(--theme-modal-close-icon-size, 24px);
+height: var(--theme-modal-close-icon-size, 24px);
+stroke: currentColor;
+stroke-width: var(--theme-modal-close-icon-stroke, var(--theme-ui-icon-stroke, 2));
+fill: none;
+}
+
+/* Shopping cart controls */
+.theme-shopcart-btn-qty {
+background: var(--theme-shopcart-qty-bg, var(--theme-ui-surface-muted, rgba(227, 228, 230, 0.2)));
+border: none;
+border-radius: var(--theme-shopcart-btn-radius, 0.125rem);
+color: inherit;
+}
+
+.theme-shopcart-btn-qty:hover {
+background: var(--theme-shopcart-qty-hover-bg, var(--theme-ui-surface-muted-hover, rgba(227, 228, 230, 0.4)));
+}
+
+.theme-shopcart-close svg {
+width: var(--theme-shopcart-close-icon-size, var(--theme-ui-icon-size, 20px));
+height: var(--theme-shopcart-close-icon-size, var(--theme-ui-icon-size, 20px));
+stroke: currentColor;
+stroke-width: var(--theme-shopcart-close-icon-stroke, var(--theme-ui-icon-stroke, 2));
+fill: none;
+}
+
+/* === Theme Styles === */
+
+/* Header Nav pre-init mobile collapse */
+@media (max-width:736px){#header:not(.is-nav-open) .header-mobile-el-collapsing{display:none !important}}
+
+/* PRODUCTS */
+.card-favorite-icon {
+position: absolute;
+top: 0rem;
+right: .5rem;
+}
+
+/* UTILITIES */
+.position-absolute {
+position: absolute;
+}
+.top-right {
+top: 1.25rem;
+right: 1.25rem;
+}
+.flex-card-horizont .inner {
+display: flex;
+gap: 1.25rem;
+}
+.flex-card-horizont .inner .text-component {
+display: flex;
+align-items: center;
+}
+
+.container-component.theme-grid-justify,
+.container-component.theme-grid-justify .wrapper {
+display: flex;
+align-items: stretch;
+}
+.justify.between .inner {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.bg-white .wrapper {
+background-color: #ffffff !important;
+}
+.bg-primary .wrapper {
+background-color: var(--theme-color-primary) !important;
+}
+.bg-primary-light .wrapper {
+background-color: var(--theme-color-primary-light) !important;
+}
+.bg-primary-dark .wrapper {
+background-color: var(--theme-color-primary-dark) !important;
+}
+.inverse .text-component {
+color: #ffffff !important;
+}
+</style>

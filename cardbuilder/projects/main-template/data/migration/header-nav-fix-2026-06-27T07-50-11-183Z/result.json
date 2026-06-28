@@ -1,0 +1,13 @@
+{
+  "mode": "dry-run",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "changedIds": [],
+  "live": {
+    "classes": "site-header\nheader-collapsing",
+    "elementId": "",
+    "backgroundBlur": 4,
+    "publishAlert": false
+  },
+  "beforeSha256": "051311d8ffca8a88899c9e531538827b2e4b4937d31a34e9b0de115a36a534db",
+  "afterSha256": "051311d8ffca8a88899c9e531538827b2e4b4937d31a34e9b0de115a36a534db"
+}

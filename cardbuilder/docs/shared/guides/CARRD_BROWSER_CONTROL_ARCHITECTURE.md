@@ -70,9 +70,9 @@ Role:
 
 This layer already exists for:
 
-- `main-template`
-- `lunar-auto-film`
-- `koryphey-online`
+- `main-template` (registered)
+- `faktura` (registered)
+- `koryphey-online`, `lunar-auto-film` (project workspaces, not in the site registry)
 
 ### 4. Operation layer
 
@@ -179,18 +179,16 @@ remains available for one-off runs.
 
 ### Gap 2. Canon is internally inconsistent
 
-Current repo guidance conflicts in several places.
+Static builder readings and live Builder verification can conflict on interaction methods.
 
-Examples:
+Example:
 
-- `carrd-admin-ops` says `propertiesPanel.showById()` does not exist
-- live Builder verification on 2026-06-18 shows `propertiesPanel.showById` is a working function
-- legacy `CARRD_AGENT_INSTRUCTION.md` has been reduced to a bridge file and should not be used as active guidance
-- `carrd-admin-ops` explicitly warns that DOM `.click()` can produce false conclusions
+- older static readings could not confirm `propertiesPanel.showById()`; live Builder verification on 2026-06-18 shows `propertiesPanel.showById` is a working function
+- DOM `.click()` can produce false conclusions, so live evidence is preferred over static-only readings
 
 Impact:
 
-- an agent can choose the wrong interaction method even with local docs
+- an agent can choose the wrong interaction method if it trusts a static reading over live verification
 
 ### Gap 3. No explicit capability matrix per operation type
 
@@ -359,7 +357,7 @@ This lets the repo support many Carrd projects even when they share the same plu
 ## Implementation Order
 
 1. Normalize canon conflicts around interaction methods.
-   - align `carrd-admin-ops` and the scan scripts, then keep the legacy `CARRD_AGENT_INSTRUCTION.md` bridge out of the active guidance path
+   - prefer live Builder verification over static-only readings; keep static readings caveated until reproduced live
 2. Add `site-profile.json` to each site package.
 3. Add a small registry of known site packages instead of relying only on one active pointer.
 4. Teach drift and readiness commands to resolve the site package from the live Builder URL first.

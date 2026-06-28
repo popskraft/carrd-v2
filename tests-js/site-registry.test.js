@@ -21,9 +21,9 @@ test('site registry loads the live site registry and validates canonical paths',
   const { loadRegistry } = await loadRegistryModule();
   const registry = loadRegistry();
 
-  assert.equal(registry.length >= 3, true);
+  assert.equal(registry.length >= 2, true);
   assert.ok(registry.some(site => site.siteSlug === 'main-template'));
-  assert.ok(registry.some(site => site.siteSlug === 'lunar-auto-film'));
+  assert.equal(registry.some(site => site.siteSlug === 'lunar-auto-film'), false);
   assert.ok(registry.some(site => site.siteSlug === 'faktura'));
 });
 
@@ -31,12 +31,12 @@ test('site registry resolves the active template pointer through the registry', 
   const { resolveSite, profileSnapshotDir } = await loadRegistryModule();
   const resolved = resolveSite();
 
-  assert.equal(resolved.site.siteSlug, 'lunar-auto-film');
+  assert.equal(resolved.site.siteSlug, 'main-template');
   assert.equal(resolved.matchedBy, 'activeTemplateId');
-  assert.equal(resolved.activeTemplate.activeTemplateId, 'lunar-auto-film');
+  assert.equal(resolved.activeTemplate.activeTemplateId, 'main-template');
   assert.equal(
     profileSnapshotDir(resolved.profile),
-    '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/lunar-auto-film/data/snapshots'
+    '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots'
   );
 });
 
@@ -79,7 +79,6 @@ test('cardbuilder operational canon does not depend on legacy workspace roots', 
     'cardbuilder/AGENTS.md',
     'cardbuilder/projects/faktura/AGENTS.md',
     'cardbuilder/projects/koryphey-online/AGENTS.md',
-    'cardbuilder/projects/lunar-auto-film/AGENTS.md',
     'cardbuilder/projects/main-template/AGENTS.md',
     'cardbuilder/data/sites.json',
     'cardbuilder/data/active-template.json'

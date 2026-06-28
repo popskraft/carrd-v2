@@ -11,10 +11,6 @@ Reusable Carrd guidance shared across site packages.
 - [guides/CARRD_DETERMINISTIC_AUDIT.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_DETERMINISTIC_AUDIT.md)
 - [guides/CARRD_PER_SITE_PROCESS.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_PER_SITE_PROCESS.md)
 
-## Legacy Bridge
-
-- [guides/CARRD_AGENT_INSTRUCTION.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/shared/guides/CARRD_AGENT_INSTRUCTION.md)
-
 ## Media
 
 - `shared/screenshots/` holds reference screenshots for builder-static work.

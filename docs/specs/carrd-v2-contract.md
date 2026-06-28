@@ -54,7 +54,6 @@
 ## Related docs
 - `docs/specs/carrd-markup-contract.md`
 - `docs/specs/plugin-v2-data-contract.md`
-- `docs/specs/plugin-v2-transition-plan.md`
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`
 - `docs/templates/plugin-readme-template.md`

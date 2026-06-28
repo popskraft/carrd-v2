@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-23T15:33:05.126Z",
+    "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+    "publishedSiteUrl": "https://faktura-dev.crd.co/",
+    "updateResult": "draft-updated-readback-verified",
+    "publishStatus": "not-published-by-automation",
+    "backupDir": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/raw-imports/2026-06-23T15-32-18-742Z-v2-refresh-backup"
+  },
+  "summary": {
+    "checked": 11,
+    "matches": 11,
+    "drift": 0,
+    "untouchedServiceEmbeds": [
+      {
+        "id": "embed01",
+        "title": "JIVO SITE",
+        "location": "body-end",
+        "contentLength": 563
+      },
+      {
+        "id": "embed12",
+        "title": "Yandex.Metrika",
+        "location": "body-end",
+        "contentLength": 781
+      },
+      {
+        "id": "embed11",
+        "title": "Calibri Phone",
+        "location": "body-end",
+        "contentLength": 98
+      }
+    ]
+  },
+  "rows": [
+    {
+      "id": "embed14",
+      "title": "Theme Design System V2 Custom (in HEAD)",
+      "expectedTitle": "Theme Design System V2 Custom (in HEAD)",
+      "sourcePath": "dist/theme-design-system.html + faktura overrides",
+      "location": "head",
+      "expectedHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
+      "liveHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
+      "status": "match",
+      "liveContentLength": 9910,
+      "expectedContentLength": 9910
+    },
+    {
+      "id": "embed10",
+      "title": "Theme JS Custom V2 (BODY END)",
+      "expectedTitle": "Theme JS Custom V2 (BODY END)",
+      "sourcePath": "preserved faktura slider config migrated to CarrdPluginOptionsV2",
+      "location": "body-end",
+      "expectedHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
+      "liveHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
+      "status": "match",
+      "liveContentLength": 443,
+      "expectedContentLength": 443
+    },
+    {
+      "id": "embed08",
+      "title": "No Loadwaiting V2 (in HEAD)",
+      "expectedTitle": "No Loadwaiting V2 (in HEAD)",
+      "sourcePath": "dist/no-loadwaiting-v2/no-loadwaiting-v2-embed.html",
+      "location": "head",
+      "expectedHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
+      "liveHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
+      "status": "match",
+      "liveContentLength": 3201,
+      "expectedContentLength": 3201
+    },
+    {
+      "id": "embed02",
+      "title": "Cookie Banner V2",
+      "expectedTitle": "Cookie Banner V2",
+      "sourcePath": "dist/cookie-banner-v2/cookie-banner-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
+      "liveHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
+      "status": "match",
+      "liveContentLength": 7484,
+      "expectedContentLength": 7484
+    },
+    {
+      "id": "embed03",
+      "title": "FAQ V2",
+      "expectedTitle": "FAQ V2",
+      "sourcePath": "dist/faq-v2/faq-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
+      "liveHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
+      "status": "match",
+      "liveContentLength": 10164,
+      "expectedContentLength": 10164
+    },
+    {
+      "id": "embed04",
+      "title": "Floating CTA V2",
+      "expectedTitle": "Floating CTA V2",
+      "sourcePath": "dist/floating-cta-v2/floating-cta-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
+      "liveHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
+      "status": "match",
+      "liveContentLength": 7433,
+      "expectedContentLength": 7433
+    },
+    {
+      "id": "embed06",
+      "title": "Grid Cluster V2",
+      "expectedTitle": "Grid Cluster V2",
+      "sourcePath": "dist/grid-cluster-v2/grid-cluster-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
+      "liveHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
+      "status": "match",
+      "liveContentLength": 9711,
+      "expectedContentLength": 9711
+    },
+    {
+      "id": "embed05",
+      "title": "Header Nav V2",
+      "expectedTitle": "Header Nav V2",
+      "sourcePath": "dist/header-nav-v2/header-nav-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
+      "liveHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
+      "status": "match",
+      "liveContentLength": 5028,
+      "expectedContentLength": 5028
+    },
+    {
+      "id": "embed07",
+      "title": "Modal V2",
+      "expectedTitle": "Modal V2",
+      "sourcePath": "dist/modal-v2/modal-v2-embed.html",
+      "location": "body-end",
+      "expectedHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
+      "liveHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
+      "status": "match",
+      "liveContentLength": 11211,
+      "expectedContentLength": 11211
+    },
+    {
+      "id": "embed13",
+      "title": "Slider V2 | Part: 1/2",
+      "expectedTitle": "Slider V2 | Part: 1/2",
+      "sourcePath": "dist/slider-v2/slider-v2-embed-part1.html",
+      "location": "body-end",
+      "expectedHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
+      "liveHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
+      "status": "match",
+      "liveContentLength": 10941,
+      "expectedContentLength": 10941
+    },
+    {
+      "id": "embed09",
+      "title": "Slider V2 | Part: 2/2",
+      "expectedTitle": "Slider V2 | Part: 2/2",
+      "sourcePath": "dist/slider-v2/slider-v2-embed-part2.html",
+      "location": "body-end",
+      "expectedHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
+      "liveHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
+      "status": "match",
+      "liveContentLength": 8998,
+      "expectedContentLength": 8998
+    }
+  ]
+}

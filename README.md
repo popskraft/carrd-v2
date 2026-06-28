@@ -168,14 +168,16 @@ Carrd placement rule:
 
 ## Validation
 
-For documentation and distributive checks:
+For documentation, distributive, and code checks:
 
 ```bash
-npm run build:docs
+npm run build
 npm run verify:dist
 npm run test
 npm run lint
 ```
+
+`npm run build:docs` is the faster docs-only subset when only README/source docs changed.
 
 ## Key Documents
 

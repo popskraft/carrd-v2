@@ -15,10 +15,13 @@
 - `docs/specs/repository-architecture-plan.md`
 - `docs/specs/plugin-v2-data-contract.md`
 - `docs/specs/plugin-unification-migration-plan.md`
-- `docs/specs/plugin-v2-transition-plan.md`
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`
 - `docs/specs/breakpoints-contract.md`
+
+## Decisions
+- `docs/decisions/header-nav-structural-contract.md`
+- `docs/decisions/legacy-alias-feature.md`
 
 ## Templates
 - `docs/templates/plugin-readme-template.md`
@@ -27,6 +30,5 @@
 - `admincarrd/docs/INDEX.md`
 - `cardbuilder/docs/INDEX.md`
 
-## Research
-- `docs/research/2026-02-17-cms-comparison.md`
-- `docs/research/2026-02-12-strapi5-astro-architecture-report.md`
+## Archive
+- `docs/_archive/` holds inactive historical/research docs that are no longer indexed or maintained.
