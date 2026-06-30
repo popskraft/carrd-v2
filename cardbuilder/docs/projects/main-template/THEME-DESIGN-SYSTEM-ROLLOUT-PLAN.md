@@ -33,7 +33,7 @@ Create one explicit, saveable plan that answers all of these questions without a
 
 - [/Users/popskraft/Projects/carrd-v2/AGENTS.md](/Users/popskraft/Projects/carrd-v2/AGENTS.md)
 - [/Users/popskraft/Projects/carrd-v2/docs/INDEX.md](/Users/popskraft/Projects/carrd-v2/docs/INDEX.md)
-- [/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md)
+- [/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md)
 - [/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/PLUGIN-SYNC-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/PLUGIN-SYNC-REVIEW.md)
 - [/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/DETERMINISTIC-REPRODUCTION-RULES.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/DETERMINISTIC-REPRODUCTION-RULES.md)
 
@@ -67,7 +67,7 @@ The main user-facing README flow has already been shifted toward `theme-design-s
 But the broader doc surface is not yet fully normalized.
 At minimum, historical or developer-facing references still exist that point to the old two-file mental model, for example in:
 
-- [/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md)
+- [/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md)
 - older Builder/template scan artifacts under `cardbuilder/projects/main-template/data/`
 
 ### Builder And Live State
@@ -226,7 +226,7 @@ Actions:
 
 Minimum review targets:
 
-- `/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md`
+- `/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md`
 - any active runbook or theme-setup instruction that future operators are likely to follow
 
 Output:

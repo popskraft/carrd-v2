@@ -46,7 +46,7 @@ def expected_dist_files(repo_root: Path) -> set[str]:
     if (src_dir / "theme-ui.css").exists():
         expected.add("theme-ui.css")
     if bundle_config.get("enabled", False):
-        bundle_name = bundle_config.get("name", "theme-core-v2")
+        bundle_name = bundle_config.get("name", "theme-core")
         expected.add(f"{bundle_name}.min.css")
         expected.add(f"{bundle_name}.min.js")
         expected.add(f"{bundle_name}-cdn.html")

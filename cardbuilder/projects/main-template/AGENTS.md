@@ -21,7 +21,7 @@ Primary output: site-specific code, docs, and operation artifacts.
 
 Source of truth for stable operating rules: this file.
 Source of truth for site docs navigation: `cardbuilder/docs/projects/main-template/INDEX.md`.
-Source of truth for site profile and scan status: `data/manifests/site-profile.json` and `data/manifests/knowledge-status.json`.
+Source of truth for site profile and scan status: `data/manifests/site-profile.json`, `data/manifests/knowledge-status.json`, and `data/manifests/mcp-targets.json`.
 Source of truth for execution evidence: the `data/` subfolders under this package.
 
 ## Must

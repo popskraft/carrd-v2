@@ -10,10 +10,10 @@ const {
   useFakeTimers
 } = require('./helpers');
 
-test('cookie banner uses the data-cookie-v2 marker, applies indent, and hides all banners after accept', () => {
+test('cookie banner uses the data-cookie marker, applies indent, and hides all banners after accept', () => {
   const dom = createDom(
-    '<div data-cookie-v2="consent" data-cookie-v2-indent="0-2"><a role="button" href="#">Accept</a></div>' +
-    '<div data-cookie-v2="consent-secondary"><a role="button" href="#">Accept</a></div>'
+    '<div data-cookie="consent" data-cookie-indent="0-2"><a role="button" href="#">Accept</a></div>' +
+    '<div data-cookie="consent-secondary"><a role="button" href="#">Accept</a></div>'
   );
   const timers = useFakeTimers(dom);
 
@@ -26,11 +26,11 @@ test('cookie banner uses the data-cookie-v2 marker, applies indent, and hides al
     }
   });
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
   timers.flush();
 
-  const banners = dom.window.document.querySelectorAll('[data-cookie-v2]');
+  const banners = dom.window.document.querySelectorAll('[data-cookie]');
   const banner = banners[0];
   assert.equal(banner.dataset.cookieBannerInitialized, 'true');
   assert.ok(banner.classList.contains('theme-cookie-banner'));
@@ -50,7 +50,7 @@ test('cookie banner uses the data-cookie-v2 marker, applies indent, and hides al
 
 test('cookie banner uses per-banner data position and delay overrides', () => {
   const dom = createDom(
-    '<div data-cookie-v2="consent" data-cookie-v2-position="bottom-right" data-cookie-v2-delay="250">' +
+    '<div data-cookie="consent" data-cookie-position="bottom-right" data-cookie-delay="250">' +
       '<a role="button" href="#">Accept</a>' +
     '</div>'
   );
@@ -63,10 +63,10 @@ test('cookie banner uses per-banner data position and delay overrides', () => {
     return 1;
   };
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
 
-  const banner = dom.window.document.querySelector('[data-cookie-v2="consent"]');
+  const banner = dom.window.document.querySelector('[data-cookie="consent"]');
   assert.equal(banner.style.bottom, '1rem');
   assert.equal(banner.style.right, '1rem');
   assert.equal(banner.style.left, 'auto');
@@ -77,16 +77,16 @@ test('cookie banner uses per-banner data position and delay overrides', () => {
 
 test('cookie banner stays hidden when consent cookie already exists', () => {
   const dom = createDom(
-    '<div data-cookie-v2="consent"><a role="button" href="#">Accept</a></div>' +
+    '<div data-cookie="consent"><a role="button" href="#">Accept</a></div>' +
     '<div id="cookie-baner"><a role="button" href="#">Accept</a></div>'
   );
   dom.window.document.cookie = 'cookies_accepted=1; path=/';
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
 
   const banners = [
-    dom.window.document.querySelector('[data-cookie-v2="consent"]'),
+    dom.window.document.querySelector('[data-cookie="consent"]'),
     dom.window.document.getElementById('cookie-baner')
   ];
 
@@ -108,7 +108,7 @@ test('cookie banner still supports the legacy id fallback', () => {
     }
   });
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
   timers.flush();
 
@@ -118,9 +118,9 @@ test('cookie banner still supports the legacy id fallback', () => {
   timers.restore();
 });
 
-test('cookie banner uses per-banner data-cookie-v2-days when writing consent cookie', () => {
+test('cookie banner uses per-banner data-cookie-days when writing consent cookie', () => {
   const dom = createDom(
-    '<div data-cookie-v2="consent" data-cookie-v2-days="10"><a role="button" href="#">Accept</a></div>'
+    '<div data-cookie="consent" data-cookie-days="10"><a role="button" href="#">Accept</a></div>'
   );
   const timers = useFakeTimers(dom);
   const realDate = dom.window.Date;
@@ -160,11 +160,11 @@ test('cookie banner uses per-banner data-cookie-v2-days when writing consent coo
     }
   });
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
   timers.flush();
 
-  const banner = dom.window.document.querySelector('[data-cookie-v2="consent"]');
+  const banner = dom.window.document.querySelector('[data-cookie="consent"]');
   click(dom, banner.querySelector('a'));
   timers.flush();
 
@@ -175,9 +175,9 @@ test('cookie banner uses per-banner data-cookie-v2-days when writing consent coo
   timers.restore();
 });
 
-test('cookie banner recalculates indent on mobile resize with data-cookie-v2-indent-mobile', () => {
+test('cookie banner recalculates indent on mobile resize with data-cookie-indent-mobile', () => {
   const dom = createDom(
-    '<div data-cookie-v2="consent" data-cookie-v2-indent="1-2" data-cookie-v2-indent-mobile="0-1">' +
+    '<div data-cookie="consent" data-cookie-indent="1-2" data-cookie-indent-mobile="0-1">' +
       '<a role="button" href="#">Accept</a>' +
     '</div>'
   );
@@ -192,11 +192,11 @@ test('cookie banner recalculates indent on mobile resize with data-cookie-v2-ind
     }
   });
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
   timers.flush();
 
-  const banner = dom.window.document.querySelector('[data-cookie-v2="consent"]');
+  const banner = dom.window.document.querySelector('[data-cookie="consent"]');
   assert.equal(banner.style.top, '1rem');
   assert.equal(banner.style.right, '2rem');
 
@@ -210,7 +210,7 @@ test('cookie banner recalculates indent on mobile resize with data-cookie-v2-ind
 });
 
 test('cookie banner reads cookie names safely without regex parsing', () => {
-  const dom = createDom('<div data-cookie-v2="consent"><a role="button" href="#">Accept</a></div>');
+  const dom = createDom('<div data-cookie="consent"><a role="button" href="#">Accept</a></div>');
   dom.window.document.cookie = 'cookies_accepted_extra=1; path=/';
 
   setPluginOptions(dom, {
@@ -222,15 +222,15 @@ test('cookie banner reads cookie names safely without regex parsing', () => {
   });
 
   dom.window.document.cookie = 'cookies_accepted[primary]=1; path=/';
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
 
-  const banner = dom.window.document.querySelector('[data-cookie-v2="consent"]');
+  const banner = dom.window.document.querySelector('[data-cookie="consent"]');
   assert.equal(banner.style.display, 'none');
 });
 
-test('cookie banner keeps legacy data-cookie-v2="banner" marker as fallback', () => {
-  const dom = createDom('<div data-cookie-v2="banner"><a role="button" href="#">Accept</a></div>');
+test('cookie banner keeps legacy data-cookie="banner" marker as fallback', () => {
+  const dom = createDom('<div data-cookie="banner"><a role="button" href="#">Accept</a></div>');
   const timers = useFakeTimers(dom);
 
   setPluginOptions(dom, {
@@ -241,10 +241,10 @@ test('cookie banner keeps legacy data-cookie-v2="banner" marker as fallback', ()
     }
   });
 
-  loadScript(dom, 'src/cookie-banner-v2/cookie-banner-v2.js');
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
   triggerDomReady(dom);
   timers.flush();
 
-  assert.equal(dom.window.document.querySelector('[data-cookie-v2="banner"]').dataset.cookieBannerInitialized, 'true');
+  assert.equal(dom.window.document.querySelector('[data-cookie="banner"]').dataset.cookieBannerInitialized, 'true');
   timers.restore();
 });

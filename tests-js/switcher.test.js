@@ -8,7 +8,7 @@ function createSwitcherDom() {
   return createDom(
     '<section id="home-section">' +
       '<h2>Switcher</h2>' +
-      '<ul id="buttons01" class="buttons-component instance-1 style-2" data-switcher-v2="switcher">' +
+      '<ul id="buttons01" class="buttons-component instance-1 style-2" data-switcher="switcher">' +
         '<li><a href="#" class="n99" role="button">Switcher Var 1</a></li>' +
         '<li><a href="#" class="n02" role="button">Switcher Var 2</a></li>' +
       '</ul>' +
@@ -22,10 +22,10 @@ function createSwitcherDom() {
   );
 }
 
-test('switcher initializes from data-switcher-v2 and hides inactive targets', () => {
+test('switcher initializes from data-switcher and hides inactive targets', () => {
   const dom = createSwitcherDom();
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -34,7 +34,7 @@ test('switcher initializes from data-switcher-v2 and hides inactive targets', ()
   const firstTarget = doc.getElementById('text37');
   const secondTarget = doc.getElementById('text29');
 
-  assert.ok(dom.window.CarrdSwitcherV2);
+  assert.ok(dom.window.CarrdSwitcher);
   assert.equal(firstButton.classList.contains('is-active'), true);
   assert.equal(firstButton.getAttribute('aria-pressed'), 'true');
   assert.equal(secondButton.classList.contains('is-inactive'), true);
@@ -48,7 +48,7 @@ test('switcher initializes from data-switcher-v2 and hides inactive targets', ()
 test('switcher maps by button order rather than Carrd n classes', () => {
   const dom = createSwitcherDom();
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -73,7 +73,7 @@ test('switcher blocks anchor hash behavior and delegated click handlers', () => 
     delegatedClicks.push(event.target);
   });
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const secondButton = doc.querySelectorAll('#buttons01 a')[1];
@@ -88,10 +88,10 @@ test('switcher blocks anchor hash behavior and delegated click handlers', () => 
 });
 
 test('switcher keeps pointer cursor even when Carrd button has no href', () => {
-  const css = fs.readFileSync(path.resolve(__dirname, '..', 'src', 'switcher-v2', 'switcher-v2.css'), 'utf-8');
+  const css = fs.readFileSync(path.resolve(__dirname, '..', 'src', 'switcher', 'switcher.css'), 'utf-8');
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="switcher">' +
+      '<ul data-switcher="switcher">' +
         '<li><a class="n01" role="button">One</a></li>' +
         '<li><a class="n02" role="button">Two</a></li>' +
       '</ul>' +
@@ -100,19 +100,19 @@ test('switcher keeps pointer cursor even when Carrd button has no href', () => {
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
-  assert.match(css, /\[data-switcher-v2\][^{]*\.theme-switcher-button\s*{[^}]*cursor:\s*pointer;/s);
-  // legacy [data-switcher] alias must share the same container-scoped styling (no styling tail)
-  assert.match(css, /:is\(\[data-switcher-v2\],\s*\[data-switcher\]\)\s+\.theme-switcher-button\.is-active/s);
+  assert.match(css, /\[data-switcher\][^{]*\.theme-switcher-button\s*{[^}]*cursor:\s*pointer;/s);
+  // clean switcher buttons keep the active-state styling inside the controller scope
+  assert.match(css, /\[data-switcher\]\s+\.theme-switcher-button\.is-active/s);
   assert.equal(dom.window.document.querySelector('.theme-switcher-button').hasAttribute('href'), false);
 });
 
 test('switcher finds targets in nearest section when controller is outside target container', () => {
   const dom = createSwitcherDom();
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -128,7 +128,7 @@ test('switcher finds targets in nearest section when controller is outside targe
 test('switcher supports multiple targets for one index', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="pricing">' +
+      '<ul data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
@@ -139,11 +139,11 @@ test('switcher supports multiple targets for one index', () => {
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  const secondButton = doc.querySelectorAll('[data-switcher-v2] a')[1];
+  const secondButton = doc.querySelectorAll('[data-switcher] a')[1];
   click(dom, secondButton);
 
   assert.equal(doc.getElementById('price-month').hidden, true);
@@ -155,22 +155,22 @@ test('switcher supports multiple targets for one index', () => {
 test('switcher supports v2 data targets with explicit indexes', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="pricing">' +
+      '<ul data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
-      '<p id="price-month" data-switcher-v2-target="pricing" data-switcher-v2-index="1">Monthly price</p>' +
-      '<p id="copy-month" data-switcher-v2-target="pricing" data-switcher-v2-index="1">Monthly copy</p>' +
-      '<p id="price-year" data-switcher-v2-target="pricing" data-switcher-v2-index="2">Yearly price</p>' +
-      '<p id="copy-year" data-switcher-v2-target="pricing" data-switcher-v2-index="2">Yearly copy</p>' +
+      '<p id="price-month" data-switcher-target="pricing" data-switcher-index="1">Monthly price</p>' +
+      '<p id="copy-month" data-switcher-target="pricing" data-switcher-index="1">Monthly copy</p>' +
+      '<p id="price-year" data-switcher-target="pricing" data-switcher-index="2">Yearly price</p>' +
+      '<p id="copy-year" data-switcher-target="pricing" data-switcher-index="2">Yearly copy</p>' +
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  click(dom, doc.querySelectorAll('[data-switcher-v2] a')[1]);
+  click(dom, doc.querySelectorAll('[data-switcher] a')[1]);
 
   assert.equal(doc.getElementById('price-month').hidden, true);
   assert.equal(doc.getElementById('copy-month').hidden, true);
@@ -181,32 +181,32 @@ test('switcher supports v2 data targets with explicit indexes', () => {
 test('switcher supports v2 data targets by DOM order when indexes are omitted', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="pricing">' +
+      '<ul data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
-      '<p id="monthly" data-switcher-v2-target="pricing">Monthly</p>' +
-      '<p id="yearly" data-switcher-v2-target="pricing">Yearly</p>' +
+      '<p id="monthly" data-switcher-target="pricing">Monthly</p>' +
+      '<p id="yearly" data-switcher-target="pricing">Yearly</p>' +
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
   assert.equal(doc.getElementById('monthly').hidden, false);
   assert.equal(doc.getElementById('yearly').hidden, true);
 
-  click(dom, doc.querySelectorAll('[data-switcher-v2] a')[1]);
+  click(dom, doc.querySelectorAll('[data-switcher] a')[1]);
 
   assert.equal(doc.getElementById('monthly').hidden, true);
   assert.equal(doc.getElementById('yearly').hidden, false);
 });
 
-test('switcher syncs controllers with the same data-switcher-v2 name', () => {
+test('switcher syncs controllers with the same data-switcher name', () => {
   const dom = createDom(
     '<section>' +
-      '<ul id="buttons07" class="buttons-component instance-7 style-2" data-switcher-v2="switcher">' +
+      '<ul id="buttons07" class="buttons-component instance-7 style-2" data-switcher="switcher">' +
         '<li><a class="n01" role="button">Switcher Var 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Var 2</a></li>' +
       '</ul>' +
@@ -214,7 +214,7 @@ test('switcher syncs controllers with the same data-switcher-v2 name', () => {
       '<p id="top-two" class="switcher-2">Top two</p>' +
     '</section>' +
     '<section>' +
-      '<ul id="buttons06" class="buttons-component instance-6 style-2" data-switcher-v2="switcher">' +
+      '<ul id="buttons06" class="buttons-component instance-6 style-2" data-switcher="switcher">' +
         '<li><a class="n01" role="button">Switcher Var 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Var 2</a></li>' +
       '</ul>' +
@@ -223,7 +223,7 @@ test('switcher syncs controllers with the same data-switcher-v2 name', () => {
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -246,19 +246,19 @@ test('switcher cluster mode maps same-attribute sections by order', () => {
   const dom = createDom(
     '<main class="site-main">' +
       '<section id="switcher-controls">' +
-        '<ul id="section-switcher" data-switcher-v2="cases" data-switcher-v2-mode="cluster">' +
+        '<ul id="section-switcher" data-switcher="cases" data-switcher-mode="cluster">' +
           '<li><a href="#" role="button">Case 1</a></li>' +
           '<li><a href="#" role="button">Case 2</a></li>' +
           '<li><a href="#" role="button">Case 3</a></li>' +
         '</ul>' +
       '</section>' +
-      '<section id="case-one" data-switcher-v2-cluster="cases">One</section>' +
-      '<section id="case-two" data-switcher-v2-cluster="cases">Two</section>' +
-      '<section id="case-three" data-switcher-v2-cluster="cases">Three</section>' +
+      '<section id="case-one" data-switcher-cluster="cases">One</section>' +
+      '<section id="case-two" data-switcher-cluster="cases">Two</section>' +
+      '<section id="case-three" data-switcher-cluster="cases">Three</section>' +
     '</main>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -278,30 +278,30 @@ test('switcher cluster mode maps same-attribute sections by order', () => {
 test('switcher cluster mode prefers outer Carrd containers over matching inner elements', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul id="buttons01" class="buttons-component" data-switcher-v2="cases" data-switcher-v2-mode="cluster">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="cases" data-switcher-mode="cluster">' +
         '<li><a class="n01" role="button">Switcher Tab 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Tab 2</a></li>' +
         '<li><a class="n03" role="button">Switcher Tab 3</a></li>' +
       '</ul>' +
-      '<div id="container20" class="container-component" data-switcher-v2-cluster="&quot;cases&quot;">' +
+      '<div id="container20" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text41" class="text-component" data-switcher-v2-cluster="cases">Tab content 1</h2>' +
+          '<h2 id="text41" class="text-component" data-switcher-cluster="cases">Tab content 1</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container21" class="container-component" data-switcher-v2-cluster="&quot;cases&quot;">' +
+      '<div id="container21" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text42" class="text-component" data-switcher-v2-cluster="cases">Tab content 2</h2>' +
+          '<h2 id="text42" class="text-component" data-switcher-cluster="cases">Tab content 2</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container19" class="container-component" data-switcher-v2-cluster="&quot;cases&quot;">' +
+      '<div id="container19" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text12" class="text-component" data-switcher-v2-cluster="cases">Tab content 3</h2>' +
+          '<h2 id="text12" class="text-component" data-switcher-cluster="cases">Tab content 3</h2>' +
         '</div></div>' +
       '</div>' +
     '</main>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -321,10 +321,10 @@ test('switcher cluster mode prefers outer Carrd containers over matching inner e
   assert.equal(doc.getElementById('text42').hidden, false);
 });
 
-test('switcher cluster mode ignores shared class targets without data-switcher-v2-cluster', () => {
+test('switcher cluster mode ignores shared class targets without data-switcher-cluster', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul id="buttons01" class="buttons-component" data-switcher-v2="cases" data-switcher-v2-mode="cluster">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="cases" data-switcher-mode="cluster">' +
         '<li><a class="n01" role="button">Switcher Tab 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Tab 2</a></li>' +
         '<li><a class="n03" role="button">Switcher Tab 3</a></li>' +
@@ -347,7 +347,7 @@ test('switcher cluster mode ignores shared class targets without data-switcher-v
     '</main>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -369,7 +369,7 @@ test('switcher cluster mode ignores shared class targets without data-switcher-v
 test('switcher cluster mode can use a configured target attribute', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul data-switcher-v2="slides" data-switcher-v2-mode="cluster">' +
+      '<ul data-switcher="slides" data-switcher-mode="cluster">' +
         '<li><a href="#" role="button">One</a></li>' +
         '<li><a href="#" role="button">Two</a></li>' +
       '</ul>' +
@@ -379,11 +379,11 @@ test('switcher cluster mode can use a configured target attribute', () => {
   );
   setPluginOptions(dom, { switcher: { clusterTargetAttribute: 'data-case-cluster' } });
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  click(dom, doc.querySelectorAll('[data-switcher-v2] a')[1]);
+  click(dom, doc.querySelectorAll('[data-switcher] a')[1]);
 
   assert.equal(doc.getElementById('slide-one').hidden, true);
   assert.equal(doc.getElementById('slide-two').hidden, false);
@@ -392,17 +392,17 @@ test('switcher cluster mode can use a configured target attribute', () => {
 test('switcher cluster mode warns when target count exceeds button count', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul data-switcher-v2="cases" data-switcher-v2-mode="cluster">' +
+      '<ul data-switcher="cases" data-switcher-mode="cluster">' +
         '<li><a href="#" role="button">One</a></li>' +
       '</ul>' +
-      '<section data-switcher-v2-cluster="cases">One</section>' +
-      '<section data-switcher-v2-cluster="cases">Two</section>' +
+      '<section data-switcher-cluster="cases">One</section>' +
+      '<section data-switcher-cluster="cases">Two</section>' +
     '</main>'
   );
   const warnings = [];
   dom.window.console.warn = (...args) => warnings.push(args.join(' '));
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   assert.ok(warnings.some(message => message.includes('extra targets')));
@@ -411,13 +411,13 @@ test('switcher cluster mode warns when target count exceeds button count', () =>
 test('switcher supports independent controllers on one page', () => {
   const dom = createDom(
     '<section>' +
-      '<ul id="pricing-switcher" data-switcher-v2="pricing">' +
+      '<ul id="pricing-switcher" data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
       '<p id="pricing-one" class="pricing-1">Monthly</p>' +
       '<p id="pricing-two" class="pricing-2">Yearly</p>' +
-      '<ul id="feature-switcher" data-switcher-v2="features">' +
+      '<ul id="feature-switcher" data-switcher="features">' +
         '<li><a href="#" role="button">Basic</a></li>' +
         '<li><a href="#" role="button">Pro</a></li>' +
       '</ul>' +
@@ -426,7 +426,7 @@ test('switcher supports independent controllers on one page', () => {
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -441,20 +441,20 @@ test('switcher supports independent controllers on one page', () => {
 test('switcher public API can show next and previous panels', () => {
   const dom = createSwitcherDom();
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  dom.window.CarrdSwitcherV2.show('switcher', 2);
+  dom.window.CarrdSwitcher.show('switcher', 2);
 
   assert.equal(doc.getElementById('text37').hidden, true);
   assert.equal(doc.getElementById('text29').hidden, false);
 
-  dom.window.CarrdSwitcherV2.next('switcher');
+  dom.window.CarrdSwitcher.next('switcher');
   assert.equal(doc.getElementById('text37').hidden, false);
   assert.equal(doc.getElementById('text29').hidden, true);
 
-  dom.window.CarrdSwitcherV2.prev('switcher');
+  dom.window.CarrdSwitcher.prev('switcher');
   assert.equal(doc.getElementById('text37').hidden, true);
   assert.equal(doc.getElementById('text29').hidden, false);
 });
@@ -462,7 +462,7 @@ test('switcher public API can show next and previous panels', () => {
 test('switcher warns on missing targets without throwing', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="switcher">' +
+      '<ul data-switcher="switcher">' +
         '<li><a href="#" role="button">One</a></li>' +
         '<li><a href="#" role="button">Two</a></li>' +
       '</ul>' +
@@ -473,7 +473,7 @@ test('switcher warns on missing targets without throwing', () => {
   dom.window.console.warn = (...args) => warnings.push(args.join(' '));
 
   assert.doesNotThrow(() => {
-    loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+    loadScript(dom, 'src/switcher/switcher.js');
     triggerDomReady(dom);
   });
 
@@ -493,7 +493,7 @@ test('switcher can initialize the current carrd-source structure', context => {
 
   const controller = doc.getElementById('buttons01');
   const originalButton = controller.querySelector('a');
-  controller.setAttribute('data-switcher-v2', 'switcher');
+  controller.setAttribute('data-switcher', 'switcher');
   controller.innerHTML =
     '<li><a href="#" class="n01" role="button">State 1</a></li>' +
     '<li><a href="#" class="n02" role="button">State 2</a></li>';
@@ -503,7 +503,7 @@ test('switcher can initialize the current carrd-source structure', context => {
     originalButton.removeAttribute('aria-pressed');
   }
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const firstButton = doc.querySelector('#buttons01 a');
@@ -523,7 +523,7 @@ test('switcher can initialize the current carrd-source structure', context => {
 test('switcher shared class: targets without index suffix are mapped by DOM order', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="pricing">' +
+      '<ul data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
@@ -532,7 +532,7 @@ test('switcher shared class: targets without index suffix are mapped by DOM orde
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -548,7 +548,7 @@ test('switcher shared class: targets without index suffix are mapped by DOM orde
 test('switcher shared class: prefers outer Carrd containers over matching inner elements', () => {
   const dom = createDom(
     '<main class="site-main"><section>' +
-      '<ul id="buttons01" class="buttons-component" data-switcher-v2="cases">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="cases">' +
         '<li><a class="n01" role="button">Tab 1</a></li>' +
         '<li><a class="n02" role="button">Tab 2</a></li>' +
         '<li><a class="n03" role="button">Tab 3</a></li>' +
@@ -571,7 +571,7 @@ test('switcher shared class: prefers outer Carrd containers over matching inner 
     '</section></main>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -600,7 +600,7 @@ test('switcher shared class: prefers outer Carrd containers over matching inner 
 test('switcher indexed class: prefers outer Carrd containers over matching inner elements', () => {
   const dom = createDom(
     '<main class="site-main"><section>' +
-      '<ul id="buttons01" class="buttons-component" data-switcher-v2="pricing">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="pricing">' +
         '<li><a class="n01" role="button">Plan 1</a></li>' +
         '<li><a class="n02" role="button">Plan 2</a></li>' +
       '</ul>' +
@@ -617,7 +617,7 @@ test('switcher indexed class: prefers outer Carrd containers over matching inner
     '</section></main>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -639,7 +639,7 @@ test('switcher indexed class: prefers outer Carrd containers over matching inner
 test('switcher shared class: indexed classes take priority over shared class', () => {
   const dom = createDom(
     '<section>' +
-      '<ul data-switcher-v2="pricing">' +
+      '<ul data-switcher="pricing">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
@@ -649,7 +649,7 @@ test('switcher shared class: indexed classes take priority over shared class', (
     '</section>'
   );
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -662,7 +662,7 @@ test('switcher respects configured default index', () => {
   const dom = createSwitcherDom();
   setPluginOptions(dom, { switcher: { defaultIndex: 2 } });
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -673,13 +673,13 @@ test('switcher respects configured default index', () => {
 test('switcher supports per-name instance default indexes', () => {
   const dom = createDom(
     '<section>' +
-      '<ul id="price-switcher" data-switcher-v2="price">' +
+      '<ul id="price-switcher" data-switcher="price">' +
         '<li><a href="#" role="button">Monthly</a></li>' +
         '<li><a href="#" role="button">Yearly</a></li>' +
       '</ul>' +
       '<p id="price-one" class="price-1">Monthly</p>' +
       '<p id="price-two" class="price-2">Yearly</p>' +
-      '<ul id="cases-switcher" data-switcher-v2="cases">' +
+      '<ul id="cases-switcher" data-switcher="cases">' +
         '<li><a href="#" role="button">Case A</a></li>' +
         '<li><a href="#" role="button">Case B</a></li>' +
       '</ul>' +
@@ -698,7 +698,7 @@ test('switcher supports per-name instance default indexes', () => {
     }
   });
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -711,13 +711,13 @@ test('switcher supports per-name instance default indexes', () => {
 test('switcher supports per-name instance cluster target attributes', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul id="price-switcher" data-switcher-v2="price" data-switcher-v2-mode="cluster">' +
+      '<ul id="price-switcher" data-switcher="price" data-switcher-mode="cluster">' +
         '<li><a href="#" role="button">Price 1</a></li>' +
         '<li><a href="#" role="button">Price 2</a></li>' +
       '</ul>' +
-      '<section id="price-one" data-switcher-v2-cluster="price">Price 1</section>' +
-      '<section id="price-two" data-switcher-v2-cluster="price">Price 2</section>' +
-      '<ul id="cases-switcher" data-switcher-v2="cases" data-switcher-v2-mode="cluster">' +
+      '<section id="price-one" data-switcher-cluster="price">Price 1</section>' +
+      '<section id="price-two" data-switcher-cluster="price">Price 2</section>' +
+      '<ul id="cases-switcher" data-switcher="cases" data-switcher-mode="cluster">' +
         '<li><a href="#" role="button">Case 1</a></li>' +
         '<li><a href="#" role="button">Case 2</a></li>' +
       '</ul>' +
@@ -736,7 +736,7 @@ test('switcher supports per-name instance cluster target attributes', () => {
     }
   });
 
-  loadScript(dom, 'src/switcher-v2/switcher-v2.js');
+  loadScript(dom, 'src/switcher/switcher.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;

@@ -7,20 +7,20 @@ const { createDom, loadScript, triggerDomReady, click, setPluginOptions } = requ
 function accordeonHtml() {
   return (
     '<ul id="buttons04" class="buttons-component">' +
-      '<li><a href="#accordeon-ppf" role="button"><svg></svg><span>Toggle</span></a></li>' +
+      '<li><a href="#data-accordeon-ppf" role="button"><svg></svg><span>Toggle</span></a></li>' +
     '</ul>' +
-    '<div id="one" class="container-component" data-accordeon-v2="ppf">One</div>' +
-    '<div id="two" class="container-component" data-accordeon-v2="ppf">Two</div>'
+    '<div id="one" class="container-component" data-accordeon="ppf">One</div>' +
+    '<div id="two" class="container-component" data-accordeon="ppf">Two</div>'
   );
 }
 
 test('accordeon initializes matching links and hides targets by default', () => {
   const dom = createDom(accordeonHtml());
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  const button = doc.querySelector('a[href="#accordeon-ppf"]');
+  const button = doc.querySelector('a[href="#data-accordeon-ppf"]');
   const targets = doc.querySelectorAll('.theme-accordeon-panel');
 
   assert.equal(button.classList.contains('theme-accordeon-toggle'), true);
@@ -30,13 +30,13 @@ test('accordeon initializes matching links and hides targets by default', () => 
   assert.equal(doc.getElementById('two').getAttribute('aria-hidden'), 'true');
 });
 
-test('accordeon supports v2 data hash triggers', () => {
+test('accordeon supports clean data hash triggers', () => {
   const dom = createDom(
-    '<a id="control" href="#data-accordeon-v2-ppf" role="button">Toggle</a>' +
-    '<div id="one" data-accordeon-v2="ppf">One</div>' +
-    '<div id="two" data-accordeon-v2="ppf">Two</div>'
+    '<a id="control" href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div id="one" data-accordeon="ppf">One</div>' +
+    '<div id="two" data-accordeon="ppf">Two</div>'
   );
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -52,9 +52,9 @@ test('accordeon supports v2 data hash triggers', () => {
 test('accordeon toggles all targets in a group and syncs matching controls', () => {
   const dom = createDom(
     accordeonHtml() +
-    '<a id="second-control" href="#accordeon-ppf" role="button">Toggle elsewhere</a>'
+    '<a id="second-control" href="#data-accordeon-ppf" role="button">Toggle elsewhere</a>'
   );
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -79,7 +79,7 @@ test('accordeon scrolls to the first target when opening by default', () => {
   dom.window.requestAnimationFrame = (callback) => callback();
   let scrollOptions = null;
 
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -104,7 +104,7 @@ test('accordeon can disable scroll on open', () => {
     }
   });
 
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -120,11 +120,11 @@ test('accordeon can disable scroll on open', () => {
 test('accordeon leaves unmatched and unrelated hash links alone', () => {
   const dom = createDom(
     '<a id="modal" href="#modal-contact" role="button">Modal</a>' +
-    '<a id="missing" href="#accordeon-missing" role="button">Missing</a>' +
-    '<a id="v2-missing" href="#data-accordeon-v2-missing" role="button">Missing v2</a>' +
-    '<div data-accordeon-v2="ppf">PPF</div>'
+    '<a id="missing" href="#data-accordeon-missing" role="button">Missing</a>' +
+    '<a id="v2-missing" href="#data-accordeon-missing" role="button">Missing v2</a>' +
+    '<div data-accordeon="ppf">PPF</div>'
   );
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const modalEvent = new dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
@@ -141,7 +141,7 @@ test('accordeon leaves unmatched and unrelated hash links alone', () => {
 
 test('accordeon prevents Carrd hash navigation only after finding targets', () => {
   const dom = createDom(accordeonHtml());
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const event = new dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
@@ -151,10 +151,10 @@ test('accordeon prevents Carrd hash navigation only after finding targets', () =
   assert.equal(event.defaultPrevented, true);
 });
 
-test('accordeon supports defaultOpen and the typo target attribute alias', () => {
+test('accordeon supports defaultOpen and the clean target attribute', () => {
   const dom = createDom(
-    '<a href="#accordeon-legacy" role="button">Legacy</a>' +
-    '<div id="legacy" data-accorderon-v2="legacy">Legacy target</div>'
+    '<a href="#data-accordeon-legacy" role="button">Legacy</a>' +
+    '<div id="legacy" data-accordeon="legacy">Legacy target</div>'
   );
   setPluginOptions(dom, {
     accordeon: {
@@ -162,7 +162,7 @@ test('accordeon supports defaultOpen and the typo target attribute alias', () =>
     }
   });
 
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   assert.equal(dom.window.document.getElementById('legacy').hidden, false);
@@ -171,10 +171,10 @@ test('accordeon supports defaultOpen and the typo target attribute alias', () =>
 
 test('accordeon public API opens, closes, and refreshes groups', () => {
   const dom = createDom(accordeonHtml());
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
-  const api = dom.window.CarrdAccordeonV2;
+  const api = dom.window.CarrdAccordeon;
   api.open('ppf');
   assert.equal(api.isOpen('ppf'), true);
   assert.equal(dom.window.document.getElementById('one').hidden, false);
@@ -184,7 +184,7 @@ test('accordeon public API opens, closes, and refreshes groups', () => {
 
   dom.window.document.body.insertAdjacentHTML(
     'beforeend',
-    '<a href="#accordeon-added" role="button">Added</a><div id="added" data-accordeon-v2="added">Added</div>'
+    '<a href="#data-accordeon-added" role="button">Added</a><div id="added" data-accordeon="added">Added</div>'
   );
   api.refresh();
 
@@ -192,23 +192,24 @@ test('accordeon public API opens, closes, and refreshes groups', () => {
   assert.equal(dom.window.document.getElementById('added').hidden, true);
 });
 
-test('accordeon initializes the current carrd-source ppf structure', context => {
+test('accordeon initializes the carrd-source ppf structure after clean hash migration', context => {
   const carrdSourcePath = path.resolve(__dirname, '..', 'carrd-source', 'index.html');
   if (!fs.existsSync(carrdSourcePath)) {
     context.skip('carrd-source reference is not included in this repository');
     return;
   }
 
-  const html = fs.readFileSync(carrdSourcePath, 'utf-8');
+  const html = fs.readFileSync(carrdSourcePath, 'utf-8')
+    .replace('href="#accordeon-ppf"', 'href="#data-accordeon-ppf"');
   const dom = createDom(html);
 
-  loadScript(dom, 'src/accordeon-v2/accordeon-v2.js');
+  loadScript(dom, 'src/accordeon/accordeon.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  const button = doc.querySelector('#buttons04 a[href="#accordeon-ppf"]');
+  const button = doc.querySelector('#buttons04 a[href="#data-accordeon-ppf"]');
 
-  assert.equal(doc.querySelectorAll('[data-accordeon-v2="ppf"]').length, 6);
+  assert.equal(doc.querySelectorAll('[data-accordeon="ppf"]').length, 6);
   assert.equal(doc.getElementById('container08').hidden, true);
 
   click(dom, button);

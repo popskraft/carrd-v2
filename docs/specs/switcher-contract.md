@@ -4,7 +4,7 @@
 
 Technical owner doc for the `switcher` plugin.
 
-This file defines what is specific to `switcher`. Shared v2 naming rules belong to [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-v2-data-contract.md).
+This file defines what is specific to `switcher`. Shared naming rules belong to [docs/specs/plugin-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-data-contract.md).
 
 ## Scope
 
@@ -15,17 +15,17 @@ Supported use cases:
 - text variants;
 - cards or image/text blocks;
 - multiple independent switchers on one page;
-- synchronized controllers with the same `data-switcher-v2` name;
+- synchronized controllers with the same `data-switcher` name;
 - cluster switching for whole containers or sections when needed.
 
-Source lives in `src/switcher-v2/`. Delivery lives in `dist/switcher-v2/`.
+Source lives in `src/switcher/`. Delivery lives in `dist/switcher/`.
 
 ## Public Carrd Contract
 
 ### Controller
 
 ```html
-<ul data-switcher-v2="pricing">
+<ul data-switcher="pricing">
   <li><a href="#" role="button">Monthly</a></li>
   <li><a href="#" role="button">Yearly</a></li>
 </ul>
@@ -33,22 +33,22 @@ Source lives in `src/switcher-v2/`. Delivery lives in `dist/switcher-v2/`.
 
 Rules:
 
-- `data-switcher-v2` is required.
+- `data-switcher` is required.
 - The value must be a safe name such as `pricing`, `cases`, or `faq-mode`.
 - Button order defines indexes: first button is `1`, second is `2`.
 - Carrd button classes such as `n01` and `n02` are ignored by plugin logic.
 
-### V2 data targets
+### Primary data targets
 
 ```html
-<div data-switcher-v2-target="pricing" data-switcher-v2-index="1">Monthly</div>
-<div data-switcher-v2-target="pricing" data-switcher-v2-index="2">Yearly</div>
+<div data-switcher-target="pricing" data-switcher-index="1">Monthly</div>
+<div data-switcher-target="pricing" data-switcher-index="2">Yearly</div>
 ```
 
 Rules:
 
-- `data-switcher-v2-target` is the primary target contract.
-- `data-switcher-v2-index` is optional.
+- `data-switcher-target` is the primary target contract.
+- `data-switcher-index` is optional.
 - If indexes are present, all targets with the same index are shown together.
 - If indexes are omitted, DOM order maps targets to buttons.
 
@@ -68,13 +68,13 @@ Rules:
 ### Cluster targets
 
 ```html
-<ul data-switcher-v2="cases" data-switcher-v2-mode="cluster">
+<ul data-switcher="cases" data-switcher-mode="cluster">
   <li><a role="button">Case 1</a></li>
   <li><a role="button">Case 2</a></li>
 </ul>
 
-<section data-switcher-v2-cluster="cases">...</section>
-<section data-switcher-v2-cluster="cases">...</section>
+<section data-switcher-cluster="cases">...</section>
+<section data-switcher-cluster="cases">...</section>
 ```
 
 Rules:
@@ -104,7 +104,7 @@ Runtime attributes:
 
 Behavior rules:
 
-- Controllers with the same `data-switcher-v2` name form one synchronized state group.
+- Controllers with the same `data-switcher` name form one synchronized state group.
 - Each controller still resolves its own targets inside its own scope.
 - Public IDs are not required on targets.
 - Switcher button clicks must cancel default anchor behavior and delegated hash handlers.
@@ -114,16 +114,16 @@ Behavior rules:
 
 For each controller:
 
-1. Read `data-switcher-v2`.
+1. Read `data-switcher`.
 2. Reject empty or unsafe names.
-3. Resolve `data-switcher-v2-mode`, default `class-index`.
+3. Resolve `data-switcher-mode`, default `class-index`.
 4. Resolve scope:
    - default mode: `closest('section') || closest('.site-main') || document`
    - cluster mode: `closest('.site-main') || document`
 5. Collect buttons with `querySelectorAll('a[role="button"], a')`.
-6. In default mode, prefer v2 targets with `data-switcher-v2-target="<name>"`.
-7. If no v2 targets exist, fall back to legacy class-index targets.
-8. In cluster mode, collect `[data-switcher-v2-cluster="<name>"]` by order.
+6. In default mode, prefer clean targets with `data-switcher-target="<name>"`.
+7. If no clean targets exist, fall back to legacy class-index targets.
+8. In cluster mode, collect `[data-switcher-cluster="<name>"]` by order.
 9. Initialize to configured active index, default `1`.
 10. On click, prevent default and show the chosen index across all controllers with the same name.
 
@@ -134,12 +134,12 @@ Carrd's generated button hover CSS uses `!important`, so switcher active styles 
 Required behavior:
 
 ```css
-[data-switcher-v2] .theme-switcher-button {
+[data-switcher] .theme-switcher-button {
   cursor: pointer;
 }
 
-[data-switcher-v2] .theme-switcher-button.is-active,
-[data-switcher-v2] .theme-switcher-button.is-active:hover {
+[data-switcher] .theme-switcher-button.is-active,
+[data-switcher] .theme-switcher-button.is-active:hover {
   background-color: var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838)) !important;
   border-color: var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838)) !important;
   color: var(--theme-switcher-active-color, var(--theme-btn-text, #ffffff)) !important;
@@ -166,17 +166,17 @@ Recommended variables:
 Namespace:
 
 ```js
-window.CarrdPluginOptionsV2 = {
+window.CarrdPluginOptions = {
   switcher: {
     enabled: true,
-    controllerSelector: '[data-switcher-v2]',
+    controllerSelector: '[data-switcher]',
     defaultIndex: 1,
     warnOnMismatch: true,
     scopeSelector: 'section',
-    targetAttribute: 'data-switcher-v2-target',
-    targetIndexAttribute: 'data-switcher-v2-index',
-    modeAttribute: 'data-switcher-v2-mode',
-    clusterTargetAttribute: 'data-switcher-v2-cluster',
+    targetAttribute: 'data-switcher-target',
+    targetIndexAttribute: 'data-switcher-index',
+    modeAttribute: 'data-switcher-mode',
+    clusterTargetAttribute: 'data-switcher-cluster',
     clusterScopeSelector: '.site-main',
     instances: {
       price: { defaultIndex: 2 },
@@ -191,12 +191,12 @@ Core options:
 | Option | Default | Purpose |
 |---|---:|---|
 | `enabled` | `true` | Turns the plugin on or off |
-| `controllerSelector` | `[data-switcher-v2]` | Finds switcher controllers |
+| `controllerSelector` | `[data-switcher]` | Finds switcher controllers |
 | `defaultIndex` | `1` | Button and target shown on page load |
 | `warnOnMismatch` | `true` | Shows console warnings for missing targets |
 | `scopeSelector` | `section` | Parent scope for class-mode targets |
-| `modeAttribute` | `data-switcher-v2-mode` | Selects `class-index` or `cluster` |
-| `clusterTargetAttribute` | `data-switcher-v2-cluster` | Cluster target attribute |
+| `modeAttribute` | `data-switcher-mode` | Selects `class-index` or `cluster` |
+| `clusterTargetAttribute` | `data-switcher-cluster` | Cluster target attribute |
 | `clusterScopeSelector` | `.site-main` | Parent scope for cluster targets |
 | `instances` | `{}` | Per-switcher overrides |
 
@@ -206,7 +206,7 @@ Reference source: `/Users/popskraft/Projects/carrd-v2/carrd-source/index.html`.
 
 Observed structure:
 
-- `ul#buttons01.buttons-component` uses `data-switcher-v2="switcher"`.
+- `ul#buttons01.buttons-component` uses `data-switcher="switcher"`.
 - It has two buttons: `Switcher Var 1` and `Switcher Var 2`.
 - `p#text37` uses `.switcher-1`.
 - `p#text29` uses `.switcher-2`.
@@ -222,5 +222,5 @@ Local `jsdom` verification confirmed:
 ## Related Docs
 
 - `docs/specs/carrd-markup-contract.md`
-- `docs/specs/carrd-v2-contract.md`
+- `docs/specs/carrd-contract.md`
 - `docs/specs/carrd-source-reference.md`

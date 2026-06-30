@@ -18,7 +18,7 @@
 ## Edge Cases
 - `Advanced:` секции добавляй только если есть реальная пользовательская настройка, API или per-instance hook.
 - Если plugin работает на defaults, скажи это явно и не начинай с длинного config dump.
-- Если README становится похож на developer note, перенеси общий контракт в `docs/specs/carrd-v2-contract.md`.
+- Если README становится похож на developer note, перенеси общий контракт в `docs/specs/carrd-contract.md`.
 
 ## Done
 - Source README читается как Carrd setup guide.

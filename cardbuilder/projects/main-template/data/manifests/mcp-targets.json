@@ -1,0 +1,643 @@
+{
+  "meta": {
+    "version": 1,
+    "siteSlug": "main-template",
+    "semanticNamespace": "cx",
+    "contractMode": "bootstrap-file-first",
+    "notes": [
+      "This file is the deterministic MCP target map for main-template.",
+      "semanticKey is the primary stable handle; proposedClass is the preferred persistent Carrd marking when operator policy allows rollout."
+    ],
+    "lastSyncedAt": "2026-06-29T10:57:29.721Z",
+    "targetCount": 10,
+    "liveBuilderUrl": "https://carrd.co/dashboard/4155176224428477/build"
+  },
+  "targets": [
+    {
+      "semanticKey": "site-header-container",
+      "componentId": "container02",
+      "componentType": "container",
+      "aliases": [
+        "site header",
+        "header container",
+        "header"
+      ],
+      "sectionScope": "header",
+      "proposedClass": "cx-site-header",
+      "currentElementId": "",
+      "existingClasses": [
+        "site-header"
+      ],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes",
+        "appearance.background.blur"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the header container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the header container."
+        },
+        {
+          "path": "appearance.background.blur",
+          "valueType": "number",
+          "description": "Header container background blur."
+        }
+      ],
+      "notes": "Logo + primary navigation wrapper.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container02",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [
+          "site-header"
+        ],
+        "attributes": "",
+        "childIds": [
+          "image01",
+          "links02",
+          "buttons04"
+        ],
+        "topLevelIndex": 0,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container02",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "hero-content-container",
+      "componentId": "container01",
+      "componentType": "container",
+      "aliases": [
+        "hero",
+        "hero content",
+        "main intro"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-hero-content",
+      "currentElementId": "",
+      "existingClasses": [
+        "txt"
+      ],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the hero container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the hero container."
+        }
+      ],
+      "notes": "Main intro block after the header marker.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container01",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [
+          "txt"
+        ],
+        "attributes": "",
+        "childIds": [
+          "text03",
+          "text06",
+          "text07",
+          "text02",
+          "list01",
+          "text04",
+          "text05",
+          "text10",
+          "links01",
+          "text34",
+          "buttons05"
+        ],
+        "topLevelIndex": 2,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container01",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "quick-order-cards-container",
+      "componentId": "container06",
+      "componentType": "container",
+      "aliases": [
+        "quick order cards",
+        "cards container",
+        "cards"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-quick-order-cards",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the cards container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the cards container."
+        }
+      ],
+      "notes": "Quick-order shopping cards demo container.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container06",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [],
+        "attributes": "data-cards-v2=cards\ndata-cards-v2-color-1=#ff9bd9\ndata-cards-v2-color-2=#9bdaff\ndata-cards-v2-color-3=#fff259",
+        "childIds": [
+          "text21",
+          "text22",
+          "buttons03",
+          "text01",
+          "buttons02"
+        ],
+        "topLevelIndex": 5,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container06",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "faq-container",
+      "componentId": "container03",
+      "componentType": "container",
+      "aliases": [
+        "faq",
+        "faq block"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-faq-main",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the FAQ container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the FAQ container."
+        }
+      ],
+      "notes": "FAQ container with heading and answer blocks.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container03",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [],
+        "attributes": "data-faq-v2=main",
+        "childIds": [
+          "divider02",
+          "text14",
+          "text15",
+          "text09",
+          "text16",
+          "text17",
+          "divider03",
+          "text13",
+          "divider01",
+          "text23",
+          "text40"
+        ],
+        "topLevelIndex": 25,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container03",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "shopping-cart-order-form-container",
+      "componentId": "container10",
+      "componentType": "container",
+      "aliases": [
+        "shopping cart form",
+        "order form",
+        "checkout form"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-shopping-cart-form",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the order form container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the order form container."
+        }
+      ],
+      "notes": "Order form container after the shopping-cart section break.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container10",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [],
+        "attributes": "data-shopping-cart-v2-target",
+        "childIds": [
+          "form01"
+        ],
+        "topLevelIndex": 27,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container10",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "modal-contact-container",
+      "componentId": "container12",
+      "componentType": "container",
+      "aliases": [
+        "contact modal",
+        "modal contact",
+        "modal"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-modal-contact",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the modal container."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the modal container."
+        }
+      ],
+      "notes": "Modal body container used by contact modal flow.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "container12",
+        "componentType": "container",
+        "elementId": "",
+        "classes": [],
+        "attributes": "data-modal-v2=contact",
+        "childIds": [
+          "text36"
+        ],
+        "topLevelIndex": 30,
+        "tabs": [
+          "Container",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "container12",
+        "shownType": "container",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "site-logo-image",
+      "componentId": "image01",
+      "componentType": "image",
+      "aliases": [
+        "logo",
+        "brand logo",
+        "header logo"
+      ],
+      "sectionScope": "header",
+      "proposedClass": "cx-site-logo",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "image.altText",
+        "image.linkUrl",
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "image.altText",
+          "valueType": "string",
+          "description": "Logo alt text."
+        },
+        {
+          "path": "image.linkUrl",
+          "valueType": "string",
+          "description": "Logo click target URL."
+        },
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the logo image."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the logo image."
+        }
+      ],
+      "notes": "Header logo image.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "image01",
+        "componentType": "image",
+        "elementId": "",
+        "classes": [],
+        "attributes": "",
+        "childIds": [],
+        "topLevelIndex": -1,
+        "tabs": [
+          "Image",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "image01",
+        "shownType": "image",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "primary-nav-links",
+      "componentId": "links02",
+      "componentType": "links",
+      "aliases": [
+        "main nav",
+        "header links",
+        "navigation"
+      ],
+      "sectionScope": "header",
+      "proposedClass": "cx-primary-nav",
+      "currentElementId": "",
+      "existingClasses": [
+        "header-mobile-el-collapsing"
+      ],
+      "readPaths": [
+        "links.links[0].label",
+        "links.links[0].url",
+        "links.links[1].label",
+        "links.links[1].url",
+        "links.links[2].label",
+        "links.links[2].url",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "links.links[0].label",
+          "valueType": "string",
+          "description": "Primary nav link #1 label."
+        },
+        {
+          "path": "links.links[0].url",
+          "valueType": "string",
+          "description": "Primary nav link #1 URL."
+        },
+        {
+          "path": "links.links[1].label",
+          "valueType": "string",
+          "description": "Primary nav link #2 label."
+        },
+        {
+          "path": "links.links[1].url",
+          "valueType": "string",
+          "description": "Primary nav link #2 URL."
+        },
+        {
+          "path": "links.links[2].label",
+          "valueType": "string",
+          "description": "Primary nav link #3 label."
+        },
+        {
+          "path": "links.links[2].url",
+          "valueType": "string",
+          "description": "Primary nav link #3 URL."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the links element."
+        }
+      ],
+      "notes": "Header navigation links element.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "links02",
+        "componentType": "links",
+        "elementId": "",
+        "classes": [
+          "header-mobile-el-collapsing"
+        ],
+        "attributes": "",
+        "childIds": [],
+        "topLevelIndex": -1,
+        "tabs": [
+          "Links",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "links02",
+        "shownType": "links",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "hero-primary-button",
+      "componentId": "buttons01",
+      "componentType": "buttons",
+      "aliases": [
+        "hero cta",
+        "primary cta",
+        "hero button"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-hero-primary-button",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "buttons.buttons[0].label",
+        "buttons.buttons[0].url",
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "buttons.buttons[0].label",
+          "valueType": "string",
+          "description": "Hero CTA button label."
+        },
+        {
+          "path": "buttons.buttons[0].url",
+          "valueType": "string",
+          "description": "Hero CTA button URL."
+        },
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the hero CTA button."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the hero CTA button."
+        }
+      ],
+      "notes": "Primary CTA button inside the hero block.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "buttons01",
+        "componentType": "buttons",
+        "elementId": "",
+        "classes": [],
+        "attributes": "data-switcher-v2=cases\ndata-switcher-v2-mode=cluster",
+        "childIds": [],
+        "topLevelIndex": 21,
+        "tabs": [
+          "Buttons",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "buttons01",
+        "shownType": "buttons",
+        "proposedClassApplied": false
+      }
+    },
+    {
+      "semanticKey": "hero-title-text",
+      "componentId": "text03",
+      "componentType": "text",
+      "aliases": [
+        "hero title",
+        "main heading",
+        "hero heading"
+      ],
+      "sectionScope": "main",
+      "proposedClass": "cx-hero-title",
+      "currentElementId": "",
+      "existingClasses": [],
+      "readPaths": [
+        "text.content",
+        "text.role",
+        "settings.element.id",
+        "settings.element.classes"
+      ],
+      "allowedMutations": [
+        {
+          "path": "text.content",
+          "valueType": "string",
+          "description": "Hero heading rich text content."
+        },
+        {
+          "path": "settings.element.id",
+          "valueType": "string",
+          "description": "Carrd custom element id for the hero title."
+        },
+        {
+          "path": "settings.element.classes",
+          "valueType": "string",
+          "description": "Carrd custom classes for the hero title."
+        }
+      ],
+      "notes": "Main H1 text element inside the hero block.",
+      "live": {
+        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "exists": true,
+        "componentId": "text03",
+        "componentType": "text",
+        "elementId": "",
+        "classes": [],
+        "attributes": "",
+        "childIds": [],
+        "topLevelIndex": -1,
+        "tabs": [
+          "Text",
+          "Appearance",
+          "Animation",
+          "Settings"
+        ],
+        "shownId": "text03",
+        "shownType": "text",
+        "proposedClassApplied": false
+      }
+    }
+  ]
+}

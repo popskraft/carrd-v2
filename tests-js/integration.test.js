@@ -10,31 +10,31 @@ const { createDom, loadScript, triggerDomReady, mockViewport } = require('./help
 // DOM that exercises multiple plugins at once
 function createRichDom() {
   return createDom(
-    '<div id="root">' +
+      '<div id="root">' +
       // grid-cluster blocks
       '<div class="grid-2 w-20">A</div>' +
       '<div class="grid-2 w-80">B</div>' +
       // cards container
-      '<div class="cards"><div class="wrapper"><div class="inner">' +
+      '<div data-cards="cards"><div class="wrapper"><div class="inner">' +
         '<div>Card 1</div><div>Card 2</div>' +
       '</div></div></div>' +
       // faq
-      '<div data-faq-v2="main">' +
+      '<div data-faq="main">' +
         '<hr class="divider-component"><h2>Q1</h2><p>A1</p><hr class="divider-component"><h2>Q2</h2><p>A2</p><hr class="divider-component">' +
       '</div>' +
       // accordeon
-      '<a href="#accordeon-ppf" role="button">Toggle details</a>' +
-      '<div data-accordeon-v2="ppf">Details</div>' +
+      '<a href="#data-accordeon-ppf" role="button">Toggle details</a>' +
+      '<div data-accordeon="ppf">Details</div>' +
       // slider
-      '<div class="slider">Slide 1</div>' +
+      '<div data-slider>Slide 1</div>' +
       // modal
-      '<div id="modalTest" class="container-component modal">' +
+      '<div data-modal="test" class="container-component">' +
         '<div class="wrapper"><div class="inner">Modal</div></div>' +
       '</div>' +
       // typography
       '<div class="txt"><span class="p"># Title</span></div>' +
       // floating cta
-      '<div><ul data-floating-v2="contact" data-floating-v2-position="bottom-right" class="buttons-component"><li><a href="#contact">Order</a></li></ul></div>' +
+      '<div><ul data-floating="contact" data-floating-position="bottom-right" class="buttons-component"><li><a href="#contact">Order</a></li></ul></div>' +
       '<div id="contact"></div>' +
     '</div>'
   );
@@ -51,14 +51,14 @@ test('plugins do not overwrite main.js globals', () => {
   dom.window._scrollToTop = function() {};
 
   // Load all core plugins
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
-  loadScript(dom, 'src/cards-v2/cards-v2.js');
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
-  loadScript(dom, 'src/modal-v2/modal-v2.js');
-  loadScript(dom, 'src/typography-v2/typography-v2.js');
-  loadScript(dom, 'src/shopping-cart-v2/shopping-cart-v2.js');
-  loadScript(dom, 'src/floating-cta-v2/floating-cta-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
+  loadScript(dom, 'src/cards/cards.js');
+  loadScript(dom, 'src/faq/faq.js');
+  loadScript(dom, 'src/slider/slider.js');
+  loadScript(dom, 'src/modal/modal.js');
+  loadScript(dom, 'src/typography/typography.js');
+  loadScript(dom, 'src/shopping-cart/shopping-cart.js');
+  loadScript(dom, 'src/floating-cta/floating-cta.js');
   triggerDomReady(dom);
 
   // main.js global must survive
@@ -76,7 +76,7 @@ test('plugins do not conflict with main.js body class lifecycle', () => {
   dom.window.document.body.classList.add('with-loader');
 
   // no-loadwaiting operates on same classes -- load it
-  loadScript(dom, 'src/no-loadwaiting-v2/no-loadwaiting-v2.js');
+  loadScript(dom, 'src/no-loadwaiting/no-loadwaiting.js');
   triggerDomReady(dom);
 
   // After init, no-loadwaiting should have taken control
@@ -93,8 +93,8 @@ test('cards and grid-cluster coexist on shared DOM', () => {
   const dom = createRichDom();
   dom.window.requestAnimationFrame = (cb) => cb();
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
-  loadScript(dom, 'src/cards-v2/cards-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
+  loadScript(dom, 'src/cards/cards.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -118,41 +118,41 @@ test('cards and grid-cluster use separate initialization markers', () => {
   const dom = createRichDom();
   dom.window.requestAnimationFrame = (cb) => cb();
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
-  loadScript(dom, 'src/cards-v2/cards-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
+  loadScript(dom, 'src/cards/cards.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
 
   // Grid blocks use gridInitialized
-  const gridItems = doc.querySelectorAll('.theme-grid > [data-grid-v2-initialized]');
+  const gridItems = doc.querySelectorAll('.theme-grid > [data-grid-initialized]');
   gridItems.forEach(el => {
     assert.equal(el.dataset.gridInitialized, 'true');
   });
 
   // Cards containers use cardsInitialized
-  const cardsContainer = doc.querySelector('.cards');
-  assert.equal(cardsContainer.getAttribute('data-cards-v2-initialized'), 'true');
+  const cardsContainer = doc.querySelector('[data-cards="cards"]');
+  assert.equal(cardsContainer.getAttribute('data-cards-initialized'), 'true');
 });
 
 // ===== Modal + Shopping Cart interaction =====
 
 test('modal respects preventWhenCartOpen across plugins', () => {
   const dom = createDom(
-    '<div id="modalTest" class="container-component modal">' +
+    '<div data-modal="test" class="container-component">' +
       '<div class="wrapper"><div class="inner">M</div></div>' +
     '</div>' +
     '<div class="theme-shopcart-panel open"></div>'
   );
   dom.window.requestAnimationFrame = (cb) => cb();
   dom.window.globalThis.requestAnimationFrame = dom.window.requestAnimationFrame;
-  dom.window.CarrdPluginOptionsV2 = { modal: { preventWhenCartOpen: true } };
+  dom.window.CarrdPluginOptions = { modal: { preventWhenCartOpen: true } };
 
-  loadScript(dom, 'src/modal-v2/modal-v2.js');
+  loadScript(dom, 'src/modal/modal.js');
   triggerDomReady(dom);
 
-  dom.window.CarrdModalV2.open('modalTest');
-  assert.equal(dom.window.CarrdModalV2.isOpen(), false,
+  dom.window.CarrdModal.open('test');
+  assert.equal(dom.window.CarrdModal.isOpen(), false,
     'modal should not open when cart panel is open');
 });
 
@@ -166,15 +166,15 @@ test('all core plugins load without errors on shared DOM', () => {
 
   // Load active plugins together in the supported shared runtime mix
   const plugins = [
-    'src/faq-v2/faq-v2.js',
-    'src/accordeon-v2/accordeon-v2.js',
-    'src/grid-cluster-v2/grid-cluster-v2.js',
-    'src/cards-v2/cards-v2.js',
-    'src/shopping-cart-v2/shopping-cart-v2.js',
-    'src/slider-v2/slider-v2.js',
-    'src/modal-v2/modal-v2.js',
-    'src/typography-v2/typography-v2.js',
-    'src/floating-cta-v2/floating-cta-v2.js',
+    'src/faq/faq.js',
+    'src/accordeon/accordeon.js',
+    'src/grid-cluster/grid-cluster.js',
+    'src/cards/cards.js',
+    'src/shopping-cart/shopping-cart.js',
+    'src/slider/slider.js',
+    'src/modal/modal.js',
+    'src/typography/typography.js',
+    'src/floating-cta/floating-cta.js',
   ];
 
   // Should not throw
@@ -182,10 +182,10 @@ test('all core plugins load without errors on shared DOM', () => {
   triggerDomReady(dom);
 
   // All APIs exposed
-  assert.ok(dom.window.CarrdShoppingCartV2, 'CarrdShoppingCartV2 API should exist');
-  assert.ok(dom.window.CarrdSliderV2, 'CarrdSliderV2 API should exist');
-  assert.ok(dom.window.CarrdModalV2, 'CarrdModalV2 API should exist');
-  assert.ok(dom.window.CarrdTypographyV2, 'CarrdTypographyV2 API should exist');
+  assert.ok(dom.window.CarrdShoppingCart, 'CarrdShoppingCart API should exist');
+  assert.ok(dom.window.CarrdSlider, 'CarrdSlider API should exist');
+  assert.ok(dom.window.CarrdModal, 'CarrdModal API should exist');
+  assert.ok(dom.window.CarrdTypography, 'CarrdTypography API should exist');
 
   // DOM markers set
   const doc = dom.window.document;
@@ -194,5 +194,5 @@ test('all core plugins load without errors on shared DOM', () => {
   assert.ok(doc.querySelector('.theme-faq-question'), 'faq question should exist');
   assert.ok(doc.querySelector('.theme-accordeon-panel'), 'accordeon panel should exist');
   assert.ok(doc.querySelector('.theme-typography-h1'), 'typography heading should exist');
-  assert.ok(doc.querySelector('[data-floating-v2-clone="true"].theme-floating-cta'), 'floating cta clone should exist');
+  assert.ok(doc.querySelector('[data-floating-clone="true"].theme-floating-cta'), 'floating cta clone should exist');
 });

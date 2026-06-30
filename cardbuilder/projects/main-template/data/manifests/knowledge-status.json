@@ -8,27 +8,28 @@
   "knowledgePolicyVersion": 1,
   "knowledgeDomains": {
     "builderStatic": {
-      "status": "accepted-external-verification",
-      "lastScanAt": "2026-04-06T09:20:00+04:00",
-      "notes": "Builder-static residual questions were resolved via accepted external live-verification evidence. A later broader GUI reconnaissance report was critically normalized into a builder action map without promoting mixed-confidence or template-instance details into canon. Current canon includes publish-panel structure, sections-panel structure, viewport-dependent background/page action visibility, panel docking semantics for do-ui-previous/do-ui-next, and a normalized Builder GUI action map with explicit caveats."
+      "status": "remote-control-audited",
+      "lastScanAt": "2026-06-29T10:57:29.721Z",
+      "notes": "On 2026-06-29 the remote-control audit re-verified CDP reconnect stability, window.app.builder, site.components, ui.propertiesPanel.showById, and current Builder action APIs for template 4155176224428477. See cardbuilder/docs/projects/main-template/REMOTE-CONTROL-AUDIT-2026-06-29.md."
     },
     "templateInstance": {
-      "status": "published-v2-verified",
-      "lastScanAt": "2026-04-06T15:47:35.060Z",
-      "notes": "On 2026-06-27 the canonical main-template was published with explicit v2 CDN embeds and v2 markup. Live verification on mini.crd.co confirmed all seven v2 assets, zero legacy carrd-plugins assets, required markers, and initialized cards, grid, switcher, slider, faq, modal, cookie-banner, header-nav, and shopping-cart behavior."
+      "status": "mcp-bootstrap-synced",
+      "lastScanAt": "2026-06-29T10:57:29.721Z",
+      "notes": "On 2026-06-29 a fresh read-only tabs snapshot recorded 96 live Builder elements across 11 types including icons, and the deterministic MCP target map was synced against live Builder state. Published v2 runtime verification from 2026-06-27 remains the last published-site validation for mini.crd.co."
     }
   },
   "fullScanCompletedAt": "2026-04-06T15:47:35.060Z",
-  "lastPartialScanAt": "2026-06-27T07:16:00.000Z",
+  "lastPartialScanAt": "2026-06-29T10:57:29.721Z",
   "publicCarrdDocsIndexLastSeenAt": "2026-03-21T06:04:42.105Z",
-  "status": "published-v2-verified",
-  "reason": "The canonical main-template is published with v2 assets and markup; live runtime verification passed on mini.crd.co.",
+  "status": "mcp-bootstrap-synced",
+  "reason": "Remote-control readiness, fresh tabs snapshot, and deterministic MCP target sync were completed for the canonical main-template without automated save or publish.",
   "requiredArtifacts": [
     "builder-static knowledge manifest",
     "builder-components snapshot",
     "dom audit snapshot",
     "style map",
     "controls and anchors map",
+    "mcp target map",
     "live plugin inventory",
     "published site plugin scan",
     "repo-vs-template plugin sync diff",

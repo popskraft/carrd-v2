@@ -24,8 +24,8 @@ function drag(instance, fromX, toX, fromY = 0, toY = 0) {
 }
 
 test('slider initializes and registers instance', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div>');
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div>');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -35,18 +35,18 @@ test('slider initializes and registers instance', () => {
   assert.equal(wrapper.getAttribute('role'), 'region');
   assert.equal(wrapper.getAttribute('aria-roledescription'), 'carousel');
   assert.equal(wrapper.getAttribute('aria-label'), 'Slide 1 of 1');
-  assert.ok(dom.window.CarrdSliderV2);
-  assert.equal(dom.window.CarrdSliderV2.getInstances().length, 1);
+  assert.ok(dom.window.CarrdSlider);
+  assert.equal(dom.window.CarrdSlider.getInstances().length, 1);
 });
 
-test('slider initializes from data-slider-v2 groups and keeps names isolated', () => {
+test('slider initializes from data-slider groups and keeps names isolated', () => {
   const dom = createDom(
-    '<div data-slider-v2="gallery">A</div>' +
-    '<div data-slider-v2="gallery">B</div>' +
-    '<div data-slider-v2="reviews">C</div>' +
-    '<div data-slider-v2="reviews">D</div>'
+    '<div data-slider="gallery">A</div>' +
+    '<div data-slider="gallery">B</div>' +
+    '<div data-slider="reviews">C</div>' +
+    '<div data-slider="reviews">D</div>'
   );
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -55,22 +55,22 @@ test('slider initializes from data-slider-v2 groups and keeps names isolated', (
   assert.equal(wrappers.length, 2);
   assert.equal(wrappers[0].querySelectorAll('.theme-slider-slide').length, 2);
   assert.equal(wrappers[1].querySelectorAll('.theme-slider-slide').length, 2);
-  assert.equal(dom.window.CarrdSliderV2.destroyById('gallery'), true);
-  assert.equal(dom.window.CarrdSliderV2.getInstances().length, 1);
+  assert.equal(dom.window.CarrdSlider.destroyById('gallery'), true);
+  assert.equal(dom.window.CarrdSlider.getInstances().length, 1);
 });
 
 test('slider destroyById removes instance', () => {
-  const dom = createDom('<div class="slider" data-slider-v2-id="hero">A</div><div class="slider">B</div>');
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  const dom = createDom('<div data-slider data-slider-id="hero">A</div><div data-slider>B</div>');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  assert.equal(dom.window.CarrdSliderV2.getInstances().length, 1);
-  assert.equal(dom.window.CarrdSliderV2.destroyById('hero'), true);
-  assert.equal(dom.window.CarrdSliderV2.getInstances().length, 0);
+  assert.equal(dom.window.CarrdSlider.getInstances().length, 1);
+  assert.equal(dom.window.CarrdSlider.destroyById('hero'), true);
+  assert.equal(dom.window.CarrdSlider.getInstances().length, 0);
   assert.equal(dom.window.document.querySelectorAll('.theme-slider-wrapper').length, 0);
 
-  dom.window.CarrdSliderV2.init();
-  assert.equal(dom.window.CarrdSliderV2.getInstances().length, 1);
+  dom.window.CarrdSlider.init();
+  assert.equal(dom.window.CarrdSlider.getInstances().length, 1);
 });
 
 test('slider honors slideSelector override', () => {
@@ -81,19 +81,19 @@ test('slider honors slideSelector override', () => {
     }
   });
 
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
   assert.equal(dom.window.document.querySelectorAll('.theme-slider-wrapper').length, 1);
 });
 
 test('slider snaps smoothly to the next slide by default after a horizontal drag', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
 
   instance.onDragStart({ type: 'mousedown', clientX: 0, clientY: 0 });
@@ -107,12 +107,12 @@ test('slider snaps smoothly to the next slide by default after a horizontal drag
 });
 
 test('slider leaves vertical mobile scrolling untouched', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   let prevented = false;
 
   instance.onDragStart({ type: 'touchstart', touches: [{ clientX: 100, clientY: 100 }] });
@@ -131,14 +131,14 @@ test('slider leaves vertical mobile scrolling untouched', () => {
 
 test('slider lets vertical mobile scrolling start on linked images', () => {
   const dom = createDom(
-    '<div class="slider"><a href="/a"><img src="/a.jpg" alt="A"></a></div>' +
-    '<div class="slider"><a href="/b"><img src="/b.jpg" alt="B"></a></div>'
+    '<div data-slider><a href="/a"><img src="/a.jpg" alt="A"></a></div>' +
+    '<div data-slider><a href="/b"><img src="/b.jpg" alt="B"></a></div>'
   );
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   const image = dom.window.document.querySelector('img');
   let prevented = false;
 
@@ -160,15 +160,15 @@ test('slider lets vertical mobile scrolling start on linked images', () => {
 
 test('slider suppresses linked-image clicks after horizontal mobile swipes', () => {
   const dom = createDom(
-    '<div class="slider"><a href="/a"><img src="/a.jpg" alt="A"></a></div>' +
-    '<div class="slider"><a href="/b"><img src="/b.jpg" alt="B"></a></div>' +
-    '<div class="slider"><a href="/c"><img src="/c.jpg" alt="C"></a></div>'
+    '<div data-slider><a href="/a"><img src="/a.jpg" alt="A"></a></div>' +
+    '<div data-slider><a href="/b"><img src="/b.jpg" alt="B"></a></div>' +
+    '<div data-slider><a href="/c"><img src="/c.jpg" alt="C"></a></div>'
   );
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   const image = dom.window.document.querySelector('img');
   const link = image.closest('a');
   setSlideWidths(instance);
@@ -195,14 +195,14 @@ test('slider suppresses linked-image clicks after horizontal mobile swipes', () 
 });
 
 test('slider freeScroll option keeps inertia after release instead of snapping', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   const timers = useFakeTimers(dom);
   mockViewport(dom, 375);
   setPluginOptions(dom, { slider: { freeScroll: true } });
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
 
   instance.onDragStart({ type: 'mousedown', clientX: 0, clientY: 0 });
@@ -218,13 +218,13 @@ test('slider freeScroll option keeps inertia after release instead of snapping',
 });
 
 test('slider freeScroll responds to horizontal wheel movement', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
   setPluginOptions(dom, { slider: { wheelScroll: true, freeScroll: true } });
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
 
   instance.onWheel({
@@ -240,12 +240,12 @@ test('slider freeScroll responds to horizontal wheel movement', () => {
 });
 
 test('slider ignores short horizontal movement below snap threshold', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   drag(instance, 0, -20);
 
@@ -254,12 +254,12 @@ test('slider ignores short horizontal movement below snap threshold', () => {
 });
 
 test('slider uses final drag direction after a mid-gesture reversal', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   instance.goToSlide(1);
   instance.onDragStart({ type: 'mousedown', clientX: 0, clientY: 0 });
@@ -272,12 +272,12 @@ test('slider uses final drag direction after a mid-gesture reversal', () => {
 });
 
 test('slider stays clamped under repeated swipes at both boundaries', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
 
   for (let i = 0; i < 20; i += 1) drag(instance, 0, 80);
@@ -290,13 +290,13 @@ test('slider stays clamped under repeated swipes at both boundaries', () => {
 });
 
 test('slider keeps one snap cleanup handler during rapid navigation', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   const timers = useFakeTimers(dom);
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   for (let i = 0; i < 50; i += 1) instance.goToSlide(i % 3);
 
@@ -311,12 +311,12 @@ test('slider keeps one snap cleanup handler during rapid navigation', () => {
 });
 
 test('slider navigation controls do not start or interrupt dragging', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
 
   instance.nextBtn.dispatchEvent(new dom.window.MouseEvent('mousedown', { bubbles: true }));
@@ -331,12 +331,12 @@ test('slider navigation controls do not start or interrupt dragging', () => {
 });
 
 test('slider keeps moving when initial slide offsetWidth is zero', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   instance.goToSlide(1);
 
   assert.equal(instance.currentIndex, 1);
@@ -345,16 +345,16 @@ test('slider keeps moving when initial slide offsetWidth is zero', () => {
 });
 
 test('slider public refresh recalculates position after late layout', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   instance.goToSlide(1);
   const fallbackTranslate = instance.translateX;
   setSlideWidths(instance, 100);
-  dom.window.CarrdSliderV2.refresh();
+  dom.window.CarrdSlider.refresh();
 
   assert.equal(instance.currentIndex, 1);
   assert.equal(instance.translateX, -116);
@@ -362,12 +362,12 @@ test('slider public refresh recalculates position after late layout', () => {
 });
 
 test('slider starts a new drag from the rendered in-flight position', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   instance.goToSlide(2);
   const originalGetComputedStyle = dom.window.getComputedStyle;
@@ -380,13 +380,13 @@ test('slider starts a new drag from the rendered in-flight position', () => {
 });
 
 test('slider loop mode wraps navigation indexes', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   mockViewport(dom, 375);
   setPluginOptions(dom, { slider: { loop: true } });
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   instance.goToSlide(-1);
   assert.equal(instance.currentIndex, instance.getTotalPages() - 1);
@@ -395,13 +395,13 @@ test('slider loop mode wraps navigation indexes', () => {
 });
 
 test('slider recalculates pages and clamps the index after viewport resize', () => {
-  const dom = createDom(Array.from({ length: 7 }, (_, i) => `<div class="slider">${i}</div>`).join(''));
+  const dom = createDom(Array.from({ length: 7 }, (_, i) => `<div data-slider>${i}</div>`).join(''));
   const timers = useFakeTimers(dom);
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   instance.goToSlide(instance.getTotalPages() - 1);
   mockViewport(dom, 1280);
@@ -414,7 +414,7 @@ test('slider recalculates pages and clamps the index after viewport resize', () 
 });
 
 test('slider clears stale dot references when resize leaves one page', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div>');
   mockViewport(dom, 375);
   setPluginOptions(dom, {
     slider: {
@@ -423,10 +423,10 @@ test('slider clears stale dot references when resize leaves one page', () => {
       }
     }
   });
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   assert.equal(instance.dots.length, 2);
 
@@ -438,14 +438,14 @@ test('slider clears stale dot references when resize leaves one page', () => {
 });
 
 test('slider autoplay stops during drag and resumes after snap', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div><div class="slider">C</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div><div data-slider>C</div>');
   const timers = useFakeTimers(dom);
   mockViewport(dom, 375);
   setPluginOptions(dom, { slider: { autoplay: true } });
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   assert.notEqual(instance.autoplayTimer, null);
   instance.onDragStart({ type: 'mousedown', clientX: 0, clientY: 0 });
@@ -458,13 +458,13 @@ test('slider autoplay stops during drag and resumes after snap', () => {
 });
 
 test('slider survives 500 mixed drag, navigation, and resize operations', () => {
-  const dom = createDom(Array.from({ length: 8 }, (_, i) => `<div class="slider">${i}</div>`).join(''));
+  const dom = createDom(Array.from({ length: 8 }, (_, i) => `<div data-slider>${i}</div>`).join(''));
   const timers = useFakeTimers(dom);
   mockViewport(dom, 375);
-  loadScript(dom, 'src/slider-v2/slider-v2.js');
+  loadScript(dom, 'src/slider/slider.js');
   triggerDomReady(dom);
 
-  const instance = dom.window.CarrdSliderV2.getInstances()[0];
+  const instance = dom.window.CarrdSlider.getInstances()[0];
   setSlideWidths(instance);
   let seed = 0x5f3759df;
   const random = () => {

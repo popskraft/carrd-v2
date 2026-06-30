@@ -28,7 +28,7 @@ DIST_SECTION_EXCLUDES = set()
 
 # Directories (relative to src/) to EXCLUDE from theme bundling
 THEME_BUNDLE_EXCLUDES = {
-    # "shopping-cart-v2",
+    # "shopping-cart",
     "columns",
     "no-loadwaiting",
 }
@@ -45,8 +45,8 @@ PLUGIN_README_TEMPLATE = "plugin_readme.md"
 INCLUDED_PLUGINS_TEMPLATE = "included_plugins_table.md"
 VERSION_FILE = "VERSION"
 SPLIT_EMBED_PLUGINS = {
-    "shopping-cart-v2",
-    "slider-v2",
+    "shopping-cart",
+    "slider",
 }
 BUNDLE_CONFIG_FILE = "bundle.config.json"
 HEADER_NAV_CRITICAL_CSS = (
@@ -207,7 +207,7 @@ def create_cdn_bundle(
     if not bundle_config.get("enabled", False):
         return
 
-    bundle_name = bundle_config.get("name", "theme-core-v2")
+    bundle_name = bundle_config.get("name", "theme-core")
     shared_css_files = bundle_config.get("shared_css", [])
     prepend_js_files = bundle_config.get("prepend_js", [])
     plugin_slugs = bundle_config.get("plugins", [])
@@ -307,7 +307,7 @@ def create_plugin_cdn_embed(
         parts.extend([
             "<!-- Head -->",
         ])
-        if plugin_slug == "header-nav-v2":
+        if plugin_slug == "header-nav":
             parts.extend([
                 "<style>",
                 HEADER_NAV_CRITICAL_CSS,
@@ -319,7 +319,7 @@ def create_plugin_cdn_embed(
         ])
 
     if has_js:
-        placement = "Head" if plugin_slug == "no-loadwaiting-v2" else "Body End"
+        placement = "Head" if plugin_slug == "no-loadwaiting" else "Body End"
         parts.extend([
             f"<!-- {placement} -->",
             f'<script src="{plugin_base}/{plugin_slug}.min.js"></script>',
@@ -339,6 +339,7 @@ def run(source_dir: Path, dist_dir: Path, docs_only: bool) -> None:
         pass
     dist_dir.mkdir(parents=True, exist_ok=True)
     cleanup_excluded_dist_outputs(dist_dir)
+    cleanup_stale_dist_outputs(source_dir, dist_dir, docs_only)
 
     plugin_sources: Dict[Path, List[PluginMetadata]] = {}
     repo_root = source_dir.parent
@@ -641,6 +642,44 @@ def cleanup_excluded_dist_outputs(dist_dir: Path) -> None:
         if excluded_path.exists():
             excluded_path.unlink()
             print(f"  [cleanup] Removed excluded dist file: {excluded_path}")
+
+
+def cleanup_stale_dist_outputs(source_dir: Path, dist_dir: Path, docs_only: bool) -> None:
+    expected_plugin_dirs = {
+        item.name
+        for item in source_dir.iterdir()
+        if item.is_dir() and not item.name.startswith(".") and not is_dist_build_excluded(item.relative_to(source_dir))
+    }
+    expected_root_dirs = {"themes"}
+
+    keep_root_files = {"README.md", "CHANGELOG.md"}
+    if not docs_only:
+        bundle_name = load_bundle_config(source_dir.parent).get("cdn_bundle", {}).get("name", "theme-core")
+        keep_root_files.update({
+            "theme-design-system.html",
+            "theme-design-tokens.css",
+            "theme-ui.css",
+            f"{bundle_name}.min.css",
+            f"{bundle_name}.min.js",
+            f"{bundle_name}-cdn.html",
+        })
+
+    for child in dist_dir.iterdir():
+        if child.is_dir():
+            if child.name in expected_plugin_dirs or child.name in expected_root_dirs:
+                continue
+            shutil.rmtree(child)
+            print(f"  [cleanup] Removed stale dist directory: {child}")
+            continue
+
+        if not child.is_file():
+            continue
+
+        if docs_only or child.name in keep_root_files:
+            continue
+
+        child.unlink()
+        print(f"  [cleanup] Removed stale dist file: {child}")
 
 def strip_section(content: str, heading: str) -> str:
     pattern = re.compile(rf"^##\s+{re.escape(heading)}\s*$", re.MULTILINE)

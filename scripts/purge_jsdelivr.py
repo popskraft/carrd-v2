@@ -15,8 +15,8 @@ def collect_cdn_assets() -> list[str]:
     assets = [
         "theme-design-tokens.css",
         "theme-ui.css",
-        "theme-core-v2.min.css",
-        "theme-core-v2.min.js",
+        "theme-core.min.css",
+        "theme-core.min.js",
     ]
 
     for path in sorted(DIST_DIR.glob("*/*.min.css")):

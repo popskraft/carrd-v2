@@ -16,6 +16,7 @@ Canonical navigation for the `main-template` site package.
 - [LIVE-PLUGIN-REFRESH-MAP.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/LIVE-PLUGIN-REFRESH-MAP.md)
 - [PLUGIN-ID-VS-CLASS-AUDIT.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/PLUGIN-ID-VS-CLASS-AUDIT.md)
 - [BUILDER-GUI-RECON-CRITICAL-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-GUI-RECON-CRITICAL-REVIEW.md)
+- [REMOTE-CONTROL-AUDIT-2026-06-29.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/REMOTE-CONTROL-AUDIT-2026-06-29.md)
 
 ## Execution Packages
 

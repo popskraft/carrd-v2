@@ -1,7 +1,7 @@
-# AGENTS.md — Carrd Plugins V2
+# AGENTS.md — Carrd Plugins
 
 ## Project
-Carrd Plugins V2 — репозиторий с `src/`-плагинами для Carrd, shared theme assets и generated `dist/`-пакетами.
+Carrd Plugins — репозиторий с `src/`-плагинами для Carrd, shared theme assets и generated `dist/`-пакетами.
 
 ## Root
 `/Users/popskraft/Projects/carrd-v2`
@@ -39,7 +39,7 @@ Carrd Plugins V2 — репозиторий с `src/`-плагинами для 
 - Validate the touched surface with the repository's native checks.
 
 ## Glossary
-- `theme` → shared Carrd foundation (`theme-design-system.html`, `theme-core-v2`)
+- `theme` → shared Carrd foundation (`theme-design-system.html`, `theme-core`)
 - `plugin` → one `src/<slug>/` / `dist/<slug>/` pair
 - `bundle` → generated CDN bundle assets in `dist/`
 - `source` → editable `src/`

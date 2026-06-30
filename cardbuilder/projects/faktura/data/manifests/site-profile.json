@@ -3,13 +3,13 @@
   "templateId": "faktura",
   "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
   "publishedSiteUrl": "https://faktura-dev.crd.co/",
-  "projectWorkspace": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura",
-  "projectDocs": "/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/faktura",
-  "knowledgeStatusManifest": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/manifests/knowledge-status.json",
+  "projectWorkspace": "cardbuilder/projects/faktura",
+  "projectDocs": "cardbuilder/docs/projects/faktura",
+  "knowledgeStatusManifest": "cardbuilder/projects/faktura/data/manifests/knowledge-status.json",
   "structure": {
-    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-builder-scan.json",
-    "domAudit": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-dom-audit.json",
-    "tabsMap": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/snapshots/template-instance-element-tabs-map.json",
+    "builderScan": "cardbuilder/projects/faktura/data/snapshots/template-instance-builder-scan.json",
+    "domAudit": "cardbuilder/projects/faktura/data/snapshots/template-instance-dom-audit.json",
+    "tabsMap": "cardbuilder/projects/faktura/data/snapshots/template-instance-element-tabs-map.json",
     "styleMap": null,
     "containerRegistry": null
   },
@@ -17,13 +17,25 @@
     "containerRegistry": null,
     "notes": [
       "Builder-side canonical scan package exists.",
-      "Plugin embeds were updated to v2 in Builder draft and verified by exact hash readback."
+      "Plugin embeds were updated to the clean runtime in Builder draft and verified by exact hash readback."
     ]
   },
   "runtimeAssets": {
-    "liveInventory": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/inventories/live-plugin-inventory.json",
-    "publishedInventory": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/inventories/published-site-plugin-scan.json",
-    "syncDiff": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json"
+    "liveInventory": "cardbuilder/projects/faktura/data/inventories/live-plugin-inventory.json",
+    "publishedInventory": "cardbuilder/projects/faktura/data/inventories/published-site-plugin-scan.json",
+    "syncDiff": "cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json"
+  },
+  "mcp": {
+    "enabled": true,
+    "protocol": "stdio",
+    "serverEntry": "cardbuilder/scripts/carrd/carrd-mcp-server.mjs",
+    "targetMapPath": "cardbuilder/projects/faktura/data/manifests/mcp-targets.json",
+    "semanticNamespace": "cx",
+    "contractMode": "profile-needs-targeting-pass",
+    "notes": [
+      "The shared control core is reusable here.",
+      "A deterministic semantic target map still needs a site-specific targeting pass before write operations are enabled."
+    ]
   },
   "capabilities": {
     "scan": "state-read",
@@ -32,8 +44,8 @@
     "publish": "operator-only"
   },
   "caveats": [
-    "Published-site scan reflects the currently published page before the v2 draft is published.",
+    "Published-site scan reflects the currently published page before the clean-runtime draft is published.",
     "Publish remains operator-only."
   ],
-  "status": "draft-v2-updated"
+  "status": "draft-clean-runtime-updated"
 }

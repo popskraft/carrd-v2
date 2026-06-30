@@ -1,0 +1,14 @@
+{
+  "mode": "dry-run",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "changedIds": [],
+  "dirty": false,
+  "beforeSha256": "09333657a0f3d23bc0b28774a6349469bc4e566cea71ecd5e59d2c639321c49d",
+  "afterSha256": "09333657a0f3d23bc0b28774a6349469bc4e566cea71ecd5e59d2c639321c49d",
+  "embedHashes": {
+    "embed14": "8cd63d07fbd6d4542b449a380a53fd186e8b4c0ffdcb91aa8082b138177fd487",
+    "embed08": "feef26184e55a2738f9b91fcaf3339af160ca986dc68e75b2184adc6c248e102",
+    "embed02": "0564545507d071ea811240df5b6b29aacfbc0cde27ff3e6cf8c9fa9bcb982374",
+    "embed01": "965558c9c8a6d9ac668a595779e6af9b4846f2d73e2acfa7bf318fc9097d06df"
+  }
+}

@@ -1,7 +1,7 @@
 import os
 import re
 
-DIST_FILE = 'dist/modal-v2/modal-v2-embed.html'
+DIST_FILE = 'dist/modal/modal-embed.html'
 TARGET_FILE = 'carrd/index.html'
 
 def main():

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Runtime Repo**: Promoted Carrd Plugins V2 as the `popskraft/carrd-v2` delivery surface with `*-v2` plugin slugs, `theme-core-v2` bundle assets, and `Carrd*V2` globals.
+- **Runtime Repo**: Promoted Carrd Plugins V2 as the `popskraft/carrd-v2` delivery surface with `*-v2` plugin slugs, `theme-core` bundle assets, and `Carrd*V2` globals.
 - **Documentation**: Added a v2 publication contract that keeps legacy `popskraft/carrd-plugins` as the historical jsDelivr surface.
 - **Module Workspaces**: Moved `admincarrd` and `cardbuilder` into the v2 repo, with sanitized admin defaults and updated local path bindings.
 
@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Accordeon**: Added a lightweight container toggle plugin for `#accordeon-*` links and matching `data-accordeon-v2` containers.
+- **Accordeon**: Added a lightweight container toggle plugin for `#accordeon-*` links and matching `data-accordeon` containers.
 - **Accordeon**: Added default smooth scrolling to the first opened target, configurable with `scrollOnOpen`, `scrollBehavior`, and `scrollBlock`.
 
 ### Fixed
@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **CDN Bundle**: Restored a first-class two-file CDN installation path via `dist/theme-core-v2.min.css` and `dist/theme-core-v2.min.js`.
+- **CDN Bundle**: Restored a first-class two-file CDN installation path via `dist/theme-core.min.css` and `dist/theme-core.min.js`.
 - **Bundle Config**: `bundle.config.json` now controls the selected plugins included in the restored CDN bundle.
 
 ### Changed
@@ -92,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Stacker**: Removed the remaining `stacker` source, config, and test surface so the plugin no longer exists in an active half-supported state.
 - **Custom Themes**: Removed the `custom-themes` delivery path from the active build and documentation contract and preserved the old files under `_archive/custom-themes/`.
 - **Columns**: Removed the deprecated `columns` plugin from active `src/` and test surfaces and preserved it under `_archive/columns/` as a historical legacy module.
-- **Columns Legacy Bridge**: Removed the `window.CarrdPluginOptionsV2.columns` fallback inheritance from active `cards` and `grid-cluster` plugins.
+- **Columns Legacy Bridge**: Removed the `window.CarrdPluginOptions.columns` fallback inheritance from active `cards` and `grid-cluster` plugins.
 
 ## [0.1.16] - 2026-04-07
 
@@ -155,7 +155,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New Plugins**: Split legacy Columns behavior into dedicated plugins:
   - `grid-cluster` for responsive grid clustering
   - `cards` for card item wrapping/styling
-- **Compatibility**: Added legacy `window.CarrdPluginOptionsV2.columns` fallback support in new `grid-cluster` and `cards` plugins for safer migration.
+- **Compatibility**: Added legacy `window.CarrdPluginOptions.columns` fallback support in new `grid-cluster` and `cards` plugins for safer migration.
 
 ### Changed
 
@@ -185,10 +185,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Public API**: Unified plugin globals to `window.Carrd<Plugin>` format for runtime consistency:
-  - `window.CarrdShoppingCartV2`
-  - `window.CarrdModalV2`
-  - `window.CarrdTypographyV2`
-  - `window.CarrdSliderV2`
+  - `window.CarrdShoppingCart`
+  - `window.CarrdModal`
+  - `window.CarrdTypography`
+  - `window.CarrdSlider`
 - **Shopping Cart**: Replaced inline template styles with CSS classes to keep styles centralized.
 - **Typography**: Migrated default classes to plugin-scoped naming (`theme-typography-*`) for namespace safety.
 
@@ -305,7 +305,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fixed JavaScript syntax error in example `carrd/index.html` (missing closing brace for `window.CarrdPluginOptionsV2`).
+- Fixed JavaScript syntax error in example `carrd/index.html` (missing closing brace for `window.CarrdPluginOptions`).
 
 ---
 
@@ -322,4 +322,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Slider** plugin with touch/drag support, navigation dots, and arrows.
 - Added unified shared JS and CSS bundles for the initial release packaging model.
 - Theme customization via CSS variables (`--mini-*`).
-- JS configuration via `window.CarrdPluginOptionsV2`.
+- JS configuration via `window.CarrdPluginOptions`.

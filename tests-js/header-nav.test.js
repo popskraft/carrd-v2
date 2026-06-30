@@ -37,7 +37,7 @@ test('header-nav initializes from #header collapsing markers and toggles mobile 
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -45,7 +45,7 @@ test('header-nav initializes from #header collapsing markers and toggles mobile 
   const toggle = header.querySelector('.theme-header-nav-toggle');
   const primarySection = header.querySelector('.brand-slot');
 
-  assert.equal(header.getAttribute('data-header-nav-v2-bound'), 'true');
+  assert.equal(header.getAttribute('data-header-nav-bound'), 'true');
   assert.ok(primarySection.classList.contains('theme-header-nav-primary-section'));
   assert.ok(toggle);
   assert.equal(toggle.parentNode, primarySection);
@@ -67,7 +67,7 @@ test('header-nav closes mobile menu on Escape and restores focus to toggle', () 
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -96,11 +96,11 @@ test('header-nav does not initialize without a collapsing marker', () => {
   );
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
-  assert.equal(header.getAttribute('data-header-nav-v2-bound'), null);
+  assert.equal(header.getAttribute('data-header-nav-bound'), null);
   assert.equal(header.querySelector('.theme-header-nav-toggle'), null);
 });
 
@@ -108,13 +108,13 @@ test('header-nav does not require legacy site-header or header-collapsing classe
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
   assert.equal(header.querySelector('.site-header'), null);
   assert.equal(header.querySelector('.header-collapsing'), null);
-  assert.equal(header.getAttribute('data-header-nav-v2-bound'), 'true');
+  assert.equal(header.getAttribute('data-header-nav-bound'), 'true');
   assert.ok(header.querySelector('.theme-header-nav-toggle'));
 });
 
@@ -136,7 +136,7 @@ test('header-nav finds collapsing elements anywhere inside #header', () => {
   );
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -145,7 +145,7 @@ test('header-nav finds collapsing elements anywhere inside #header', () => {
   const externalNav = doc.querySelector('.external-nav-slot .header-mobile-el-collapsing');
 
   assert.ok(toggle);
-  assert.equal(header.getAttribute('data-header-nav-v2-bound'), 'true');
+  assert.equal(header.getAttribute('data-header-nav-bound'), 'true');
   assert.ok(externalNav);
 
   click(dom, toggle);
@@ -158,7 +158,7 @@ test('header-nav closes an open mobile menu on resize past breakpoint', () => {
   const timers = useFakeTimers(dom);
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
@@ -181,7 +181,7 @@ test('header-nav ignores toggle clicks above breakpoint', () => {
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 900);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
@@ -198,7 +198,7 @@ test('header-nav respects closeOnLinkClick false', () => {
   mockViewport(dom, 480);
   setPluginOptions(dom, { headerNav: { closeOnLinkClick: false } });
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
@@ -214,7 +214,7 @@ test('header-nav scrolls header into view when opening off-screen menu', () => {
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const header = dom.window.document.querySelector('#header');
@@ -244,7 +244,7 @@ test('header-nav does not create sticky shell, spacer, or overlay artifacts', ()
   );
   mockViewport(dom, 480);
 
-  loadScript(dom, 'src/header-nav-v2/header-nav-v2.js');
+  loadScript(dom, 'src/header-nav/header-nav.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;

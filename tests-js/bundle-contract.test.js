@@ -22,8 +22,8 @@ test('required dist artifacts exist for every published plugin', () => {
     'theme-design-system.html',
     'theme-design-tokens.css',
     'theme-ui.css',
-    'theme-core-v2.min.css',
-    'theme-core-v2.min.js'
+    'theme-core.min.css',
+    'theme-core.min.js'
   ];
 
   topLevelFiles.forEach(file => {
@@ -31,19 +31,19 @@ test('required dist artifacts exist for every published plugin', () => {
   });
 
   const publishedPlugins = {
-    'accordeon-v2': { css: true, js: true },
-    'cards-v2': { css: true, js: true },
-    'cookie-banner-v2': { css: true, js: true },
-    'faq-v2': { css: true, js: true },
-    'floating-cta-v2': { css: true, js: true },
-    'grid-cluster-v2': { css: true, js: true },
-    'header-nav-v2': { css: true, js: true },
-    'modal-v2': { css: true, js: true },
-    'no-loadwaiting-v2': { css: false, js: true, jsPlacement: 'head' },
-    'shopping-cart-v2': { css: true, js: true },
-    'slider-v2': { css: true, js: true },
-    'switcher-v2': { css: true, js: true },
-    'typography-v2': { css: true, js: true }
+    'accordeon': { css: true, js: true },
+    'cards': { css: true, js: true },
+    'cookie-banner': { css: true, js: true },
+    'faq': { css: true, js: true },
+    'floating-cta': { css: true, js: true },
+    'grid-cluster': { css: true, js: true },
+    'header-nav': { css: true, js: true },
+    'modal': { css: true, js: true },
+    'no-loadwaiting': { css: false, js: true, jsPlacement: 'head' },
+    'shopping-cart': { css: true, js: true },
+    'slider': { css: true, js: true },
+    'switcher': { css: true, js: true },
+    'typography': { css: true, js: true }
   };
 
   Object.entries(publishedPlugins).forEach(([plugin, assets]) => {
@@ -66,7 +66,7 @@ test('required dist artifacts exist for every published plugin', () => {
 });
 
 test('large inline plugins publish Carrd-safe split embeds', () => {
-  for (const plugin of ['shopping-cart-v2', 'slider-v2']) {
+  for (const plugin of ['shopping-cart', 'slider']) {
     const pluginDir = dist(plugin);
     const manifest = fs.readFileSync(path.join(pluginDir, `${plugin}-embed.html`), 'utf8');
     const partOne = fs.readFileSync(path.join(pluginDir, `${plugin}-embed-part1.html`), 'utf8');
@@ -79,38 +79,38 @@ test('large inline plugins publish Carrd-safe split embeds', () => {
 });
 
 test('slider split embeds assemble and initialize in Carrd order', () => {
-  const dom = createDom('<div class="slider">A</div><div class="slider">B</div>');
+  const dom = createDom('<div data-slider>A</div><div data-slider>B</div>');
   const readScript = file => {
-    const html = fs.readFileSync(dist('slider-v2', file), 'utf8');
+    const html = fs.readFileSync(dist('slider', file), 'utf8');
     const match = html.match(/<script>([\s\S]*?)<\/script>/);
     assert.ok(match, `${file} should contain a script`);
     return match[1];
   };
 
-  dom.window.eval(readScript('slider-v2-embed-part1.html'));
-  assert.equal(dom.window.CarrdSliderV2, undefined);
-  dom.window.eval(readScript('slider-v2-embed-part2.html'));
+  dom.window.eval(readScript('slider-embed-part1.html'));
+  assert.equal(dom.window.CarrdSlider, undefined);
+  dom.window.eval(readScript('slider-embed-part2.html'));
   triggerDomReady(dom);
 
-  assert.ok(dom.window.CarrdSliderV2);
+  assert.ok(dom.window.CarrdSlider);
   assert.equal(dom.window.document.querySelectorAll('.theme-slider-wrapper').length, 1);
 });
 
 test('per-plugin CDN snippets point to standalone jsDelivr assets', () => {
   const publishedPlugins = {
-    'accordeon-v2': { css: true, js: true },
-    'cards-v2': { css: true, js: true },
-    'cookie-banner-v2': { css: true, js: true },
-    'faq-v2': { css: true, js: true },
-    'floating-cta-v2': { css: true, js: true },
-    'grid-cluster-v2': { css: true, js: true },
-    'header-nav-v2': { css: true, js: true },
-    'modal-v2': { css: true, js: true },
-    'no-loadwaiting-v2': { css: false, js: true, jsPlacement: 'head' },
-    'shopping-cart-v2': { css: true, js: true },
-    'slider-v2': { css: true, js: true },
-    'switcher-v2': { css: true, js: true },
-    'typography-v2': { css: true, js: true }
+    'accordeon': { css: true, js: true },
+    'cards': { css: true, js: true },
+    'cookie-banner': { css: true, js: true },
+    'faq': { css: true, js: true },
+    'floating-cta': { css: true, js: true },
+    'grid-cluster': { css: true, js: true },
+    'header-nav': { css: true, js: true },
+    'modal': { css: true, js: true },
+    'no-loadwaiting': { css: false, js: true, jsPlacement: 'head' },
+    'shopping-cart': { css: true, js: true },
+    'slider': { css: true, js: true },
+    'switcher': { css: true, js: true },
+    'typography': { css: true, js: true }
   };
 
   Object.entries(publishedPlugins).forEach(([plugin, assets]) => {
@@ -127,13 +127,13 @@ test('per-plugin CDN snippets point to standalone jsDelivr assets', () => {
       const placementLabel = assets.jsPlacement === 'head' ? '<!-- Head -->' : '<!-- Body End -->';
       assert.ok(cdn.includes(placementLabel));
     }
-    assert.ok(!cdn.includes('theme-core-v2.min.js'));
-    assert.ok(!cdn.includes('theme-core-v2.min.css'));
+    assert.ok(!cdn.includes('theme-core.min.js'));
+    assert.ok(!cdn.includes('theme-core.min.css'));
   });
 });
 
 test('header-nav CDN snippet includes no-flash critical CSS in Head', () => {
-  const cdn = fs.readFileSync(dist('header-nav-v2', 'header-nav-v2-cdn.html'), 'utf-8');
+  const cdn = fs.readFileSync(dist('header-nav', 'header-nav-cdn.html'), 'utf-8');
 
   assert.ok(cdn.includes('<!-- Head -->'));
   assert.ok(cdn.includes('<style>'));
@@ -142,12 +142,12 @@ test('header-nav CDN snippet includes no-flash critical CSS in Head', () => {
       '#header:not(.is-nav-open) .header-mobile-el-collapsing'
     )
   );
-  assert.ok(cdn.indexOf('<style>') < cdn.indexOf('header-nav-v2.min.css'));
+  assert.ok(cdn.indexOf('<style>') < cdn.indexOf('header-nav.min.css'));
 });
 
 test('header-nav toggle is stacked above floating CTA by default', () => {
-  const headerCss = fs.readFileSync(dist('header-nav-v2', 'header-nav-v2.min.css'), 'utf-8');
-  const floatingCss = fs.readFileSync(dist('floating-cta-v2', 'floating-cta-v2.min.css'), 'utf-8');
+  const headerCss = fs.readFileSync(dist('header-nav', 'header-nav.min.css'), 'utf-8');
+  const floatingCss = fs.readFileSync(dist('floating-cta', 'floating-cta.min.css'), 'utf-8');
 
   assert.ok(headerCss.includes('z-index:var(--theme-header-nav-toggle-z-index,100000)'));
   assert.ok(floatingCss.includes('z-index:var(--theme-floating-cta-z-index,99999)'));
@@ -155,19 +155,19 @@ test('header-nav toggle is stacked above floating CTA by default', () => {
 
 test('each published standalone plugin dist contains only its own namespace', () => {
   const namespaceMap = {
-    'accordeon-v2': { must: ['CarrdAccordeonV2', 'theme-accordeon'], mustNot: ['theme-switcher', 'theme-faq'] },
-    'cards-v2': { must: ['theme-card-item'], mustNot: ['theme-grid', 'theme-faq', 'CarrdSliderV2'] },
-    'grid-cluster-v2': { must: ['theme-grid'], mustNot: ['theme-card-item', 'theme-columns-grid'] },
-    'cookie-banner-v2': { must: ['theme-cookie-banner'], mustNot: ['theme-grid', 'theme-card-item'] },
-    'faq-v2': { must: ['theme-faq'], mustNot: ['theme-grid', 'theme-card-item', 'CarrdSliderV2'] },
-    'floating-cta-v2': { must: ['theme-floating-cta'], mustNot: ['theme-header-nav', 'theme-shopcart'] },
-    'header-nav-v2': { must: ['theme-header-nav'], mustNot: ['theme-grid', 'theme-card-item'] },
-    'slider-v2': { must: ['CarrdSliderV2', 'theme-slider'], mustNot: ['theme-faq', 'theme-card-item'] },
-    'modal-v2': { must: ['CarrdModalV2', 'theme-modal'], mustNot: ['CarrdSliderV2', 'theme-faq'] },
-    'no-loadwaiting-v2': { must: ['early-animate-override failed:'], mustNot: ['CarrdSliderV2', 'theme-faq'] },
-    'shopping-cart-v2': { must: ['CarrdShoppingCartV2', 'theme-shopcart'], mustNot: ['CarrdSliderV2', 'theme-faq'] },
-    'switcher-v2': { must: ['CarrdSwitcherV2', 'theme-switcher'], mustNot: ['CarrdSliderV2', 'theme-faq'] },
-    'typography-v2': { must: ['CarrdTypographyV2', 'theme-typography'], mustNot: ['CarrdSliderV2', 'theme-faq'] },
+    'accordeon': { must: ['CarrdAccordeon', 'theme-accordeon'], mustNot: ['theme-switcher', 'theme-faq'] },
+    'cards': { must: ['theme-card-item'], mustNot: ['theme-grid', 'theme-faq', 'CarrdSlider'] },
+    'grid-cluster': { must: ['theme-grid'], mustNot: ['theme-card-item', 'theme-columns-grid'] },
+    'cookie-banner': { must: ['theme-cookie-banner'], mustNot: ['theme-grid', 'theme-card-item'] },
+    'faq': { must: ['theme-faq'], mustNot: ['theme-grid', 'theme-card-item', 'CarrdSlider'] },
+    'floating-cta': { must: ['theme-floating-cta'], mustNot: ['theme-header-nav', 'theme-shopcart'] },
+    'header-nav': { must: ['theme-header-nav'], mustNot: ['theme-grid', 'theme-card-item'] },
+    'slider': { must: ['CarrdSlider', 'theme-slider'], mustNot: ['theme-faq', 'theme-card-item'] },
+    'modal': { must: ['CarrdModal', 'theme-modal'], mustNot: ['CarrdSlider', 'theme-faq'] },
+    'no-loadwaiting': { must: ['early-animate-override failed:'], mustNot: ['CarrdSlider', 'theme-faq'] },
+    'shopping-cart': { must: ['CarrdShoppingCart', 'theme-shopcart'], mustNot: ['CarrdSlider', 'theme-faq'] },
+    'switcher': { must: ['CarrdSwitcher', 'theme-switcher'], mustNot: ['CarrdSlider', 'theme-faq'] },
+    'typography': { must: ['CarrdTypography', 'theme-typography'], mustNot: ['CarrdSlider', 'theme-faq'] },
   };
 
   Object.entries(namespaceMap).forEach(([plugin, { must, mustNot }]) => {
@@ -191,27 +191,27 @@ test('excluded dist outputs are not published', () => {
   assert.ok(!fs.existsSync(dist('theme-config.js')), 'dist/theme-config.js should not be published');
 });
 
-test('theme-core-v2 CDN bundle includes shared config and selected plugin namespaces', () => {
-  const jsPath = dist('theme-core-v2.min.js');
-  const cssPath = dist('theme-core-v2.min.css');
+test('theme-core CDN bundle includes shared config and selected plugin namespaces', () => {
+  const jsPath = dist('theme-core.min.js');
+  const cssPath = dist('theme-core.min.css');
 
-  assert.ok(fs.existsSync(jsPath), 'theme-core-v2.min.js should exist');
-  assert.ok(fs.existsSync(cssPath), 'theme-core-v2.min.css should exist');
+  assert.ok(fs.existsSync(jsPath), 'theme-core.min.js should exist');
+  assert.ok(fs.existsSync(cssPath), 'theme-core.min.css should exist');
 
   const js = fs.readFileSync(jsPath, 'utf-8');
   const css = fs.readFileSync(cssPath, 'utf-8');
 
   [
-    'window.CarrdPluginOptionsV2',
-    'CarrdAccordeonV2',
-    'CarrdSliderV2',
-    'CarrdModalV2',
-    'CarrdTypographyV2',
-    'CarrdSwitcherV2',
+    'window.CarrdPluginOptions',
+    'CarrdAccordeon',
+    'CarrdSlider',
+    'CarrdModal',
+    'CarrdTypography',
+    'CarrdSwitcher',
     'theme-header-nav',
     'theme-floating-cta'
   ].forEach(marker => {
-    assert.ok(js.includes(marker), `theme-core-v2.min.js should contain "${marker}"`);
+    assert.ok(js.includes(marker), `theme-core.min.js should contain "${marker}"`);
   });
 
   [
@@ -223,19 +223,19 @@ test('theme-core-v2 CDN bundle includes shared config and selected plugin namesp
     '.theme-header-nav-toggle',
     '.theme-switcher-button'
   ].forEach(marker => {
-    assert.ok(css.includes(marker), `theme-core-v2.min.css should contain "${marker}"`);
+    assert.ok(css.includes(marker), `theme-core.min.css should contain "${marker}"`);
   });
 });
 
-test('theme-core-v2 CDN bundle initializes v2 data contracts by default', () => {
+test('theme-core CDN bundle initializes clean data contracts by default', () => {
   const dom = createDom(
-    '<a id="acc" href="#data-accordeon-v2-ppf" role="button">Toggle</a>' +
-    '<div data-accordeon-v2="ppf">Panel</div>' +
-    '<div data-cards-v2><div class="wrapper"><div class="inner"><div>A</div><div>B</div></div></div></div>' +
-    '<div data-faq-v2="main"><hr class="divider-component"><h2>Q1</h2><p>A1</p><hr class="divider-component"></div>' +
-    '<button data-modal-v2-open="contact">Open modal</button>' +
-    '<div data-modal-v2="contact" class="container-component"><div class="wrapper"><div class="inner"><h2>Contact</h2></div></div></div>' +
-    '<div data-slider-v2="gallery">Slide 1</div><div data-slider-v2="gallery">Slide 2</div>'
+    '<a id="acc" href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div data-accordeon="ppf">Panel</div>' +
+    '<div data-cards><div class="wrapper"><div class="inner"><div>A</div><div>B</div></div></div></div>' +
+    '<div data-faq="main"><hr class="divider-component"><h2>Q1</h2><p>A1</p><hr class="divider-component"></div>' +
+    '<button data-modal-open="contact">Open modal</button>' +
+    '<div data-modal="contact" class="container-component"><div class="wrapper"><div class="inner"><h2>Contact</h2></div></div></div>' +
+    '<div data-slider="gallery">Slide 1</div><div data-slider="gallery">Slide 2</div>'
   );
   const timers = useFakeTimers(dom);
   mockViewport(dom, 1280);
@@ -243,50 +243,50 @@ test('theme-core-v2 CDN bundle initializes v2 data contracts by default', () => 
   mockMutationObserver(dom);
   dom.window.globalThis.requestAnimationFrame = dom.window.requestAnimationFrame;
 
-  loadScript(dom, 'dist/theme-core-v2.min.js');
+  loadScript(dom, 'dist/theme-core.min.js');
   triggerDomReady(dom);
   timers.flush();
 
   const doc = dom.window.document;
-  assert.equal(doc.querySelector('[data-accordeon-v2="ppf"]').hidden, true);
+  assert.equal(doc.querySelector('[data-accordeon="ppf"]').hidden, true);
   click(dom, doc.getElementById('acc'));
   timers.flush();
-  assert.equal(doc.querySelector('[data-accordeon-v2="ppf"]').hidden, false);
+  assert.equal(doc.querySelector('[data-accordeon="ppf"]').hidden, false);
   assert.equal(doc.querySelectorAll('.theme-card-item').length, 2);
   assert.equal(doc.querySelectorAll('.theme-faq-question').length, 1);
   assert.equal(doc.querySelectorAll('.theme-slider-wrapper').length, 1);
-  assert.equal(doc.querySelector('[data-modal-v2="contact"]').dataset.modalInitialized, 'true');
+  assert.equal(doc.querySelector('[data-modal="contact"]').dataset.modalInitialized, 'true');
 
   timers.restore();
 });
 
 test('published dist scripts execute in a jsdom smoke harness', () => {
   const fixtures = {
-    'accordeon-v2':
-      '<a href="#accordeon-ppf" role="button">Toggle</a><div data-accordeon-v2="ppf">Panel</div>',
-    'cards-v2':
-      '<div class="cards"><div class="wrapper"><div class="inner"><div>A</div><div>B</div></div></div></div>',
-    'cookie-banner-v2':
-      '<div data-cookie-v2="banner"><a role="button">Accept</a></div>',
-    'faq-v2':
-      '<div class="FAQContainer">' +
+    'accordeon':
+      '<a href="#data-accordeon-ppf" role="button">Toggle</a><div data-accordeon="ppf">Panel</div>',
+    'cards':
+      '<div data-cards="cards"><div class="wrapper"><div class="inner"><div>A</div><div>B</div></div></div></div>',
+    'cookie-banner':
+      '<div data-cookie="consent"><a role="button">Accept</a></div>',
+    'faq':
+      '<div data-faq="main">' +
         '<hr class="divider-component"><h2>Q1</h2><p>A1</p>' +
         '<hr class="divider-component">' +
       '</div>',
-    'floating-cta-v2':
+    'floating-cta':
       '<div><ul id="site-header-cta" class="buttons-component"><li><a href="#contact">CTA</a></li></ul></div><div id="contact"></div>',
-    'grid-cluster-v2':
-      '<div class="grid-2">A</div><div class="grid-2">B</div>',
-    'header-nav-v2':
+    'grid-cluster':
+      '<div data-grid="features">A</div><div data-grid="features">B</div>',
+    'header-nav':
       '<header id="header"><div class="container-component"><div class="wrapper"><div class="inner"><div>Brand</div><div class="header-mobile-el-collapsing"><a href="#a">A</a></div></div></div></div></header>',
-    'modal-v2':
-      '<div id="modalSmoke" class="container-component modal"><div class="wrapper"><div class="inner">Modal</div></div></div>',
-    'no-loadwaiting-v2': '<div id="loader"></div>',
-    'shopping-cart-v2': '<div></div>',
-    'slider-v2': '<div class="slider">Slide 1</div>',
-    'switcher-v2':
-      '<section><ul data-switcher-v2="switcher"><li><a href="#" role="button">One</a></li><li><a href="#" role="button">Two</a></li></ul><p class="switcher-1">One</p><p class="switcher-2">Two</p></section>',
-    'typography-v2': '<div class="txt"><span class="p"># Title</span></div>'
+    'modal':
+      '<div data-modal="smoke" class="container-component"><div class="wrapper"><div class="inner">Modal</div></div></div>',
+    'no-loadwaiting': '<div id="loader"></div>',
+    'shopping-cart': '<div></div>',
+    'slider': '<div data-slider>Slide 1</div>',
+    'switcher':
+      '<section><ul data-switcher="switcher"><li><a href="#" role="button">One</a></li><li><a href="#" role="button">Two</a></li></ul><p class="switcher-1">One</p><p class="switcher-2">Two</p></section>',
+    'typography': '<div class="txt"><span class="p"># Title</span></div>'
   };
 
   Object.entries(fixtures).forEach(([plugin, html]) => {

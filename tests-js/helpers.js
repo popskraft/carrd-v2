@@ -31,11 +31,6 @@ function createDom(html = '') {
 }
 
 function setPluginOptions(dom, options = {}) {
-  dom.window.CarrdPluginOptionsV2 = options;
-}
-
-// Sets the v1 (legacy) config namespace, to exercise backward-compat fallbacks.
-function setLegacyPluginOptions(dom, options = {}) {
   dom.window.CarrdPluginOptions = options;
 }
 
@@ -200,7 +195,6 @@ module.exports = {
   installBrowserMocks,
   loadScript,
   setPluginOptions,
-  setLegacyPluginOptions,
   triggerDomReady,
   click,
   keydown,

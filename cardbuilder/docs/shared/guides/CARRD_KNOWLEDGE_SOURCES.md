@@ -27,10 +27,12 @@ The server starts at `http://127.0.0.1:8788`.
 ### Query the Carrd index
 
 ```bash
-curl -s "http://127.0.0.1:8788/search?kb=carrd&q=your+question+here"
+cd /Users/popskraft/Projects/docs-rag-mvp
+npm run rag:check:carrd -- "your question here"
 ```
 
-Or use the MCP WebFetch tool to fetch from `http://127.0.0.1:8788/search?kb=carrd&q=...` during a session.
+The helper loads the local Bearer token when authentication is enabled and starts the local service when needed.
+Direct `/search` requests must send `Authorization: Bearer $RETRIEVAL_BEARER_TOKEN` when the token is configured.
 
 ### Index location
 
@@ -40,7 +42,7 @@ Or use the MCP WebFetch tool to fetch from `http://127.0.0.1:8788/search?kb=carr
 ### Verify the service is running
 
 ```bash
-curl -s "http://127.0.0.1:8788/health" 2>/dev/null && echo "running" || echo "not running"
+curl -fsS "http://127.0.0.1:8788/health" >/dev/null && echo "running" || echo "not running"
 ```
 
 ## Secondary Source: In-Repo Builder Docs

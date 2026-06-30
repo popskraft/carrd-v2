@@ -24,7 +24,7 @@ test('no-loadwaiting marks body ready and hides loader', () => {
   });
 
   dom.window.document.body.className = 'is-loading with-loader';
-  loadScript(dom, 'src/no-loadwaiting-v2/no-loadwaiting-v2.js');
+  loadScript(dom, 'src/no-loadwaiting/no-loadwaiting.js');
   triggerDomReady(dom);
   timers.flush();
 
@@ -53,7 +53,7 @@ test('no-loadwaiting observer callback removes with-loader class', () => {
     }
   });
 
-  loadScript(dom, 'src/no-loadwaiting-v2/no-loadwaiting-v2.js');
+  loadScript(dom, 'src/no-loadwaiting/no-loadwaiting.js');
   triggerDomReady(dom);
 
   const body = dom.window.document.body;
@@ -87,7 +87,7 @@ test('no-loadwaiting dispatches resize pulses without synthetic scroll events', 
     }
   });
 
-  loadScript(dom, 'src/no-loadwaiting-v2/no-loadwaiting-v2.js');
+  loadScript(dom, 'src/no-loadwaiting/no-loadwaiting.js');
   triggerDomReady(dom);
   timers.flush();
 

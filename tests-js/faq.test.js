@@ -4,7 +4,7 @@ const { createDom, loadScript, triggerDomReady, setPluginOptions, click, useFake
 
 function faqHtml() {
   return (
-    '<div data-faq-v2="main">' +
+    '<div data-faq="main">' +
       '<hr class="divider-component">' +
       '<h2>Question 1</h2>' +
       '<p>Answer 1</p>' +
@@ -18,7 +18,7 @@ function faqHtml() {
 
 test('faq initializes, applies classes and aria attributes', () => {
   const dom = createDom(faqHtml());
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -38,7 +38,7 @@ test('faq initializes, applies classes and aria attributes', () => {
 test('faq toggles by click and enforces single-open accordion', () => {
   const dom = createDom(faqHtml());
   const timers = useFakeTimers(dom);
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -62,9 +62,9 @@ test('faq toggles by click and enforces single-open accordion', () => {
   timers.restore();
 });
 
-test('faq supports data-faq-v2-allow-multiple per container', () => {
+test('faq supports data-faq-allow-multiple per container', () => {
   const dom = createDom(
-    '<div data-faq-v2="main" data-faq-v2-allow-multiple="true">' +
+    '<div data-faq="main" data-faq-allow-multiple="true">' +
       '<hr class="divider-component">' +
       '<h2>Question 1</h2>' +
       '<p>Answer 1</p>' +
@@ -74,7 +74,7 @@ test('faq supports data-faq-v2-allow-multiple per container', () => {
       '<hr class="divider-component">' +
     '</div>'
   );
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
   const [t1, t2] = dom.window.document.querySelectorAll('.theme-faq-trigger');
@@ -87,7 +87,7 @@ test('faq supports data-faq-v2-allow-multiple per container', () => {
   assert.ok(a2.classList.contains('is-open'));
 });
 
-test('faq keeps legacy .FAQContainer fallback working', () => {
+test('faq no longer initializes from legacy .FAQContainer markup', () => {
   const dom = createDom(
     '<div class="FAQContainer">' +
       '<hr class="divider-component">' +
@@ -96,18 +96,18 @@ test('faq keeps legacy .FAQContainer fallback working', () => {
       '<hr class="divider-component">' +
     '</div>'
   );
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
-  assert.equal(dom.window.document.querySelectorAll('.theme-faq-question').length, 1);
+  assert.equal(dom.window.document.querySelectorAll('.theme-faq-question').length, 0);
 });
 
 test('faq keeps accordion state isolated per container', () => {
   const dom = createDom(faqHtml() + faqHtml());
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
-  const containers = dom.window.document.querySelectorAll('[data-faq-v2]');
+  const containers = dom.window.document.querySelectorAll('[data-faq]');
   const firstTrigger = containers[0].querySelector('.theme-faq-trigger');
   const secondTrigger = containers[1].querySelector('.theme-faq-trigger');
   const secondAnswer = containers[1].querySelector('.theme-faq-answer');
@@ -118,9 +118,9 @@ test('faq keeps accordion state isolated per container', () => {
   assert.ok(secondAnswer.classList.contains('is-open'));
 });
 
-test('faq supports data-faq-v2-default-open per container', () => {
+test('faq supports data-faq-default-open per container', () => {
   const dom = createDom(
-    '<div data-faq-v2="main" data-faq-v2-default-open="true">' +
+    '<div data-faq="main" data-faq-default-open="true">' +
       '<hr class="divider-component">' +
       '<h2>Question 1</h2>' +
       '<p>Answer 1</p>' +
@@ -130,7 +130,7 @@ test('faq supports data-faq-v2-default-open per container', () => {
       '<hr class="divider-component">' +
     '</div>'
   );
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
   const questions = dom.window.document.querySelectorAll('.theme-faq-question');
@@ -145,7 +145,7 @@ test('faq supports data-faq-v2-default-open per container', () => {
 
 test('faq honors custom divider selectors end-to-end', () => {
   const dom = createDom(
-    '<div data-faq-v2="main">' +
+    '<div data-faq="main">' +
       '<hr class="faq-divider">' +
       '<h2>Question</h2>' +
       '<p>Answer</p>' +
@@ -158,7 +158,7 @@ test('faq honors custom divider selectors end-to-end', () => {
     }
   });
 
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
   triggerDomReady(dom);
 
   assert.equal(dom.window.document.querySelectorAll('.theme-faq-question').length, 1);
@@ -166,7 +166,7 @@ test('faq honors custom divider selectors end-to-end', () => {
 
 test('faq does not double-bind on repeated init', () => {
   const dom = createDom(faqHtml());
-  loadScript(dom, 'src/faq-v2/faq-v2.js');
+  loadScript(dom, 'src/faq/faq.js');
 
   triggerDomReady(dom);
   triggerDomReady(dom);

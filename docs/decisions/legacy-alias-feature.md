@@ -33,8 +33,8 @@ The legacy alias surface is a shipped, tested compatibility contract:
   (embed02/03/07, hash-readback 3/3); service/custom embeds untouched.
 - Published by operator.
 - Live verify on `faktura-dev.crd.co`:
-  - FAQ 14× `:is([data-faq-v2],[data-faq],.FAQContainer)` / 0× old-only.
-  - modal 8× `:is([data-modal-v2],[data-modal])`.
+  - FAQ 14× `:is([data-faq],[data-faq],.FAQContainer)` / 0× old-only.
+  - modal 8× `:is([data-modal],[data-modal])`.
   - cookie 3× `[data-cookie]`.
 - `npm run validate` → 189/189.
 
@@ -46,6 +46,6 @@ The legacy alias surface is a shipped, tested compatibility contract:
   documented only as migration guidance.
 
 ## Related
-- `docs/specs/plugin-v2-data-contract.md` — canonical v2 binding + Naming Matrix.
+- `docs/specs/plugin-data-contract.md` — canonical v2 binding + Naming Matrix.
 - `docs/specs/carrd-markup-contract.md` — v2-vs-legacy rule.
 - `ROADMAP.md` rows 21, 24, 25, 26.

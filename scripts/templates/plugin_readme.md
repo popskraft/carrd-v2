@@ -9,7 +9,7 @@
 
 ### CDN Bundle (recommended)
 
-If your site already has the CDN embeds installed (`theme-core-v2.min.css` in Head and `theme-core-v2.min.js` in Body End), this plugin is already active — no extra steps needed.
+If your site already has the CDN embeds installed (`theme-core.min.css` in Head and `theme-core.min.js` in Body End), this plugin is already active — no extra steps needed.
 
 To install CDN embeds: see the root `README.md` → **CDN Bundle** section.
 

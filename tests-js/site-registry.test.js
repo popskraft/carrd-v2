@@ -48,7 +48,7 @@ test('site registry resolves explicit builder URLs even when the active pointer 
 
   assert.equal(resolved.site.siteSlug, 'main-template');
   assert.equal(resolved.matchedBy, 'builderUrl');
-  assert.equal(resolved.profile.structure.tabsMap, '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-04-16.json');
+  assert.equal(resolved.profile.structure.tabsMap, '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json');
 });
 
 test('site registry resolves faktura as a first-class live site package', async () => {
@@ -61,12 +61,12 @@ test('site registry resolves faktura as a first-class live site package', async 
   assert.equal(resolved.matchedBy, 'site-ref-slug');
   assert.equal(resolved.site.builderUrl, 'https://carrd.co/dashboard/4778178033233108/build');
   assert.equal(resolved.site.publishedSiteUrl, 'https://faktura-dev.crd.co/');
-  assert.equal(resolved.site.status, 'draft-v2-updated');
+  assert.equal(resolved.site.status, 'draft-clean-runtime-updated');
   assert.equal(
     resolved.site.projectDocs,
     '/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/faktura'
   );
-  assert.equal(resolved.profile.status, 'draft-v2-updated');
+  assert.equal(resolved.profile.status, 'draft-clean-runtime-updated');
   assert.equal(
     resolved.profile.runtimeAssets.syncDiff,
     '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json'

@@ -1,0 +1,784 @@
+
+(function() {
+  'use strict';
+
+  // ==========================================
+  // CONFIGURATION
+  // ==========================================
+  
+  // Default configuration (used when no external options provided)
+  const DEFAULTS = {
+    currency: '$',
+    currencyPosition: 'before', // 'before' ($10) or 'after' (10$)
+    position: 'top-right', // 'bottom-right', 'top-right', 'bottom-left', 'bottom-center'
+
+    storageKey: 'carrd_cart_v1',
+    orderInputSelector: '[data-shopping-cart-output="order-details"]',
+    checkoutTargetSelector: '[data-shopping-cart-target]',
+    checkoutTargetId: 'shopping-cart',
+    
+    // Text labels for easy translation
+    texts: {
+      title: 'Shopping Cart',
+      empty: 'Your cart is empty.',
+      checkout: 'Checkout',
+      total: 'Total',
+      remove: 'Remove',
+      required: 'Required',
+      addedToCart: 'Added "${name}" to cart',
+      errorName: 'Invalid product name',
+      errorPrice: 'Invalid price for ${name}',
+      errorForm: 'Error: Could not find the order form. Please contact support.',
+      consoleErrorForm: 'Carrd Cart: Could not find the checkout textarea. Please ensure [data-shopping-cart-output="order-details"] exists.'
+    }
+  };
+
+  const SELECTORS = {
+    containerId: 'theme-shopcart-container',
+    widget: 'theme-shopcart-widget',
+    badge: 'theme-shopcart-badge',
+    overlay: 'theme-shopcart-overlay',
+    panel: 'theme-shopcart-panel',
+    header: 'theme-shopcart-header',
+    title: 'theme-shopcart-title',
+    close: 'theme-shopcart-close',
+    body: 'theme-shopcart-body',
+    footer: 'theme-shopcart-footer',
+    item: 'theme-shopcart-item',
+    itemInfo: 'theme-shopcart-item-info',
+    itemName: 'theme-shopcart-item-name',
+    itemPrice: 'theme-shopcart-item-price',
+    controls: 'theme-shopcart-controls',
+    btnQty: 'theme-shopcart-btn-qty',
+    btnRemove: 'theme-shopcart-btn-remove',
+    btnMain: 'theme-shopcart-btn-main',
+    btnCheckout: 'theme-shopcart-btn-checkout',
+    totalRow: 'theme-shopcart-total-row',
+    totalAmount: 'theme-shopcart-total-amount',
+    toast: 'theme-shopcart-toast',
+    emptyState: 'theme-shopcart-empty-state',
+    posBr: 'theme-shopcart-pos-br',
+    posTr: 'theme-shopcart-pos-tr',
+    posBl: 'theme-shopcart-pos-bl',
+    posBc: 'theme-shopcart-pos-bc',
+    stateVisible: 'visible',
+    stateOpen: 'open'
+  };
+
+  /**
+   * Deep merge utility for nested configuration objects
+   * @param {Object} target - Base/default object
+   * @param {Object} source - Override object
+   * @returns {Object} - Merged object
+   */
+  function deepMerge(target, source) {
+    if (!source || typeof source !== 'object') return target;
+    const result = { ...target };
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+          result[key] = deepMerge(target[key] || {}, source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+    }
+    return result;
+  }
+
+  // Get external options if available (loaded before this script)
+  const externalOptions = (typeof window !== 'undefined' && (
+    (window.CarrdPluginOptions && window.CarrdPluginOptions.shoppingCart)
+  )) || {};
+
+  // Final merged configuration
+  const CONFIG = deepMerge(DEFAULTS, externalOptions);
+
+  // ==========================================
+  // SECURITY UTILITIES
+  // ==========================================
+  
+  /**
+   * Escapes HTML special characters to prevent XSS attacks
+   * @param {string} str - Input string
+   * @returns {string} - Escaped string safe for HTML insertion
+   */
+  function escapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  /**
+   * Validates a cart item from localStorage
+   * @param {Object} item - Cart item to validate
+   * @returns {boolean} - True if valid
+   */
+  function validateCartItem(item) {
+    if (!item || typeof item !== 'object') return false;
+    if (typeof item.name !== 'string' || item.name.length === 0 || item.name.length > 200) return false;
+    if (typeof item.price !== 'number' || isNaN(item.price) || item.price < 0) return false;
+    if (typeof item.qty !== 'number' || !Number.isInteger(item.qty) || item.qty < 1) return false;
+    return true;
+  }
+
+  // ==========================================
+  // STATE MANAGEMENT
+  // ==========================================
+  let state = {
+    cart: [],
+    isOpen: false,
+    lastFocus: null
+  };
+
+  let restoreFocusPending = false;
+  let lastInteractionSource = null;
+  let _cachedFocusables = null;
+
+  // Load from local storage with validation
+  try {
+    const stored = localStorage.getItem(CONFIG.storageKey);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed)) {
+        // Filter out invalid items to prevent localStorage injection attacks
+        state.cart = parsed.filter(validateCartItem).map(item => ({
+          ...item,
+          key: item.key || createCartItemKey(item.name, item.price, item.sourceLabel || ''),
+          sourceLabel: item.sourceLabel || ''
+        }));
+      }
+    }
+  } catch (e) {
+    console.warn('LocalStorage not available or corrupted');
+    state.cart = [];
+  }
+
+  const saveState = () => {
+    try {
+      localStorage.setItem(CONFIG.storageKey, JSON.stringify(state.cart));
+    } catch (e) {
+      // Ignore storage errors (private mode, quota).
+    }
+    syncOrderFieldWithCart();
+    updateUI();
+  };
+
+  // ==========================================
+  // PUBLIC API
+  // ==========================================
+  const CartAPI = {
+    /**
+     * Add an item to the cart
+     * @param {string} name - Product name
+     * @param {number|string} price - Product price
+     */
+    add: function(name, price, options) {
+      // Validate name
+      if (typeof name !== 'string' || name.trim().length === 0) {
+        console.error(CONFIG.texts.errorName);
+        return;
+      }
+      name = name.trim();
+      if (name.length > 200) {
+        console.error('Product name too long (max 200 chars)');
+        return;
+      }
+
+      // Validate price
+      price = parseFloat(price);
+      if (isNaN(price) || price < 0) {
+        console.error(CONFIG.texts.errorPrice.replace('${name}', name));
+        return;
+      }
+
+      const addOptions = normalizeAddOptions(options);
+      const sourceContext = resolveSourceContext(addOptions);
+      const sourceLabel = sourceContext.label || '';
+      const displayName = resolveDisplayName(name, sourceLabel, addOptions.displayName);
+      const key = addOptions.id || createCartItemKey(name, price, sourceLabel);
+      const existing = state.cart.find(item => item.key === key);
+      if (existing) {
+        existing.qty++;
+      } else {
+        state.cart.push({
+          key,
+          name: displayName,
+          price,
+          qty: 1,
+          sourceLabel
+        });
+      }
+
+      saveState();
+      showToast(CONFIG.texts.addedToCart.replace('${name}', displayName));
+      
+      // Auto open if first item (optional, implies better UX)
+      if (state.cart.length === 1 && state.cart[0].qty === 1) {
+        this.open();
+      }
+    },
+
+    remove: function(identifier) {
+      const exactKeyMatch = state.cart.some(item => item.key === identifier);
+      state.cart = state.cart.filter(item => exactKeyMatch ? item.key !== identifier : item.name !== identifier);
+      saveState();
+    },
+
+    updateQty: function(identifier, delta) {
+      const item = findCartItem(identifier);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        this.remove(identifier);
+      } else {
+        saveState();
+      }
+    },
+
+    clear: function() {
+      state.cart = [];
+      saveState();
+    },
+
+    getCart: function() {
+      return [...state.cart];
+    },
+
+    getTotal: function() {
+      return state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    },
+
+    open: function() {
+      if (!state.isOpen) {
+        state.lastFocus = document.activeElement;
+      }
+      state.isOpen = true;
+      updateUI();
+      bindOpenStateHandlers();
+      const panel = document.querySelector(`.${SELECTORS.panel}`);
+      _cachedFocusables = getFocusableElements(panel);
+      focusCartPanel();
+    },
+
+    close: function() {
+      if (!state.isOpen) return;
+      restoreFocusPending = true;
+      state.isOpen = false;
+      _cachedFocusables = null;
+      updateUI();
+      unbindOpenStateHandlers();
+    },
+    
+    checkout: function() {
+      if (state.cart.length === 0) {
+        clearOrderField();
+        this.close();
+        return false;
+      }
+
+      // 1. Generate Order Summary
+      const summary = buildOrderSummary();
+
+      // 2. Find the native Carrd form field
+      const orderField = findOrderField();
+      
+      if (!orderField) {
+        console.error(CONFIG.texts.consoleErrorForm);
+        if (typeof window.alert === 'function') {
+          try {
+            window.alert(CONFIG.texts.errorForm);
+          } catch (e) {
+            /* ignore non-browser alert implementations */
+          }
+        }
+        return;
+      }
+
+      // 3. Populate Form
+      orderField.value = summary;
+      dispatchOrderFieldEvents(orderField);
+
+      // 4. Close Cart Panel
+      this.close();
+
+      // Carrd opens section breaks through anchor clicks, not generic scroll/hash mutation.
+      openCheckoutSection(orderField);
+
+      return true;
+    },
+
+    /**
+     * Configure plugin options at runtime
+     * @param {Object} options - Configuration options to merge
+     */
+    configure: function(options) {
+      if (!options || typeof options !== 'object') return;
+      const merged = deepMerge(CONFIG, options);
+      Object.assign(CONFIG, merged);
+      updateUI(); // Re-render with new settings
+    },
+
+    /**
+     * Get current configuration
+     * @returns {Object} - Current configuration object (copy)
+     */
+    getConfig: function() {
+      return JSON.parse(JSON.stringify(CONFIG));
+    }
+  };
+
+  // Expose public API
+  window.CarrdShoppingCart = CartAPI;
+
+  // ==========================================
+  // UI INJECTION & RENDERING
+  // ==========================================
+  
+  // Icons
+  const ICONS = {
+    cart: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`,
+    close: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+    trash: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`,
+    plus: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`,
+    minus: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>`
+  };
+
+  function formatPrice(amount) {
+    const fixed = amount.toFixed(2);
+    return CONFIG.currencyPosition === 'before' 
+      ? `${CONFIG.currency}${fixed}`
+      : `${fixed}${CONFIG.currency}`;
+  }
+
+  function dispatchOrderFieldEvents(orderField) {
+    ['input', 'change'].forEach(eventName => {
+      orderField.dispatchEvent(new Event(eventName, { bubbles: true }));
+    });
+  }
+
+  function normalizeAddOptions(options) {
+    if (!options) return {};
+    if (typeof options === 'string') return { id: options };
+    return typeof options === 'object' ? options : {};
+  }
+
+  function createCartItemKey(name, price, sourceLabel) {
+    return [String(name).trim(), String(price), String(sourceLabel || '').trim()].join('::');
+  }
+
+  function normalizeLabel(label) {
+    return typeof label === 'string' ? label.replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function isGenericProductName(name) {
+    const normalized = normalizeLabel(name).toLowerCase();
+    return normalized === 'product' || normalized === 'product name' || normalized === 'item' || normalized === 'item name';
+  }
+
+  function resolveDisplayName(name, sourceLabel, preferredDisplayName) {
+    const explicitDisplayName = normalizeLabel(preferredDisplayName);
+    if (explicitDisplayName) return explicitDisplayName;
+    const normalizedName = normalizeLabel(name);
+    const normalizedSourceLabel = normalizeLabel(sourceLabel);
+
+    if (!normalizedSourceLabel || normalizedSourceLabel.toLowerCase() === normalizedName.toLowerCase()) {
+      return normalizedName;
+    }
+
+    if (isGenericProductName(normalizedName)) {
+      return normalizedSourceLabel;
+    }
+
+    return `${normalizedName} (${normalizedSourceLabel})`;
+  }
+
+  function getTotalValue() {
+    return state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  }
+
+  function buildOrderSummary() {
+    const total = getTotalValue();
+    return [
+      '--- ORDER DETAILS ---',
+      ...state.cart.map(item => `${item.qty} x ${item.name}: ${formatPrice(item.price * item.qty)}`),
+      '---------------------',
+      `TOTAL: ${formatPrice(total)}`
+    ].join('\n');
+  }
+
+  function findOrderField() {
+    const checkoutForm = document.getElementById('form-shopping-cart');
+    return (
+      (checkoutForm && (
+        checkoutForm.querySelector(CONFIG.orderInputSelector)
+      )) ||
+      document.querySelector(CONFIG.orderInputSelector)
+    );
+  }
+
+  function clearOrderField() {
+    const orderField = findOrderField();
+    if (!orderField) return;
+    orderField.value = '';
+    dispatchOrderFieldEvents(orderField);
+  }
+
+  function syncOrderFieldWithCart() {
+    const orderField = findOrderField();
+    if (!orderField) return;
+    orderField.value = state.cart.length ? buildOrderSummary() : '';
+    dispatchOrderFieldEvents(orderField);
+  }
+
+  function getCheckoutHref() {
+    return CONFIG.checkoutTargetId ? '#' + CONFIG.checkoutTargetId : '#shopping-cart';
+  }
+
+  function getCheckoutScrollTarget(orderField) {
+    if (!orderField) return null;
+    const checkoutForm = orderField.closest('#form-shopping-cart');
+    return checkoutForm || orderField;
+  }
+
+  function revealCheckoutTarget(orderField) {
+    const target = getCheckoutScrollTarget(orderField);
+    if (!target || typeof target.scrollIntoView !== 'function') return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (typeof orderField.focus === 'function') {
+      try {
+        orderField.focus({ preventScroll: true });
+      } catch (e) {
+        orderField.focus();
+      }
+    }
+  }
+
+  function openCheckoutSection(orderField) {
+    const checkoutLink = document.createElement('a');
+    checkoutLink.href = getCheckoutHref();
+    checkoutLink.tabIndex = -1;
+    checkoutLink.setAttribute('aria-hidden', 'true');
+    checkoutLink.style.position = 'fixed';
+    checkoutLink.style.left = '-9999px';
+    checkoutLink.style.top = '0';
+
+    document.body.appendChild(checkoutLink);
+    checkoutLink.click();
+    checkoutLink.remove();
+    window.setTimeout(() => revealCheckoutTarget(orderField), 0);
+  }
+
+  function rememberInteractionTarget(target) {
+    if (!target || !target.closest) return;
+    const source = target.closest('a, button, [role="button"], input[type="button"], input[type="submit"]');
+    if (!source) return;
+    const label = normalizeLabel(
+      source.getAttribute('aria-label') ||
+      source.textContent ||
+      source.value ||
+      ''
+    );
+    lastInteractionSource = label ? { element: source, label } : { element: source, label: '' };
+  }
+
+  function resolveSourceContext(addOptions) {
+    const explicitSourceLabel = normalizeLabel(addOptions.sourceLabel);
+    if (explicitSourceLabel) {
+      return { label: explicitSourceLabel };
+    }
+    return lastInteractionSource || { label: '' };
+  }
+
+  function bindSourceTracking() {
+    if (document.__themeShopCartSourceTrackingBound === true) return;
+    document.__themeShopCartSourceTrackingBound = true;
+
+    document.addEventListener('click', event => {
+      rememberInteractionTarget(event.target);
+    }, true);
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      rememberInteractionTarget(event.target);
+    }, true);
+  }
+
+  function findCartItem(identifier) {
+    return state.cart.find(item => item.key === identifier) || state.cart.find(item => item.name === identifier);
+  }
+
+  function renderCartItems() {
+    if (state.cart.length === 0) {
+      return `<div class="${SELECTORS.emptyState}">${escapeHtml(CONFIG.texts.empty)}</div>`;
+    }
+    return state.cart.map(item => {
+      const safeName = escapeHtml(item.name);
+      const safeKey = escapeHtml(item.key || item.name);
+      return `
+      <div class="${SELECTORS.item}">
+        <div class="${SELECTORS.itemInfo}">
+          <span class="${SELECTORS.itemName}">${safeName}</span>
+          <span class="${SELECTORS.itemPrice}">${formatPrice(item.price)}</span>
+        </div>
+        <div class="${SELECTORS.controls}">
+          <button class="${SELECTORS.btnQty}" data-action="update-qty" data-key="${safeKey}" data-qty="-1" aria-label="Decrease quantity for ${safeName}">${ICONS.minus}</button>
+          <span>${item.qty}</span>
+          <button class="${SELECTORS.btnQty}" data-action="update-qty" data-key="${safeKey}" data-qty="1" aria-label="Increase quantity for ${safeName}">${ICONS.plus}</button>
+          <button class="${SELECTORS.btnQty} ${SELECTORS.btnRemove}" data-action="remove" data-key="${safeKey}" aria-label="Remove ${safeName} from cart">${ICONS.trash}</button>
+        </div>
+      </div>
+    `;
+    }).join('');
+  }
+
+  function getFocusableElements(root) {
+    if (!root) return [];
+    return Array.from(
+      root.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(element => !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true');
+  }
+
+  function focusCartPanel() {
+    const panel = document.querySelector(`.${SELECTORS.panel}`);
+    if (!panel) return;
+
+    const focusables = getFocusableElements(panel);
+    const target = focusables[0] || panel;
+    window.setTimeout(() => {
+      if (state.isOpen && typeof target.focus === 'function') {
+        target.focus();
+      }
+    }, 0);
+  }
+
+  function restoreCartFocus() {
+    if (!restoreFocusPending) return;
+    restoreFocusPending = false;
+
+    const lastFocus = state.lastFocus;
+    state.lastFocus = null;
+    if (lastFocus && typeof lastFocus.focus === 'function' && lastFocus.isConnected !== false) {
+      window.setTimeout(() => lastFocus.focus(), 0);
+    }
+  }
+
+  function handleOpenStateKeydown(event) {
+    if (!state.isOpen) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      CartAPI.close();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const panel = document.querySelector(`.${SELECTORS.panel}`);
+    const focusables = _cachedFocusables || getFocusableElements(panel);
+    if (!focusables.length) {
+      event.preventDefault();
+      panel.focus();
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function bindOpenStateHandlers() {
+    if (document.body) {
+      document.body.classList.add('theme-shopcart-open');
+    }
+    document.addEventListener('keydown', handleOpenStateKeydown);
+  }
+
+  function unbindOpenStateHandlers() {
+    if (document.body) {
+      document.body.classList.remove('theme-shopcart-open');
+    }
+    document.removeEventListener('keydown', handleOpenStateKeydown);
+  }
+
+  function updateUI() {
+    const container = document.getElementById(SELECTORS.containerId);
+    if (!container) return;
+
+    const widget = container.querySelector(`.${SELECTORS.widget}`);
+    const badge = container.querySelector(`.${SELECTORS.badge}`);
+    const totalQty = state.cart.reduce((s, i) => s + i.qty, 0);
+
+    // Update Visibility (Auto-hide if empty)
+    if (state.cart.length > 0) {
+      widget.classList.add(SELECTORS.stateVisible);
+    } else {
+      widget.classList.remove(SELECTORS.stateVisible);
+    }
+
+    // Update badge
+    if (badge) {
+      badge.textContent = totalQty;
+      badge.style.display = totalQty > 0 ? 'block' : 'none';
+    }
+
+    // Update Panel State
+    const overlay = container.querySelector(`.${SELECTORS.overlay}`);
+    const panel = container.querySelector(`.${SELECTORS.panel}`);
+    const widgetButton = container.querySelector(`.${SELECTORS.widget}`);
+    if (state.isOpen) {
+      overlay.classList.add(SELECTORS.stateOpen);
+      panel.classList.add(SELECTORS.stateOpen);
+      panel.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('aria-hidden', 'false');
+      widgetButton.setAttribute('aria-expanded', 'true');
+      if ('inert' in panel) {
+        panel.inert = false;
+      }
+    } else {
+      overlay.classList.remove(SELECTORS.stateOpen);
+      panel.classList.remove(SELECTORS.stateOpen);
+      panel.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
+      widgetButton.setAttribute('aria-expanded', 'false');
+      if ('inert' in panel) {
+        panel.inert = true;
+      }
+    }
+
+    // Render Body
+    const bodyContent = container.querySelector(`.${SELECTORS.body}`);
+    const footerContent = container.querySelector(`.${SELECTORS.footer}`);
+    const titleContent = container.querySelector(`.${SELECTORS.title}`);
+
+    // Always render cart items (Checkout view is removed)
+    titleContent.textContent = CONFIG.texts.title;
+    bodyContent.innerHTML = renderCartItems();
+    footerContent.style.display = 'block';
+    container.querySelector(`.${SELECTORS.totalAmount}`).textContent = formatPrice(CartAPI.getTotal());
+    
+    const checkoutBtn = container.querySelector(`.${SELECTORS.btnCheckout}`);
+    if (checkoutBtn) {
+      checkoutBtn.disabled = state.cart.length === 0;
+    }
+
+    if (state.isOpen) {
+      const panel = document.querySelector(`.${SELECTORS.panel}`);
+      _cachedFocusables = getFocusableElements(panel);
+    }
+
+    restoreCartFocus();
+  }
+
+  function createWidget() {
+    const div = document.createElement('div');
+    div.id = SELECTORS.containerId;
+    
+    // Map position config to class
+    const posMap = {
+      'bottom-right': SELECTORS.posBr,
+      'top-right': SELECTORS.posTr,
+      'bottom-left': SELECTORS.posBl,
+      'bottom-center': SELECTORS.posBc
+    };
+    const posClass = posMap[CONFIG.position] || SELECTORS.posBr;
+
+    div.innerHTML = `
+      <button class="${SELECTORS.widget} ${posClass}" data-action="open" type="button" aria-label="Open Shopping Cart" aria-controls="theme-shopcart-panel" aria-expanded="false">
+        ${ICONS.cart}
+        <div class="${SELECTORS.badge}">0</div>
+      </button>
+      <div class="${SELECTORS.overlay}" data-action="close" aria-hidden="true"></div>
+      <div class="${SELECTORS.panel}" id="theme-shopcart-panel" role="dialog" aria-modal="true" aria-labelledby="theme-shopcart-title" aria-hidden="true" tabindex="-1">
+        <div class="${SELECTORS.header}">
+          <div class="${SELECTORS.title}" id="theme-shopcart-title">${escapeHtml(CONFIG.texts.title)}</div>
+          <button class="${SELECTORS.close}" data-action="close" aria-label="Close Cart">${ICONS.close}</button>
+        </div>
+        <div class="${SELECTORS.body}"></div>
+        <div class="${SELECTORS.footer}">
+          <div class="${SELECTORS.totalRow}">
+            <span>${escapeHtml(CONFIG.texts.total)}</span>
+            <span class="${SELECTORS.totalAmount}">$0.00</span>
+          </div>
+          <button class="${SELECTORS.btnMain} ${SELECTORS.btnCheckout}" data-action="checkout" type="button">${escapeHtml(CONFIG.texts.checkout)}</button>
+        </div>
+      </div>
+      <div class="${SELECTORS.toast}"></div>
+    `;
+    document.body.appendChild(div);
+    const panel = div.querySelector(`.${SELECTORS.panel}`);
+    if (panel && 'inert' in panel) {
+      panel.inert = true;
+    }
+
+    // Bind Events (Event Delegation)
+    div.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-action]');
+      if (!trigger) return;
+
+      const action = trigger.dataset.action;
+      const key = trigger.dataset.key;
+      
+      // Prevent default for buttons
+      if (trigger.tagName === 'BUTTON') e.preventDefault();
+
+      switch (action) {
+        case 'open':
+          CartAPI.open();
+          break;
+        case 'close':
+          CartAPI.close();
+          break;
+        case 'checkout':
+          CartAPI.checkout();
+          break;
+        case 'update-qty': {
+          const delta = parseInt(trigger.dataset.qty);
+          if (key && !isNaN(delta)) CartAPI.updateQty(key, delta);
+          break;
+        }
+        case 'remove':
+          if (key) CartAPI.remove(key);
+          break;
+      }
+    });
+    
+  }
+
+  function showToast(msg) {
+    const toast = document.querySelector(`.${SELECTORS.toast}`);
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add(SELECTORS.stateVisible);
+    setTimeout(() => toast.classList.remove(SELECTORS.stateVisible), 3000);
+  }
+
+  // ==========================================
+  // INITIALIZATION
+  // ==========================================
+  function init() {
+    if (document.getElementById(SELECTORS.containerId)) return; // Prevent double init
+    // Note: Styles are inject manually by user now
+    bindSourceTracking();
+    createWidget();
+    updateUI();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();

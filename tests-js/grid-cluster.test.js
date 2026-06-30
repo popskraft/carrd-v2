@@ -12,7 +12,7 @@ test('grid-cluster wraps consecutive grid blocks into theme-grid wrapper', () =>
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -25,18 +25,18 @@ test('grid-cluster wraps consecutive grid blocks into theme-grid wrapper', () =>
   );
 });
 
-test('grid-cluster wraps consecutive data-grid-v2 blocks with data-driven options', () => {
+test('grid-cluster wraps consecutive data-grid blocks with data-driven options', () => {
   const dom = createDom(
     '<div id="root">' +
-      '<div data-grid-v2="features" data-grid-v2-columns="3" data-grid-v2-sm="1" data-grid-v2-lg="2" data-grid-v2-width="30%" data-grid-v2-gap="2">A</div>' +
-      '<div data-grid-v2="features" data-grid-v2-width="70%">B</div>' +
-      '<div data-grid-v2="features">C</div>' +
-      '<div data-grid-v2="reviews" data-grid-v2-columns="2">D</div>' +
-      '<div data-grid-v2="reviews">E</div>' +
+      '<div data-grid="features" data-grid-columns="3" data-grid-sm="1" data-grid-lg="2" data-grid-width="30%" data-grid-gap="2">A</div>' +
+      '<div data-grid="features" data-grid-width="70%">B</div>' +
+      '<div data-grid="features">C</div>' +
+      '<div data-grid="reviews" data-grid-columns="2">D</div>' +
+      '<div data-grid="reviews">E</div>' +
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const wrappers = dom.window.document.querySelectorAll('.theme-grid');
@@ -55,12 +55,12 @@ test('grid-cluster wraps consecutive data-grid-v2 blocks with data-driven option
 test('grid-cluster keeps legacy data-gap attributes as fallback', () => {
   const dom = createDom(
     '<div id="root">' +
-      '<div data-grid-v2="features" data-gap="2">A</div>' +
-      '<div data-grid-v2="features">B</div>' +
+      '<div data-grid="features" data-gap="2">A</div>' +
+      '<div data-grid="features">B</div>' +
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const wrapper = dom.window.document.querySelector('.theme-grid');
@@ -76,7 +76,7 @@ test('grid-cluster marks blocks as initialized', () => {
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -95,7 +95,7 @@ test('grid-cluster does not use any columns-prefixed class names', () => {
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -115,9 +115,9 @@ test('grid-cluster respects enabled:false', () => {
   const dom = createDom(
     '<div id="root"><div class="grid-2">A</div><div class="grid-2">B</div></div>'
   );
-  dom.window.CarrdPluginOptionsV2 = { gridCluster: { enabled: false } };
+  dom.window.CarrdPluginOptions = { gridCluster: { enabled: false } };
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   assert.equal(dom.window.document.querySelectorAll('.theme-grid').length, 0);
@@ -125,7 +125,7 @@ test('grid-cluster respects enabled:false', () => {
 
 test('grid-cluster css preserves justify inner width behavior through the scoped helper class', () => {
   const gridCss = fs.readFileSync(
-    path.resolve(__dirname, '..', 'src/grid-cluster-v2/grid-cluster-v2.css'),
+    path.resolve(__dirname, '..', 'src/grid-cluster/grid-cluster.css'),
     'utf-8'
   );
 
@@ -137,7 +137,7 @@ test('grid-cluster css preserves justify inner width behavior through the scoped
 
 test('grid-cluster css applies gap overrides to both row and column gaps', () => {
   const gridCss = fs.readFileSync(
-    path.resolve(__dirname, '..', 'src/grid-cluster-v2/grid-cluster-v2.css'),
+    path.resolve(__dirname, '..', 'src/grid-cluster/grid-cluster.css'),
     'utf-8'
   );
 
@@ -162,7 +162,7 @@ test('grid-cluster keeps default width classes when partial overrides are provid
       '<div class="grid-2 w-80">B</div>' +
     '</div>'
   );
-  dom.window.CarrdPluginOptionsV2 = {
+  dom.window.CarrdPluginOptions = {
     gridCluster: {
       widthClasses: {
         'w-20': '22%'
@@ -170,7 +170,7 @@ test('grid-cluster keeps default width classes when partial overrides are provid
     }
   };
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const wrapper = dom.window.document.querySelector('.theme-grid');
@@ -187,7 +187,7 @@ test('grid-cluster promotes responsive helper classes from cluster items to wrap
       '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const wrapper = dom.window.document.querySelector('.theme-grid');
@@ -207,7 +207,7 @@ test('grid-cluster uses grid-lg column count for desktop width helpers', () => {
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster-v2/grid-cluster-v2.js');
+  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
   triggerDomReady(dom);
 
   const wrapper = dom.window.document.querySelector('.theme-grid');

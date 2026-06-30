@@ -1,4 +1,4 @@
-# Carrd Plugins V2
+# Carrd Plugins
 
 Ready-to-use plugins for Carrd pages. `src/` is the source of truth; `dist/` is generated delivery.
 
@@ -9,12 +9,12 @@ Ready-to-use plugins for Carrd pages. `src/` is the source of truth; `dist/` is 
 - `KI-003 [active]` `src/` is the source of truth for plugin behavior, while `dist/` is generated delivery.
 - `KI-004 [active]` Plugin guidance is written for Carrd end users; shared build rules live in `scripts/templates/` and `docs/`.
 - `KI-005 [active]` New grouped plugin contracts use `data-*` bindings first; classes and plain hashes are legacy fallbacks.
-- `KI-006 [active]` V2 delivery uses `popskraft/carrd-v2` paths only; legacy `popskraft/carrd-plugins` remains a historical runtime surface.
+- `KI-006 [active]` Delivery uses `popskraft/carrd-v2` paths only; legacy `popskraft/carrd-plugins` remains a historical runtime surface.
 
 ## What This Repo Is
 
 - Carrd plugins with matching source and distributive assets.
-- A v2 runtime repo with `*-v2` plugin slugs, bundle files, globals, and jsDelivr snippets.
+- A runtime repo that keeps the `popskraft/carrd-v2` delivery path while exposing clean plugin slugs, globals, and public `data-*` contracts.
 - A shared theme layer for consistent styling and defaults.
 - A build pipeline that keeps public docs, embeds, and assets aligned.
 
@@ -42,14 +42,14 @@ Three install paths:
 
 ## CDN Bundle (Recommended)
 
-Fastest path: use `dist/theme-core-v2-cdn.html` as the copy source.
+Fastest path: use `dist/theme-core-cdn.html` as the copy source.
 
 ### Step 1 — Head embed
 
 In Carrd: `Add Element → Embed → Code → Hidden → Head`
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core-v2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.css">
 ```
 
 ### Step 2 — Body End embed
@@ -57,14 +57,14 @@ In Carrd: `Add Element → Embed → Code → Hidden → Head`
 In Carrd: `Add Element → Embed → Code → Hidden → Body End`
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core-v2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.js"></script>
 ```
 
-`theme-core-v2.min.css` contains design tokens, shared UI styles, and bundle plugin CSS. `theme-core-v2.min.js` contains plugin defaults and bundle plugin JS.
+`theme-core.min.css` contains design tokens, shared UI styles, and bundle plugin CSS. `theme-core.min.js` contains plugin defaults and bundle plugin JS.
 
 ## CDN Individual (Per-Plugin)
 
-Use this when you want selected plugins through jsDelivr instead of the full `theme-core-v2` bundle.
+Use this when you want selected plugins through jsDelivr instead of the full `theme-core` bundle.
 
 ### Step 1 — Shared Head embed
 
@@ -81,14 +81,14 @@ For each selected plugin, open `*-cdn.html` and:
 - Paste the `<!-- Head -->` part into `Hidden → Head`.
 - Paste the `<!-- Body End -->` part into `Hidden → Body End` when present.
 
-Example (`dist/faq-v2/faq-v2-cdn.html`):
+Example (`dist/faq/faq-cdn.html`):
 
 ```html
 <!-- Head -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq-v2/faq-v2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq/faq.min.css">
 
 <!-- Body End -->
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq-v2/faq-v2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq/faq.min.js"></script>
 ```
 
 `no-loadwaiting` has only a `Head` script block because it must run before Carrd loader completion.
@@ -107,7 +107,7 @@ To change colors, spacing, or plugin behavior on one site, add a separate embed 
 
 ```html
 <script>
-window.CarrdPluginOptionsV2 = {
+window.CarrdPluginOptions = {
   slider: { autoplay: true }
 };
 </script>
@@ -128,7 +128,7 @@ In Carrd: `Add Element → Embed → Code → Hidden → Head`
 
 In Carrd: `Add Element → Embed → Code → Hidden → Body End`
 
-1. Open the plugin folder (e.g. `dist/faq-v2/`).
+1. Open the plugin folder (e.g. `dist/faq/`).
 2. Read that plugin `README.md`.
 3. Open `<plugin>-embed.html`, copy all contents.
 4. Paste into a Body End embed.
@@ -146,25 +146,25 @@ Plugin README files include `:root { ... }` examples for optional overrides.
 
 | Plugin | Path |
 |---|---|
-| **Accordeon** | `dist/accordeon-v2/` |
-| **Cards** | `dist/cards-v2/` |
-| **Cookie Banner** | `dist/cookie-banner-v2/` |
-| **FAQ** | `dist/faq-v2/` |
-| **Floating CTA** | `dist/floating-cta-v2/` |
-| **Grid Cluster** | `dist/grid-cluster-v2/` |
-| **Header Nav** | `dist/header-nav-v2/` |
-| **Modal** | `dist/modal-v2/` |
-| **No-loadwaiting** | `dist/no-loadwaiting-v2/` |
-| **Shopping Cart** | `dist/shopping-cart-v2/` |
-| **Slider** | `dist/slider-v2/` |
-| **Switcher** | `dist/switcher-v2/` |
-| **Typography** | `dist/typography-v2/` |
+| **Accordeon** | `dist/accordeon/` |
+| **Cards** | `dist/cards/` |
+| **Cookie Banner** | `dist/cookie-banner/` |
+| **FAQ** | `dist/faq/` |
+| **Floating CTA** | `dist/floating-cta/` |
+| **Grid Cluster** | `dist/grid-cluster/` |
+| **Header Nav** | `dist/header-nav/` |
+| **Modal** | `dist/modal/` |
+| **No-loadwaiting** | `dist/no-loadwaiting/` |
+| **Shopping Cart** | `dist/shopping-cart/` |
+| **Slider** | `dist/slider/` |
+| **Switcher** | `dist/switcher/` |
+| **Typography** | `dist/typography/` |
 
 Each plugin folder contains `README.md`, embed files, CDN snippets, and distributive assets.
 
 Carrd placement rule:
 - `Hidden → Head` is for theme files, CDN styles, and style overrides.
-- `Hidden → Body End` is for plugin scripts, embeds, and `window.CarrdPluginOptionsV2`.
+- `Hidden → Body End` is for plugin scripts, embeds, and `window.CarrdPluginOptions`.
 
 ## Validation
 
@@ -193,5 +193,5 @@ npm run lint
 | Nothing happens | Check the plugin README and confirm the required attrs, names, classes, or IDs match exactly |
 | Styles look wrong | Confirm the shared theme layer is installed in `Head` |
 | Controls look plain or missing | Reinstall the shared theme layer in `Head` |
-| Config does not apply | Make sure `window.CarrdPluginOptionsV2` appears above the plugin embed |
+| Config does not apply | Make sure `window.CarrdPluginOptions` appears above the plugin embed |
 | A plugin still does not work | Re-open that plugin folder README and follow its `What You Do in Carrd` section step by step |

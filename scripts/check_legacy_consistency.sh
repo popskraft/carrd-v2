@@ -57,7 +57,7 @@ check_absent "Legacy Shopping Cart API (window.CartPlugin)" "window\\.CartPlugin
 check_absent "Legacy Shopping Cart API alias (window.CarrdCart)" "window\\.CarrdCart"
 check_absent "Legacy Modal API (window.ModalPlugin)" "window\\.ModalPlugin"
 check_absent "Legacy Typography API (window.TypographyPlugin)" "window\\.TypographyPlugin"
-check_absent "Legacy columns config bridge (CarrdPluginOptionsV2.columns)" "CarrdPluginOptionsV2\\.columns"
+check_absent "Legacy columns config bridge (CarrdPluginOptions.columns)" "CarrdPluginOptions\\.columns"
 
 check_absent "Legacy cart class prefix (crt-*)" "\\bcrt-[a-z0-9-]+"
 check_absent "Legacy columns container class (custom-grid-container)" "\\bcustom-grid-container\\b"

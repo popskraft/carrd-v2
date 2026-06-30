@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "version": 1,
+    "siteSlug": "faktura",
+    "semanticNamespace": "cx",
+    "contractMode": "profile-needs-targeting-pass",
+    "notes": [
+      "The control core is ready for this site.",
+      "A deterministic semantic target map still needs a per-site targeting pass before write operations become state-write capable."
+    ]
+  },
+  "targets": []
+}

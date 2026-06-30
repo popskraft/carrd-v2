@@ -45,7 +45,7 @@ These items are now owned by newer canon:
 
 - current migration execution: [docs/specs/plugin-unification-migration-plan.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-unification-migration-plan.md)
 - unresolved policy decisions: [OPEN-QUESTIONS.md](/Users/popskraft/Projects/carrd-v2/OPEN-QUESTIONS.md)
-- current shared public contract: [docs/specs/plugin-v2-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-v2-data-contract.md)
+- current shared public contract: [docs/specs/plugin-data-contract.md](/Users/popskraft/Projects/carrd-v2/docs/specs/plugin-data-contract.md)
 
 ## Status
 

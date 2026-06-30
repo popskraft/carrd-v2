@@ -1,6 +1,6 @@
 # Docs Index
 
-Канонический навигатор по active durable docs Carrd Plugins V2.
+Канонический навигатор по active durable docs Carrd Plugins.
 
 ## Сначала читать
 - `AGENTS.md`
@@ -10,16 +10,17 @@
 - `OPEN-QUESTIONS.md`
 
 ## Specs
-- `docs/specs/carrd-v2-contract.md`
+- `docs/specs/carrd-contract.md`
 - `docs/specs/carrd-markup-contract.md`
 - `docs/specs/repository-architecture-plan.md`
-- `docs/specs/plugin-v2-data-contract.md`
+- `docs/specs/plugin-data-contract.md`
 - `docs/specs/plugin-unification-migration-plan.md`
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`
 - `docs/specs/breakpoints-contract.md`
 
 ## Decisions
+- `docs/decisions/clean-runtime-contract.md`
 - `docs/decisions/header-nav-structural-contract.md`
 - `docs/decisions/legacy-alias-feature.md`
 

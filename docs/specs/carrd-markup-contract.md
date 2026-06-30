@@ -6,8 +6,8 @@ Rules governing how plugins interact with Carrd author HTML.
 
 - Existing Carrd author HTML is not agent-controlled by default.
 - Do not introduce new user-facing classes, IDs, or `data-*` attributes in Carrd markup unless the Human Owner explicitly decides to add them.
-- Approved v2 plugin bindings use `data-<plugin>="<name>"`; classes are styling hooks or legacy fallback only.
-- Approved v2 hash triggers use `#data-<plugin>-<name>` and must be ignored unless a matching plugin data target exists.
+- Approved plugin bindings use `data-<plugin>="<name>"`; classes are styling hooks or legacy fallback only.
+- Approved plugin hash triggers use `#data-<plugin>-<name>` and must be ignored unless a matching plugin data target exists.
 - Do not assume Carrd structural markup can be freely changed just to simplify plugin code.
 - Carrd structural detection is allowed when it relies on stable platform invariants or already-approved page contracts.
 - Prefer deterministic structural contracts over multi-layer heuristic guessing.
@@ -37,17 +37,17 @@ If a plugin needs a new public marker to stay reliable, escalate the contract ch
 
 ## Active Plugin Contracts
 
-Contract types and escalation notes only. The authoritative per-plugin binding syntax, options, and the full Naming Matrix live in `docs/specs/plugin-v2-data-contract.md`.
+Contract types and escalation notes only. The authoritative per-plugin binding syntax, options, and the full Naming Matrix live in `docs/specs/plugin-data-contract.md`.
 
 | Plugin | Contract type | Escalation / exception notes |
 |--------|--------------|-------|
-| `accordeon` | V2 hash + attribute group | Legacy `#accordeon-<name>` and `data-accorderon-v2` remain fallback |
+| `accordeon` | Clean hash + attribute group | Only `#data-accordeon-<name>` with matching `data-accordeon="<name>"` is supported |
 | `header-nav` | Header scope + collapse marker | `#header` activates only with `.header-mobile-el-collapsing`; mobile anti-jump collapse only, no sticky shell. See `docs/decisions/header-nav-structural-contract.md` |
-| `floating-cta` | V2 data marker + position | Runtime clones source elements to fixed position; position/hide options per instance |
-| `cookie-banner` | V2 data marker + legacy fallback | Per-banner indent/delay/days/position options; shared consent cookie |
-| `shopping-cart` | V2 output/target marker + legacy ID fallback | Long-term role of `data-shopping-cart-v2-target` is open (Q003) |
-| `modal` | V2 hash + data marker | Lazy `[data-modal]` lookup; legacy `.modal` + `id` hash remains fallback |
-| `grid-cluster` | V2 data grid + legacy grid classes | `grid-N` remains fallback |
-| `cards` | V2 data marker + legacy class | Per-container color/border/padding options |
-| `faq` | V2 data marker + legacy class | Divider + heading based question blocks |
-| `switcher` | V2 data targets + legacy class/cluster fallback | Cluster mode policy is open (Q002). See `docs/specs/switcher-contract.md` |
+| `floating-cta` | Clean data marker + position | Runtime clones source elements to fixed position; position/hide options per instance |
+| `cookie-banner` | Clean data marker + legacy fallback | Per-banner indent/delay/days/position options; shared consent cookie |
+| `shopping-cart` | Clean output/target marker | Long-term role of `data-shopping-cart-target` is open (Q003) |
+| `modal` | Clean hash + data marker | Lazy `[data-modal]` lookup; legacy `.modal` + `id` hash remains fallback |
+| `grid-cluster` | Clean data grid + legacy grid classes | `grid-N` remains fallback |
+| `cards` | Clean data marker + legacy class | Per-container color/border/padding options |
+| `faq` | Clean data marker + legacy class | Divider + heading based question blocks |
+| `switcher` | Clean data targets + legacy class/cluster fallback | Cluster mode policy is open (Q002). See `docs/specs/switcher-contract.md` |

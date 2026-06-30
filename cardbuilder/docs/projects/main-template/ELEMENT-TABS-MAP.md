@@ -2,10 +2,10 @@
 id: ELEMENT_TABS_MAP
 version: 2
 status: active
-last_updated: 2026-04-16
-scan_date: 2026-04-16T09:50:57Z
+last_updated: 2026-06-29
+scan_date: 2026-06-29T10:55:32.601Z
 template_url: https://carrd.co/dashboard/4155176224428477/build
-source_snapshot: /Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-04-16.json
+source_snapshot: /Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json
 ---
 
 # Element Tabs Map (Flexible)
@@ -18,10 +18,10 @@ This map is intentionally flexible: different element types can expose different
 ## Scan Result (Live Builder)
 
 - Builder URL: `https://carrd.co/dashboard/4155176224428477/build`
-- Total scanned elements: `88`
+- Total scanned elements: `96`
 - Scan mode: `read-only` (`propertiesPanel.showById`, no publish/save)
 - Unique tab labels found:
-  - `Text`, `Container`, `Image`, `Links`, `Buttons`, `Control`, `Divider`, `Embed`, `List`, `Form`, `Fields`, `Button`, `Appearance`, `Animation`, `Settings`
+  - `Text`, `Container`, `Image`, `Links`, `Buttons`, `Control`, `Divider`, `Embed`, `List`, `Form`, `Fields`, `Button`, `Icons`, `Appearance`, `Animation`, `Settings`
 
 ## Content / Appearance / Animation / Settings Check
 
@@ -36,35 +36,37 @@ Important:
 
 ## Pattern Map (All Elements)
 
-- `Text / Appearance / Animation / Settings` -> `34`
-- `Container / Appearance / Animation / Settings` -> `16`
-- `Embed / Settings` -> `12`
+- `Text / Appearance / Animation / Settings` -> `42`
+- `Container / Appearance / Animation / Settings` -> `21`
 - `Image / Appearance / Animation / Settings` -> `11`
-- `Buttons / Appearance / Animation / Settings` -> `4`
-- `Control / Settings` -> `4`
+- `Buttons / Appearance / Animation / Settings` -> `7`
+- `Embed / Settings` -> `4`
+- `Control / Settings` -> `3`
 - `Divider / Animation / Settings` -> `3`
 - `Links / Appearance / Animation / Settings` -> `2`
 - `List / Appearance / Animation / Settings` -> `1`
 - `Form / Fields / Button / Appearance / Animation / Settings` -> `1`
+- `Icons / Appearance / Animation / Settings` -> `1`
 
 ## Type Map (Flexible Lookup)
 
-- `container` (16): `Container | Appearance | Animation | Settings`
+- `container` (21): `Container | Appearance | Animation | Settings`
 - `image` (11): `Image | Appearance | Animation | Settings`
 - `links` (2): `Links | Appearance | Animation | Settings`
-- `buttons` (4): `Buttons | Appearance | Animation | Settings`
-- `control` (4): `Control | Settings`
-- `text` (34): `Text | Appearance | Animation | Settings`
+- `buttons` (7): `Buttons | Appearance | Animation | Settings`
+- `control` (3): `Control | Settings`
+- `text` (42): `Text | Appearance | Animation | Settings`
 - `list` (1): `List | Appearance | Animation | Settings`
 - `divider` (3): `Divider | Animation | Settings`
 - `form` (1): `Form | Fields | Button | Appearance | Animation | Settings`
-- `embed` (12): `Embed | Settings`
+- `icons` (1): `Icons | Appearance | Animation | Settings`
+- `embed` (4): `Embed | Settings`
 
 ## Full Per-Element Map
 
-The full `id -> type -> tabs` map for all 88 elements is stored in:
+The full `id -> type -> tabs` map for all 96 elements is stored in:
 
-- [/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-04-16.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-04-16.json)
+- [/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json)
 
 Use `.value.rows` as the canonical per-element registry for this scan.
 

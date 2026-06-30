@@ -1,15 +1,13 @@
-window.CarrdPluginOptionsV2 = window.CarrdPluginOptionsV2 || {};
+window.CarrdPluginOptions = window.CarrdPluginOptions || {};
 
 /* Shopping Cart */
-window.CarrdPluginOptionsV2.shoppingCart = {
+window.CarrdPluginOptions.shoppingCart = window.CarrdPluginOptions.shoppingCart || {
     currency: '$',
     currencyPosition: 'before',
     position: 'top-right',
     storageKey: 'carrd_cart_v1',
-    orderInputSelector: '[name="order-details"], .cart-output, [data-shopping-cart-v2-output="order-details"], [data-cart-v2-output="order-details"]',
-    orderInputClass: '.cart-output',
-    orderInputId: 'order-details',
-    checkoutTargetSelector: '.shopping-cart-target, [data-shopping-cart-v2-target]',
+    orderInputSelector: '[data-shopping-cart-output="order-details"]',
+    checkoutTargetSelector: '[data-shopping-cart-target]',
     checkoutTargetId: 'shopping-cart',
     texts: {
         title: 'Shopping Cart',
@@ -22,21 +20,20 @@ window.CarrdPluginOptionsV2.shoppingCart = {
         errorName: 'Invalid product name',
         errorPrice: 'Invalid price for ${name}',
         errorForm: 'Error: Could not find the order form. Please contact support.',
-        consoleErrorForm: 'Carrd Cart: Could not find "Order Details" field. Please ensure a textarea matching orderInputSelector, .cart-output, #order-details, [data-shopping-cart-v2-output="order-details"], or [data-cart-v2-output="order-details"] exists.'
+        consoleErrorForm: 'Carrd Cart: Could not find the checkout textarea. Please ensure [data-shopping-cart-output="order-details"] exists.'
     }
 };
 
 /* FAQ */
-window.CarrdPluginOptionsV2.faq = {};
+window.CarrdPluginOptions.faq = window.CarrdPluginOptions.faq || {};
 
 /* Accordeon */
-window.CarrdPluginOptionsV2.accordeon = {
+window.CarrdPluginOptions.accordeon = window.CarrdPluginOptions.accordeon || {
     enabled: true,
-    hashPrefix: '#data-accordeon-v2-',
-    legacyHashPrefix: '#accordeon-',
-    linkPrefix: '#data-accordeon-v2-',
+    hashPrefix: '#data-accordeon-',
+    linkPrefix: '#data-accordeon-',
     linkSelector: null,
-    targetAttributes: ['data-accordeon-v2', 'data-accorderon-v2'],
+    targetAttributes: ['data-accordeon'],
     defaultOpen: false,
     scrollOnOpen: true,
     scrollBehavior: 'smooth',
@@ -44,16 +41,16 @@ window.CarrdPluginOptionsV2.accordeon = {
 };
 
 /* Cards */
-window.CarrdPluginOptionsV2.cards = {
+window.CarrdPluginOptions.cards = window.CarrdPluginOptions.cards || {
     enabled: true,
-    cardSelector: '[data-cards-v2], .cards',
+    cardSelector: '[data-cards]',
     defaultCardBg: 'var(--theme-card-bg-default)'
 };
 
 /* Grid Cluster */
-window.CarrdPluginOptionsV2.gridCluster = {
+window.CarrdPluginOptions.gridCluster = window.CarrdPluginOptions.gridCluster || {
     enabled: true,
-    gridAttribute: 'data-grid-v2',
+    gridAttribute: 'data-grid',
     gridClasses: ['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6'],
     widthClasses: {
         'w-20': '20%',
@@ -68,10 +65,10 @@ window.CarrdPluginOptionsV2.gridCluster = {
     }
 };
 
-/* Legacy note: the old `columns` plugin is archived and no longer participates in the active plugin contract. */
+/* Archived note: the old `columns` plugin no longer participates in the active contract. */
 
 /* No-loadwaiting */
-window.CarrdPluginOptionsV2.noLoadwaiting = {
+window.CarrdPluginOptions.noLoadwaiting = window.CarrdPluginOptions.noLoadwaiting || {
     animationDuration: 750,
     observerTimeout: 5000,
     scrollPulseInterval: 120,
@@ -80,9 +77,9 @@ window.CarrdPluginOptionsV2.noLoadwaiting = {
 };
 
 /* Slider */
-window.CarrdPluginOptionsV2.slider = {
-    slideSelector: '[data-slider-v2], .slider',
-    sliderAttribute: 'data-slider-v2',
+window.CarrdPluginOptions.slider = window.CarrdPluginOptions.slider || {
+    slideSelector: '[data-slider]',
+    sliderAttribute: 'data-slider',
     showDots: true,
     showArrows: true,
     loop: false,
@@ -101,12 +98,12 @@ window.CarrdPluginOptionsV2.slider = {
 };
 
 /* Modal */
-window.CarrdPluginOptionsV2.modal = {
-    modalSelector: '.container-component.modal, .container-component[data-modal-v2]',
-    targetAttribute: 'data-modal-v2',
-    triggerAttribute: 'data-modal-v2-open',
-    legacyTriggerAttribute: 'data-modal-v2-target',
-    hashPrefix: '#data-modal-v2-',
+window.CarrdPluginOptions.modal = window.CarrdPluginOptions.modal || {
+    modalSelector: '.container-component[data-modal]',
+    targetAttribute: 'data-modal',
+    triggerAttribute: 'data-modal-open',
+    legacyTriggerAttribute: 'data-modal-target',
+    hashPrefix: '#data-modal-',
     legacyHashTargets: true,
     closeOnOverlay: true,
     closeOnEscape: true,
@@ -116,20 +113,20 @@ window.CarrdPluginOptionsV2.modal = {
 };
 
 /* Typography */
-window.CarrdPluginOptionsV2.typography = {
+window.CarrdPluginOptions.typography = window.CarrdPluginOptions.typography || {
     containerSelector: '.txt',
     paragraphSelector: 'span.p'
 };
 
 /* Cookie Banner */
-window.CarrdPluginOptionsV2.cookieBanner = {
+window.CarrdPluginOptions.cookieBanner = window.CarrdPluginOptions.cookieBanner || {
     cookieName: 'cookies_accepted',
     fadeOutDuration: 300,
     fadeInDuration: 400
 };
 
 /* Header Nav */
-window.CarrdPluginOptionsV2.headerNav = {
+window.CarrdPluginOptions.headerNav = window.CarrdPluginOptions.headerNav || {
     breakpoint: 736,
     closeOnLinkClick: true,
     sticky: true,
@@ -139,8 +136,8 @@ window.CarrdPluginOptionsV2.headerNav = {
 };
 
 /* Floating CTA */
-window.CarrdPluginOptionsV2.floatingCta = {
-    selector: '[data-floating-v2]',
+window.CarrdPluginOptions.floatingCta = window.CarrdPluginOptions.floatingCta || {
+    selector: '[data-floating]',
     defaultPosition: 'bottom-right',
     scrollY: 800
 };

@@ -12,7 +12,7 @@
   },
   "cdn_bundle": {
     "enabled": true,
-    "name": "theme-core-v2",
+    "name": "theme-core",
     "github_repo": "popskraft/carrd-v2",
     "cdn_ref": "main",
     "cdn_embed": true,
@@ -24,16 +24,16 @@
       "theme-config.js"
     ],
     "plugins": [
-      "accordeon-v2",
-      "cards-v2",
-      "faq-v2",
-      "floating-cta-v2",
-      "grid-cluster-v2",
-      "header-nav-v2",
-      "modal-v2",
-      "slider-v2",
-      "switcher-v2",
-      "typography-v2"
+      "accordeon",
+      "cards",
+      "faq",
+      "floating-cta",
+      "grid-cluster",
+      "header-nav",
+      "modal",
+      "slider",
+      "switcher",
+      "typography"
     ]
   }
 }

@@ -8,6 +8,98 @@ export const REPO_ROOT = path.resolve(MODULE_DIR, "../../..");
 export const DEFAULT_REGISTRY_PATH = path.join(REPO_ROOT, "cardbuilder/data/sites.json");
 export const DEFAULT_ACTIVE_TEMPLATE_PATH = path.join(REPO_ROOT, "cardbuilder/data/active-template.json");
 
+// ---------------------------------------------------------------------------
+// Path resolution: convert repo-relative paths to absolute using REPO_ROOT.
+// Absolute paths are returned unchanged (handles out-of-repo paths like
+// chromeProfileDir: ~/.codex/...).
+// ---------------------------------------------------------------------------
+
+function resolveRepoPath(rawPath) {
+  if (!rawPath || typeof rawPath !== "string") return rawPath;
+  if (path.isAbsolute(rawPath)) return rawPath;
+  return path.resolve(REPO_ROOT, rawPath);
+}
+
+const REGISTRY_PATH_FIELDS = [
+  "projectWorkspace",
+  "projectDocs",
+  "knowledgeStatusManifest",
+  "profilePath",
+  "pluginSourceRoot",
+  "pluginDistRoot"
+];
+
+function resolveRegistryEntryPaths(entry) {
+  const resolved = { ...entry };
+  for (const field of REGISTRY_PATH_FIELDS) {
+    if (resolved[field] != null) {
+      resolved[field] = resolveRepoPath(resolved[field]);
+    }
+  }
+  return resolved;
+}
+
+const ACTIVE_TEMPLATE_PATH_FIELDS = [
+  "projectWorkspace",
+  "projectDocs",
+  "knowledgeStatusManifest",
+  "pluginSourceRoot",
+  "pluginDistRoot",
+  "knowledgeRoot",
+  "knowledgeRulesDoc"
+];
+
+function resolveActiveTemplatePaths(activeTemplate) {
+  const resolved = { ...activeTemplate };
+  for (const field of ACTIVE_TEMPLATE_PATH_FIELDS) {
+    if (resolved[field] != null) {
+      resolved[field] = resolveRepoPath(resolved[field]);
+    }
+  }
+  return resolved;
+}
+
+function resolveObjectPaths(obj) {
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) return obj;
+  const resolved = { ...obj };
+  for (const key of Object.keys(resolved)) {
+    if (resolved[key] != null && typeof resolved[key] === "string") {
+      resolved[key] = resolveRepoPath(resolved[key]);
+    }
+  }
+  return resolved;
+}
+
+function resolveProfilePaths(profile) {
+  const resolved = { ...profile };
+
+  for (const field of ["projectWorkspace", "projectDocs", "knowledgeStatusManifest", "pluginSourceRoot", "pluginDistRoot"]) {
+    if (resolved[field] != null) {
+      resolved[field] = resolveRepoPath(resolved[field]);
+    }
+  }
+
+  if (resolved.structure && typeof resolved.structure === "object") {
+    resolved.structure = resolveObjectPaths(resolved.structure);
+  }
+  if (resolved.semantic && typeof resolved.semantic === "object") {
+    resolved.semantic = resolveObjectPaths(resolved.semantic);
+  }
+  if (resolved.runtimeAssets && typeof resolved.runtimeAssets === "object") {
+    resolved.runtimeAssets = resolveObjectPaths(resolved.runtimeAssets);
+  }
+  if (resolved.mcp && typeof resolved.mcp === "object") {
+    resolved.mcp = { ...resolved.mcp };
+    for (const field of ["serverEntry", "targetMapPath"]) {
+      if (resolved.mcp[field] != null) {
+        resolved.mcp[field] = resolveRepoPath(resolved.mcp[field]);
+      }
+    }
+  }
+
+  return resolved;
+}
+
 function fail(message) {
   throw new Error(message);
 }
@@ -163,15 +255,16 @@ export function loadRegistry(registryPath = DEFAULT_REGISTRY_PATH) {
     fail(`Registry file must contain an array: ${registryPath}`);
   }
 
-  registry.forEach(validateRegistryEntry);
-  registry.forEach(validateExistingPaths);
-  validateUniqueKeys(registry);
+  const resolved = registry.map(resolveRegistryEntryPaths);
+  resolved.forEach(validateRegistryEntry);
+  resolved.forEach(validateExistingPaths);
+  validateUniqueKeys(resolved);
 
-  return registry;
+  return resolved;
 }
 
 export function loadActiveTemplate(activeTemplatePath = DEFAULT_ACTIVE_TEMPLATE_PATH) {
-  return readJsonFile(activeTemplatePath);
+  return resolveActiveTemplatePaths(readJsonFile(activeTemplatePath));
 }
 
 export function loadSiteProfile(profilePath) {
@@ -181,7 +274,7 @@ export function loadSiteProfile(profilePath) {
     fail(`Site profile must be an object: ${profilePath}`);
   }
 
-  return profile;
+  return resolveProfilePaths(profile);
 }
 
 export function profileSnapshotDir(profile) {

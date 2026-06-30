@@ -11,7 +11,7 @@ test('typography parses markdown-like syntax into plugin-scoped elements', () =>
     '</div></div>'
   );
 
-  loadScript(dom, 'src/typography-v2/typography-v2.js');
+  loadScript(dom, 'src/typography/typography.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;
@@ -22,14 +22,14 @@ test('typography parses markdown-like syntax into plugin-scoped elements', () =>
 
 test('typography exposes API and does not double-initialize', () => {
   const dom = createDom('<div class="txt"><span class="p">## Header</span></div>');
-  loadScript(dom, 'src/typography-v2/typography-v2.js');
+  loadScript(dom, 'src/typography/typography.js');
 
   triggerDomReady(dom);
   triggerDomReady(dom);
 
   const doc = dom.window.document;
-  assert.ok(dom.window.CarrdTypographyV2);
-  assert.equal(typeof dom.window.CarrdTypographyV2.process, 'function');
+  assert.ok(dom.window.CarrdTypography);
+  assert.equal(typeof dom.window.CarrdTypography.process, 'function');
   assert.equal(doc.querySelectorAll('.theme-typography-h2').length, 1);
   assert.equal(doc.querySelector('.txt').dataset.typographyInitialized, 'true');
 });
@@ -42,7 +42,7 @@ test('typography preserves default nested classes when partial overrides are pro
     }
   });
 
-  loadScript(dom, 'src/typography-v2/typography-v2.js');
+  loadScript(dom, 'src/typography/typography.js');
   triggerDomReady(dom);
 
   const doc = dom.window.document;

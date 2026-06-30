@@ -64,7 +64,7 @@ Reason:
 4. updated README generation guidance in:
    - `/Users/popskraft/Projects/carrd-v2/docs/templates/plugin-readme-template.md`
 5. normalized active developer guidance in:
-   - `/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-v2-contract.md`
+   - `/Users/popskraft/Projects/carrd-v2/docs/specs/carrd-contract.md`
 6. normalized plugin-specific source README override wording in:
    - `/Users/popskraft/Projects/carrd-v2/src/cards/README.md`
    - `/Users/popskraft/Projects/carrd-v2/_archive/columns/README.md`
