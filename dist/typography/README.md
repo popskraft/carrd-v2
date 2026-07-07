@@ -2,7 +2,7 @@
 
 Converts Markdown-like plain text inside `.txt` blocks into styled typography.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

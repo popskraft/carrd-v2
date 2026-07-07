@@ -2,7 +2,7 @@
 
 Removes Carrd's loading delay so page content appears immediately.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

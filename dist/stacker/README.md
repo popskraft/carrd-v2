@@ -2,7 +2,7 @@
 
 Turns a group of Carrd containers into scroll-stacking cards: each container pins near the top of the screen and the next one slides over it, then the whole stack scrolls away after the last card.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

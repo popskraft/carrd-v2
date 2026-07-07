@@ -2,7 +2,7 @@
 
 Clones marked Carrd elements into fixed CTAs that appear after scrolling.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

@@ -2,7 +2,7 @@
 
 Turns each child of a marked Carrd container into a styled card.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

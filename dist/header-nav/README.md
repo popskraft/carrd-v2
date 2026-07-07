@@ -2,7 +2,7 @@
 
 Adds a mobile hamburger for selected elements inside Carrd's header.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 

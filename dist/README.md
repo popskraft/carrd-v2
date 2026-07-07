@@ -1,6 +1,6 @@
 ## Version
 
-- Version: `2.0.0`
+- Version: `2.1.0`
 - Build date (UTC): `2026-07-07`
 - [View Changelog](CHANGELOG.md)
 
@@ -49,8 +49,8 @@ Bundle plugins:
 Recommended for most sites.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.css">
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-runtime.min.css">
+<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-runtime.min.js"></script>
 ```
 
 Use `dist/theme-runtime-cdn.html` as the copy source.
@@ -80,7 +80,7 @@ This applies to:
 Use this when you want only selected plugins instead of the full bundle.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-ui-runtime.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-ui-runtime.css">
 ```
 
 Then open each plugin `*-cdn.html` file and:

@@ -2,7 +2,7 @@
 
 Shows a fixed consent banner and remembers the visitor's choice.
 
-Version: `2.0.0`
+Version: `2.1.0`
 
 ## Install
 
