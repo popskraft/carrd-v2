@@ -12,7 +12,23 @@ The plugin copies those styles to every card item. Each marked container works i
 
 ## Configuration
 
-No JavaScript configuration is required.
+Defaults work without configuration. To change the container selector or disable the plugin, add this in `Body End` above the bundle or plugin script:
+
+```html
+<script>
+window.CarrdPluginOptions = {
+  cards: {
+    enabled: true,
+    cardSelector: '[data-cards]'
+  }
+};
+</script>
+```
+
+| Option | Default | Result |
+|---|---|---|
+| `enabled` | `true` | Set `false` to disable the plugin globally |
+| `cardSelector` | `'[data-cards]'` | Attribute selector used to find card containers |
 
 Optional container attributes:
 
@@ -22,6 +38,11 @@ Optional container attributes:
 | `data-cards-color-1=VALUE` | Sets the first card background |
 | `data-cards-border-color-1=VALUE` | Sets the first card border color |
 | `data-cards-padding=VALUE` | Overrides card padding |
+| `data-cards-padding-mobile=VALUE` | Overrides card padding on mobile |
+| `data-padding=VALUE` | Legacy alias of `data-cards-padding` |
+| `data-color=VALUE` | Legacy alias of `data-cards-color` |
+| `data-color-1=VALUE` | Legacy alias of `data-cards-color-1` |
+| `data-border-color-1=VALUE` | Legacy alias of `data-cards-border-color-1` |
 
 Continue numbered attributes with `-2`, `-3`, and so on.
 

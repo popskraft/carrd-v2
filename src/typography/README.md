@@ -35,6 +35,14 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
+| Option | Default | Result |
+|---|---|---|
+| `containerSelector` | `'.txt'` | Selector for blocks the plugin scans |
+| `paragraphSelector` | `'span.p'` | Selector for paragraph elements inside a container |
+| `headingClasses` | `{ h1: 'theme-typography-h1', h2: 'theme-typography-h2', h3: 'theme-typography-h3', h4: 'theme-typography-h4' }` | Class names applied per heading level; merged with, not replacing, the defaults |
+| `listClasses` | `{ ul: 'theme-typography-ul', ol: 'theme-typography-ol', li: 'theme-typography-li' }` | Class names applied to generated lists; merged with, not replacing, the defaults |
+| `hrClass` | `'theme-typography-hr'` | Class name applied to generated horizontal rules |
+
 ## Verify
 
 1. Publish or refresh the page.
@@ -49,7 +57,7 @@ Add a separate `Head` style embed after the theme files:
 ```html
 <style>
 :root {
-  --theme-color-headlines: #19355a;
+  --theme-color-heading: #19355a;
   --theme-color-border: #efefef;
 }
 </style>

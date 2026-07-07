@@ -34,6 +34,15 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
+| Option | Default | Result |
+|---|---|---|
+| `scrollY` | `800` | Scroll distance in px before a copy appears |
+| `defaultPosition` | `'bottom-right'` | Global default position |
+| `selector` | `'[data-floating]'` | Attribute selector used to find source elements |
+| `breakpoint` | `736` | Viewport width, in px, used to tell mobile from desktop |
+| `showOnMobile` | `true` | Set `false` to hide every floating copy on mobile |
+| `showOnDesktop` | `true` | Set `false` to hide every floating copy on desktop |
+
 ## Verify
 
 1. Publish the page.

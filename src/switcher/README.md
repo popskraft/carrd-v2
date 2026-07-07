@@ -34,6 +34,16 @@ window.CarrdPluginOptions = {
 
 The `instances` key must match the `data-switcher` value.
 
+| Option | Default | Result |
+|---|---|---|
+| `defaultIndex` | `1` | Default panel shown before any click |
+| `warnOnMismatch` | `true` | Logs console warnings for invalid indexes or missing targets |
+| `enabled` | `true` | Set `false` to disable the plugin globally |
+| `controllerSelector` | `'[data-switcher]'` | Attribute selector used to find controllers |
+| `scopeSelector` | `'section'` | Ancestor selector searched for matching targets |
+| `targetAttribute` | `'data-switcher-target'` | Attribute name that names each target |
+| `targetIndexAttribute` | `'data-switcher-index'` | Attribute name that sets an explicit target index |
+
 ## Verify
 
 1. Publish or refresh the page.

@@ -28,6 +28,15 @@ window.CarrdPluginOptions = {
 
 Positions: `top-right`, `top-left`, `bottom-right`, `bottom-left`, or `bottom-center`.
 
+| Option | Default | Result |
+|---|---|---|
+| `currency` | `'$'` | Currency symbol shown with each price |
+| `currencyPosition` | `'before'` | `'before'` shows `$10`, `'after'` shows `10$` |
+| `position` | `'top-right'` | Floating widget position |
+| `storageKey` | `'carrd_cart_v1'` | `localStorage` key used to persist the cart |
+| `orderInputSelector` | `'[data-shopping-cart-output="order-details"]'` | Selector for the checkout field the order summary is written into |
+| `checkoutTargetId` | `'shopping-cart'` | Section id scrolled to on checkout |
+
 ## Verify
 
 1. Publish and add a product.
@@ -43,10 +52,10 @@ Add a separate `Head` style embed after the theme files:
 ```html
 <style>
 :root {
-  --theme-shopcart-bg: var(--theme-color-bg);
+  --theme-shopcart-bg: var(--theme-color-surface);
   --theme-shopcart-text: var(--theme-color-text);
   --theme-shopcart-accent: var(--theme-color-primary);
-  --theme-shopcart-btn-bg: var(--theme-color-success);
+  --theme-shopcart-btn-bg: var(--theme-color-brand-green);
   --theme-shopcart-overlay-bg: var(--theme-overlay-bg);
 }
 </style>
@@ -61,9 +70,18 @@ texts: {
   title: 'Cart',
   empty: 'Your cart is empty.',
   checkout: 'Checkout',
-  total: 'Total'
+  total: 'Total',
+  remove: 'Remove',
+  required: 'Required',
+  addedToCart: 'Added "${name}" to cart',
+  errorName: 'Invalid product name',
+  errorPrice: 'Invalid price for ${name}',
+  errorForm: 'Error: Could not find the order form. Please contact support.',
+  consoleErrorForm: 'Carrd Cart: Could not find the checkout textarea. Ensure [data-shopping-cart-output="order-details"] exists or use the native Carrd order-details textarea inside #form-shopping-cart.'
 }
 ```
+
+`addedToCart` and `errorPrice` support a `${name}` placeholder. `consoleErrorForm` is logged to the browser console only, not shown to visitors.
 
 ## API
 

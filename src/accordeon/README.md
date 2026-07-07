@@ -27,6 +27,18 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
+| Option | Default | Result |
+|---|---|---|
+| `enabled` | `true` | Set `false` to disable the plugin globally |
+| `defaultOpen` | `false` | Opens every group on load |
+| `scrollOnOpen` | `true` | Scrolls to a group when it opens |
+| `scrollBehavior` | `'smooth'` | Scroll behavior passed to `scrollIntoView` |
+| `scrollBlock` | `'start'` | Vertical alignment passed to `scrollIntoView` |
+| `hashPrefix` | `'#data-accordeon-'` | URL hash prefix that auto-opens a matching group on load |
+| `linkPrefix` | `'#data-accordeon-'` | Href prefix used to find each group's trigger link |
+| `linkSelector` | `null` | Overrides trigger-link discovery with a custom selector instead of `linkPrefix` |
+| `targetAttributes` | `['data-accordeon']` | Attribute names checked on target containers |
+
 ## Verify
 
 1. Publish or refresh the page.

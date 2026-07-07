@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Code Quality**: Refactored all functions exceeding the cyclomatic-complexity budget (cards, faq, stacker, shopping-cart, slider, modal) into focused helpers within each plugin's single IIFE — no runtime/embed structure change — and promoted the ESLint `complexity` rule from `warn` to `error` (max 10). Behaviour preserved; 225/225 JS tests green.
 - **Tests**: Made `test:py` machine-independent — admincarrd PHP-harness tests now `skipUnless(shutil.which("php"))`, so `npm run test` no longer errors on hosts without the `php` CLI (skipped, not error).
 
+### Fixed
+
+- **Plugin README completeness**: Documented every previously-undocumented `CarrdPluginOptions` key across accordeon, cards, cookie-banner, faq, floating-cta, grid-cluster, modal, shopping-cart, slider, stacker, switcher, and typography (`src/<plugin>/README.md`, generated `dist/` copies rebuilt). FAQ's README no longer contradicts the code by claiming no JS configuration exists.
+
 ### Removed
 
 - **Cards**: Removed the shared `--theme-card-bg-default` fallback token and the matching `defaultCardBg` runtime option. `cards` backgrounds now come only from container styling or explicit `data-cards-color*` overrides.

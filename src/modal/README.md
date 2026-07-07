@@ -26,6 +26,20 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
+| Option | Default | Result |
+|---|---|---|
+| `closeOnOverlay` | `true` | Closes the modal when the overlay is clicked |
+| `closeOnEscape` | `true` | Closes the modal on `Escape` |
+| `showCloseButton` | `true` | Shows the built-in close button |
+| `lockBodyScroll` | `true` | Locks page scrolling while a modal is open |
+| `preventWhenCartOpen` | `false` | Set `true` to block opening a modal while the Shopping Cart panel is open |
+| `modalSelector` | `'.container-component[data-modal]'` | Selector used to find modal containers |
+| `targetAttribute` | `'data-modal'` | Attribute name that names each modal |
+| `triggerAttribute` | `'data-modal-open'` | Attribute used for non-link triggers |
+| `legacyTriggerAttribute` | `'data-modal-target'` | Legacy alias of `triggerAttribute` |
+| `hashPrefix` | `'#data-modal-'` | URL hash prefix used to open a modal via a link |
+| `legacyHashTargets` | `true` | Set `false` to stop matching legacy hash targets |
+
 ## Verify
 
 1. Publish the page and open the trigger.

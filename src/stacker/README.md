@@ -41,6 +41,12 @@ window.CarrdPluginOptions = {
 | `offset` | unset (`0px`) | Distance from the top of the screen where cards pin (px or CSS length) |
 | `minWidth` | `0` | Below this viewport width the stack falls back to normal scrolling |
 | `enabled` | `true` | Set `false` to turn the plugin off |
+| `zIndexBase` | `2` | Starting `z-index` for the first stacked item |
+| `warnOnMismatch` | `true` | Logs console warnings for invalid offsets or group names |
+| `overflowFixSelector` | `'.site-wrapper'` | Ancestor selector patched to allow the stack to overflow it |
+| `attribute` | `'data-stacker'` | Attribute name used to group containers into a stack |
+| `legacyAttribute` | `'data-stacked'` | Legacy alias of `attribute` |
+| `offsetAttribute` | `'data-stacker-offset'` | Attribute name read for the per-group pin offset |
 
 ## Verify
 
