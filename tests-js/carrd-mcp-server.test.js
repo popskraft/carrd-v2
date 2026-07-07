@@ -72,6 +72,7 @@ test("MCP server supports discover, initialize, tools/list, and read-only tool c
     "list_profiles",
     "check_profile",
     "sync_profile",
+    "onboard_site",
     "resolve_target",
     "read_target",
     "update_target"

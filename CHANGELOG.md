@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Stacker**: New scroll-stacking plugin (`data-stacker`, legacy alias `data-stacked`): grouped containers pin below a configurable top offset and slide over each other, then the whole stack scrolls away after the last card. Included in the `theme-core` CDN bundle.
+
 ## [2.0.0] - 2026-06-23
 
 ### Added
@@ -122,24 +126,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.14] - 2026-03-21
 
-### Changed
-
-- **Custom Theme**: Removed duplicated UI rules in `custom-themes/koriphey-online/custom-ui.css` to keep the generated embed CSS cleaner and easier to maintain.
-- **Documentation**: Regenerated distribution docs and custom theme outputs for the latest Koriphey Online theme updates.
-
 ### Removed
 
 - **Stacker**: Removed the non-working `stacker` plugin from the project. It is no longer supported, bundled, or documented as an available plugin.
-
-## [0.1.13] - 2026-02-20
-
-### Added
-
-- **Custom Themes**: Integrated `custom-themes` module with initial support for Koriphey Online theme, including custom CSS, config, and plugin body/head embeds.
-
-### Changed
-
-- **Documentation**: Updated README to document custom theme installation flow and generated Koriphey Online theme bundle documentation.
 
 ## [0.1.12] - 2026-02-18
 

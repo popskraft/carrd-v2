@@ -108,7 +108,7 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 - `data-switcher` identifies the controller state group.
 - `data-switcher-target` identifies targets for that controller.
 - `data-switcher-index` is optional; without it, DOM order maps targets to buttons.
-- Legacy class-index targets and `data-switcher-cluster` remain fallback during migration.
+- Legacy class-index targets remain fallback only. Whole containers use the same `data-switcher-target` + `data-switcher-index` contract.
 
 ### Accordeon
 
@@ -198,13 +198,16 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 ### Shopping Cart
 
 ```html
-<textarea data-shopping-cart-output="order-details"></textarea>
-<div data-shopping-cart-target></div>
+<section id="shopping-cart">
+  <form id="form-shopping-cart">
+    <textarea data-shopping-cart-output="order-details"></textarea>
+  </form>
+</section>
 ```
 
 - `data-shopping-cart-output="order-details"` is the preferred explicit textarea marker.
-- `data-shopping-cart-target` remains a supported checkout target marker.
 - The checkout textarea is resolved only through `data-shopping-cart-output="order-details"` in the clean runtime.
+- Checkout opens the Carrd Section Break `#shopping-cart`; `checkoutTargetId` may override that section name.
 
 ## Naming Matrix
 
@@ -217,9 +220,9 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 | `floating-cta` | `data-floating="<name>"` | named markers such as `data-floating="contact"` | literal `cta` values already keep working |
 | `grid-cluster` | `data-grid`, `data-gap*` | `data-grid`, `data-grid-gap*` | `data-gap*`, `grid-*`, `w-*`, `justify` |
 | `modal` | `data-modal`, `data-modal-target`, `#data-modal-*` | `data-modal`, `data-modal-open`, `#data-modal-*` | `.modal` + `id`, `data-modal-target` |
-| `shopping-cart` | `data-shopping-cart-output`, `data-shopping-cart-target` | same | none |
+| `shopping-cart` | `#shopping-cart`, `#form-shopping-cart`, `data-shopping-cart-output` | same | none |
 | `slider` | `data-slider="<name>"` | same | `.slider`, `data-slider-id` |
-| `switcher` | `data-switcher`, `data-switcher-target`, `data-switcher-index` | same | class-index targets, `data-switcher-cluster` |
+| `switcher` | `data-switcher`, `data-switcher-target`, `data-switcher-index` | same | class-index targets |
 
 ## Migration Rules
 

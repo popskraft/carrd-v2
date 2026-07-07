@@ -1,48 +1,35 @@
 # No Loadwaiting
 
-Removes Carrd's loading delay so the page appears immediately.
+Removes Carrd's loading delay so page content appears immediately.
 
-## What You Do in Carrd
+## Carrd Setup
 
-No extra Carrd setup is required after you install the plugin embed.
-
-## How It Works in Carrd
-
-- The page becomes ready immediately instead of waiting on Carrd's default loading delay.
-- Entry animations still work.
-- The plugin keeps watching briefly for late changes, then stops.
-- It also sends initial and follow-up resize pulses so layout-sensitive plugins can wake up.
-
-## How To Check That It Works
-
-1. Publish and open the page.
-2. Confirm content appears without the usual wait.
-3. If the loader still shows, check that the plugin code is present.
+No page elements or attributes are required. Install this plugin in `Head` before other plugin scripts.
 
 ## Configuration
 
-Use this only if you want to change timing behavior.
+Defaults preserve entry animations and send resize pulses for layout-sensitive plugins. To change timing, add this in `Head` above the plugin:
 
 ```html
 <script>
 window.CarrdPluginOptions = {
-    noLoadwaiting: {
-        animationDuration: 750,
-        observerTimeout: 5000,
-        scrollPulseInterval: 120,
-        scrollPulseCount: 2,
-        rafPulseCount: 2
-    }
+  noLoadwaiting: {
+    animationDuration: 750,
+    observerTimeout: 5000,
+    scrollPulseInterval: 120,
+    scrollPulseCount: 2,
+    rafPulseCount: 2
+  }
 };
 </script>
 ```
 
-### Options
+All timing values are milliseconds except the pulse counts.
 
-| Option | Default | What it changes |
-|--------|---------|-----------------|
-| `animationDuration` | `750` | Duration for the `is-playing` class in ms |
-| `observerTimeout` | `5000` | How long the plugin watches for changes |
-| `scrollPulseInterval` | `120` | Interval between follow-up resize pulses in ms |
-| `scrollPulseCount` | `2` | Number of delayed resize pulses |
-| `rafPulseCount` | `2` | Number of animation frame resize pulses |
+## Verify
+
+1. Publish and open the page.
+2. Confirm content appears without the usual Carrd wait.
+3. Confirm entry animations and layout-dependent plugins still start.
+
+If the loader remains, confirm the plugin is installed in `Head`.

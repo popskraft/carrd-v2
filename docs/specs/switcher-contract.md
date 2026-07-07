@@ -16,7 +16,7 @@ Supported use cases:
 - cards or image/text blocks;
 - multiple independent switchers on one page;
 - synchronized controllers with the same `data-switcher` name;
-- cluster switching for whole containers or sections when needed.
+- whole-container switching through explicit target indexes.
 
 Source lives in `src/switcher/`. Delivery lives in `dist/switcher/`.
 
@@ -65,22 +65,22 @@ Rules:
 - Multiple elements may share one target class.
 - When both an outer Carrd container and nested child nodes match, the outermost target wins.
 
-### Cluster targets
+### Whole-container targets
 
 ```html
-<ul data-switcher="cases" data-switcher-mode="cluster">
+<ul data-switcher="cases">
   <li><a role="button">Case 1</a></li>
   <li><a role="button">Case 2</a></li>
 </ul>
 
-<section data-switcher-cluster="cases">...</section>
-<section data-switcher-cluster="cases">...</section>
+<section data-switcher-target="cases" data-switcher-index="1">...</section>
+<section data-switcher-target="cases" data-switcher-index="2">...</section>
 ```
 
 Rules:
 
-- Cluster targets are mapped by order.
-- Cluster mode is intended for whole sections or same-type block groups.
+- Use `data-switcher-target` on the outer container itself.
+- Use explicit `data-switcher-index` when button-to-container mapping must stay stable.
 - The controller must sit outside the targets it can hide.
 
 ## Runtime Contract
@@ -116,16 +116,13 @@ For each controller:
 
 1. Read `data-switcher`.
 2. Reject empty or unsafe names.
-3. Resolve `data-switcher-mode`, default `class-index`.
-4. Resolve scope:
-   - default mode: `closest('section') || closest('.site-main') || document`
-   - cluster mode: `closest('.site-main') || document`
-5. Collect buttons with `querySelectorAll('a[role="button"], a')`.
-6. In default mode, prefer clean targets with `data-switcher-target="<name>"`.
-7. If no clean targets exist, fall back to legacy class-index targets.
-8. In cluster mode, collect `[data-switcher-cluster="<name>"]` by order.
-9. Initialize to configured active index, default `1`.
-10. On click, prevent default and show the chosen index across all controllers with the same name.
+3. Resolve base scope: `closest('section') || closest('.site-main') || document`.
+4. Collect buttons with `querySelectorAll('a[role="button"], a')`.
+5. Prefer clean targets with `data-switcher-target="<name>"` inside the base scope.
+6. If the base scope has no clean targets and `closest('.site-main')` is wider, retry clean targets there.
+7. If no clean targets exist, fall back to legacy class-index targets in the base scope.
+8. Initialize to configured active index, default `1`.
+9. On click, prevent default and show the chosen index across all controllers with the same name.
 
 ## CSS Contract
 
@@ -175,12 +172,8 @@ window.CarrdPluginOptions = {
     scopeSelector: 'section',
     targetAttribute: 'data-switcher-target',
     targetIndexAttribute: 'data-switcher-index',
-    modeAttribute: 'data-switcher-mode',
-    clusterTargetAttribute: 'data-switcher-cluster',
-    clusterScopeSelector: '.site-main',
     instances: {
-      price: { defaultIndex: 2 },
-      cases: { clusterScopeSelector: '.site-main' }
+      price: { defaultIndex: 2 }
     }
   }
 };
@@ -195,9 +188,8 @@ Core options:
 | `defaultIndex` | `1` | Button and target shown on page load |
 | `warnOnMismatch` | `true` | Shows console warnings for missing targets |
 | `scopeSelector` | `section` | Parent scope for class-mode targets |
-| `modeAttribute` | `data-switcher-mode` | Selects `class-index` or `cluster` |
-| `clusterTargetAttribute` | `data-switcher-cluster` | Cluster target attribute |
-| `clusterScopeSelector` | `.site-main` | Parent scope for cluster targets |
+| `targetAttribute` | `data-switcher-target` | Canonical target attribute |
+| `targetIndexAttribute` | `data-switcher-index` | Optional explicit button index |
 | `instances` | `{}` | Per-switcher overrides |
 
 ## Confirmed Template Evidence

@@ -45,9 +45,9 @@ Contract types and escalation notes only. The authoritative per-plugin binding s
 | `header-nav` | Header scope + collapse marker | `#header` activates only with `.header-mobile-el-collapsing`; mobile anti-jump collapse only, no sticky shell. See `docs/decisions/header-nav-structural-contract.md` |
 | `floating-cta` | Clean data marker + position | Runtime clones source elements to fixed position; position/hide options per instance |
 | `cookie-banner` | Clean data marker + legacy fallback | Per-banner indent/delay/days/position options; shared consent cookie |
-| `shopping-cart` | Clean output/target marker | Long-term role of `data-shopping-cart-target` is open (Q003) |
+| `shopping-cart` | Carrd section + form + clean output marker | Use `#shopping-cart`, `#form-shopping-cart` and `data-shopping-cart-output="order-details"`; no separate target marker |
 | `modal` | Clean hash + data marker | Lazy `[data-modal]` lookup; legacy `.modal` + `id` hash remains fallback |
 | `grid-cluster` | Clean data grid + legacy grid classes | `grid-N` remains fallback |
 | `cards` | Clean data marker + legacy class | Per-container color/border/padding options |
 | `faq` | Clean data marker + legacy class | Divider + heading based question blocks |
-| `switcher` | Clean data targets + legacy class/cluster fallback | Cluster mode policy is open (Q002). See `docs/specs/switcher-contract.md` |
+| `switcher` | Clean data targets + legacy class fallback | Whole containers use `data-switcher-target` + `data-switcher-index`; cluster mode is removed |

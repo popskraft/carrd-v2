@@ -242,19 +242,19 @@ test('switcher syncs controllers with the same data-switcher name', () => {
   assert.equal(doc.getElementById('bottom-two').hidden, false);
 });
 
-test('switcher cluster mode maps same-attribute sections by order', () => {
+test('switcher maps same-name data targets by explicit index', () => {
   const dom = createDom(
     '<main class="site-main">' +
       '<section id="switcher-controls">' +
-        '<ul id="section-switcher" data-switcher="cases" data-switcher-mode="cluster">' +
+        '<ul id="section-switcher" data-switcher="cases">' +
           '<li><a href="#" role="button">Case 1</a></li>' +
           '<li><a href="#" role="button">Case 2</a></li>' +
           '<li><a href="#" role="button">Case 3</a></li>' +
         '</ul>' +
       '</section>' +
-      '<section id="case-one" data-switcher-cluster="cases">One</section>' +
-      '<section id="case-two" data-switcher-cluster="cases">Two</section>' +
-      '<section id="case-three" data-switcher-cluster="cases">Three</section>' +
+      '<section id="case-one" data-switcher-target="cases" data-switcher-index="1">One</section>' +
+      '<section id="case-two" data-switcher-target="cases" data-switcher-index="2">Two</section>' +
+      '<section id="case-three" data-switcher-target="cases" data-switcher-index="3">Three</section>' +
     '</main>'
   );
 
@@ -275,27 +275,27 @@ test('switcher cluster mode maps same-attribute sections by order', () => {
   assert.equal(doc.getElementById('case-three').hidden, false);
 });
 
-test('switcher cluster mode prefers outer Carrd containers over matching inner elements', () => {
+test('switcher data targets prefer outer Carrd containers over matching inner elements', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul id="buttons01" class="buttons-component" data-switcher="cases" data-switcher-mode="cluster">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="cases">' +
         '<li><a class="n01" role="button">Switcher Tab 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Tab 2</a></li>' +
         '<li><a class="n03" role="button">Switcher Tab 3</a></li>' +
       '</ul>' +
-      '<div id="container20" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
+      '<div id="container20" class="container-component" data-switcher-target="&quot;cases&quot;" data-switcher-index="1">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text41" class="text-component" data-switcher-cluster="cases">Tab content 1</h2>' +
+          '<h2 id="text41" class="text-component" data-switcher-target="cases" data-switcher-index="1">Tab content 1</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container21" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
+      '<div id="container21" class="container-component" data-switcher-target="&quot;cases&quot;" data-switcher-index="2">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text42" class="text-component" data-switcher-cluster="cases">Tab content 2</h2>' +
+          '<h2 id="text42" class="text-component" data-switcher-target="cases" data-switcher-index="2">Tab content 2</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container19" class="container-component" data-switcher-cluster="&quot;cases&quot;">' +
+      '<div id="container19" class="container-component" data-switcher-target="&quot;cases&quot;" data-switcher-index="3">' +
         '<div class="wrapper"><div class="inner">' +
-          '<h2 id="text12" class="text-component" data-switcher-cluster="cases">Tab content 3</h2>' +
+          '<h2 id="text12" class="text-component" data-switcher-target="cases" data-switcher-index="3">Tab content 3</h2>' +
         '</div></div>' +
       '</div>' +
     '</main>'
@@ -321,25 +321,25 @@ test('switcher cluster mode prefers outer Carrd containers over matching inner e
   assert.equal(doc.getElementById('text42').hidden, false);
 });
 
-test('switcher cluster mode ignores shared class targets without data-switcher-cluster', () => {
+test('switcher data targets take priority over shared class fallback', () => {
   const dom = createDom(
     '<main class="site-main">' +
-      '<ul id="buttons01" class="buttons-component" data-switcher="cases" data-switcher-mode="cluster">' +
+      '<ul id="buttons01" class="buttons-component" data-switcher="cases">' +
         '<li><a class="n01" role="button">Switcher Tab 1</a></li>' +
         '<li><a class="n02" role="button">Switcher Tab 2</a></li>' +
         '<li><a class="n03" role="button">Switcher Tab 3</a></li>' +
       '</ul>' +
-      '<div id="container20" class="container-component instance-20 style-4 cases default">' +
+      '<div id="container20" class="container-component instance-20 style-4 cases default" data-switcher-target="cases" data-switcher-index="1">' +
         '<div class="wrapper"><div class="inner">' +
           '<h2 id="text41" class="text-component instance-41 style-2">Tab content 1</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container21" class="container-component instance-21 style-4 cases default">' +
+      '<div id="container21" class="container-component instance-21 style-4 cases default" data-switcher-target="cases" data-switcher-index="2">' +
         '<div class="wrapper"><div class="inner">' +
           '<h2 id="text42" class="text-component instance-42 style-2">Tab content 2</h2>' +
         '</div></div>' +
       '</div>' +
-      '<div id="container19" class="container-component instance-19 style-4 cases default">' +
+      '<div id="container19" class="container-component instance-19 style-4 cases default" data-switcher-target="cases" data-switcher-index="3">' +
         '<div class="wrapper"><div class="inner">' +
           '<h2 id="text12" class="text-component instance-12 style-2">Tab content 3</h2>' +
         '</div></div>' +
@@ -354,58 +354,16 @@ test('switcher cluster mode ignores shared class targets without data-switcher-c
   const buttons = doc.querySelectorAll('#buttons01 a');
 
   assert.equal(doc.getElementById('container20').hidden, false);
-  assert.equal(doc.getElementById('container21').hidden, false);
-  assert.equal(doc.getElementById('container19').hidden, false);
+  assert.equal(doc.getElementById('container21').hidden, true);
+  assert.equal(doc.getElementById('container19').hidden, true);
   assert.equal(doc.getElementById('text41').classList.contains('theme-switcher-panel'), false);
 
   click(dom, buttons[1]);
 
-  assert.equal(doc.getElementById('container20').hidden, false);
+  assert.equal(doc.getElementById('container20').hidden, true);
   assert.equal(doc.getElementById('container21').hidden, false);
-  assert.equal(doc.getElementById('container19').hidden, false);
+  assert.equal(doc.getElementById('container19').hidden, true);
   assert.equal(doc.getElementById('text42').hidden, false);
-});
-
-test('switcher cluster mode can use a configured target attribute', () => {
-  const dom = createDom(
-    '<main class="site-main">' +
-      '<ul data-switcher="slides" data-switcher-mode="cluster">' +
-        '<li><a href="#" role="button">One</a></li>' +
-        '<li><a href="#" role="button">Two</a></li>' +
-      '</ul>' +
-      '<section id="slide-one" data-case-cluster="slides">One</section>' +
-      '<section id="slide-two" data-case-cluster="slides">Two</section>' +
-    '</main>'
-  );
-  setPluginOptions(dom, { switcher: { clusterTargetAttribute: 'data-case-cluster' } });
-
-  loadScript(dom, 'src/switcher/switcher.js');
-  triggerDomReady(dom);
-
-  const doc = dom.window.document;
-  click(dom, doc.querySelectorAll('[data-switcher] a')[1]);
-
-  assert.equal(doc.getElementById('slide-one').hidden, true);
-  assert.equal(doc.getElementById('slide-two').hidden, false);
-});
-
-test('switcher cluster mode warns when target count exceeds button count', () => {
-  const dom = createDom(
-    '<main class="site-main">' +
-      '<ul data-switcher="cases" data-switcher-mode="cluster">' +
-        '<li><a href="#" role="button">One</a></li>' +
-      '</ul>' +
-      '<section data-switcher-cluster="cases">One</section>' +
-      '<section data-switcher-cluster="cases">Two</section>' +
-    '</main>'
-  );
-  const warnings = [];
-  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
-
-  loadScript(dom, 'src/switcher/switcher.js');
-  triggerDomReady(dom);
-
-  assert.ok(warnings.some(message => message.includes('extra targets')));
 });
 
 test('switcher supports independent controllers on one page', () => {
@@ -706,42 +664,4 @@ test('switcher supports per-name instance default indexes', () => {
   assert.equal(doc.getElementById('price-two').hidden, false);
   assert.equal(doc.getElementById('case-one').hidden, false);
   assert.equal(doc.getElementById('case-two').hidden, true);
-});
-
-test('switcher supports per-name instance cluster target attributes', () => {
-  const dom = createDom(
-    '<main class="site-main">' +
-      '<ul id="price-switcher" data-switcher="price" data-switcher-mode="cluster">' +
-        '<li><a href="#" role="button">Price 1</a></li>' +
-        '<li><a href="#" role="button">Price 2</a></li>' +
-      '</ul>' +
-      '<section id="price-one" data-switcher-cluster="price">Price 1</section>' +
-      '<section id="price-two" data-switcher-cluster="price">Price 2</section>' +
-      '<ul id="cases-switcher" data-switcher="cases" data-switcher-mode="cluster">' +
-        '<li><a href="#" role="button">Case 1</a></li>' +
-        '<li><a href="#" role="button">Case 2</a></li>' +
-      '</ul>' +
-      '<section id="case-one" data-case-cluster="cases">Case 1</section>' +
-      '<section id="case-two" data-case-cluster="cases">Case 2</section>' +
-    '</main>'
-  );
-  setPluginOptions(dom, {
-    switcher: {
-      instances: {
-        cases: {
-          clusterTargetAttribute: 'data-case-cluster',
-          defaultIndex: 2
-        }
-      }
-    }
-  });
-
-  loadScript(dom, 'src/switcher/switcher.js');
-  triggerDomReady(dom);
-
-  const doc = dom.window.document;
-  assert.equal(doc.getElementById('price-one').hidden, false);
-  assert.equal(doc.getElementById('price-two').hidden, true);
-  assert.equal(doc.getElementById('case-one').hidden, true);
-  assert.equal(doc.getElementById('case-two').hidden, false);
 });

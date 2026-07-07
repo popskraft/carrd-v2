@@ -52,7 +52,7 @@
 #### 1.4 Отдельно очистить ecommerce
 
 - Оставить `CarrdShoppingCart` и `CarrdPluginOptions.shoppingCart`.
-- Оставить `data-shopping-cart-output="order-details"` и утверждённый checkout target.
+- Оставить Section Break `shopping-cart`, form ID `form-shopping-cart`, `data-shopping-cart-output="order-details"` и optional `checkoutTargetId` config.
 - Удалить `CarrdShoppingCartV2`, `data-shopping-cart-v2-*`, `data-cart-v2-*` и migration-only lookup paths.
 - Проверить cart persistence, quantity changes, totals, order serialization, checkout routing, focus trap и empty-cart cleanup.
 
@@ -89,7 +89,7 @@
 - `no-loadwaiting`: loader removal, body lifecycle, observers, resize pulses.
 - `shopping-cart`: полный ecommerce flow из пункта 1.4.
 - `slider`: grouping, gestures, links, breakpoints, loop, autoplay, resize, destroy/refresh, stress test.
-- `switcher`: multiple controllers, target indexes, cluster mode, isolation, API, missing targets.
+- `switcher`: multiple controllers, target indexes, whole-container targets, isolation, API, missing targets.
 - `typography`: parsing, nested classes, partial config, repeated initialization.
 
 #### 2.2 Проверить систему целиком

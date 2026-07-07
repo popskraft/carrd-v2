@@ -18,11 +18,16 @@
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`
 - `docs/specs/breakpoints-contract.md`
+- `docs/specs/mcp-auto-onboarding-plan.md`
+- `docs/specs/stacker-backlog.md`
 
 ## Decisions
 - `docs/decisions/clean-runtime-contract.md`
 - `docs/decisions/header-nav-structural-contract.md`
 - `docs/decisions/legacy-alias-feature.md`
+- `docs/decisions/canonical-live-smoke-surface.md`
+- `docs/decisions/shopping-cart-checkout-contract.md`
+- `docs/decisions/switcher-target-only-contract.md`
 
 ## Templates
 - `docs/templates/plugin-readme-template.md`

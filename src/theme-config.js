@@ -7,7 +7,6 @@ window.CarrdPluginOptions.shoppingCart = window.CarrdPluginOptions.shoppingCart 
     position: 'top-right',
     storageKey: 'carrd_cart_v1',
     orderInputSelector: '[data-shopping-cart-output="order-details"]',
-    checkoutTargetSelector: '[data-shopping-cart-target]',
     checkoutTargetId: 'shopping-cart',
     texts: {
         title: 'Shopping Cart',

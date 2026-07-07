@@ -14,7 +14,6 @@
 
     storageKey: 'carrd_cart_v1',
     orderInputSelector: '[data-shopping-cart-output="order-details"]',
-    checkoutTargetSelector: '[data-shopping-cart-target]',
     checkoutTargetId: 'shopping-cart',
     
     // Text labels for easy translation
@@ -29,7 +28,7 @@
       errorName: 'Invalid product name',
       errorPrice: 'Invalid price for ${name}',
       errorForm: 'Error: Could not find the order form. Please contact support.',
-      consoleErrorForm: 'Carrd Cart: Could not find the checkout textarea. Please ensure [data-shopping-cart-output="order-details"] exists.'
+      consoleErrorForm: 'Carrd Cart: Could not find the checkout textarea. Ensure [data-shopping-cart-output="order-details"] exists or use the native Carrd order-details textarea inside #form-shopping-cart.'
     }
   };
 
@@ -411,10 +410,17 @@
 
   function findOrderField() {
     const checkoutForm = document.getElementById('form-shopping-cart');
+    if (checkoutForm) {
+      const field = (
+        checkoutForm.querySelector(CONFIG.orderInputSelector) ||
+        checkoutForm.querySelector('textarea[name="order-details"]') ||
+        checkoutForm.querySelector('#form-shopping-cart-order-details') ||
+        checkoutForm.querySelector('#order-details')
+      );
+      if (field) return field;
+    }
+
     return (
-      (checkoutForm && (
-        checkoutForm.querySelector(CONFIG.orderInputSelector)
-      )) ||
       document.querySelector(CONFIG.orderInputSelector)
     );
   }

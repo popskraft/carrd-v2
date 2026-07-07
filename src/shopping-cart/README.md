@@ -1,102 +1,75 @@
 # Shopping Cart
 
-Adds a floating cart widget that collects product selections and writes the order summary into a Carrd form for checkout.
+Adds a floating cart and writes the order summary into a Carrd checkout form.
 
----
+## Carrd Setup
 
-## What You Do in Carrd
-
-1. Add a **Section Break** named `shopping-cart` — this creates the Carrd anchor `#shopping-cart` for the checkout flow.
-2. Inside that section, add a **Form** element with ID `form-shopping-cart`.
-3. Inside the form, add a **Textarea** field with `data-shopping-cart-output="order-details"`.
-4. On each product button, add a click action: `CarrdShoppingCart.add('Product Name', 29.99)`.
-
----
-
-## How It Works in Carrd
-
-- Product buttons add items into the floating runtime cart.
-- Checkout writes the order summary into the textarea used by the Carrd form.
-- The checkout textarea marker is `data-shopping-cart-output="order-details"`.
-
----
-
-## How To Check That It Works
-
-1. Publish the page.
-2. Click a product button.
-3. Confirm the cart widget appears and shows the product.
-4. Open the cart and click Checkout.
-5. Confirm the order summary appears in the form textarea.
-
-If nothing appears in the form, check that `data-shopping-cart-output="order-details"` is present and the form ID is `form-shopping-cart`.
-
----
+1. Add a **Section Break** named `shopping-cart`.
+2. Add a **Form** with ID `form-shopping-cart` inside that section.
+3. Add an **Order Details** textarea inside the form.
+   Set its field ID to `order-details`. If you can add custom attributes, also set `data-shopping-cart-output=order-details`.
+4. Add this action to each product button: `CarrdShoppingCart.add('Product Name', 29.99)`.
 
 ## Configuration
 
-No configuration is needed for most setups.
-
-Add a **Code** embed and paste this block **above** the plugin embed to change currency, position, or labels:
+Defaults use dollars and place the widget at the top right. To change them, add this in `Body End` above the plugin:
 
 ```html
 <script>
 window.CarrdPluginOptions = {
-    shoppingCart: {
-        currency: '$',
-        currencyPosition: 'before',
-        position: 'top-right'
-    }
+  shoppingCart: {
+    currency: '$',
+    currencyPosition: 'before',
+    position: 'top-right'
+  }
 };
 </script>
 ```
 
-If you use multiple plugins, create one shared `window.CarrdPluginOptions` block and place it once above all plugin embeds.
+Positions: `top-right`, `top-left`, `bottom-right`, `bottom-left`, or `bottom-center`.
 
-### Options
+## Verify
 
-For most pages, you only need `currency`, `currencyPosition`, and `position`.
+1. Publish and add a product.
+2. Confirm the floating cart appears with the correct item and total.
+3. Click Checkout and confirm the order summary reaches the textarea.
 
-| Option | Default | What it changes |
-|--------|---------|-----------------|
-| `currency` | `$` | Currency symbol |
-| `currencyPosition` | `before` | Shows the symbol before or after the amount |
-| `position` | `top-right` | Widget position: `top-right`, `top-left`, `bottom-right`, `bottom-left`, `bottom-center` |
-| `storageKey` | `carrd_cart_v1` | LocalStorage key |
-| `checkoutTargetId` | `shopping-cart` | Carrd section anchor used during checkout |
-| `texts.*` | English | All UI text labels |
+If checkout stays empty, confirm the section name is `shopping-cart`, the form ID is `form-shopping-cart`, and the textarea renders as `name="order-details"` inside that form.
 
----
+## Design
+
+Add a separate `Head` style embed after the theme files:
+
+```html
+<style>
+:root {
+  --theme-shopcart-bg: var(--theme-color-bg);
+  --theme-shopcart-text: var(--theme-color-text);
+  --theme-shopcart-accent: var(--theme-color-primary);
+  --theme-shopcart-btn-bg: var(--theme-color-success);
+  --theme-shopcart-overlay-bg: var(--theme-overlay-bg);
+}
+</style>
+```
 
 ## Advanced: Localization
 
-```html
-<script>
-window.CarrdPluginOptions = {
-    shoppingCart: {
-        currency: '€',
-        currencyPosition: 'after',
-        texts: {
-            title: 'Warenkorb',
-            empty: 'Ihr Warenkorb ist leer.',
-            checkout: 'Zur Kasse',
-            total: 'Gesamt'
-        }
-    }
-};
-</script>
+Override labels under `shoppingCart.texts` in the same configuration block:
+
+```javascript
+texts: {
+  title: 'Cart',
+  empty: 'Your cart is empty.',
+  checkout: 'Checkout',
+  total: 'Total'
+}
 ```
 
----
-
 ## API
-
-The plugin exposes a JavaScript API for use in **Code** embeds:
 
 ```javascript
 CarrdShoppingCart.add('Product', 29.99);
 CarrdShoppingCart.remove('Product');
-CarrdShoppingCart.updateQty('Product', 1);
 CarrdShoppingCart.clear();
 CarrdShoppingCart.getCart();
 CarrdShoppingCart.getTotal();
@@ -104,29 +77,3 @@ CarrdShoppingCart.open();
 CarrdShoppingCart.close();
 CarrdShoppingCart.checkout();
 ```
-
----
-
-## Design
-
-Add a **Code** embed with a `<style>` tag and override any of these variables:
-
-```html
-<style>
-:root {
-    --theme-shopcart-bg: var(--theme-color-bg);
-    --theme-shopcart-text: var(--theme-color-text);
-    --theme-shopcart-accent: var(--theme-color-primary);
-    --theme-shopcart-btn-bg: var(--theme-color-success);
-    --theme-shopcart-overlay-bg: var(--theme-overlay-bg);
-}
-</style>
-```
-
-| Variable | Default | What it changes |
-|----------|---------|-----------------|
-| `--theme-shopcart-bg` | page background | Cart panel background |
-| `--theme-shopcart-text` | page text color | Cart text color |
-| `--theme-shopcart-accent` | primary color | Accent color |
-| `--theme-shopcart-btn-bg` | success color | Checkout button background |
-| `--theme-shopcart-overlay-bg` | overlay token | Background overlay behind the cart |

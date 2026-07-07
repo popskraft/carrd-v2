@@ -85,14 +85,14 @@ test('shopping cart api updates items and totals', () => {
   assert.equal(dom.window.document.querySelector('.cart-output').value, '');
 });
 
-test('shopping cart checkout uses the Carrd section hash route even when shopping-cart-target exists', () => {
-  const dom = createDom('<div class="shopping-cart-target"></div><textarea class="cart-output" data-shopping-cart-output="order-details"></textarea>');
+test('shopping cart checkout uses the Carrd section hash route and ignores unrelated elements', () => {
+  const dom = createDom('<div class="unrelated-checkout-target"></div><textarea class="cart-output" data-shopping-cart-output="order-details"></textarea>');
   loadScript(dom, 'src/shopping-cart/shopping-cart.js');
   triggerDomReady(dom);
 
   const api = dom.window.CarrdShoppingCart;
   const anchorStub = stubHashAnchorClicks(dom);
-  const target = dom.window.document.querySelector('.shopping-cart-target');
+  const target = dom.window.document.querySelector('.unrelated-checkout-target');
   let scrollCalls = 0;
   target.scrollIntoView = () => {
     scrollCalls += 1;
@@ -109,6 +109,16 @@ test('shopping cart checkout uses the Carrd section hash route even when shoppin
   anchorStub.restore();
 });
 
+test('shopping cart config exposes only the Carrd section checkout target', () => {
+  const dom = createDom('<textarea data-shopping-cart-output="order-details"></textarea>');
+  loadScript(dom, 'src/shopping-cart/shopping-cart.js');
+  triggerDomReady(dom);
+
+  const config = dom.window.CarrdShoppingCart.getConfig();
+  assert.equal(config.checkoutTargetId, 'shopping-cart');
+  assert.equal(Object.hasOwn(config, 'checkoutTargetSelector'), false);
+});
+
 test('shopping cart prefers #shopping-cart and #form-shopping-cart for the standard Carrd checkout flow', () => {
   const dom = createDom(`
     <section id="shopping-cart">
@@ -116,7 +126,7 @@ test('shopping cart prefers #shopping-cart and #form-shopping-cart for the stand
         <textarea class="cart-output" data-shopping-cart-output="order-details"></textarea>
       </form>
     </section>
-    <div class="shopping-cart-target"></div>
+    <div class="unrelated-checkout-target"></div>
   `);
   loadScript(dom, 'src/shopping-cart/shopping-cart.js');
   triggerDomReady(dom);
@@ -227,6 +237,45 @@ test('shopping cart supports the primary data-shopping-cart-output marker', () =
   assert.match(field.value, /MARKED/i);
   assert.equal(anchorStub.getLastHref(), '#shopping-cart');
   anchorStub.restore();
+});
+
+test('shopping cart falls back to the native Carrd textarea inside #form-shopping-cart', () => {
+  const dom = createDom(`
+    <section id="shopping-cart"></section>
+    <form id="form-shopping-cart">
+      <textarea name="order-details" id="form-shopping-cart-order-details"></textarea>
+    </form>
+  `);
+  const timers = useFakeTimers(dom);
+  loadScript(dom, 'src/shopping-cart/shopping-cart.js');
+  triggerDomReady(dom);
+
+  const api = dom.window.CarrdShoppingCart;
+  const anchorStub = stubHashAnchorClicks(dom);
+  const field = dom.window.document.getElementById('form-shopping-cart-order-details');
+  const form = dom.window.document.getElementById('form-shopping-cart');
+  let focusCalls = 0;
+  let scrollCalls = 0;
+  field.focus = () => {
+    focusCalls += 1;
+  };
+  form.scrollIntoView = () => {
+    scrollCalls += 1;
+  };
+
+  api.add('Native Carrd Product', 12.5);
+  api.checkout();
+  timers.flush();
+
+  assert.match(field.value, /NATIVE CARRD PRODUCT/i);
+  assert.match(field.value, /TOTAL:\s+\$12\.50/);
+  assert.equal(anchorStub.getLastHref(), '#shopping-cart');
+  assert.equal(dom.window.location.hash, '#shopping-cart');
+  assert.equal(scrollCalls, 1);
+  assert.equal(focusCalls, 1);
+
+  anchorStub.restore();
+  timers.restore();
 });
 
 test('shopping cart checkout scrolls the actual checkout form into view after opening the Carrd section', () => {

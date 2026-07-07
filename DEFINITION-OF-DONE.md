@@ -2,13 +2,15 @@
 
 ## Project Done
 - [x] Durable docs live in `docs/` with a single `docs/INDEX.md` navigator.
-- [x] `README.md` carries the active key-idea registry and matches the generated public docs.
+- [x] `README.md` is a concise English end-user guide and matches the generated public docs.
 - [x] `AGENTS.md` and `CLAUDE.md` follow the mini-office contract without duplicated policy text.
 - [x] Legacy `_docs/` is absent; do not recreate it.
 
 ## Deliverable Done
 - [x] `src/<plugin>/README.md` follows the shared plugin README contract.
 - [x] Generated `dist/<plugin>/README.md` matches the source README and template rules.
+- [x] Plugin install wording is derived from bundle membership and placement rules, with no manual `dist/` edits or build-date drift.
+- [x] Public README files contain no local project or user filesystem paths.
 - [x] `theme-design-system.html` remains the required base artifact for inline installs.
 
 ## Validation

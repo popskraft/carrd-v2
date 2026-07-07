@@ -7,6 +7,11 @@ const { pathToFileURL } = require('node:url');
 const modulePath = pathToFileURL(
   path.resolve(__dirname, '..', 'cardbuilder', 'scripts', 'carrd', 'site-registry.mjs')
 ).href;
+const repoRoot = path.resolve(__dirname, '..');
+
+function repoPath(...segments) {
+  return path.join(repoRoot, ...segments);
+}
 
 let registryModulePromise;
 
@@ -36,7 +41,7 @@ test('site registry resolves the active template pointer through the registry', 
   assert.equal(resolved.activeTemplate.activeTemplateId, 'main-template');
   assert.equal(
     profileSnapshotDir(resolved.profile),
-    '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots'
+    repoPath('cardbuilder', 'projects', 'main-template', 'data', 'snapshots')
   );
 });
 
@@ -48,7 +53,17 @@ test('site registry resolves explicit builder URLs even when the active pointer 
 
   assert.equal(resolved.site.siteSlug, 'main-template');
   assert.equal(resolved.matchedBy, 'builderUrl');
-  assert.equal(resolved.profile.structure.tabsMap, '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json');
+  assert.equal(
+    resolved.profile.structure.tabsMap,
+    repoPath(
+      'cardbuilder',
+      'projects',
+      'main-template',
+      'data',
+      'snapshots',
+      'template-instance-element-tabs-map-2026-06-29.json'
+    )
+  );
 });
 
 test('site registry resolves faktura as a first-class live site package', async () => {
@@ -61,24 +76,29 @@ test('site registry resolves faktura as a first-class live site package', async 
   assert.equal(resolved.matchedBy, 'site-ref-slug');
   assert.equal(resolved.site.builderUrl, 'https://carrd.co/dashboard/4778178033233108/build');
   assert.equal(resolved.site.publishedSiteUrl, 'https://faktura-dev.crd.co/');
-  assert.equal(resolved.site.status, 'draft-clean-runtime-updated');
+  assert.equal(resolved.site.status, 'draft-clean-runtime-synced');
   assert.equal(
     resolved.site.projectDocs,
-    '/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/faktura'
+    repoPath('cardbuilder', 'docs', 'projects', 'faktura')
   );
-  assert.equal(resolved.profile.status, 'draft-clean-runtime-updated');
+  assert.equal(resolved.profile.status, 'draft-clean-runtime-synced');
   assert.equal(
     resolved.profile.runtimeAssets.syncDiff,
-    '/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/diffs/template-vs-repo-plugin-sync.json'
+    repoPath(
+      'cardbuilder',
+      'projects',
+      'faktura',
+      'data',
+      'diffs',
+      'template-vs-repo-plugin-sync.json'
+    )
   );
 });
 
 test('cardbuilder operational canon does not depend on legacy workspace roots', () => {
-  const repoRoot = path.resolve(__dirname, '..');
   const checkedFiles = [
     'cardbuilder/AGENTS.md',
     'cardbuilder/projects/faktura/AGENTS.md',
-    'cardbuilder/projects/koryphey-online/AGENTS.md',
     'cardbuilder/projects/main-template/AGENTS.md',
     'cardbuilder/data/sites.json',
     'cardbuilder/data/active-template.json'
@@ -96,5 +116,26 @@ test('cardbuilder operational canon does not depend on legacy workspace roots', 
     for (const pattern of forbiddenPatterns) {
       assert.equal(pattern.test(contents), false, `${relativePath} contains forbidden reference ${pattern}`);
     }
+  }
+});
+
+test('cardbuilder core entrypoints do not hardcode the author repo root', () => {
+  const checkedFiles = [
+    'cardbuilder/scripts/carrd/open-debug-chrome.sh',
+    'cardbuilder/scripts/carrd/refresh-builder-plugins.mjs',
+    'cardbuilder/scripts/carrd/resolve-site.mjs',
+    'cardbuilder/scripts/carrd/check-site-readiness.mjs',
+    'cardbuilder/scripts/carrd/site-registry.mjs'
+  ];
+  const forbiddenRoot = path.join('/Users', 'popskraft', 'Projects', 'carrd-v2');
+
+  for (const relativePath of checkedFiles) {
+    const filePath = path.join(repoRoot, relativePath);
+    const contents = fs.readFileSync(filePath, 'utf8');
+    assert.equal(
+      contents.includes(forbiddenRoot),
+      false,
+      `${relativePath} hardcodes repo root ${forbiddenRoot}`
+    );
   }
 });

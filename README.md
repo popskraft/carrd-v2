@@ -1,101 +1,92 @@
 # Carrd Plugins
 
-Ready-to-use plugins for Carrd pages. `src/` is the source of truth; `dist/` is generated delivery.
+User guide for installing Carrd theme assets and plugins.
 
-## Ключевые Идеи
+All install files are in `dist/`. Open the plugin folder you need and follow its local `README.md` for the required Carrd markup, attributes, or setup.
 
-- `KI-001 [active]` `theme-design-system.html` is the required base layer for every Carrd install path.
-- `KI-002 [active]` The CDN Bundle is the default install path for new sites; CDN Individual and Inline Embed are fallback paths.
-- `KI-003 [active]` `src/` is the source of truth for plugin behavior, while `dist/` is generated delivery.
-- `KI-004 [active]` Plugin guidance is written for Carrd end users; shared build rules live in `scripts/templates/` and `docs/`.
-- `KI-005 [active]` New grouped plugin contracts use `data-*` bindings first; classes and plain hashes are legacy fallbacks.
-- `KI-006 [active]` Delivery uses `popskraft/carrd-v2` paths only; legacy `popskraft/carrd-plugins` remains a historical runtime surface.
+## Quick Start
 
-## What This Repo Is
+Use the CDN Bundle for new sites.
 
-- Carrd plugins with matching source and distributive assets.
-- A runtime repo that keeps the `popskraft/carrd-v2` delivery path while exposing clean plugin slugs, globals, and public `data-*` contracts.
-- A shared theme layer for consistent styling and defaults.
-- A build pipeline that keeps public docs, embeds, and assets aligned.
+1. Open `dist/theme-core-cdn.html`.
+2. Paste the `Head` part into `Hidden → Head`.
+3. Paste the `Body End` part into `Hidden → Body End`.
+4. Publish and refresh.
+5. Open each plugin folder you use and complete the Carrd-side setup from that plugin `README.md`.
 
-## Repository Structure
+Bundle plugins:
 
-| Path | What lives here |
+| Plugin | Included in `theme-core` bundle |
 |---|---|
-| `src/` | Editable plugin source, source READMEs, shared theme files |
-| `dist/` | Generated plugin assets, embed snippets, and public READMEs |
-| `scripts/` | Build, verification, purge, and README generation scripts |
-| `docs/` | Durable internal docs, specs, templates, and research |
-| `cardbuilder/` | Carrd Builder automation workspace, site registry, project docs, snapshots, and scripts |
-| `admincarrd/` | Remote browser admin module source and installer package inputs |
+| Accordeon | Yes |
+| Cards | Yes |
+| FAQ | Yes |
+| Floating CTA | Yes |
+| Grid Cluster | Yes |
+| Header Nav | Yes |
+| Modal | Yes |
+| Slider | Yes |
+| Switcher | Yes |
+| Typography | Yes |
+| Cookie Banner | No, add separately |
+| No-loadwaiting | No, add separately |
+| Shopping Cart | No, add separately |
 
 ## Install Paths
 
-Three install paths:
+### CDN Bundle
 
-| | CDN Bundle | CDN Individual | Inline Embed |
-|---|---|---|---|
-| **What it is** | Two jsDelivr links | jsDelivr files per plugin | Local HTML embeds pasted into Carrd |
-| **When to use** | Default for new sites | Selected plugins with CDN updates | No CDN or full local control |
-| **Embeds in Carrd** | 2 | Shared theme links + 1-2 embeds per plugin | Theme header + 1 embed per plugin |
-| **Update path** | Rebuild + purge cache | Rebuild + purge changed files | Re-paste updated embeds |
-
-## CDN Bundle (Recommended)
-
-Fastest path: use `dist/theme-core-cdn.html` as the copy source.
-
-### Step 1 — Head embed
-
-In Carrd: `Add Element → Embed → Code → Hidden → Head`
+Recommended for most sites.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.css">
-```
-
-### Step 2 — Body End embed
-
-In Carrd: `Add Element → Embed → Code → Hidden → Body End`
-
-```html
 <script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.js"></script>
 ```
 
-`theme-core.min.css` contains design tokens, shared UI styles, and bundle plugin CSS. `theme-core.min.js` contains plugin defaults and bundle plugin JS.
+Use `dist/theme-core-cdn.html` as the copy source.
 
-## CDN Individual (Per-Plugin)
+### Bundle Add-ons
 
-Use this when you want selected plugins through jsDelivr instead of the full `theme-core` bundle.
+If your site already uses the bundle and you need a plugin that is not inside it, add that plugin separately with its own `*-cdn.html` or `*-embed.html`.
 
-### Step 1 — Shared Head embed
+This applies to:
+- `cookie-banner`
+- `no-loadwaiting`
+- `shopping-cart`
 
-In Carrd: `Add Element → Embed → Code → Hidden → Head`
+### CDN Individual
+
+Use this when you want only selected plugins instead of the full bundle.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-design-tokens.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-ui.css">
 ```
 
-### Step 2 — Plugin CDN file
-
-For each selected plugin, open `*-cdn.html` and:
+Then open each plugin `*-cdn.html` file and:
 - Paste the `<!-- Head -->` part into `Hidden → Head`.
 - Paste the `<!-- Body End -->` part into `Hidden → Body End` when present.
 
-Example (`dist/faq/faq-cdn.html`):
+`no-loadwaiting` is a special case: its script belongs in `Head`.
 
-```html
-<!-- Head -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq/faq.min.css">
+### Inline Embed
 
-<!-- Body End -->
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/faq/faq.min.js"></script>
-```
+Use this when you do not want CDN files.
 
-`no-loadwaiting` has only a `Head` script block because it must run before Carrd loader completion.
+1. Paste `dist/theme-design-system.html` into `Hidden → Head`.
+2. Paste each plugin `*-embed.html` into `Hidden → Body End`.
+3. For `shopping-cart` and `slider`, use `*-embed-part1.html` and `*-embed-part2.html` in that order.
 
-### Local overrides
+## Custom Code
 
-To change colors, spacing, or plugin behavior on one site, add a separate embed instead of editing CDN files:
+Do not edit jsDelivr files. Add custom code in separate Carrd embeds.
+
+- Brand or theme changes: use a `Head` embed with `:root { --theme-* }`.
+- Site-only CSS: use a separate `Head` embed with your selectors.
+- Plugin behavior: use `window.CarrdPluginOptions` in a `Body End` embed above plugin scripts or embeds.
+- Site-only JS: use a separate `Body End` script below plugin scripts.
+
+Example token override:
 
 ```html
 <style>
@@ -105,6 +96,8 @@ To change colors, spacing, or plugin behavior on one site, add a separate embed 
 </style>
 ```
 
+Example plugin config:
+
 ```html
 <script>
 window.CarrdPluginOptions = {
@@ -113,85 +106,14 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
-## Inline Embed (Per-Plugin)
+## Placement Rules
 
-Use when you need selected plugins without CDN.
-
-### Step 1 — Install theme header
-
-In Carrd: `Add Element → Embed → Code → Hidden → Head`
-
-1. Open `dist/theme-design-system.html`.
-2. Copy the full file contents into the Head embed.
-
-### Step 2 — Install each plugin
-
-In Carrd: `Add Element → Embed → Code → Hidden → Body End`
-
-1. Open the plugin folder (e.g. `dist/faq/`).
-2. Read that plugin `README.md`.
-3. Open `<plugin>-embed.html`, copy all contents.
-4. Paste into a Body End embed.
-5. Follow the plugin setup steps.
-
-`shopping-cart` and `slider` require two Body End embeds: `*-embed-part1.html` first, then `*-embed-part2.html`.
-
-## How To Change Styles
-
-Plugin README files include `:root { ... }` examples for optional overrides.
-- CDN path: add a separate `Head` embed with your `:root` block below the CDN link.
-- Inline path: add a separate `Head` embed with your `:root` block below `theme-design-system.html`.
-
-## Included Plugins
-
-| Plugin | Path |
-|---|---|
-| **Accordeon** | `dist/accordeon/` |
-| **Cards** | `dist/cards/` |
-| **Cookie Banner** | `dist/cookie-banner/` |
-| **FAQ** | `dist/faq/` |
-| **Floating CTA** | `dist/floating-cta/` |
-| **Grid Cluster** | `dist/grid-cluster/` |
-| **Header Nav** | `dist/header-nav/` |
-| **Modal** | `dist/modal/` |
-| **No-loadwaiting** | `dist/no-loadwaiting/` |
-| **Shopping Cart** | `dist/shopping-cart/` |
-| **Slider** | `dist/slider/` |
-| **Switcher** | `dist/switcher/` |
-| **Typography** | `dist/typography/` |
-
-Each plugin folder contains `README.md`, embed files, CDN snippets, and distributive assets.
-
-Carrd placement rule:
-- `Hidden → Head` is for theme files, CDN styles, and style overrides.
-- `Hidden → Body End` is for plugin scripts, embeds, and `window.CarrdPluginOptions`.
-
-## Validation
-
-For documentation, distributive, and code checks:
-
-```bash
-npm run build
-npm run verify:dist
-npm run test
-npm run lint
-```
-
-`npm run build:docs` is the faster docs-only subset when only README/source docs changed.
-
-## Key Documents
-
-- [`AGENTS.md`](./AGENTS.md)
-- [`DEFINITION-OF-DONE.md`](./DEFINITION-OF-DONE.md)
-- [`ROADMAP.md`](./ROADMAP.md)
-- [`docs/INDEX.md`](./docs/INDEX.md)
+- `Hidden → Head`: theme files, CDN CSS, token overrides, site CSS, and any plugin snippet that explicitly says `Head`.
+- `Hidden → Body End`: plugin scripts, plugin embeds, `window.CarrdPluginOptions`, and site custom JS.
 
 ## Troubleshooting
 
-| Problem | What to check |
-|---|---|
-| Nothing happens | Check the plugin README and confirm the required attrs, names, classes, or IDs match exactly |
-| Styles look wrong | Confirm the shared theme layer is installed in `Head` |
-| Controls look plain or missing | Reinstall the shared theme layer in `Head` |
-| Config does not apply | Make sure `window.CarrdPluginOptions` appears above the plugin embed |
-| A plugin still does not work | Re-open that plugin folder README and follow its `What You Do in Carrd` section step by step |
+- Nothing happens: check the plugin `README.md` and confirm the required attrs, names, classes, or IDs match exactly.
+- Styles look wrong: confirm the shared theme layer is installed in `Head`.
+- Config does not apply: make sure `window.CarrdPluginOptions` is above the plugin script or embed.
+- A plugin still does not work: reopen that plugin folder `README.md` and follow it step by step.
