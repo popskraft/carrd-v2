@@ -10,9 +10,9 @@ Choose one method.
 
 ### Bundle Add-on (recommended when the bundle is installed)
 
-`theme-core` does not include this plugin.
+`theme-runtime` does not include this plugin.
 
-1. Install `theme-core` from the [root guide](../README.md).
+1. Install `theme-runtime` from the [root guide](../README.md).
 2. Open `no-loadwaiting-cdn.html`.
 3. Paste the marked block into `Hidden → Head`.
 4. Publish and refresh.

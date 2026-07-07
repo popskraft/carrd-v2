@@ -1,186 +1,228 @@
 <!-- Plugin: Theme Design System | Version: 2.0.0 -->
 <style>
 :root {
-  /* Colors */
-  --theme-color-primary: #EF4444;
-  --theme-color-primary-hover: #AD3624;
-  --theme-color-primary-dark: #222222;
-  --theme-color-primary-light: #F8F8F8;
-  --theme-color-text: #555555;
-  --theme-color-headlines: #222222;
-  --theme-color-border: #efefef;
-  --theme-color-danger: #EF4444;
-  --theme-color-success: #10b981;
+  /* 1. Named colors */
+  --theme-color-brand-red-light: #FEE2E2;
+  --theme-color-brand-red: #EF4444;
+  --theme-color-brand-red-dark: #AD3624;
+  --theme-color-brand-green-light: #D1FAE5;
+  --theme-color-brand-green: #10B981;
+  --theme-color-brand-green-dark: #047857;
+  --theme-color-brand-yellow-light: #FEF3C7;
+  --theme-color-brand-yellow: #F59E0B;
+  --theme-color-brand-yellow-dark: #B45309;
+  --theme-color-brand-blue-light: #DBEAFE;
+  --theme-color-brand-blue: #3B82F6;
+  --theme-color-brand-blue-dark: #1D4ED8;
+
+  /* 2. Project brand colors */
+  --theme-color-brand-1-light: var(--theme-color-brand-red-light);
+  --theme-color-brand-1: var(--theme-color-brand-red);
+  --theme-color-brand-1-dark: var(--theme-color-brand-red-dark);
+
+  /* 3. Neutrals */
   --theme-color-black: #000000;
-  --theme-color-bg: #ffffff;
-  --theme-color-accent: var(--theme-color-primary);
+  --theme-color-dark: #222222;
+  --theme-color-gray: #555555;
+  --theme-color-light: #EFEFEF;
+  --theme-color-lighter: #F8F8F8;
+  --theme-color-white: #FFFFFF;
+
+  /* 4. Global roles */
+  --theme-color-primary: var(--theme-color-brand-1);
+  --theme-color-primary-hover: var(--theme-color-brand-1-dark);
+  --theme-color-primary-focus: var(--theme-color-primary-hover);
+  --theme-color-text: var(--theme-color-gray);
+  --theme-color-heading: var(--theme-color-dark);
+  --theme-color-surface: var(--theme-color-white);
+  --theme-color-surface-muted: var(--theme-color-lighter);
+  --theme-color-border: var(--theme-color-light);
+  --theme-focus-ring-color: var(--theme-color-primary-focus);
   --theme-overlay-bg: rgba(208, 213, 218, 0.792);
 
-  /* Typography */
+  /* 5. Typography */
   --theme-font-family: "Wix Madefor Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --theme-font-size-base: 16px;
   --theme-line-height-base: 1.6;
 
-  /* Buttons */
-  --theme-btn-primary-bg: var(--theme-color-primary);
-  --theme-btn-primary-hover-bg: var(--theme-color-primary-hover);
-  --theme-btn-text: #ffffff;
+  /* 6. Buttons */
+  --theme-button-primary-bg: var(--theme-color-primary);
+  --theme-button-primary-bg-hover: var(--theme-color-primary-hover);
+  --theme-button-primary-text: var(--theme-color-white);
+  --theme-button-primary-border-color: transparent;
+  --theme-button-secondary-bg: var(--theme-color-lighter);
+  --theme-button-secondary-bg-hover: var(--theme-color-white);
+  --theme-button-secondary-text: var(--theme-color-dark);
+  --theme-button-secondary-border-color: var(--theme-color-lighter);
 
-  /* Links */
+  /* 7. Links */
   --theme-link-color: var(--theme-color-primary);
-  --theme-link-hover-color: var(--theme-color-primary-hover);
+  --theme-link-color-hover: var(--theme-color-primary-hover);
 
-  /* UI Controls */
+  /* 8. Navigation */
+  --theme-nav-color: var(--theme-color-dark);
+
+  /* 9. Shared UI controls */
   --theme-ui-control-size: 40px;
   --theme-ui-control-radius: 999px;
-  --theme-ui-control-bg: var(--theme-color-bg);
-  --theme-ui-control-bg-hover: var(--theme-color-primary-light);
-  --theme-ui-control-color: var(--theme-color-text);
+  --theme-ui-control-bg: var(--theme-button-secondary-bg);
+  --theme-ui-control-bg-hover: var(--theme-button-secondary-bg-hover);
+  --theme-ui-control-color: var(--theme-button-secondary-text);
+  --theme-ui-control-border-color: var(--theme-button-secondary-border-color);
   --theme-ui-control-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --theme-ui-icon-size: 20px;
   --theme-ui-icon-stroke: 2;
-
-  /* UI Dots */
   --theme-ui-dot-size: 10px;
   --theme-ui-dot-bg: rgba(0, 0, 0, 0.2);
   --theme-ui-dot-hover-bg: rgba(0, 0, 0, 0.4);
   --theme-ui-dot-active-bg: var(--theme-color-primary);
-
-  /* UI Surfaces */
   --theme-ui-surface-muted: rgba(227, 228, 230, 0.2);
   --theme-ui-surface-muted-hover: rgba(227, 228, 230, 0.4);
-
-  /* Slider Defaults */
-  --theme-slider-dot-size: var(--theme-ui-dot-size);
-  --theme-slider-dot-bg: var(--theme-ui-dot-bg);
-  --theme-slider-dot-hover-bg: var(--theme-ui-dot-hover-bg);
-  --theme-slider-dot-active-bg: var(--theme-ui-dot-active-bg);
-  --theme-slider-dots-margin: 1rem;
-  --theme-slider-dots-margin-mobile: 0.75rem;
-  --theme-slider-arrow-size: var(--theme-ui-control-size);
-  --theme-slider-arrow-bg: var(--theme-ui-control-bg);
-  --theme-slider-arrow-hover-bg: var(--theme-ui-control-bg-hover);
-  --theme-slider-arrow-color: var(--theme-ui-control-color);
-  --theme-slider-arrow-radius: var(--theme-ui-control-radius);
-  --theme-slider-arrow-shadow: var(--theme-ui-control-shadow);
-  --theme-slider-arrow-offset: 0.5rem;
-  --theme-slider-arrow-icon-size: var(--theme-ui-icon-size);
-
-  /* Modal Defaults */
-  --theme-modal-close-size: var(--theme-ui-control-size);
-  --theme-modal-close-bg: var(--theme-ui-control-bg);
-  --theme-modal-close-hover-bg: var(--theme-ui-control-bg-hover);
-  --theme-modal-close-color: var(--theme-ui-control-color);
-  --theme-modal-close-radius: var(--theme-ui-control-radius);
-  --theme-modal-close-icon-size: 24px;
-  --theme-modal-close-icon-stroke: var(--theme-ui-icon-stroke);
 }
 
 /* Theme styles */
 body {
   -webkit-font-smoothing: antialiased;
+  font-family: var(--theme-font-family);
+  font-size: var(--theme-font-size-base);
+  line-height: var(--theme-line-height-base);
+  color: var(--theme-color-text);
 }
 
-/* Header Nav pre-init mobile collapse */
-@media (max-width: 736px) {
-  #header:not(.is-nav-open) .header-mobile-el-collapsing {
-    display: none !important;
-  }
+/* Opt-in semantic link utility */
+.theme-link,
+.theme-link:visited {
+  color: var(--theme-link-color);
 }
 
-/* Slider dots */
-.theme-slider-dot {
-  width: var(--theme-slider-dot-size, var(--theme-ui-dot-size, 10px));
-  height: var(--theme-slider-dot-size, var(--theme-ui-dot-size, 10px));
-  border-radius: 50%;
-  background: var(--theme-slider-dot-bg, var(--theme-ui-dot-bg, rgba(0, 0, 0, 0.2)));
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+.theme-link:hover,
+.theme-link:focus-visible {
+  color: var(--theme-link-color-hover);
 }
 
-.theme-slider-dot:hover {
-  background: var(--theme-slider-dot-hover-bg, var(--theme-ui-dot-hover-bg, rgba(0, 0, 0, 0.4)));
+/* Color utilities */
+.bg-primary,
+.container-component.bg-primary > .wrapper {
+  background: var(--theme-color-primary) !important;
 }
 
-.theme-slider-dot.is-active {
-  background: var(--theme-slider-dot-active-bg, var(--theme-ui-dot-active-bg, var(--theme-color-primary, #EF4444)));
-  transform: scale(1.2);
+.bg-brand-1,
+.container-component.bg-brand-1 > .wrapper {
+  background: var(--theme-color-brand-1) !important;
 }
 
-/* Slider arrows */
-.theme-slider-nav {
-  width: var(--theme-slider-arrow-size, var(--theme-ui-control-size, 48px));
-  height: var(--theme-slider-arrow-size, var(--theme-ui-control-size, 48px));
-  background: var(--theme-slider-arrow-bg, var(--theme-ui-control-bg, var(--theme-color-bg, #ffffff)));
-  border: none;
-  border-radius: var(--theme-slider-arrow-radius, var(--theme-ui-control-radius, 999px));
-  color: var(--theme-slider-arrow-color, var(--theme-ui-control-color, var(--theme-color-text, #5D6878)));
-  box-shadow: var(--theme-slider-arrow-shadow, var(--theme-ui-control-shadow, 0 2px 8px rgba(0, 0, 0, 0.15)));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+.bg-red,
+.container-component.bg-red > .wrapper {
+  background: var(--theme-color-brand-red) !important;
 }
 
-.theme-slider-nav:hover {
-  background: var(--theme-slider-arrow-hover-bg, var(--theme-ui-control-bg-hover, var(--theme-color-primary-light, #f5f5f5)));
+.bg-red-light,
+.container-component.bg-red-light > .wrapper {
+  background: var(--theme-color-brand-red-light) !important;
 }
 
-.theme-slider-nav svg {
-  width: var(--theme-slider-arrow-icon-size, var(--theme-ui-icon-size, 20px));
-  height: var(--theme-slider-arrow-icon-size, var(--theme-ui-icon-size, 20px));
-  stroke: currentColor;
-  stroke-width: var(--theme-ui-icon-stroke, 2);
-  fill: none;
+.bg-green,
+.container-component.bg-green > .wrapper {
+  background: var(--theme-color-brand-green) !important;
 }
 
-/* Modal close button */
-.theme-modal-close {
-  width: var(--theme-modal-close-size, var(--theme-ui-control-size, 40px));
-  height: var(--theme-modal-close-size, var(--theme-ui-control-size, 40px));
-  border: none;
-  border-radius: var(--theme-modal-close-radius, var(--theme-ui-control-radius, 999px));
-  background: var(--theme-modal-close-bg, var(--theme-ui-control-bg, var(--theme-color-bg, #ffffff)));
-  color: var(--theme-modal-close-color, var(--theme-ui-control-color, var(--theme-color-text, #5D6878)));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+.bg-green-light,
+.container-component.bg-green-light > .wrapper {
+  background: var(--theme-color-brand-green-light) !important;
 }
 
-.theme-modal-close:hover {
-  background: var(--theme-modal-close-hover-bg, var(--theme-ui-control-bg-hover, var(--theme-color-primary-light, #f5f5f5)));
-  transform: scale(1.1);
+.bg-yellow,
+.container-component.bg-yellow > .wrapper {
+  background: var(--theme-color-brand-yellow) !important;
 }
 
-.theme-modal-close svg {
-  width: var(--theme-modal-close-icon-size, 24px);
-  height: var(--theme-modal-close-icon-size, 24px);
-  stroke: currentColor;
-  stroke-width: var(--theme-modal-close-icon-stroke, var(--theme-ui-icon-stroke, 2));
-  fill: none;
+.bg-yellow-light,
+.container-component.bg-yellow-light > .wrapper {
+  background: var(--theme-color-brand-yellow-light) !important;
 }
 
-/* Shopping cart controls */
-.theme-shopcart-btn-qty {
-  background: var(--theme-shopcart-qty-bg, var(--theme-ui-surface-muted, rgba(227, 228, 230, 0.2)));
-  border: none;
-  border-radius: var(--theme-shopcart-btn-radius, 0.125rem);
-  color: inherit;
+.bg-blue,
+.container-component.bg-blue > .wrapper {
+  background: var(--theme-color-brand-blue) !important;
 }
 
-.theme-shopcart-btn-qty:hover {
-  background: var(--theme-shopcart-qty-hover-bg, var(--theme-ui-surface-muted-hover, rgba(227, 228, 230, 0.4)));
+.bg-blue-light,
+.container-component.bg-blue-light > .wrapper {
+  background: var(--theme-color-brand-blue-light) !important;
 }
 
-.theme-shopcart-close svg {
-  width: var(--theme-shopcart-close-icon-size, var(--theme-ui-icon-size, 20px));
-  height: var(--theme-shopcart-close-icon-size, var(--theme-ui-icon-size, 20px));
-  stroke: currentColor;
-  stroke-width: var(--theme-shopcart-close-icon-stroke, var(--theme-ui-icon-stroke, 2));
-  fill: none;
+.bg-dark,
+.container-component.bg-dark > .wrapper {
+  background: var(--theme-color-dark) !important;
+}
+
+.bg-gray,
+.container-component.bg-gray > .wrapper {
+  background: var(--theme-color-gray) !important;
+}
+
+.bg-light,
+.container-component.bg-light > .wrapper {
+  background: var(--theme-color-light) !important;
+}
+
+.bg-lighter,
+.container-component.bg-lighter > .wrapper {
+  background: var(--theme-color-lighter) !important;
+}
+
+.bg-white,
+.container-component.bg-white > .wrapper {
+  background: var(--theme-color-white) !important;
+}
+
+.text-primary,
+.container-component.text-primary > .wrapper {
+  color: var(--theme-color-primary) !important;
+}
+
+.text-brand-1,
+.container-component.text-brand-1 > .wrapper {
+  color: var(--theme-color-brand-1) !important;
+}
+
+.text-red,
+.container-component.text-red > .wrapper {
+  color: var(--theme-color-brand-red) !important;
+}
+
+.text-green,
+.container-component.text-green > .wrapper {
+  color: var(--theme-color-brand-green) !important;
+}
+
+.text-yellow,
+.container-component.text-yellow > .wrapper {
+  color: var(--theme-color-brand-yellow) !important;
+}
+
+.text-blue,
+.container-component.text-blue > .wrapper {
+  color: var(--theme-color-brand-blue) !important;
+}
+
+.text-dark {
+  color: var(--theme-color-dark) !important;
+}
+
+.text-gray {
+  color: var(--theme-color-gray) !important;
+}
+
+.text-light {
+  color: var(--theme-color-light) !important;
+}
+
+.text-lighter {
+  color: var(--theme-color-lighter) !important;
+}
+
+.text-white {
+  color: var(--theme-color-white) !important;
 }
 </style>

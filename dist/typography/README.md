@@ -10,7 +10,7 @@ Choose one method.
 
 ### CDN Bundle (recommended)
 
-`theme-core` already includes this plugin. Install the bundle from the [root guide](../README.md), then continue with **Carrd Setup** below.
+`theme-runtime` already includes this plugin. Install the bundle from the [root guide](../README.md), then continue with **Carrd Setup** below.
 
 ### CDN Individual
 
