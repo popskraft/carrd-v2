@@ -12,6 +12,13 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 - Python 3 build scripts
 - ESLint, jsdom, jsDelivr, Carrd
 
+## Commands
+- `npm run build` — пересобрать `dist/` из `src/` (минификация, README, embeds, `theme-core` bundle)
+- `npm run validate` — полная проверка: verify:dist + clean-contract + тесты + lint
+- `npm run test:js` — только jsdom-тесты плагинов
+- `npm run cdn:purge` — сброс jsDelivr-кэша для `dist/` assets
+- `npm run deploy` — build → `git add dist/` → commit → push → purge (публикация CDN)
+
 ## Structure
 - `src/` — editable plugin source и source README
 - `dist/` — generated distributive assets и public README
