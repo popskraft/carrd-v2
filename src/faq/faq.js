@@ -121,11 +121,11 @@
     return null;
   }
 
-  function findHeaderBetween(startDivider, endDivider) {
-    let node = startDivider.nextElementSibling;
+  function scanRangeForHeader(startNode, stopNode) {
+    let node = startNode;
     let firstParagraph = null;
 
-    while (node && node !== endDivider) {
+    while (node && node !== stopNode) {
       if (isHeader(node)) {
         return node;
       }
@@ -135,19 +135,12 @@
       node = node.nextElementSibling;
     }
 
-    if (!endDivider) {
-      while (node) {
-        if (isHeader(node)) {
-          return node;
-        }
-        if (!firstParagraph && node.nodeType === 1 && node.tagName === 'P') {
-          firstParagraph = node;
-        }
-        node = node.nextElementSibling;
-      }
-    }
-
     return firstParagraph;
+  }
+
+  function findHeaderBetween(startDivider, endDivider) {
+    // With a falsy endDivider the scan naturally runs to the end of the sibling chain.
+    return scanRangeForHeader(startDivider.nextElementSibling, endDivider);
   }
 
   function wrapAnswerContent(header, endDivider) {

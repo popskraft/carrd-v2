@@ -100,7 +100,29 @@
   // ==========================================
   // MODAL API
   // ==========================================
-  
+
+  function showModalOverlay(modal) {
+    if (!overlay) {
+      createOverlay();
+    }
+    ensureOverlayPlacement(modal);
+    if (overlay) {
+      overlay.classList.add('is-open');
+    }
+  }
+
+  function focusFirstElement(modal) {
+    const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) {
+      // Wait slightly for transition
+      setTimeout(() => firstFocusable.focus(), 50);
+    } else {
+      // Fallback to modal itself if no focusable content
+      modal.setAttribute('tabindex', '-1');
+      modal.focus();
+    }
+  }
+
   const ModalAPI = {
     /**
      * Open a modal by ID
@@ -129,46 +151,30 @@
       
       // Store previous focus to restore later
       this.lastFocus = document.activeElement;
-      
-      // Ensure overlay exists and sits with the active modal to avoid stacking issues
-      if (!overlay) {
-        createOverlay();
-      }
-      ensureOverlayPlacement(modal);
 
-      // Open overlay
-      if (overlay) {
-        overlay.classList.add('is-open');
-      }
-      
+      // Ensure overlay exists, is placed with the active modal, and is open
+      showModalOverlay(modal);
+
       // Open modal
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
-      
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           modal.classList.add('is-visible');
         });
       });
-      
+
       // Lock body scroll
       if (CONFIG.lockBodyScroll) {
         document.body.classList.add('modal-open');
       }
-      
+
       activeModal = id;
-      
+
       // Focus management
-      const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (firstFocusable) {
-        // Wait slightly for transition
-        setTimeout(() => firstFocusable.focus(), 50);
-      } else {
-         // Fallback to modal itself if no focusable content
-         modal.setAttribute('tabindex', '-1');
-         modal.focus();
-      }
-      
+      focusFirstElement(modal);
+
       // Add Focus Trap listener
       document.addEventListener('keydown', this.handleTabKey);
     },
@@ -375,6 +381,39 @@
     modal.removeAttribute('aria-labelledby');
   }
 
+  // Resolve modalId from a trigger's href="#..." (canonical hashPrefix, then legacy).
+  function resolveHrefModalId(trigger, modalId) {
+    if (!trigger.hasAttribute('href')) return modalId;
+    const href = trigger.getAttribute('href') || '';
+    if (!href.startsWith('#') || href.length <= 1) return modalId;
+    if (CONFIG.hashPrefix && href.startsWith(CONFIG.hashPrefix)) {
+      return normalizeModalRef(href);
+    }
+    if (modalId || CONFIG.legacyHashTargets !== true) return modalId;
+    const targetId = href.substring(1);
+    return getOrInitModal(targetId) ? targetId : modalId;
+  }
+
+  // Resolve which modal a trigger points to, across data-attributes and href.
+  function resolveTriggerModalId(trigger) {
+    let modalId = null;
+
+    getTriggerAttributes().some(attribute => {
+      if (!trigger.hasAttribute(attribute)) return false;
+      modalId = normalizeModalRef(trigger.getAttribute(attribute));
+      return !!modalId;
+    });
+
+    if (!modalId && (
+      trigger.matches(`button[${CONFIG.targetAttribute}]`) ||
+      trigger.matches(`a[${CONFIG.targetAttribute}]`)
+    )) {
+      modalId = normalizeModalRef(trigger.getAttribute(CONFIG.targetAttribute));
+    }
+
+    return resolveHrefModalId(trigger, modalId);
+  }
+
   /**
    * Bind click handlers for modal triggers
    */
@@ -390,39 +429,8 @@
         `a[href^="#"]${triggerSelectors ? `, ${triggerSelectors}` : ''}, button[${CONFIG.targetAttribute}], a[${CONFIG.targetAttribute}]`
       );
       if (!trigger) return;
-      
-      let modalId = null;
 
-      getTriggerAttributes().some(attribute => {
-        if (!trigger.hasAttribute(attribute)) return false;
-        modalId = normalizeModalRef(trigger.getAttribute(attribute));
-        return !!modalId;
-      });
-
-      if (!modalId && (
-        trigger.matches(`button[${CONFIG.targetAttribute}]`) ||
-        trigger.matches(`a[${CONFIG.targetAttribute}]`)
-      )) {
-        modalId = normalizeModalRef(
-          trigger.getAttribute(CONFIG.targetAttribute)
-        );
-      }
-
-      // Check for href="#data-modal-name" first, then legacy href="#modalId".
-      if (trigger.hasAttribute('href')) {
-        const href = trigger.getAttribute('href');
-        if (href && href.startsWith('#') && href.length > 1) {
-          if (CONFIG.hashPrefix && href.startsWith(CONFIG.hashPrefix)) {
-            modalId = normalizeModalRef(href);
-          } else if (!modalId && CONFIG.legacyHashTargets === true) {
-            const targetId = href.substring(1);
-            if (getOrInitModal(targetId)) {
-              modalId = targetId;
-            }
-          }
-        }
-      }
-
+      const modalId = resolveTriggerModalId(trigger);
       if (modalId && getOrInitModal(modalId)) {
         e.preventDefault();
         ModalAPI.open(modalId);
@@ -492,6 +500,25 @@
    * @param {string} modalId - The modal ID without hash.
    * @returns {HTMLElement|null}
    */
+  function findModalByDataAttribute(id) {
+    if (!isSafeName(id)) return null;
+    const dataModal = document.querySelector(
+      `[${CONFIG.targetAttribute}="${cssEscape(id)}"], [data-modal="${cssEscape(id)}"]`
+    );
+    if (dataModal && dataModal.matches && dataModal.matches(CONFIG.modalSelector)) {
+      return dataModal;
+    }
+    return null;
+  }
+
+  function findModalByLegacyId(id) {
+    const modal = CONFIG.legacyHashTargets === true ? document.getElementById(id) : null;
+    if (modal && modal.matches && modal.matches(CONFIG.modalSelector)) {
+      return modal;
+    }
+    return null;
+  }
+
   function getOrInitModal(modalId) {
     const id = normalizeModalRef(modalId);
     if (!id) return null;
@@ -500,20 +527,8 @@
       return modalWrappers.get(id);
     }
 
-    if (isSafeName(id)) {
-      const dataModal = document.querySelector(
-        `[${CONFIG.targetAttribute}="${cssEscape(id)}"], [data-modal="${cssEscape(id)}"]`
-      );
-      if (dataModal && dataModal.matches && dataModal.matches(CONFIG.modalSelector)) {
-        return setupModal(dataModal);
-      }
-    }
-
-    const modal = CONFIG.legacyHashTargets === true ? document.getElementById(id) : null;
-    if (modal && modal.matches && modal.matches(CONFIG.modalSelector)) {
-      return setupModal(modal);
-    }
-    return null;
+    const found = findModalByDataAttribute(id) || findModalByLegacyId(id);
+    return found ? setupModal(found) : null;
   }
 
   // Run on DOM ready

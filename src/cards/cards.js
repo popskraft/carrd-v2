@@ -171,6 +171,67 @@
     window.addEventListener('resize', scheduleAllCardPaddings);
   }
 
+  function pickCardItemBackground(cardItem, ctx) {
+    if (ctx.specificColor) {
+      cardItem.style.backgroundColor = ctx.specificColor;
+    } else if (ctx.dataColor) {
+      cardItem.style.backgroundColor = ctx.dataColor;
+    } else if (ctx.backgroundColor && ctx.backgroundColor !== 'rgba(0, 0, 0, 0)' && ctx.backgroundColor !== 'transparent') {
+      cardItem.style.backgroundColor = ctx.backgroundColor;
+    }
+  }
+
+  function applyCardItemBorder(cardItem, ctx) {
+    if (ctx.borderRadius && ctx.borderRadius !== '0px') {
+      cardItem.style.setProperty('--theme-card-border-radius', ctx.borderRadius);
+    }
+    if (ctx.borderTopWidth && ctx.borderTopWidth !== '0px' && ctx.borderTopStyle !== 'none') {
+      cardItem.style.borderWidth = ctx.borderTopWidth;
+      cardItem.style.borderStyle = ctx.borderTopStyle;
+      cardItem.style.borderColor = ctx.specificBorderColor || ctx.borderTopColor;
+    }
+    if (ctx.boxShadow && ctx.boxShadow !== 'none') {
+      cardItem.style.boxShadow = ctx.boxShadow;
+    }
+  }
+
+  function applyCardItemBackgroundImage(cardItem, ctx) {
+    if (!ctx.dataColor && !ctx.specificColor && ctx.backgroundImage && ctx.backgroundImage !== 'none') {
+      cardItem.style.backgroundImage = ctx.backgroundImage;
+      cardItem.style.backgroundPosition = ctx.backgroundPosition;
+      cardItem.style.backgroundRepeat = ctx.backgroundRepeat;
+      cardItem.style.backgroundSize = ctx.backgroundSize;
+    }
+  }
+
+  function buildColumnCardItem(column, index, ctx) {
+    if (column.querySelector('.theme-card-item, .card-item')) return;
+
+    const cardItem = document.createElement('div');
+    cardItem.classList.add(SELECTORS.cardItem);
+
+    const itemCtx = {
+      ...ctx,
+      specificColor: getFirstAttribute(ctx.container, [
+        `data-cards-color-${index + 1}`,
+        `data-color-${index + 1}`
+      ]),
+      specificBorderColor: getFirstAttribute(ctx.container, [
+        `data-cards-border-color-${index + 1}`,
+        `data-border-color-${index + 1}`
+      ])
+    };
+
+    pickCardItemBackground(cardItem, itemCtx);
+    applyCardItemBorder(cardItem, itemCtx);
+    applyCardItemBackgroundImage(cardItem, itemCtx);
+
+    while (column.firstChild) {
+      cardItem.appendChild(column.firstChild);
+    }
+    column.appendChild(cardItem);
+  }
+
   function init() {
     if (CONFIG.enabled === false) return;
     bindPaddingSync();
@@ -212,55 +273,22 @@
 
       const columns = Array.from(inner.children);
 
-      columns.forEach((column, index) => {
-        if (column.querySelector('.theme-card-item, .card-item')) return;
+      const ctx = {
+        container,
+        dataColor,
+        backgroundColor,
+        borderRadius,
+        borderTopWidth,
+        borderTopStyle,
+        borderTopColor,
+        boxShadow,
+        backgroundImage,
+        backgroundPosition,
+        backgroundRepeat,
+        backgroundSize
+      };
 
-        const cardItem = document.createElement('div');
-        cardItem.classList.add(SELECTORS.cardItem);
-
-        const specificColor = getFirstAttribute(container, [
-          `data-cards-color-${index + 1}`,
-          `data-color-${index + 1}`
-        ]);
-        const specificBorderColor = getFirstAttribute(container, [
-          `data-cards-border-color-${index + 1}`,
-          `data-border-color-${index + 1}`
-        ]);
-
-        if (specificColor) {
-          cardItem.style.backgroundColor = specificColor;
-        } else if (dataColor) {
-          cardItem.style.backgroundColor = dataColor;
-        } else if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)' && backgroundColor !== 'transparent') {
-          cardItem.style.backgroundColor = backgroundColor;
-        }
-
-        if (borderRadius && borderRadius !== '0px') {
-          cardItem.style.setProperty('--theme-card-border-radius', borderRadius);
-        }
-
-        if (borderTopWidth && borderTopWidth !== '0px' && borderTopStyle !== 'none') {
-          cardItem.style.borderWidth = borderTopWidth;
-          cardItem.style.borderStyle = borderTopStyle;
-          cardItem.style.borderColor = specificBorderColor || borderTopColor;
-        }
-
-        if (boxShadow && boxShadow !== 'none') {
-          cardItem.style.boxShadow = boxShadow;
-        }
-
-        if (!dataColor && !specificColor && backgroundImage && backgroundImage !== 'none') {
-          cardItem.style.backgroundImage = backgroundImage;
-          cardItem.style.backgroundPosition = backgroundPosition;
-          cardItem.style.backgroundRepeat = backgroundRepeat;
-          cardItem.style.backgroundSize = backgroundSize;
-        }
-
-        while (column.firstChild) {
-          cardItem.appendChild(column.firstChild);
-        }
-        column.appendChild(cardItem);
-      });
+      columns.forEach((column, index) => buildColumnCardItem(column, index, ctx));
     });
   }
 

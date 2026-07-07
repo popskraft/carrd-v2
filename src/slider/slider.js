@@ -249,21 +249,26 @@
       this.updateSlider();
     }
 
-    updateSlidesPerView() {
-      const w = window.innerWidth;
+    resolveResponsiveSettings(w) {
       let spv = this.config.slidesPerView, gap = this.config.gap;
       let peek = this.config.peek, msw = this.config.maxSlideWidth;
 
       const bps = Object.keys(this.config.breakpoints).map(Number).sort((a, b) => a - b);
       for (const bp of bps) {
-        if (w >= bp) {
-          const c = this.config.breakpoints[bp] || {};
-          spv = c.slidesPerView || spv;
-          if (Number.isFinite(+c.gap)) gap = +c.gap;
-          if (Number.isFinite(+c.peek)) peek = +c.peek;
-          if (Number.isFinite(+c.maxSlideWidth)) msw = +c.maxSlideWidth;
-        }
+        if (w < bp) continue;
+        const c = this.config.breakpoints[bp] || {};
+        spv = c.slidesPerView || spv;
+        if (Number.isFinite(+c.gap)) gap = +c.gap;
+        if (Number.isFinite(+c.peek)) peek = +c.peek;
+        if (Number.isFinite(+c.maxSlideWidth)) msw = +c.maxSlideWidth;
       }
+
+      return { spv, gap, peek, msw };
+    }
+
+    updateSlidesPerView() {
+      const w = window.innerWidth;
+      let { spv, gap, peek, msw } = this.resolveResponsiveSettings(w);
 
       if (peek) spv += peek;
       this.slidesPerView = Math.min(spv, this.slides.length);
@@ -318,6 +323,26 @@
       return Math.ceil(Math.max(1, this.slides.length - this.slidesPerView + 1));
     }
 
+    getViewportWidth() {
+      return Math.max(
+        this.wrapper?.clientWidth || 0,
+        this.wrapper?.getBoundingClientRect?.().width || 0,
+        window.innerWidth || 0
+      );
+    }
+
+    computeFallbackSlideWidth() {
+      const viewportWidth = this.getViewportWidth();
+      if (viewportWidth <= 0 || this.slidesPerView <= 0) return 0;
+
+      const totalGaps = Math.ceil(this.slidesPerView) - 1;
+      let width = (viewportWidth - (totalGaps * this.currentGap)) / this.slidesPerView;
+      if (window.innerWidth > 736 && Number.isFinite(+this.currentMaxSlideWidth) && +this.currentMaxSlideWidth > 0) {
+        width = Math.min(+this.currentMaxSlideWidth, width);
+      }
+      return width;
+    }
+
     getSlideWidth() {
       const slide = this.slideElements[0];
       if (!slide) return 0;
@@ -327,18 +352,7 @@
         width = slide.getBoundingClientRect().width;
       }
       if (!width) {
-        const viewportWidth = Math.max(
-          this.wrapper?.clientWidth || 0,
-          this.wrapper?.getBoundingClientRect?.().width || 0,
-          window.innerWidth || 0
-        );
-        if (viewportWidth > 0 && this.slidesPerView > 0) {
-          const totalGaps = Math.ceil(this.slidesPerView) - 1;
-          width = (viewportWidth - (totalGaps * this.currentGap)) / this.slidesPerView;
-          if (window.innerWidth > 736 && Number.isFinite(+this.currentMaxSlideWidth) && +this.currentMaxSlideWidth > 0) {
-            width = Math.min(+this.currentMaxSlideWidth, width);
-          }
-        }
+        width = this.computeFallbackSlideWidth();
       }
 
       return width > 0 ? width + this.currentGap : 0;
@@ -392,6 +406,18 @@
       }, 500);
     }
 
+    resolveDragAxis(diff, diffY) {
+      if (!this.dragAxis && (Math.abs(diff) > 6 || Math.abs(diffY) > 6)) {
+        this.dragAxis = Math.abs(diff) > Math.abs(diffY) ? 'horizontal' : 'vertical';
+      }
+    }
+
+    clampDragTranslate(t, min) {
+      if (t > 0) return t * 0.2;
+      if (t < min) return min + (t - min) * 0.2;
+      return t;
+    }
+
     onDragMove(e) {
       if (!this.isDragging) return;
       const now = Date.now();
@@ -399,19 +425,13 @@
       const diff = x - this.startX;
       const diffY = this.getPositionY(e) - this.startY;
 
-      if (!this.dragAxis && (Math.abs(diff) > 6 || Math.abs(diffY) > 6)) {
-        this.dragAxis = Math.abs(diff) > Math.abs(diffY) ? 'horizontal' : 'vertical';
-      }
+      this.resolveDragAxis(diff, diffY);
       if (this.dragAxis === 'vertical') return;
 
       const dt = now - this.lastDragTime;
       if (dt > 0) { this.velocity = (x - this.lastDragX) / dt; this.lastDragX = x; this.lastDragTime = now; }
 
-      let t = this.dragStartTranslate + diff;
-      const min = this.getMinTranslate();
-      if (t > 0) t *= 0.2;
-      else if (t < min) t = min + (t - min) * 0.2;
-
+      const t = this.clampDragTranslate(this.dragStartTranslate + diff, this.getMinTranslate());
       this.draggedTranslate = t;
       this.track.style.transform = `translateX(${t}px)`;
       if (e.cancelable && this.dragAxis === 'horizontal') e.preventDefault();

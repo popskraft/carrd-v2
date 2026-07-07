@@ -12,7 +12,7 @@
         "src/**/*.js"
       ],
       "rules": {
-        "complexity": ["warn", 10]
+        "complexity": ["error", 10]
       }
     },
     {

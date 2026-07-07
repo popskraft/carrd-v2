@@ -114,12 +114,21 @@
    * @param {Object} item - Cart item to validate
    * @returns {boolean} - True if valid
    */
+  function isValidItemName(name) {
+    return typeof name === 'string' && name.length > 0 && name.length <= 200;
+  }
+
+  function isValidItemPrice(price) {
+    return typeof price === 'number' && !isNaN(price) && price >= 0;
+  }
+
+  function isValidItemQty(qty) {
+    return typeof qty === 'number' && Number.isInteger(qty) && qty >= 1;
+  }
+
   function validateCartItem(item) {
     if (!item || typeof item !== 'object') return false;
-    if (typeof item.name !== 'string' || item.name.length === 0 || item.name.length > 200) return false;
-    if (typeof item.price !== 'number' || isNaN(item.price) || item.price < 0) return false;
-    if (typeof item.qty !== 'number' || !Number.isInteger(item.qty) || item.qty < 1) return false;
-    return true;
+    return isValidItemName(item.name) && isValidItemPrice(item.price) && isValidItemQty(item.qty);
   }
 
   // ==========================================
@@ -167,6 +176,24 @@
   // ==========================================
   // PUBLIC API
   // ==========================================
+  function parseAddInput(name, price) {
+    if (typeof name !== 'string' || name.trim().length === 0) {
+      console.error(CONFIG.texts.errorName);
+      return null;
+    }
+    name = name.trim();
+    if (name.length > 200) {
+      console.error('Product name too long (max 200 chars)');
+      return null;
+    }
+    price = parseFloat(price);
+    if (isNaN(price) || price < 0) {
+      console.error(CONFIG.texts.errorPrice.replace('${name}', name));
+      return null;
+    }
+    return { name, price };
+  }
+
   const CartAPI = {
     /**
      * Add an item to the cart
@@ -174,23 +201,10 @@
      * @param {number|string} price - Product price
      */
     add: function(name, price, options) {
-      // Validate name
-      if (typeof name !== 'string' || name.trim().length === 0) {
-        console.error(CONFIG.texts.errorName);
-        return;
-      }
-      name = name.trim();
-      if (name.length > 200) {
-        console.error('Product name too long (max 200 chars)');
-        return;
-      }
-
-      // Validate price
-      price = parseFloat(price);
-      if (isNaN(price) || price < 0) {
-        console.error(CONFIG.texts.errorPrice.replace('${name}', name));
-        return;
-      }
+      const parsed = parseAddInput(name, price);
+      if (!parsed) return;
+      name = parsed.name;
+      price = parsed.price;
 
       const addOptions = normalizeAddOptions(options);
       const sourceContext = resolveSourceContext(addOptions);
@@ -729,37 +743,32 @@
     }
 
     // Bind Events (Event Delegation)
-    div.addEventListener('click', (e) => {
-      const trigger = e.target.closest('[data-action]');
-      if (!trigger) return;
+    div.addEventListener('click', handleCartClick);
 
-      const action = trigger.dataset.action;
-      const key = trigger.dataset.key;
-      
-      // Prevent default for buttons
-      if (trigger.tagName === 'BUTTON') e.preventDefault();
+  }
 
-      switch (action) {
-        case 'open':
-          CartAPI.open();
-          break;
-        case 'close':
-          CartAPI.close();
-          break;
-        case 'checkout':
-          CartAPI.checkout();
-          break;
-        case 'update-qty': {
-          const delta = parseInt(trigger.dataset.qty);
-          if (key && !isNaN(delta)) CartAPI.updateQty(key, delta);
-          break;
-        }
-        case 'remove':
-          if (key) CartAPI.remove(key);
-          break;
-      }
-    });
-    
+  const CART_CLICK_ACTIONS = {
+    open: () => CartAPI.open(),
+    close: () => CartAPI.close(),
+    checkout: () => CartAPI.checkout(),
+    'update-qty': (trigger, key) => {
+      const delta = parseInt(trigger.dataset.qty);
+      if (key && !isNaN(delta)) CartAPI.updateQty(key, delta);
+    },
+    remove: (trigger, key) => {
+      if (key) CartAPI.remove(key);
+    }
+  };
+
+  function handleCartClick(e) {
+    const trigger = e.target.closest('[data-action]');
+    if (!trigger) return;
+
+    // Prevent default for buttons
+    if (trigger.tagName === 'BUTTON') e.preventDefault();
+
+    const handler = CART_CLICK_ACTIONS[trigger.dataset.action];
+    if (handler) handler(trigger, trigger.dataset.key);
   }
 
   function showToast(msg) {

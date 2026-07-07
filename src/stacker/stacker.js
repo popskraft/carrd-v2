@@ -103,27 +103,26 @@
     return runs;
   }
 
+  function nodeNeedsOverflowFix(node) {
+    if (CONFIG.overflowFixSelector && typeof node.matches === 'function' &&
+        node.matches(CONFIG.overflowFixSelector)) {
+      return true;
+    }
+    let overflowY = '';
+    try {
+      const computed = window.getComputedStyle(node);
+      overflowY = computed.overflowY || computed.overflow || '';
+    } catch (error) {
+      overflowY = '';
+    }
+    return overflowY === 'hidden';
+  }
+
   function fixOverflowAncestors(wrapper) {
     let node = wrapper.parentElement;
     while (node && node !== document.documentElement) {
-      if (!node.classList.contains(CLASSNAMES.overflowFix)) {
-        let needsFix = false;
-        if (CONFIG.overflowFixSelector && typeof node.matches === 'function' &&
-            node.matches(CONFIG.overflowFixSelector)) {
-          needsFix = true;
-        } else {
-          let overflowY = '';
-          try {
-            const computed = window.getComputedStyle(node);
-            overflowY = computed.overflowY || computed.overflow || '';
-          } catch (error) {
-            overflowY = '';
-          }
-          needsFix = overflowY === 'hidden';
-        }
-        if (needsFix) {
-          node.classList.add(CLASSNAMES.overflowFix);
-        }
+      if (!node.classList.contains(CLASSNAMES.overflowFix) && nodeNeedsOverflowFix(node)) {
+        node.classList.add(CLASSNAMES.overflowFix);
       }
       node = node.parentElement;
     }
