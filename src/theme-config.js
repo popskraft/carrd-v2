@@ -42,8 +42,7 @@ window.CarrdPluginOptions.accordeon = window.CarrdPluginOptions.accordeon || {
 /* Cards */
 window.CarrdPluginOptions.cards = window.CarrdPluginOptions.cards || {
     enabled: true,
-    cardSelector: '[data-cards]',
-    defaultCardBg: 'var(--theme-card-bg-default)'
+    cardSelector: '[data-cards]'
 };
 
 /* Grid Cluster */

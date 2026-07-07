@@ -3,8 +3,7 @@
 
   const DEFAULTS = {
     enabled: true,
-    cardSelector: '[data-cards]',
-    defaultCardBg: 'var(--theme-card-bg-default)'
+    cardSelector: '[data-cards]'
   };
 
   const externalOptions = (typeof window !== 'undefined' && (
@@ -234,8 +233,6 @@
           cardItem.style.backgroundColor = dataColor;
         } else if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)' && backgroundColor !== 'transparent') {
           cardItem.style.backgroundColor = backgroundColor;
-        } else {
-          cardItem.style.backgroundColor = CONFIG.defaultCardBg;
         }
 
         if (borderRadius && borderRadius !== '0px') {

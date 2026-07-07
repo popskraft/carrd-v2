@@ -35,12 +35,13 @@ If nothing changes, confirm the parent container has `data-cards`.
 
 ## Design
 
+Set the container background in Carrd, or override per-card colors with `data-cards-color*`.
+
 Add a separate `Head` style embed after the theme files:
 
 ```html
 <style>
 :root {
-  --theme-card-bg-default: var(--theme-color-primary-light);
   --theme-card-border-radius: 0;
   --theme-card-padding: 2rem;
   --theme-card-padding-mobile: 1rem;

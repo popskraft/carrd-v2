@@ -144,6 +144,7 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 
 - `data-cards="<name>"` marks card containers.
 - `data-cards-color`, `data-cards-color-<index>`, `data-cards-border-color-<index>`, `data-cards-padding`, and `data-cards-padding-mobile` are the primary per-container options.
+- Card backgrounds come from `data-cards-color*` when set; otherwise the plugin mirrors the container's visible background.
 - Legacy `data-color*`, `data-border-color*`, and `data-padding*` remain fallback during migration.
 - Legacy `.cards` remains fallback during migration.
 
