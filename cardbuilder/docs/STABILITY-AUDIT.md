@@ -13,7 +13,6 @@
 | External workspace references | guarded | Do not require external project roots for normal operation. |
 | `main-template` package | stable baseline | Run fresh live smoke checks after plugin or Builder behavior changes. |
 | `faktura` package | automation-first | Capture canonical builder scan package, live plugin inventory, published URL, and published-site scan. |
-| `koryphey-online` package | migration workspace | Keep as migration package unless owner promotes it to first-class live-site registry entry. |
 | Broken legacy links | partially checked | Extend automated checks from operational canon to docs indexes and critical runbooks. |
 
 ## Детали

@@ -3,9 +3,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { fileURLToPath } from "node:url";
 
-const ROOT = "/Users/popskraft/Projects/carrd-v2";
-const REGISTRY_PATH = path.join(ROOT, "cardbuilder/data/active-template.json");
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(SCRIPT_DIR, "../../..");
+const ACTIVE_TEMPLATE_PATH = path.join(ROOT, "cardbuilder/data/active-template.json");
 
 function parseArgs(argv) {
   const args = {
@@ -240,7 +242,7 @@ function writeBackups(backupDir, beforeEntries) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, "utf8"));
+  const registry = JSON.parse(fs.readFileSync(ACTIVE_TEMPLATE_PATH, "utf8"));
   const builderUrl = registry.builderUrl;
   const specs = buildSpecs();
 

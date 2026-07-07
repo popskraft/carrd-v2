@@ -1,8 +1,8 @@
 {
-  "scannedAt": "2026-06-23T15:29:54.068Z",
+  "scannedAt": "2026-06-30T21:32:20.204Z",
   "url": "https://carrd.co/dashboard/4778178033233108/build",
   "title": "Faktura Template - My Sites - Dashboard - Carrd",
-  "totalElements": 187,
+  "totalElements": 167,
   "allTabs": [
     "Animation",
     "Appearance",
@@ -23,6 +23,12 @@
     "Table",
     "Text"
   ],
+  "hasTargetTabs": {
+    "Content": false,
+    "Appearance": true,
+    "Animation": true,
+    "Settings": true
+  },
   "patterns": [
     {
       "tabs": [
@@ -31,7 +37,7 @@
         "Animation",
         "Settings"
       ],
-      "count": 60,
+      "count": 55,
       "sampleIds": [
         "text70",
         "text48",
@@ -40,7 +46,7 @@
         "text47",
         "text20",
         "text11",
-        "text15"
+        "text08"
       ]
     },
     {
@@ -50,16 +56,16 @@
         "Animation",
         "Settings"
       ],
-      "count": 34,
+      "count": 29,
       "sampleIds": [
         "container02",
         "container22",
         "container23",
         "container24",
         "container13",
-        "container15",
-        "container20",
-        "container25"
+        "container05",
+        "container06",
+        "container07"
       ]
     },
     {
@@ -69,16 +75,16 @@
         "Animation",
         "Settings"
       ],
-      "count": 24,
+      "count": 19,
       "sampleIds": [
         "buttons17",
         "buttons12",
         "buttons07",
-        "buttons13",
-        "buttons21",
-        "buttons22",
-        "buttons23",
-        "buttons24"
+        "buttons20",
+        "buttons01",
+        "buttons06",
+        "buttons10",
+        "buttons19"
       ]
     },
     {
@@ -88,16 +94,16 @@
         "Animation",
         "Settings"
       ],
-      "count": 21,
+      "count": 16,
       "sampleIds": [
         "image20",
         "image02",
-        "image06",
-        "image09",
-        "image14",
-        "image15",
-        "image16",
-        "image03"
+        "image03",
+        "image24",
+        "image07",
+        "image13",
+        "image19",
+        "image11"
       ]
     },
     {
@@ -234,15 +240,15 @@
   ],
   "byType": {
     "container": {
-      "count": 34,
+      "count": 29,
       "patternCounts": {
-        "Container | Appearance | Animation | Settings": 34
+        "Container | Appearance | Animation | Settings": 29
       }
     },
     "image": {
-      "count": 21,
+      "count": 16,
       "patternCounts": {
-        "Image | Appearance | Animation | Settings": 21
+        "Image | Appearance | Animation | Settings": 16
       }
     },
     "form": {
@@ -258,9 +264,9 @@
       }
     },
     "buttons": {
-      "count": 24,
+      "count": 19,
       "patternCounts": {
-        "Buttons | Appearance | Animation | Settings": 24
+        "Buttons | Appearance | Animation | Settings": 19
       }
     },
     "control": {
@@ -270,9 +276,9 @@
       }
     },
     "text": {
-      "count": 60,
+      "count": 55,
       "patternCounts": {
-        "Text | Appearance | Animation | Settings": 60
+        "Text | Appearance | Animation | Settings": 55
       }
     },
     "divider": {
@@ -614,286 +620,6 @@
       "found": true,
       "tabs": [
         "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "container15",
-      "type": "container",
-      "builderType": "container",
-      "shownId": "container15",
-      "shownType": "container",
-      "found": true,
-      "tabs": [
-        "Container",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "image06",
-      "type": "image",
-      "builderType": "image",
-      "shownId": "image06",
-      "shownType": "image",
-      "found": true,
-      "tabs": [
-        "Image",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "text15",
-      "type": "text",
-      "builderType": "text",
-      "shownId": "text15",
-      "shownType": "text",
-      "found": true,
-      "tabs": [
-        "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "buttons13",
-      "type": "buttons",
-      "builderType": "buttons",
-      "shownId": "buttons13",
-      "shownType": "buttons",
-      "found": true,
-      "tabs": [
-        "Buttons",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "container20",
-      "type": "container",
-      "builderType": "container",
-      "shownId": "container20",
-      "shownType": "container",
-      "found": true,
-      "tabs": [
-        "Container",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "image09",
-      "type": "image",
-      "builderType": "image",
-      "shownId": "image09",
-      "shownType": "image",
-      "found": true,
-      "tabs": [
-        "Image",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "text29",
-      "type": "text",
-      "builderType": "text",
-      "shownId": "text29",
-      "shownType": "text",
-      "found": true,
-      "tabs": [
-        "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "buttons21",
-      "type": "buttons",
-      "builderType": "buttons",
-      "shownId": "buttons21",
-      "shownType": "buttons",
-      "found": true,
-      "tabs": [
-        "Buttons",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "container25",
-      "type": "container",
-      "builderType": "container",
-      "shownId": "container25",
-      "shownType": "container",
-      "found": true,
-      "tabs": [
-        "Container",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "image14",
-      "type": "image",
-      "builderType": "image",
-      "shownId": "image14",
-      "shownType": "image",
-      "found": true,
-      "tabs": [
-        "Image",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "text30",
-      "type": "text",
-      "builderType": "text",
-      "shownId": "text30",
-      "shownType": "text",
-      "found": true,
-      "tabs": [
-        "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "buttons22",
-      "type": "buttons",
-      "builderType": "buttons",
-      "shownId": "buttons22",
-      "shownType": "buttons",
-      "found": true,
-      "tabs": [
-        "Buttons",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "container26",
-      "type": "container",
-      "builderType": "container",
-      "shownId": "container26",
-      "shownType": "container",
-      "found": true,
-      "tabs": [
-        "Container",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "image15",
-      "type": "image",
-      "builderType": "image",
-      "shownId": "image15",
-      "shownType": "image",
-      "found": true,
-      "tabs": [
-        "Image",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "text31",
-      "type": "text",
-      "builderType": "text",
-      "shownId": "text31",
-      "shownType": "text",
-      "found": true,
-      "tabs": [
-        "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "buttons23",
-      "type": "buttons",
-      "builderType": "buttons",
-      "shownId": "buttons23",
-      "shownType": "buttons",
-      "found": true,
-      "tabs": [
-        "Buttons",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "container27",
-      "type": "container",
-      "builderType": "container",
-      "shownId": "container27",
-      "shownType": "container",
-      "found": true,
-      "tabs": [
-        "Container",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "image16",
-      "type": "image",
-      "builderType": "image",
-      "shownId": "image16",
-      "shownType": "image",
-      "found": true,
-      "tabs": [
-        "Image",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "text32",
-      "type": "text",
-      "builderType": "text",
-      "shownId": "text32",
-      "shownType": "text",
-      "found": true,
-      "tabs": [
-        "Text",
-        "Appearance",
-        "Animation",
-        "Settings"
-      ]
-    },
-    {
-      "id": "buttons24",
-      "type": "buttons",
-      "builderType": "buttons",
-      "shownId": "buttons24",
-      "shownType": "buttons",
-      "found": true,
-      "tabs": [
-        "Buttons",
         "Appearance",
         "Animation",
         "Settings"

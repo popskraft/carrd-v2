@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 PORT="${CARRD_DEBUG_PORT:-9222}"
 CHROME_BIN="${CARRD_DEBUG_CHROME_BIN:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
-ACTIVE_TEMPLATE="/Users/popskraft/Projects/carrd-v2/cardbuilder/data/active-template.json"
-SITE_REGISTRY="/Users/popskraft/Projects/carrd-v2/cardbuilder/data/sites.json"
-RESOLVE_SITE="/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/resolve-site.mjs"
+ACTIVE_TEMPLATE="${REPO_ROOT}/cardbuilder/data/active-template.json"
+SITE_REGISTRY="${REPO_ROOT}/cardbuilder/data/sites.json"
+RESOLVE_SITE="${REPO_ROOT}/cardbuilder/scripts/carrd/resolve-site.mjs"
 
 if [[ ! -x "$CHROME_BIN" ]]; then
   echo "Chrome binary not found: $CHROME_BIN" >&2

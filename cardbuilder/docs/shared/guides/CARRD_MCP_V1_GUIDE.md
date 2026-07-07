@@ -64,12 +64,46 @@ Current v1 bootstrap mode:
 
 This keeps edits deterministic without requiring automated live save operations.
 
+## Auto-Onboarding
+
+One command maps a whole site into MCP control without a manual targeting pass:
+
+```bash
+# Registered site (re-run is idempotent; also handles drift):
+npm run onboard:site -- --site <ref> [--dry-run]
+
+# New site (operator supplies slug + dedicated Chrome debug profile):
+npm run onboard:site -- --builder-url <url> --slug <slug> --chrome-profile-dir <dir>
+```
+
+Pipeline: readiness pre-check -> live inventory (enumerate + panel probe, with a
+stability re-scan; unstable inventories fail as `inventory-unstable`) -> deterministic
+target generation from `cardbuilder/data/mutation-catalog.json` (semanticKey per
+component; unsupported types land in `unmapped[]` with a reason) -> manifests written
+-> readback `sync_profile` -> write probe (dry-run only) -> on green probe
+`capabilities.contentPatch` flips to `state-write` (owner-approved default;
+`--no-write-enable` opts out) -> final deep check.
+
+The site is controllable only when `check_profile` reports
+`readinessStatus: fully-mapped-safe-to-control` (contract probes pass, coverage 100%,
+knowledge fresh, targets present, write enabled).
+
+Operator boundary (never automated): debug Chrome + Carrd login + open Builder tab,
+slug and `chromeProfileDir` for new sites, applying proposed `cx-*` classes, save/publish.
+
+Drift handling: re-run `onboard_site`. semanticKeys are preserved by componentId,
+added components get new keys, removed ones are reported in `removedTargets`.
+`check_profile` reports `contract-drift` per probe instead of raising on the next read.
+
 ## Tool Surface
 
 - `list_profiles`
   - list registered Carrd profiles and MCP readiness metadata
 - `check_profile`
-  - run readiness checks without mutation
+  - run readiness checks without mutation; returns `contractCheck` (live DOM/API probes),
+    `coverage` (live components vs target map), and `readinessStatus` with reasons
+- `onboard_site`
+  - full auto-onboarding as above; `dryRun=true` by default reports without writing files
 - `sync_profile`
   - read live Builder state for known targets and optionally persist refreshed target metadata
 - `resolve_target`
@@ -103,16 +137,25 @@ The server does not:
 - [carrd-mcp-server.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/carrd-mcp-server.mjs)
 - [control-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/control-core.mjs)
 - [readiness-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/readiness-core.mjs)
+- [onboarding-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/onboarding-core.mjs)
+- [keygen.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/keygen.mjs)
+- [mutation-catalog.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/data/mutation-catalog.json)
 - [mcp-targets.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/manifests/mcp-targets.json)
 
 ## Validation
 
 - `npm run test:cardbuilder --silent`
+- `npm run onboard:site -- --site main-template --dry-run`
 - `node cardbuilder/scripts/carrd/carrd-mcp-server.mjs`
 - `node cardbuilder/scripts/carrd/sync-mcp-profile.mjs --site main-template`
 - `node cardbuilder/scripts/carrd/check-site-readiness.mjs --site main-template --no-fail`
 
 ## Notes
 
-- `faktura` is wired to the same core but still has an empty target map.
-- The next site-specific step for `faktura` is a targeting pass, not a core rewrite.
+- `faktura` still has an empty target map; the operator runs
+  `npm run onboard:site -- --site faktura` (with its debug Chrome open) to fill it —
+  no manual targeting pass is needed anymore.
+- Panel probing shows each component in the properties panel (~140ms each); large
+  sites take proportionally longer during onboarding. `--no-panel-probe` skips it.
+- Extend `mutation-catalog.json` only with live-verified paths; unsupported component
+  types stay in `unmapped[]` rather than getting guessed mutations.

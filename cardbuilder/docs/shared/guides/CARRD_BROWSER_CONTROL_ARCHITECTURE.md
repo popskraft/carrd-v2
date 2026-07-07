@@ -72,7 +72,7 @@ This layer already exists for:
 
 - `main-template` (registered)
 - `faktura` (registered)
-- `koryphey-online`, `lunar-auto-film` (project workspaces, not in the site registry)
+- `lunar-auto-film` (project workspace, not in the site registry)
 
 ### 4. Operation layer
 
@@ -114,7 +114,6 @@ This is the strongest current write path for plugin/embed updates.
 
 Examples:
 
-- `cardbuilder/projects/koryphey-online/automation/*`
 - `cardbuilder/projects/faktura/automation/*`
 
 Pattern:
@@ -211,14 +210,6 @@ Current site packages are strong on scans and reports, but weaker on reusable ac
 Impact:
 
 - future sessions must rediscover too much before editing safely
-
-### Gap 5. Best-effort migration automation is isolated and not integrated into the main architecture
-
-The `koryphey-online` migration workspace still remains isolated, but `faktura` is now expressed in the live registry/profile layer instead of only ad hoc probes. The remaining gap is to fold the non-live migration workspace into the same governed extension model.
-
-Impact:
-
-- advanced structural automation cannot be reasoned about uniformly
 
 ## Target Architecture
 

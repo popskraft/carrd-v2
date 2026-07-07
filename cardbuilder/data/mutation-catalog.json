@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "notes": [
+    "Deterministic per-componentType capability catalog for auto-generated MCP target maps.",
+    "universal paths apply to every known type; types outside knownTypes are reported as unmapped (unsupported-type).",
+    "listTypes expand indexed mutations from live item counts captured during inventory.",
+    "Paths mirror the operator-verified main-template target map; extend only with live-verified paths."
+  ],
+  "knownTypes": [
+    "container",
+    "text",
+    "image",
+    "links",
+    "buttons",
+    "icons",
+    "list",
+    "table",
+    "embed",
+    "form",
+    "divider",
+    "section",
+    "sectionbreak"
+  ],
+  "universal": {
+    "readPaths": ["settings.element.id", "settings.element.classes"],
+    "allowedMutations": [
+      {
+        "path": "settings.element.id",
+        "valueType": "string",
+        "description": "Carrd custom element id."
+      },
+      {
+        "path": "settings.element.classes",
+        "valueType": "string",
+        "description": "Carrd custom classes."
+      }
+    ]
+  },
+  "types": {
+    "container": {
+      "readPaths": ["appearance.background.blur"],
+      "allowedMutations": [
+        {
+          "path": "appearance.background.blur",
+          "valueType": "number",
+          "description": "Container background blur."
+        }
+      ]
+    },
+    "text": {
+      "readPaths": ["text.content", "text.role"],
+      "textSnippetPath": "text.content",
+      "allowedMutations": [
+        {
+          "path": "text.content",
+          "valueType": "string",
+          "description": "Text component content."
+        }
+      ]
+    },
+    "image": {
+      "readPaths": ["image.altText", "image.linkUrl"],
+      "allowedMutations": [
+        {
+          "path": "image.altText",
+          "valueType": "string",
+          "description": "Image alt text."
+        },
+        {
+          "path": "image.linkUrl",
+          "valueType": "string",
+          "description": "Image link URL."
+        }
+      ]
+    },
+    "links": {
+      "listPath": "links.links",
+      "itemFields": [
+        { "field": "label", "valueType": "string", "description": "Link label." },
+        { "field": "url", "valueType": "string", "description": "Link URL." }
+      ]
+    },
+    "buttons": {
+      "listPath": "buttons.buttons",
+      "itemFields": [
+        { "field": "label", "valueType": "string", "description": "Button label." },
+        { "field": "url", "valueType": "string", "description": "Button URL." }
+      ]
+    }
+  }
+}

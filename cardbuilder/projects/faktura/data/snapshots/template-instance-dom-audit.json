@@ -1,317 +1,594 @@
 {
   "meta": {
-    "generatedAt": "2026-06-23T15:29:37.088Z",
+    "generatedAt": "2026-06-30T21:31:54.973Z",
     "url": "https://carrd.co/dashboard/4778178033233108/build",
     "title": "Faktura Template - My Sites - Dashboard - Carrd",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "viewport": {
       "width": 1496,
-      "height": 767
+      "height": 766
     }
   },
   "root": {
+    "bodyId": "builder",
+    "bodyClass": "template-default non-touch",
     "hasCanvas": true,
     "hasMenu": true,
-    "hasPropertiesPanel": true
+    "hasUiWrapper": true
   },
-  "menu": [
+  "menu": {
+    "exists": true,
+    "className": "menu-bar",
+    "actions": [
+      {
+        "index": 0,
+        "action": "add-text",
+        "label": "Text",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-text\"]"
+      },
+      {
+        "index": 1,
+        "action": "add-image",
+        "label": "Image",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-image\"]"
+      },
+      {
+        "index": 2,
+        "action": "add-video",
+        "label": "Video",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-video\"]"
+      },
+      {
+        "index": 3,
+        "action": "add-audio",
+        "label": "Audio",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-audio\"]"
+      },
+      {
+        "index": 4,
+        "action": "add-gallery",
+        "label": "Gallery",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-gallery\"]"
+      },
+      {
+        "index": 5,
+        "action": "add-timer",
+        "label": "Timer",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-timer\"]"
+      },
+      {
+        "index": 6,
+        "action": "add-slideshow",
+        "label": "Slideshow",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-slideshow\"]"
+      },
+      {
+        "index": 7,
+        "action": "add-widget",
+        "label": "Widget",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-widget\"]"
+      },
+      {
+        "index": 8,
+        "action": "add-container",
+        "label": "Container",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-container\"]"
+      },
+      {
+        "index": 9,
+        "action": "add-list",
+        "label": "List",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-list\"]"
+      },
+      {
+        "index": 10,
+        "action": "add-buttons",
+        "label": "Buttons",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-buttons\"]"
+      },
+      {
+        "index": 11,
+        "action": "add-links",
+        "label": "Links",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-links\"]"
+      },
+      {
+        "index": 12,
+        "action": "add-icons",
+        "label": "Icons",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-icons\"]"
+      },
+      {
+        "index": 13,
+        "action": "add-table",
+        "label": "Table",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-table\"]"
+      },
+      {
+        "index": 14,
+        "action": "add-divider",
+        "label": "Divider",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-divider\"]"
+      },
+      {
+        "index": 15,
+        "action": "add-form",
+        "label": "Form",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-form\"]"
+      },
+      {
+        "index": 16,
+        "action": "add-embed",
+        "label": "Embed",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-embed\"]"
+      },
+      {
+        "index": 17,
+        "action": "add-control",
+        "label": "Control",
+        "visible": true,
+        "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-control\"]"
+      },
+      {
+        "index": 18,
+        "action": "undo",
+        "label": "Undo",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"undo\"]"
+      },
+      {
+        "index": 19,
+        "action": "redo",
+        "label": "Redo",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"redo\"]"
+      },
+      {
+        "index": 20,
+        "action": "play",
+        "label": "Preview Animation",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"play\"]"
+      },
+      {
+        "index": 21,
+        "action": "deactivate-section",
+        "label": "Leave Section View",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"deactivate-section\"]"
+      },
+      {
+        "index": 22,
+        "action": "sections",
+        "label": "Show sections",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"sections\"]"
+      },
+      {
+        "index": 23,
+        "action": "crop-view",
+        "label": "Toggle Crop",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"crop-view\"]"
+      },
+      {
+        "index": 24,
+        "action": "view",
+        "label": "Switch View",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view\"]"
+      },
+      {
+        "index": 25,
+        "action": "background-properties",
+        "label": "Background Properties",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"background-properties\"]"
+      },
+      {
+        "index": 26,
+        "action": "main-properties",
+        "label": "Page Properties",
+        "visible": false,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"main-properties\"]"
+      },
+      {
+        "index": 27,
+        "action": "view-site",
+        "label": "View Site",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view-site\"]"
+      },
+      {
+        "index": 28,
+        "action": "publish",
+        "label": "Publish",
+        "visible": true,
+        "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"publish\"]"
+      },
+      {
+        "index": 29,
+        "action": "undo",
+        "label": "Undo",
+        "visible": false,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"undo\"]"
+      },
+      {
+        "index": 30,
+        "action": "redo",
+        "label": "Redo",
+        "visible": false,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"redo\"]"
+      },
+      {
+        "index": 31,
+        "action": "publish",
+        "label": "Publish …",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"publish\"]"
+      },
+      {
+        "index": 32,
+        "action": "view-site",
+        "label": "View Site",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"view-site\"]"
+      },
+      {
+        "index": 33,
+        "action": "start-over",
+        "label": "Start Over",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"start-over\"]"
+      },
+      {
+        "index": 34,
+        "action": "background-properties",
+        "label": "Background …",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"background-properties\"]"
+      },
+      {
+        "index": 35,
+        "action": "main-properties",
+        "label": "Page …",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"main-properties\"]"
+      },
+      {
+        "index": 36,
+        "action": "instructions",
+        "label": "Instructions",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"instructions\"]"
+      },
+      {
+        "index": 37,
+        "action": "keyboard-shortcuts",
+        "label": "Shortcuts",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"keyboard-shortcuts\"]"
+      },
+      {
+        "index": 38,
+        "action": "docs",
+        "label": "Documentation",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"docs\"]"
+      },
+      {
+        "index": 39,
+        "action": "dashboard",
+        "label": "Dashboard",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"dashboard\"]"
+      },
+      {
+        "index": 40,
+        "action": "exit",
+        "label": "Exit",
+        "visible": true,
+        "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"exit\"]"
+      }
+    ]
+  },
+  "propertiesPanel": {
+    "exists": true,
+    "className": "panel properties visible embed",
+    "visible": true,
+    "tabs": [
+      {
+        "index": 0,
+        "text": "Embed",
+        "active": true
+      },
+      {
+        "index": 1,
+        "text": "Settings",
+        "active": false
+      }
+    ],
+    "sections": [
+      {
+        "index": 0,
+        "active": true,
+        "fieldCount": 21,
+        "fields": [
+          {
+            "tag": "select",
+            "type": null,
+            "name": "embed_mode",
+            "id": "embed-embed_mode",
+            "className": "",
+            "valuePreview": "code"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "embed_title",
+            "id": "embed-embed_title",
+            "className": "",
+            "valuePreview": "Cookie Banner"
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": "Cookie Banner"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "embed_iframe_url",
+            "id": "embed-embed_iframe_url",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_iframe_width",
+            "id": "embed-appearance_iframe_width",
+            "className": "",
+            "valuePreview": "20"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_iframe_height",
+            "id": "embed-appearance_iframe_height",
+            "className": "",
+            "valuePreview": "15"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_iframe_aspectRatio",
+            "id": "embed-appearance_iframe_aspectRatio",
+            "className": "",
+            "valuePreview": "ignore"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_iframe_margins",
+            "id": "embed-appearance_iframe_margins",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_iframe_allow_camera",
+            "id": "embed-embed_iframe_allow_camera",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_iframe_allow_microphone",
+            "id": "embed-embed_iframe_allow_microphone",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_iframe_allow_fullscreen",
+            "id": "embed-embed_iframe_allow_fullscreen",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_iframe_allow_displayCapture",
+            "id": "embed-embed_iframe_allow_displayCapture",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_iframe_allow_motion",
+            "id": "embed-embed_iframe_allow_motion",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "radio",
+            "name": "appearance_mobile_settings",
+            "id": "embed-appearance_mobile_settings_auto",
+            "className": "checked",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "input",
+            "type": "radio",
+            "name": "appearance_mobile_settings",
+            "id": "embed-appearance_mobile_settings_manual",
+            "className": "",
+            "valuePreview": "manual"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_iframe_margins",
+            "id": "embed-appearance_mobile_iframe_margins",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "embed_code_style",
+            "id": "embed-embed_code_style",
+            "className": "",
+            "valuePreview": "hidden"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "embed_code_location",
+            "id": "embed-embed_code_location",
+            "className": "",
+            "valuePreview": "body-end"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "embed_code_content",
+            "id": "embed-embed_code_content",
+            "className": "",
+            "valuePreview": "<!-- Plugin: Cookie Banner V2 | Version: 2.0.0 -->\n<style>\n[data-cookie-v2],[data-cookie],.theme-cookie-banner,.cookie-b"
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": "<!-- Plugin: Cookie Banner V2 | Version: 2.0.0 --><style>[data-cookie-v2],[data-cookie],.theme-cookie-banner,.cookie-ban"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "embed_code_defer",
+            "id": "embed-embed_code_defer",
+            "className": "",
+            "valuePreview": "on"
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "active": false,
+        "fieldCount": 4,
+        "fields": [
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "settings_element_id",
+            "id": "embed-settings_element_id",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_classes",
+            "id": "embed-settings_element_classes",
+            "className": "",
+            "valuePreview": "embed-plugin-in-body-end"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": null,
+            "id": "embed-settings_element_classes_1000_1000",
+            "className": "",
+            "valuePreview": "embed-plugin-in-body-end"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_attributes",
+            "id": "embed-settings_element_attributes",
+            "className": "",
+            "valuePreview": ""
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
     {
       "index": 0,
-      "action": "add-text",
-      "text": "Text",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-text\"]"
+      "dataId": "control04",
+      "text": "Header End",
+      "className": "component-wrapper full screen",
+      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control04\"]"
     },
     {
       "index": 1,
-      "action": "add-image",
-      "text": "Image",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-image\"]"
+      "dataId": "control05",
+      "text": "#subpage",
+      "className": "component-wrapper full screen",
+      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control05\"]"
     },
     {
       "index": 2,
-      "action": "add-video",
-      "text": "Video",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-video\"]"
+      "dataId": "control01",
+      "text": "#form-order",
+      "className": "component-wrapper full screen",
+      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]"
     },
     {
       "index": 3,
-      "action": "add-audio",
-      "text": "Audio",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-audio\"]"
+      "dataId": "control03",
+      "text": "#form-contact",
+      "className": "component-wrapper full screen",
+      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control03\"]"
     },
     {
       "index": 4,
-      "action": "add-gallery",
-      "text": "Gallery",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-gallery\"]"
-    },
-    {
-      "index": 5,
-      "action": "add-timer",
-      "text": "Timer",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-timer\"]"
-    },
-    {
-      "index": 6,
-      "action": "add-slideshow",
-      "text": "Slideshow",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-slideshow\"]"
-    },
-    {
-      "index": 7,
-      "action": "add-widget",
-      "text": "Widget",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-widget\"]"
-    },
-    {
-      "index": 8,
-      "action": "add-container",
-      "text": "Container",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-container\"]"
-    },
-    {
-      "index": 9,
-      "action": "add-list",
-      "text": "List",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-list\"]"
-    },
-    {
-      "index": 10,
-      "action": "add-buttons",
-      "text": "Buttons",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-buttons\"]"
-    },
-    {
-      "index": 11,
-      "action": "add-links",
-      "text": "Links",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-links\"]"
-    },
-    {
-      "index": 12,
-      "action": "add-icons",
-      "text": "Icons",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-icons\"]"
-    },
-    {
-      "index": 13,
-      "action": "add-table",
-      "text": "Table",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-table\"]"
-    },
-    {
-      "index": 14,
-      "action": "add-divider",
-      "text": "Divider",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-divider\"]"
-    },
-    {
-      "index": 15,
-      "action": "add-form",
-      "text": "Form",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-form\"]"
-    },
-    {
-      "index": 16,
-      "action": "add-embed",
-      "text": "Embed",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-embed\"]"
-    },
-    {
-      "index": 17,
-      "action": "add-control",
-      "text": "Control",
-      "visible": true,
-      "selector": "div.ui-wrapper.is-right > div.menu-bar > div > div.items.columned > div.column > div[data-action=\"add-control\"]"
-    },
-    {
-      "index": 18,
-      "action": "undo",
-      "text": "Undo",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"undo\"]"
-    },
-    {
-      "index": 19,
-      "action": "redo",
-      "text": "Redo",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"redo\"]"
-    },
-    {
-      "index": 20,
-      "action": "play",
-      "text": "Preview Animation",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"play\"]"
-    },
-    {
-      "index": 21,
-      "action": "deactivate-section",
-      "text": "Leave Section View",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"deactivate-section\"]"
-    },
-    {
-      "index": 22,
-      "action": "sections",
-      "text": "Show sections",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"sections\"]"
-    },
-    {
-      "index": 23,
-      "action": "crop-view",
-      "text": "Toggle Crop",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"crop-view\"]"
-    },
-    {
-      "index": 24,
-      "action": "view",
-      "text": "Switch View",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view\"]"
-    },
-    {
-      "index": 25,
-      "action": "background-properties",
-      "text": "Background Properties",
-      "visible": false,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"background-properties\"]"
-    },
-    {
-      "index": 26,
-      "action": "main-properties",
-      "text": "Page Properties",
-      "visible": false,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"main-properties\"]"
-    },
-    {
-      "index": 27,
-      "action": "view-site",
-      "text": "View Site",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"view-site\"]"
-    },
-    {
-      "index": 28,
-      "action": "publish",
-      "text": "Publish",
-      "visible": true,
-      "selector": "html > body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div[data-action=\"publish\"]"
-    },
-    {
-      "index": 29,
-      "action": "undo",
-      "text": "Undo",
-      "visible": false,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"undo\"]"
-    },
-    {
-      "index": 30,
-      "action": "redo",
-      "text": "Redo",
-      "visible": false,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"redo\"]"
-    },
-    {
-      "index": 31,
-      "action": "publish",
-      "text": "Publish …",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"publish\"]"
-    },
-    {
-      "index": 32,
-      "action": "view-site",
-      "text": "View Site",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"view-site\"]"
-    },
-    {
-      "index": 33,
-      "action": "start-over",
-      "text": "Start Over",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"start-over\"]"
-    },
-    {
-      "index": 34,
-      "action": "background-properties",
-      "text": "Background …",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"background-properties\"]"
-    },
-    {
-      "index": 35,
-      "action": "main-properties",
-      "text": "Page …",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"main-properties\"]"
-    },
-    {
-      "index": 36,
-      "action": "instructions",
-      "text": "Instructions",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"instructions\"]"
-    },
-    {
-      "index": 37,
-      "action": "keyboard-shortcuts",
-      "text": "Shortcuts",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"keyboard-shortcuts\"]"
-    },
-    {
-      "index": 38,
-      "action": "docs",
-      "text": "Documentation",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"docs\"]"
-    },
-    {
-      "index": 39,
-      "action": "dashboard",
-      "text": "Dashboard",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"dashboard\"]"
-    },
-    {
-      "index": 40,
-      "action": "exit",
-      "text": "Exit",
-      "visible": true,
-      "selector": "body.template-default.non-touch > div.ui-wrapper.is-right > div.menu-bar > div > div.items > div[data-action=\"exit\"]"
+      "dataId": "control02",
+      "text": "Footer Start",
+      "className": "component-wrapper full screen",
+      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control02\"]"
     }
   ],
   "components": {
-    "total": 187,
+    "total": 167,
     "byType": {
-      "container": 34,
-      "image": 21,
+      "container": 29,
+      "image": 16,
       "form": 4,
       "links": 3,
-      "buttons": 24,
+      "buttons": 19,
       "control": 5,
-      "text": 60,
+      "text": 55,
       "divider": 15,
       "gallery": 2,
       "icons": 2,
@@ -321,7 +598,6 @@
     },
     "items": [
       {
-        "index": 0,
         "dataId": "container02",
         "dataType": "container",
         "className": "component-wrapper max is-first is-last",
@@ -331,7 +607,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container02\"]"
       },
       {
-        "index": 1,
         "dataId": "image20",
         "dataType": "image",
         "className": "component-wrapper is-first is-last",
@@ -341,7 +616,6 @@
         "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"image20\"]"
       },
       {
-        "index": 2,
         "dataId": "form02",
         "dataType": "form",
         "className": "component-wrapper is-first",
@@ -351,7 +625,6 @@
         "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"form02\"]"
       },
       {
-        "index": 3,
         "dataId": "links03",
         "dataType": "links",
         "className": "component-wrapper is-last",
@@ -361,7 +634,6 @@
         "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"links03\"]"
       },
       {
-        "index": 4,
         "dataId": "buttons17",
         "dataType": "buttons",
         "className": "component-wrapper is-first is-last",
@@ -371,7 +643,6 @@
         "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"buttons17\"]"
       },
       {
-        "index": 5,
         "dataId": "control04",
         "dataType": "control",
         "className": "component-wrapper full screen",
@@ -381,7 +652,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control04\"]"
       },
       {
-        "index": 6,
         "dataId": "container22",
         "dataType": "container",
         "className": "component-wrapper full max is-first",
@@ -391,7 +661,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container22\"]"
       },
       {
-        "index": 7,
         "dataId": "text70",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -401,7 +670,6 @@
         "selector": "div.component > div.--container-component.--instance-container22 > div.--wrapper > div.--inner > div > div[data-id=\"text70\"]"
       },
       {
-        "index": 8,
         "dataId": "text48",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -411,7 +679,6 @@
         "selector": "div.component > div.--container-component.--instance-container22 > div.--wrapper > div.--inner > div > div[data-id=\"text48\"]"
       },
       {
-        "index": 9,
         "dataId": "container23",
         "dataType": "container",
         "className": "component-wrapper max",
@@ -421,7 +688,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container23\"]"
       },
       {
-        "index": 10,
         "dataId": "text06",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -431,7 +697,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"text06\"]"
       },
       {
-        "index": 11,
         "dataId": "text46",
         "dataType": "text",
         "className": "component-wrapper",
@@ -441,7 +706,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"text46\"]"
       },
       {
-        "index": 12,
         "dataId": "text47",
         "dataType": "text",
         "className": "component-wrapper",
@@ -451,7 +715,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"text47\"]"
       },
       {
-        "index": 13,
         "dataId": "divider04",
         "dataType": "divider",
         "className": "component-wrapper full",
@@ -461,7 +724,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"divider04\"]"
       },
       {
-        "index": 14,
         "dataId": "buttons12",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -471,7 +733,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"buttons12\"]"
       },
       {
-        "index": 15,
         "dataId": "image02",
         "dataType": "image",
         "className": "component-wrapper full is-first is-last",
@@ -481,7 +742,6 @@
         "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"image02\"]"
       },
       {
-        "index": 16,
         "dataId": "buttons07",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -491,7 +751,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"buttons07\"]"
       },
       {
-        "index": 17,
         "dataId": "divider06",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -501,7 +760,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"divider06\"]"
       },
       {
-        "index": 18,
         "dataId": "container24",
         "dataType": "container",
         "className": "component-wrapper max",
@@ -511,7 +769,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container24\"]"
       },
       {
-        "index": 19,
         "dataId": "text20",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -521,7 +778,6 @@
         "selector": "div[data-id=\"container24\"] > div.component > div.--container-component.--instance-container24 > div.--wrapper > div.--inner > div[data-id=\"text20\"]"
       },
       {
-        "index": 20,
         "dataId": "container13",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -531,7 +787,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container13\"]"
       },
       {
-        "index": 21,
         "dataId": "text11",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -541,207 +796,6 @@
         "selector": "div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"text11\"]"
       },
       {
-        "index": 22,
-        "dataId": "container15",
-        "dataType": "container",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 3,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб Подробно об акции",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container15\"]"
-      },
-      {
-        "index": 23,
-        "dataId": "image06",
-        "dataType": "image",
-        "className": "component-wrapper full is-first",
-        "parentDataId": "container15",
-        "childWrapperCount": 0,
-        "textSample": "",
-        "selector": "div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"image06\"]"
-      },
-      {
-        "index": 24,
-        "dataId": "text15",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container15",
-        "childWrapperCount": 0,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб",
-        "selector": "div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"text15\"]"
-      },
-      {
-        "index": 25,
-        "dataId": "buttons13",
-        "dataType": "buttons",
-        "className": "component-wrapper is-last",
-        "parentDataId": "container15",
-        "childWrapperCount": 0,
-        "textSample": "Подробно об акции",
-        "selector": "div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"buttons13\"]"
-      },
-      {
-        "index": 26,
-        "dataId": "container20",
-        "dataType": "container",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 3,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб Подробно об акции",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container20\"]"
-      },
-      {
-        "index": 27,
-        "dataId": "image09",
-        "dataType": "image",
-        "className": "component-wrapper full is-first",
-        "parentDataId": "container20",
-        "childWrapperCount": 0,
-        "textSample": "",
-        "selector": "div[data-id=\"container20\"] > div.component > div.--container-component.--instance-container20 > div.--wrapper > div.--inner > div[data-id=\"image09\"]"
-      },
-      {
-        "index": 28,
-        "dataId": "text29",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container20",
-        "childWrapperCount": 0,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб",
-        "selector": "div[data-id=\"container20\"] > div.component > div.--container-component.--instance-container20 > div.--wrapper > div.--inner > div[data-id=\"text29\"]"
-      },
-      {
-        "index": 29,
-        "dataId": "buttons21",
-        "dataType": "buttons",
-        "className": "component-wrapper is-last",
-        "parentDataId": "container20",
-        "childWrapperCount": 0,
-        "textSample": "Подробно об акции",
-        "selector": "div[data-id=\"container20\"] > div.component > div.--container-component.--instance-container20 > div.--wrapper > div.--inner > div[data-id=\"buttons21\"]"
-      },
-      {
-        "index": 30,
-        "dataId": "container25",
-        "dataType": "container",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 3,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб Подробно об акции",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container25\"]"
-      },
-      {
-        "index": 31,
-        "dataId": "image14",
-        "dataType": "image",
-        "className": "component-wrapper full is-first",
-        "parentDataId": "container25",
-        "childWrapperCount": 0,
-        "textSample": "",
-        "selector": "div[data-id=\"container25\"] > div.component > div.--container-component.--instance-container25 > div.--wrapper > div.--inner > div[data-id=\"image14\"]"
-      },
-      {
-        "index": 32,
-        "dataId": "text30",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container25",
-        "childWrapperCount": 0,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб",
-        "selector": "div[data-id=\"container25\"] > div.component > div.--container-component.--instance-container25 > div.--wrapper > div.--inner > div[data-id=\"text30\"]"
-      },
-      {
-        "index": 33,
-        "dataId": "buttons22",
-        "dataType": "buttons",
-        "className": "component-wrapper is-last",
-        "parentDataId": "container25",
-        "childWrapperCount": 0,
-        "textSample": "Подробно об акции",
-        "selector": "div[data-id=\"container25\"] > div.component > div.--container-component.--instance-container25 > div.--wrapper > div.--inner > div[data-id=\"buttons22\"]"
-      },
-      {
-        "index": 34,
-        "dataId": "container26",
-        "dataType": "container",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 3,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб Подробно об акции",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container26\"]"
-      },
-      {
-        "index": 35,
-        "dataId": "image15",
-        "dataType": "image",
-        "className": "component-wrapper full is-first",
-        "parentDataId": "container26",
-        "childWrapperCount": 0,
-        "textSample": "",
-        "selector": "div[data-id=\"container26\"] > div.component > div.--container-component.--instance-container26 > div.--wrapper > div.--inner > div[data-id=\"image15\"]"
-      },
-      {
-        "index": 36,
-        "dataId": "text31",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container26",
-        "childWrapperCount": 0,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб",
-        "selector": "div[data-id=\"container26\"] > div.component > div.--container-component.--instance-container26 > div.--wrapper > div.--inner > div[data-id=\"text31\"]"
-      },
-      {
-        "index": 37,
-        "dataId": "buttons23",
-        "dataType": "buttons",
-        "className": "component-wrapper is-last",
-        "parentDataId": "container26",
-        "childWrapperCount": 0,
-        "textSample": "Подробно об акции",
-        "selector": "div[data-id=\"container26\"] > div.component > div.--container-component.--instance-container26 > div.--wrapper > div.--inner > div[data-id=\"buttons23\"]"
-      },
-      {
-        "index": 38,
-        "dataId": "container27",
-        "dataType": "container",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 3,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб Подробно об акции",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container27\"]"
-      },
-      {
-        "index": 39,
-        "dataId": "image16",
-        "dataType": "image",
-        "className": "component-wrapper full is-first",
-        "parentDataId": "container27",
-        "childWrapperCount": 0,
-        "textSample": "",
-        "selector": "div[data-id=\"container27\"] > div.component > div.--container-component.--instance-container27 > div.--wrapper > div.--inner > div[data-id=\"image16\"]"
-      },
-      {
-        "index": 40,
-        "dataId": "text32",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container27",
-        "childWrapperCount": 0,
-        "textSample": "Рулонная штора с креплением компакт до 70 см. шириной из тканей от 1900 руб",
-        "selector": "div[data-id=\"container27\"] > div.component > div.--container-component.--instance-container27 > div.--wrapper > div.--inner > div[data-id=\"text32\"]"
-      },
-      {
-        "index": 41,
-        "dataId": "buttons24",
-        "dataType": "buttons",
-        "className": "component-wrapper is-last",
-        "parentDataId": "container27",
-        "childWrapperCount": 0,
-        "textSample": "Подробно об акции",
-        "selector": "div[data-id=\"container27\"] > div.component > div.--container-component.--instance-container27 > div.--wrapper > div.--inner > div[data-id=\"buttons24\"]"
-      },
-      {
-        "index": 42,
         "dataId": "container05",
         "dataType": "container",
         "className": "component-wrapper",
@@ -751,7 +805,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container05\"]"
       },
       {
-        "index": 43,
         "dataId": "image03",
         "dataType": "image",
         "className": "component-wrapper full is-first",
@@ -761,7 +814,6 @@
         "selector": "div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"image03\"]"
       },
       {
-        "index": 44,
         "dataId": "text08",
         "dataType": "text",
         "className": "component-wrapper",
@@ -771,7 +823,6 @@
         "selector": "div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"text08\"]"
       },
       {
-        "index": 45,
         "dataId": "buttons20",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -781,7 +832,6 @@
         "selector": "div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"buttons20\"]"
       },
       {
-        "index": 46,
         "dataId": "container06",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -791,7 +841,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container06\"]"
       },
       {
-        "index": 47,
         "dataId": "text01",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -801,7 +850,6 @@
         "selector": "div[data-id=\"container06\"] > div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div[data-id=\"text01\"]"
       },
       {
-        "index": 48,
         "dataId": "container07",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -811,7 +859,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container07\"]"
       },
       {
-        "index": 49,
         "dataId": "text18",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -821,7 +868,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"text18\"]"
       },
       {
-        "index": 50,
         "dataId": "divider07",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -831,7 +877,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"divider07\"]"
       },
       {
-        "index": 51,
         "dataId": "text19",
         "dataType": "text",
         "className": "component-wrapper",
@@ -841,7 +886,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"text19\"]"
       },
       {
-        "index": 52,
         "dataId": "buttons01",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -851,7 +895,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"buttons01\"]"
       },
       {
-        "index": 53,
         "dataId": "gallery01",
         "dataType": "gallery",
         "className": "component-wrapper is-first",
@@ -861,7 +904,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"gallery01\"]"
       },
       {
-        "index": 54,
         "dataId": "image24",
         "dataType": "image",
         "className": "component-wrapper is-last",
@@ -871,7 +913,6 @@
         "selector": "div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div > div[data-id=\"image24\"]"
       },
       {
-        "index": 55,
         "dataId": "container08",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -881,7 +922,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container08\"]"
       },
       {
-        "index": 56,
         "dataId": "text10",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -891,7 +931,6 @@
         "selector": "div[data-id=\"container08\"] > div.component > div.--container-component.--instance-container08 > div.--wrapper > div.--inner > div[data-id=\"text10\"]"
       },
       {
-        "index": 57,
         "dataId": "text13",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -901,7 +940,6 @@
         "selector": "div[data-id=\"container08\"] > div.component > div.--container-component.--instance-container08 > div.--wrapper > div.--inner > div[data-id=\"text13\"]"
       },
       {
-        "index": 58,
         "dataId": "container14",
         "dataType": "container",
         "className": "component-wrapper",
@@ -911,7 +949,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container14\"]"
       },
       {
-        "index": 59,
         "dataId": "image07",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -921,7 +958,6 @@
         "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"image07\"]"
       },
       {
-        "index": 60,
         "dataId": "text22",
         "dataType": "text",
         "className": "component-wrapper",
@@ -931,7 +967,6 @@
         "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"text22\"]"
       },
       {
-        "index": 61,
         "dataId": "text24",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -941,7 +976,6 @@
         "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"text24\"]"
       },
       {
-        "index": 62,
         "dataId": "container09",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -951,7 +985,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container09\"]"
       },
       {
-        "index": 63,
         "dataId": "text41",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -961,7 +994,6 @@
         "selector": "div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"text41\"]"
       },
       {
-        "index": 64,
         "dataId": "text42",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -971,7 +1003,6 @@
         "selector": "div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"text42\"]"
       },
       {
-        "index": 65,
         "dataId": "container21",
         "dataType": "container",
         "className": "component-wrapper",
@@ -981,7 +1012,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container21\"]"
       },
       {
-        "index": 66,
         "dataId": "text43",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -991,7 +1021,6 @@
         "selector": "div[data-id=\"container21\"] > div.component > div.--container-component.--instance-container21 > div.--wrapper > div.--inner > div[data-id=\"text43\"]"
       },
       {
-        "index": 67,
         "dataId": "image13",
         "dataType": "image",
         "className": "component-wrapper",
@@ -1001,7 +1030,6 @@
         "selector": "div[data-id=\"container21\"] > div.component > div.--container-component.--instance-container21 > div.--wrapper > div.--inner > div[data-id=\"image13\"]"
       },
       {
-        "index": 68,
         "dataId": "divider08",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1011,7 +1039,6 @@
         "selector": "div[data-id=\"container21\"] > div.component > div.--container-component.--instance-container21 > div.--wrapper > div.--inner > div[data-id=\"divider08\"]"
       },
       {
-        "index": 69,
         "dataId": "text49",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1021,7 +1048,6 @@
         "selector": "div[data-id=\"container21\"] > div.component > div.--container-component.--instance-container21 > div.--wrapper > div.--inner > div[data-id=\"text49\"]"
       },
       {
-        "index": 70,
         "dataId": "container28",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -1031,7 +1057,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container28\"]"
       },
       {
-        "index": 71,
         "dataId": "text53",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1041,7 +1066,6 @@
         "selector": "div[data-id=\"container28\"] > div.component > div.--container-component.--instance-container28 > div.--wrapper > div.--inner > div[data-id=\"text53\"]"
       },
       {
-        "index": 72,
         "dataId": "buttons06",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -1051,7 +1075,6 @@
         "selector": "div[data-id=\"container28\"] > div.component > div.--container-component.--instance-container28 > div.--wrapper > div.--inner > div[data-id=\"buttons06\"]"
       },
       {
-        "index": 73,
         "dataId": "container31",
         "dataType": "container",
         "className": "component-wrapper max",
@@ -1061,7 +1084,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container31\"]"
       },
       {
-        "index": 74,
         "dataId": "text58",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1071,7 +1093,6 @@
         "selector": "div[data-id=\"container31\"] > div.component > div.--container-component.--instance-container31 > div.--wrapper > div.--inner > div[data-id=\"text58\"]"
       },
       {
-        "index": 75,
         "dataId": "text59",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1081,7 +1102,6 @@
         "selector": "div[data-id=\"container31\"] > div.component > div.--container-component.--instance-container31 > div.--wrapper > div.--inner > div[data-id=\"text59\"]"
       },
       {
-        "index": 76,
         "dataId": "container33",
         "dataType": "container",
         "className": "component-wrapper max",
@@ -1091,7 +1111,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container33\"]"
       },
       {
-        "index": 77,
         "dataId": "image19",
         "dataType": "image",
         "className": "component-wrapper full is-first is-last",
@@ -1101,7 +1120,6 @@
         "selector": "div[data-id=\"container33\"] > div.component > div.--container-component.--instance-container33 > div.--wrapper > div.--inner > div[data-id=\"image19\"]"
       },
       {
-        "index": 78,
         "dataId": "container03",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -1111,7 +1129,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container03\"]"
       },
       {
-        "index": 79,
         "dataId": "text12",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1121,7 +1138,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text12\"]"
       },
       {
-        "index": 80,
         "dataId": "divider02",
         "dataType": "divider",
         "className": "component-wrapper full",
@@ -1131,7 +1147,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"divider02\"]"
       },
       {
-        "index": 81,
         "dataId": "text14",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1141,7 +1156,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text14\"]"
       },
       {
-        "index": 82,
         "dataId": "text05",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1151,7 +1165,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text05\"]"
       },
       {
-        "index": 83,
         "dataId": "divider03",
         "dataType": "divider",
         "className": "component-wrapper full",
@@ -1161,7 +1174,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"divider03\"]"
       },
       {
-        "index": 84,
         "dataId": "text17",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1171,7 +1183,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text17\"]"
       },
       {
-        "index": 85,
         "dataId": "text23",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1181,7 +1192,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text23\"]"
       },
       {
-        "index": 86,
         "dataId": "text16",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1191,7 +1201,6 @@
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text16\"]"
       },
       {
-        "index": 87,
         "dataId": "container19",
         "dataType": "container",
         "className": "component-wrapper",
@@ -1201,7 +1210,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container19\"]"
       },
       {
-        "index": 88,
         "dataId": "image11",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -1211,7 +1219,6 @@
         "selector": "div[data-id=\"container19\"] > div.component > div.--container-component.--instance-container19 > div.--wrapper > div.--inner > div[data-id=\"image11\"]"
       },
       {
-        "index": 89,
         "dataId": "text38",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1221,7 +1228,6 @@
         "selector": "div[data-id=\"container19\"] > div.component > div.--container-component.--instance-container19 > div.--wrapper > div.--inner > div[data-id=\"text38\"]"
       },
       {
-        "index": 90,
         "dataId": "container36",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -1231,7 +1237,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container36\"]"
       },
       {
-        "index": 91,
         "dataId": "buttons10",
         "dataType": "buttons",
         "className": "component-wrapper is-first",
@@ -1241,7 +1246,6 @@
         "selector": "div.component > div.--container-component.--instance-container36 > div.--wrapper > div.--inner > div > div[data-id=\"buttons10\"]"
       },
       {
-        "index": 92,
         "dataId": "form05",
         "dataType": "form",
         "className": "component-wrapper is-last",
@@ -1251,7 +1255,6 @@
         "selector": "div.component > div.--container-component.--instance-container36 > div.--wrapper > div.--inner > div > div[data-id=\"form05\"]"
       },
       {
-        "index": 93,
         "dataId": "buttons19",
         "dataType": "buttons",
         "className": "component-wrapper is-first is-last",
@@ -1261,7 +1264,6 @@
         "selector": "div.component > div.--container-component.--instance-container36 > div.--wrapper > div.--inner > div > div[data-id=\"buttons19\"]"
       },
       {
-        "index": 94,
         "dataId": "container38",
         "dataType": "container",
         "className": "component-wrapper",
@@ -1271,7 +1273,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container38\"]"
       },
       {
-        "index": 95,
         "dataId": "image10",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -1281,7 +1282,6 @@
         "selector": "div[data-id=\"container38\"] > div.component > div.--container-component.--instance-container38 > div.--wrapper > div.--inner > div[data-id=\"image10\"]"
       },
       {
-        "index": 96,
         "dataId": "text26",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1291,7 +1291,6 @@
         "selector": "div[data-id=\"container38\"] > div.component > div.--container-component.--instance-container38 > div.--wrapper > div.--inner > div[data-id=\"text26\"]"
       },
       {
-        "index": 97,
         "dataId": "text37",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1301,7 +1300,6 @@
         "selector": "div[data-id=\"container38\"] > div.component > div.--container-component.--instance-container38 > div.--wrapper > div.--inner > div[data-id=\"text37\"]"
       },
       {
-        "index": 98,
         "dataId": "buttons18",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1311,7 +1309,6 @@
         "selector": "div[data-id=\"container38\"] > div.component > div.--container-component.--instance-container38 > div.--wrapper > div.--inner > div[data-id=\"buttons18\"]"
       },
       {
-        "index": 99,
         "dataId": "icons03",
         "dataType": "icons",
         "className": "component-wrapper is-last",
@@ -1321,7 +1318,6 @@
         "selector": "div[data-id=\"container38\"] > div.component > div.--container-component.--instance-container38 > div.--wrapper > div.--inner > div[data-id=\"icons03\"]"
       },
       {
-        "index": 100,
         "dataId": "container04",
         "dataType": "container",
         "className": "component-wrapper full max",
@@ -1331,7 +1327,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container04\"]"
       },
       {
-        "index": 101,
         "dataId": "image04",
         "dataType": "image",
         "className": "component-wrapper is-first is-last",
@@ -1341,7 +1336,6 @@
         "selector": "div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div > div[data-id=\"image04\"]"
       },
       {
-        "index": 102,
         "dataId": "text28",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1351,7 +1345,6 @@
         "selector": "div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div > div[data-id=\"text28\"]"
       },
       {
-        "index": 103,
         "dataId": "text72",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1361,7 +1354,6 @@
         "selector": "div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div > div[data-id=\"text72\"]"
       },
       {
-        "index": 104,
         "dataId": "container16",
         "dataType": "container",
         "className": "component-wrapper full max is-last",
@@ -1371,7 +1363,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container16\"]"
       },
       {
-        "index": 105,
         "dataId": "image05",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -1381,7 +1372,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"image05\"]"
       },
       {
-        "index": 106,
         "dataId": "gallery02",
         "dataType": "gallery",
         "className": "component-wrapper is-last",
@@ -1391,7 +1381,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"gallery02\"]"
       },
       {
-        "index": 107,
         "dataId": "text09",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1401,7 +1390,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"text09\"]"
       },
       {
-        "index": 108,
         "dataId": "text21",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1411,7 +1399,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"text21\"]"
       },
       {
-        "index": 109,
         "dataId": "table01",
         "dataType": "table",
         "className": "component-wrapper",
@@ -1421,7 +1408,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"table01\"]"
       },
       {
-        "index": 110,
         "dataId": "text03",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1431,7 +1417,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"text03\"]"
       },
       {
-        "index": 111,
         "dataId": "form03",
         "dataType": "form",
         "className": "component-wrapper",
@@ -1441,7 +1426,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"form03\"]"
       },
       {
-        "index": 112,
         "dataId": "buttons09",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1451,7 +1435,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"buttons09\"]"
       },
       {
-        "index": 113,
         "dataId": "text04",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1461,7 +1444,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"text04\"]"
       },
       {
-        "index": 114,
         "dataId": "buttons03",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -1471,7 +1453,6 @@
         "selector": "div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div > div[data-id=\"buttons03\"]"
       },
       {
-        "index": 115,
         "dataId": "control05",
         "dataType": "control",
         "className": "component-wrapper full screen",
@@ -1481,7 +1462,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control05\"]"
       },
       {
-        "index": 116,
         "dataId": "container11",
         "dataType": "container",
         "className": "component-wrapper full max is-first",
@@ -1491,7 +1471,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container11\"]"
       },
       {
-        "index": 117,
         "dataId": "buttons05",
         "dataType": "buttons",
         "className": "component-wrapper is-first is-last",
@@ -1501,7 +1480,6 @@
         "selector": "div[data-id=\"container11\"] > div.component > div.--container-component.--instance-container11 > div.--wrapper > div.--inner > div[data-id=\"buttons05\"]"
       },
       {
-        "index": 118,
         "dataId": "container01",
         "dataType": "container",
         "className": "component-wrapper full max is-last",
@@ -1511,7 +1489,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container01\"]"
       },
       {
-        "index": 119,
         "dataId": "links01",
         "dataType": "links",
         "className": "component-wrapper is-first",
@@ -1521,7 +1498,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"links01\"]"
       },
       {
-        "index": 120,
         "dataId": "text71",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1531,7 +1507,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text71\"]"
       },
       {
-        "index": 121,
         "dataId": "text45",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1541,7 +1516,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text45\"]"
       },
       {
-        "index": 122,
         "dataId": "text33",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1551,7 +1525,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text33\"]"
       },
       {
-        "index": 123,
         "dataId": "text73",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1561,7 +1534,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text73\"]"
       },
       {
-        "index": 124,
         "dataId": "text44",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1571,7 +1543,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text44\"]"
       },
       {
-        "index": 125,
         "dataId": "text27",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1581,7 +1552,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text27\"]"
       },
       {
-        "index": 126,
         "dataId": "image12",
         "dataType": "image",
         "className": "component-wrapper",
@@ -1591,7 +1561,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"image12\"]"
       },
       {
-        "index": 127,
         "dataId": "text02",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1601,7 +1570,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text02\"]"
       },
       {
-        "index": 128,
         "dataId": "text34",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1611,7 +1579,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text34\"]"
       },
       {
-        "index": 129,
         "dataId": "list01",
         "dataType": "list",
         "className": "component-wrapper",
@@ -1621,7 +1588,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"list01\"]"
       },
       {
-        "index": 130,
         "dataId": "list02",
         "dataType": "list",
         "className": "component-wrapper",
@@ -1631,7 +1597,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"list02\"]"
       },
       {
-        "index": 131,
         "dataId": "divider15",
         "dataType": "divider",
         "className": "component-wrapper full",
@@ -1641,7 +1606,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider15\"]"
       },
       {
-        "index": 132,
         "dataId": "divider16",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1651,7 +1615,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider16\"]"
       },
       {
-        "index": 133,
         "dataId": "divider17",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1661,7 +1624,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider17\"]"
       },
       {
-        "index": 134,
         "dataId": "divider05",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1671,7 +1633,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider05\"]"
       },
       {
-        "index": 135,
         "dataId": "divider09",
         "dataType": "divider",
         "className": "component-wrapper full",
@@ -1681,7 +1642,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider09\"]"
       },
       {
-        "index": 136,
         "dataId": "divider18",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1691,7 +1651,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider18\"]"
       },
       {
-        "index": 137,
         "dataId": "divider19",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1701,7 +1660,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider19\"]"
       },
       {
-        "index": 138,
         "dataId": "divider14",
         "dataType": "divider",
         "className": "component-wrapper",
@@ -1711,7 +1669,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"divider14\"]"
       },
       {
-        "index": 139,
         "dataId": "buttons15",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1721,7 +1678,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons15\"]"
       },
       {
-        "index": 140,
         "dataId": "buttons11",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1731,7 +1687,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons11\"]"
       },
       {
-        "index": 141,
         "dataId": "buttons08",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1741,7 +1696,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons08\"]"
       },
       {
-        "index": 142,
         "dataId": "buttons02",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1751,7 +1705,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons02\"]"
       },
       {
-        "index": 143,
         "dataId": "buttons14",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -1761,7 +1714,6 @@
         "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons14\"]"
       },
       {
-        "index": 144,
         "dataId": "control01",
         "dataType": "control",
         "className": "component-wrapper full screen",
@@ -1771,7 +1723,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]"
       },
       {
-        "index": 145,
         "dataId": "container37",
         "dataType": "container",
         "className": "component-wrapper full max is-first is-last",
@@ -1781,7 +1732,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container37\"]"
       },
       {
-        "index": 146,
         "dataId": "image08",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -1791,7 +1741,6 @@
         "selector": "div[data-id=\"container37\"] > div.component > div.--container-component.--instance-container37 > div.--wrapper > div.--inner > div[data-id=\"image08\"]"
       },
       {
-        "index": 147,
         "dataId": "text07",
         "dataType": "text",
         "className": "component-wrapper is-last",
@@ -1801,7 +1750,6 @@
         "selector": "div[data-id=\"container37\"] > div.component > div.--container-component.--instance-container37 > div.--wrapper > div.--inner > div[data-id=\"text07\"]"
       },
       {
-        "index": 148,
         "dataId": "control03",
         "dataType": "control",
         "className": "component-wrapper full screen",
@@ -1811,7 +1759,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control03\"]"
       },
       {
-        "index": 149,
         "dataId": "container10",
         "dataType": "container",
         "className": "component-wrapper full max is-first is-last",
@@ -1821,7 +1768,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container10\"]"
       },
       {
-        "index": 150,
         "dataId": "image23",
         "dataType": "image",
         "className": "component-wrapper is-first",
@@ -1831,7 +1777,6 @@
         "selector": "div[data-id=\"container10\"] > div.component > div.--container-component.--instance-container10 > div.--wrapper > div.--inner > div[data-id=\"image23\"]"
       },
       {
-        "index": 151,
         "dataId": "text74",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1841,7 +1786,6 @@
         "selector": "div[data-id=\"container10\"] > div.component > div.--container-component.--instance-container10 > div.--wrapper > div.--inner > div[data-id=\"text74\"]"
       },
       {
-        "index": 152,
         "dataId": "form01",
         "dataType": "form",
         "className": "component-wrapper is-last",
@@ -1851,7 +1795,6 @@
         "selector": "div[data-id=\"container10\"] > div.component > div.--container-component.--instance-container10 > div.--wrapper > div.--inner > div[data-id=\"form01\"]"
       },
       {
-        "index": 153,
         "dataId": "control02",
         "dataType": "control",
         "className": "component-wrapper full screen",
@@ -1861,7 +1804,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control02\"]"
       },
       {
-        "index": 154,
         "dataId": "container18",
         "dataType": "container",
         "className": "component-wrapper full screen max is-first",
@@ -1871,7 +1813,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container18\"]"
       },
       {
-        "index": 155,
         "dataId": "image01",
         "dataType": "image",
         "className": "component-wrapper is-first is-last",
@@ -1881,7 +1822,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"image01\"]"
       },
       {
-        "index": 156,
         "dataId": "text25",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1891,7 +1831,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"text25\"]"
       },
       {
-        "index": 157,
         "dataId": "buttons04",
         "dataType": "buttons",
         "className": "component-wrapper",
@@ -1901,7 +1840,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"buttons04\"]"
       },
       {
-        "index": 158,
         "dataId": "text65",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1911,7 +1849,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"text65\"]"
       },
       {
-        "index": 159,
         "dataId": "buttons16",
         "dataType": "buttons",
         "className": "component-wrapper is-last",
@@ -1921,7 +1858,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"buttons16\"]"
       },
       {
-        "index": 160,
         "dataId": "text66",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1931,7 +1867,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"text66\"]"
       },
       {
-        "index": 161,
         "dataId": "text67",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1941,7 +1876,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"text67\"]"
       },
       {
-        "index": 162,
         "dataId": "text68",
         "dataType": "text",
         "className": "component-wrapper",
@@ -1951,7 +1885,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"text68\"]"
       },
       {
-        "index": 163,
         "dataId": "image21",
         "dataType": "image",
         "className": "component-wrapper is-last",
@@ -1961,7 +1894,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"image21\"]"
       },
       {
-        "index": 164,
         "dataId": "links02",
         "dataType": "links",
         "className": "component-wrapper is-first is-last",
@@ -1971,7 +1903,6 @@
         "selector": "div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div > div[data-id=\"links02\"]"
       },
       {
-        "index": 165,
         "dataId": "container35",
         "dataType": "container",
         "className": "component-wrapper full screen max",
@@ -1981,7 +1912,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container35\"]"
       },
       {
-        "index": 166,
         "dataId": "text69",
         "dataType": "text",
         "className": "component-wrapper is-first",
@@ -1991,7 +1921,6 @@
         "selector": "div[data-id=\"container35\"] > div.component > div.--container-component.--instance-container35 > div.--wrapper > div.--inner > div[data-id=\"text69\"]"
       },
       {
-        "index": 167,
         "dataId": "divider13",
         "dataType": "divider",
         "className": "component-wrapper is-last",
@@ -2001,7 +1930,6 @@
         "selector": "div[data-id=\"container35\"] > div.component > div.--container-component.--instance-container35 > div.--wrapper > div.--inner > div[data-id=\"divider13\"]"
       },
       {
-        "index": 168,
         "dataId": "container12",
         "dataType": "container",
         "className": "component-wrapper",
@@ -2011,7 +1939,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container12\"]"
       },
       {
-        "index": 169,
         "dataId": "text36",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -2021,7 +1948,6 @@
         "selector": "div[data-id=\"container12\"] > div.component > div.--container-component.--instance-container12 > div.--wrapper > div.--inner > div[data-id=\"text36\"]"
       },
       {
-        "index": 170,
         "dataId": "container17",
         "dataType": "container",
         "className": "component-wrapper",
@@ -2031,7 +1957,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container17\"]"
       },
       {
-        "index": 171,
         "dataId": "text35",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
@@ -2041,7 +1966,6 @@
         "selector": "div.component > div.--container-component.--instance-container17 > div.--wrapper > div.--inner > div > div[data-id=\"text35\"]"
       },
       {
-        "index": 172,
         "dataId": "icons01",
         "dataType": "icons",
         "className": "component-wrapper is-first is-last",
@@ -2051,7 +1975,6 @@
         "selector": "div.component > div.--container-component.--instance-container17 > div.--wrapper > div.--inner > div > div[data-id=\"icons01\"]"
       },
       {
-        "index": 173,
         "dataId": "embed14",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2061,7 +1984,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed14\"]"
       },
       {
-        "index": 174,
         "dataId": "embed10",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2071,7 +1993,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed10\"]"
       },
       {
-        "index": 175,
         "dataId": "embed08",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2081,7 +2002,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed08\"]"
       },
       {
-        "index": 176,
         "dataId": "embed02",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2091,7 +2011,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed02\"]"
       },
       {
-        "index": 177,
         "dataId": "embed03",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2101,7 +2020,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed03\"]"
       },
       {
-        "index": 178,
         "dataId": "embed04",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2111,7 +2029,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed04\"]"
       },
       {
-        "index": 179,
         "dataId": "embed06",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2121,7 +2038,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed06\"]"
       },
       {
-        "index": 180,
         "dataId": "embed05",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2131,7 +2047,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed05\"]"
       },
       {
-        "index": 181,
         "dataId": "embed07",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2141,7 +2056,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed07\"]"
       },
       {
-        "index": 182,
         "dataId": "embed13",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2151,7 +2065,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed13\"]"
       },
       {
-        "index": 183,
         "dataId": "embed09",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2161,7 +2074,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed09\"]"
       },
       {
-        "index": 184,
         "dataId": "embed01",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2171,7 +2083,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed01\"]"
       },
       {
-        "index": 185,
         "dataId": "embed12",
         "dataType": "embed",
         "className": "component-wrapper",
@@ -2181,7 +2092,6 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed12\"]"
       },
       {
-        "index": 186,
         "dataId": "embed11",
         "dataType": "embed",
         "className": "component-wrapper is-last",
@@ -2191,10 +2101,5 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed11\"]"
       }
     ]
-  },
-  "propertiesPanel": {
-    "exists": true,
-    "visible": false,
-    "tabs": []
   }
 }

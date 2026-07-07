@@ -1,5 +1,5 @@
 // Дамп всех полей #properties-panel выбранного элемента: name, label, value, видимость, секция.
-const { chromium } = require("/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/koryphey-online/automation/node_modules/playwright-core");
+const { chromium } = require("playwright-core");
 const BUILD_URL = "carrd.co/dashboard/4778178033233108/build";
 const TARGET = process.argv[2] || "container13";
 

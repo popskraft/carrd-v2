@@ -16,8 +16,10 @@
   "semantic": {
     "containerRegistry": null,
     "notes": [
-      "Builder-side canonical scan package exists.",
-      "Plugin embeds were updated to the clean runtime in Builder draft and verified by exact hash readback."
+      "Builder-side canonical scan package was refreshed on 2026-06-30 after a fresh live readiness check.",
+      "Plugin embeds now match current repo dist assets by exact hash readback.",
+      "embed10 site config uses the canonical CarrdPluginOptions namespace.",
+      "embed14 remains protected and was intentionally left untouched."
     ]
   },
   "runtimeAssets": {
@@ -44,8 +46,9 @@
     "publish": "operator-only"
   },
   "caveats": [
-    "Published-site scan reflects the currently published page before the clean-runtime draft is published.",
+    "Published-site scan now reflects the last published page before the 2026-06-30 draft runtime sync.",
+    "Published page is behind the current Builder draft until the operator publishes this refresh.",
     "Publish remains operator-only."
   ],
-  "status": "draft-clean-runtime-updated"
+  "status": "draft-clean-runtime-synced"
 }

@@ -1,169 +1,189 @@
 {
   "meta": {
-    "generatedAt": "2026-06-23T15:33:05.126Z",
+    "generatedAt": "2026-06-30T21:30:25.606Z",
     "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
     "publishedSiteUrl": "https://faktura-dev.crd.co/",
     "updateResult": "draft-updated-readback-verified",
-    "publishStatus": "not-published-by-automation",
-    "backupDir": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/faktura/data/raw-imports/2026-06-23T15-32-18-742Z-v2-refresh-backup"
+    "publishStatus": "operator-publish-pending-after-runtime-sync",
+    "backupDir": "projects/faktura/data/raw-imports/2026-06-30T21-30-15Z-runtime-sync-before"
   },
   "summary": {
-    "checked": 11,
-    "matches": 11,
+    "checked": 10,
+    "matches": 10,
     "drift": 0,
+    "protectedEmbeds": [
+      {
+        "id": "embed14",
+        "title": "Theme Core CSS CDN (in HEAD)",
+        "location": "head",
+        "contentLength": 7697,
+        "sha256": "09f2c8f9503e1f47dfdfad150111431ae8816765cb93e84ea4989c583ed148db"
+      }
+    ],
     "untouchedServiceEmbeds": [
       {
         "id": "embed01",
         "title": "JIVO SITE",
         "location": "body-end",
-        "contentLength": 563
-      },
-      {
-        "id": "embed12",
-        "title": "Yandex.Metrika",
-        "location": "body-end",
-        "contentLength": 781
+        "contentLength": 563,
+        "sha256": "5d78ac4ae4e400f240e2d90e338cfcf5d370975d1603d364f8ab738bb8a792e6"
       },
       {
         "id": "embed11",
         "title": "Calibri Phone",
         "location": "body-end",
-        "contentLength": 98
+        "contentLength": 98,
+        "sha256": "642781d772beddff07d0a8b68614d05c2bbc90a1247927a41ef897a7209d075f"
+      },
+      {
+        "id": "embed12",
+        "title": "Yandex.Metrika",
+        "location": "body-end",
+        "contentLength": 781,
+        "sha256": "d452d57eea73b04d3e2dfd37e00c4f7f34c3b3cdc4d10c588671bd4b605ae252"
       }
     ]
   },
   "rows": [
     {
-      "id": "embed14",
-      "title": "Theme Design System V2 Custom (in HEAD)",
-      "expectedTitle": "Theme Design System V2 Custom (in HEAD)",
-      "sourcePath": "dist/theme-design-system.html + faktura overrides",
-      "location": "head",
-      "expectedHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
-      "liveHash": "78f8c989123d900557ea6c42c2bacef303584f7336280ab07316cb0ae91b0320",
-      "status": "match",
-      "liveContentLength": 9910,
-      "expectedContentLength": 9910
-    },
-    {
-      "id": "embed10",
-      "title": "Theme JS Custom V2 (BODY END)",
-      "expectedTitle": "Theme JS Custom V2 (BODY END)",
-      "sourcePath": "preserved faktura slider config migrated to CarrdPluginOptionsV2",
-      "location": "body-end",
-      "expectedHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
-      "liveHash": "45db2c6c70ce6b92db80afc20bf56fe0c73cf36ea991b1ad71147ad11b65405d",
-      "status": "match",
-      "liveContentLength": 443,
-      "expectedContentLength": 443
-    },
-    {
       "id": "embed08",
-      "title": "No Loadwaiting V2 (in HEAD)",
-      "expectedTitle": "No Loadwaiting V2 (in HEAD)",
-      "sourcePath": "dist/no-loadwaiting-v2/no-loadwaiting-v2-embed.html",
+      "title": "No Load Waiting (in HEAD)",
+      "expectedTitle": "No Load Waiting (in HEAD)",
+      "sourcePath": "dist/no-loadwaiting/no-loadwaiting-embed.html",
       "location": "head",
-      "expectedHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
-      "liveHash": "f8ef602e511ea5f5c31e2921bd562d3a5d9dc00f37c1cefdeccbb03769ce2d99",
+      "expectedHash": "455a1f36c75e958e17b0d3a243960b0dec33aa448bab8f80621459fe7b36b88d",
+      "liveHash": "455a1f36c75e958e17b0d3a243960b0dec33aa448bab8f80621459fe7b36b88d",
       "status": "match",
-      "liveContentLength": 3201,
-      "expectedContentLength": 3201
+      "liveContentLength": 3198,
+      "expectedContentLength": 3198,
+      "classes": "embed-in-head",
+      "expectedClass": "embed-in-head"
     },
     {
       "id": "embed02",
-      "title": "Cookie Banner V2",
-      "expectedTitle": "Cookie Banner V2",
-      "sourcePath": "dist/cookie-banner-v2/cookie-banner-v2-embed.html",
+      "title": "Cookie Banner",
+      "expectedTitle": "Cookie Banner",
+      "sourcePath": "dist/cookie-banner/cookie-banner-embed.html",
       "location": "body-end",
-      "expectedHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
-      "liveHash": "814b44bccd4d2f553ca427ecffa1c4fc8e80d155f80dd1c736a542b1f97c3485",
+      "expectedHash": "9f4fbd480ba9247c0e78d46af73899b3ce25d6f5f5d8b06407ceaf1449256235",
+      "liveHash": "9f4fbd480ba9247c0e78d46af73899b3ce25d6f5f5d8b06407ceaf1449256235",
       "status": "match",
-      "liveContentLength": 7484,
-      "expectedContentLength": 7484
+      "liveContentLength": 7444,
+      "expectedContentLength": 7444,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed03",
-      "title": "FAQ V2",
-      "expectedTitle": "FAQ V2",
-      "sourcePath": "dist/faq-v2/faq-v2-embed.html",
+      "title": "FAQ",
+      "expectedTitle": "FAQ",
+      "sourcePath": "dist/faq/faq-embed.html",
       "location": "body-end",
-      "expectedHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
-      "liveHash": "e7aff59918029574b7a81d64ca886d4cbdfe09eee64f50086d94b0910bdb0166",
+      "expectedHash": "457898099720b62f04430a210003e1968e1717be84ece908383d155c920063c9",
+      "liveHash": "457898099720b62f04430a210003e1968e1717be84ece908383d155c920063c9",
       "status": "match",
-      "liveContentLength": 10164,
-      "expectedContentLength": 10164
+      "liveContentLength": 9784,
+      "expectedContentLength": 9784,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed04",
-      "title": "Floating CTA V2",
-      "expectedTitle": "Floating CTA V2",
-      "sourcePath": "dist/floating-cta-v2/floating-cta-v2-embed.html",
+      "title": "Floating CTA",
+      "expectedTitle": "Floating CTA",
+      "sourcePath": "dist/floating-cta/floating-cta-embed.html",
       "location": "body-end",
-      "expectedHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
-      "liveHash": "4e535e4848ee0a1e768e8be9dcbd07f6f9393a07448dfd3598417ba9f8edc693",
+      "expectedHash": "a034897c76a2c5d9347bb413ba48982441bfd5452af7ec04070429d5582d3264",
+      "liveHash": "a034897c76a2c5d9347bb413ba48982441bfd5452af7ec04070429d5582d3264",
       "status": "match",
-      "liveContentLength": 7433,
-      "expectedContentLength": 7433
+      "liveContentLength": 8384,
+      "expectedContentLength": 8384,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed06",
-      "title": "Grid Cluster V2",
-      "expectedTitle": "Grid Cluster V2",
-      "sourcePath": "dist/grid-cluster-v2/grid-cluster-v2-embed.html",
+      "title": "Grid Cluster",
+      "expectedTitle": "Grid Cluster",
+      "sourcePath": "dist/grid-cluster/grid-cluster-embed.html",
       "location": "body-end",
-      "expectedHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
-      "liveHash": "3650abda474225da6783dd319e1a09770f2f2dcf76546aa787c082663cd79717",
+      "expectedHash": "d828b0333a2330acb2dcf8302ff320ace8b7a8c31b1bc417bf60677a35d90249",
+      "liveHash": "d828b0333a2330acb2dcf8302ff320ace8b7a8c31b1bc417bf60677a35d90249",
       "status": "match",
-      "liveContentLength": 9711,
-      "expectedContentLength": 9711
+      "liveContentLength": 9768,
+      "expectedContentLength": 9768,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed05",
-      "title": "Header Nav V2",
-      "expectedTitle": "Header Nav V2",
-      "sourcePath": "dist/header-nav-v2/header-nav-v2-embed.html",
+      "title": "Header Nav",
+      "expectedTitle": "Header Nav",
+      "sourcePath": "dist/header-nav/header-nav-embed.html",
       "location": "body-end",
-      "expectedHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
-      "liveHash": "b77578d26b729305781414692e9ad6c289cff6a72f35fa9b3afccb4626cbbfad",
+      "expectedHash": "d9adf52aaa1f6480e2f67b287fb5545819d6bbdb28cfabda8db7e32467d6fd8a",
+      "liveHash": "d9adf52aaa1f6480e2f67b287fb5545819d6bbdb28cfabda8db7e32467d6fd8a",
       "status": "match",
-      "liveContentLength": 5028,
-      "expectedContentLength": 5028
+      "liveContentLength": 5015,
+      "expectedContentLength": 5015,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed07",
-      "title": "Modal V2",
-      "expectedTitle": "Modal V2",
-      "sourcePath": "dist/modal-v2/modal-v2-embed.html",
+      "title": "Modal",
+      "expectedTitle": "Modal",
+      "sourcePath": "dist/modal/modal-embed.html",
       "location": "body-end",
-      "expectedHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
-      "liveHash": "6d21908d9d322463c5074d59b4b4ff010e62d8ac46a8762145b55fc6db744fea",
+      "expectedHash": "604a1b2cd5da635223e2b4f288b545a728d22c6f48a8a1257ae1401528398bb9",
+      "liveHash": "604a1b2cd5da635223e2b4f288b545a728d22c6f48a8a1257ae1401528398bb9",
       "status": "match",
-      "liveContentLength": 11211,
-      "expectedContentLength": 11211
+      "liveContentLength": 11198,
+      "expectedContentLength": 11198,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed13",
-      "title": "Slider V2 | Part: 1/2",
-      "expectedTitle": "Slider V2 | Part: 1/2",
-      "sourcePath": "dist/slider-v2/slider-v2-embed-part1.html",
+      "title": "Slider | Part: 1/2",
+      "expectedTitle": "Slider | Part: 1/2",
+      "sourcePath": "dist/slider/slider-embed-part1.html",
       "location": "body-end",
-      "expectedHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
-      "liveHash": "eccbc5af548adae468c2650a462520686c0e62237a2bfc7070ebf481f85aebc0",
+      "expectedHash": "d427652f80df0251498da13d62b9720dcb27d593ea1070a059b441d5931f7bf4",
+      "liveHash": "d427652f80df0251498da13d62b9720dcb27d593ea1070a059b441d5931f7bf4",
       "status": "match",
-      "liveContentLength": 10941,
-      "expectedContentLength": 10941
+      "liveContentLength": 10936,
+      "expectedContentLength": 10936,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
     },
     {
       "id": "embed09",
-      "title": "Slider V2 | Part: 2/2",
-      "expectedTitle": "Slider V2 | Part: 2/2",
-      "sourcePath": "dist/slider-v2/slider-v2-embed-part2.html",
+      "title": "Slider | Part: 2/2",
+      "expectedTitle": "Slider | Part: 2/2",
+      "sourcePath": "dist/slider/slider-embed-part2.html",
       "location": "body-end",
-      "expectedHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
-      "liveHash": "55fb1b7c1c9d2ac54343b96d58f0a881b6883d5ac89a506740265457d60e81c3",
+      "expectedHash": "43d3c3b8c31164b4b53c9942399479419026987931cbbbc078b718821329a983",
+      "liveHash": "43d3c3b8c31164b4b53c9942399479419026987931cbbbc078b718821329a983",
       "status": "match",
-      "liveContentLength": 8998,
-      "expectedContentLength": 8998
+      "liveContentLength": 10502,
+      "expectedContentLength": 10502,
+      "classes": "embed-plugin-in-body-end",
+      "expectedClass": "embed-plugin-in-body-end"
+    },
+    {
+      "id": "embed10",
+      "title": "Theme JS Custom (BODY END)",
+      "expectedTitle": "Theme JS Custom (BODY END)",
+      "sourcePath": "generated:faktura-slider-config",
+      "location": "body-end",
+      "expectedHash": "77fd0f1b22a8363481b8cb2e2daa64d53c58155e0a115e044cf45cfa54d0e3ae",
+      "liveHash": "77fd0f1b22a8363481b8cb2e2daa64d53c58155e0a115e044cf45cfa54d0e3ae",
+      "status": "match",
+      "liveContentLength": 431,
+      "expectedContentLength": 431,
+      "classes": "embed-in-body-end",
+      "expectedClass": "embed-in-body-end"
     }
   ]
 }

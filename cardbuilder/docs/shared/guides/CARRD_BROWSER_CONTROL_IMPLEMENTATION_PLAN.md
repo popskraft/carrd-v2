@@ -41,11 +41,6 @@ Existing packages:
 
 - `main-template`
 - `faktura`
-- `faktura`
-
-Separate migration workspace:
-
-- `koryphey-online`
 
 ### Confirmed Runtime Evidence
 

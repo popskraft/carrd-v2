@@ -39,20 +39,33 @@ export function pickPageTab(tabs, options = {}) {
   return matches[0] || null;
 }
 
-export async function evaluateTab(wsUrl, expression) {
+export const DEFAULT_EVALUATE_TIMEOUT_MS = Number(process.env.CARRD_CDP_TIMEOUT_MS || 30_000);
+
+export async function evaluateTab(wsUrl, expression, options = {}) {
+  const timeoutMs = Number(options.timeoutMs || DEFAULT_EVALUATE_TIMEOUT_MS);
+
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(wsUrl);
     let nextId = 1;
     let settled = false;
+    let timeoutHandle = null;
 
     const finish = (fn, value) => {
       if (settled) return;
       settled = true;
+      if (timeoutHandle) clearTimeout(timeoutHandle);
       try {
         ws.close();
       } catch {}
       fn(value);
     };
+
+    if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+      timeoutHandle = setTimeout(() => {
+        finish(reject, new Error(`CDP evaluate timed out after ${timeoutMs}ms`));
+      }, timeoutMs);
+      if (typeof timeoutHandle.unref === "function") timeoutHandle.unref();
+    }
 
     ws.addEventListener("open", () => {
       ws.send(

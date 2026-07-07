@@ -92,7 +92,9 @@ function buildPageStateExpression() {
     hasBuilder: !!window.app?.builder,
     hasComponents: !!window.app?.builder?.site?.components,
     hasPanelShowById: typeof window.app?.builder?.ui?.propertiesPanel?.showById === 'function',
-    menuActions: document.querySelectorAll('#menu [data-action]').length
+    hasPropertiesPanelHeader: !!document.querySelector('#properties-panel header'),
+    menuActions: document.querySelectorAll('#menu [data-action]').length,
+    canvasWrappers: document.querySelectorAll('#canvas .component-wrapper[data-id]').length
   })`;
 }
 

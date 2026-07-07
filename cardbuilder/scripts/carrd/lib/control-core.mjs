@@ -88,9 +88,17 @@ function resolveProfileContext(options = {}) {
   return { resolved, targetMap };
 }
 
+export function serializeRuntimePayload(payload) {
+  // JSON.stringify leaves U+2028/U+2029 unescaped; both are valid JSON but
+  // terminate JS string literals inside Runtime.evaluate expressions.
+  return JSON.stringify(payload)
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+}
+
 function buildRuntimeExpression(payload) {
   return `(() => {
-    const payload = ${JSON.stringify(payload)};
+    const payload = ${serializeRuntimePayload(payload)};
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const listToString = (value) => typeof value === "string" ? value : "";
     const normalizeValue = (value) => value === undefined ? null : value;

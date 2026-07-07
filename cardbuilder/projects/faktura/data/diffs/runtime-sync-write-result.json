@@ -1,0 +1,304 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-30T21:30:25.606Z",
+    "mode": "write",
+    "builderUrl": "https://carrd.co/dashboard/4778178033233108/build",
+    "tabId": "ACFA32A881B98CF3F8E890E64B39AFD1",
+    "title": "Faktura Template - My Sites - Dashboard - Carrd",
+    "backupDir": "projects/faktura/data/raw-imports/2026-06-30T21-30-15Z-runtime-sync-before",
+    "writeConfig": true
+  },
+  "protected": [
+    {
+      "id": "embed14",
+      "title": "Theme Core CSS CDN (in HEAD)",
+      "classes": "embed-in-head",
+      "location": "head",
+      "sha256": "09f2c8f9503e1f47dfdfad150111431ae8816765cb93e84ea4989c583ed148db",
+      "contentLength": 7697
+    }
+  ],
+  "services": [
+    {
+      "id": "embed01",
+      "title": "JIVO SITE",
+      "classes": "embed-custom-code-in-body-end",
+      "location": "body-end",
+      "sha256": "5d78ac4ae4e400f240e2d90e338cfcf5d370975d1603d364f8ab738bb8a792e6",
+      "contentLength": 563
+    },
+    {
+      "id": "embed11",
+      "title": "Calibri Phone",
+      "classes": "embed-custom-code-in-body-end",
+      "location": "body-end",
+      "sha256": "642781d772beddff07d0a8b68614d05c2bbc90a1247927a41ef897a7209d075f",
+      "contentLength": 98
+    },
+    {
+      "id": "embed12",
+      "title": "Yandex.Metrika",
+      "classes": "embed-custom-code-in-body-end",
+      "location": "body-end",
+      "sha256": "d452d57eea73b04d3e2dfd37e00c4f7f34c3b3cdc4d10c588671bd4b605ae252",
+      "contentLength": 781
+    }
+  ],
+  "inputs": [
+    {
+      "id": "embed08",
+      "kind": "plugin",
+      "title": "No Load Waiting (in HEAD)",
+      "expectedClass": "embed-in-head",
+      "sourcePath": "dist/no-loadwaiting/no-loadwaiting-embed.html",
+      "sha256": "455a1f36c75e958e17b0d3a243960b0dec33aa448bab8f80621459fe7b36b88d",
+      "contentLength": 3198
+    },
+    {
+      "id": "embed02",
+      "kind": "plugin",
+      "title": "Cookie Banner",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/cookie-banner/cookie-banner-embed.html",
+      "sha256": "9f4fbd480ba9247c0e78d46af73899b3ce25d6f5f5d8b06407ceaf1449256235",
+      "contentLength": 7444
+    },
+    {
+      "id": "embed03",
+      "kind": "plugin",
+      "title": "FAQ",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/faq/faq-embed.html",
+      "sha256": "457898099720b62f04430a210003e1968e1717be84ece908383d155c920063c9",
+      "contentLength": 9784
+    },
+    {
+      "id": "embed04",
+      "kind": "plugin",
+      "title": "Floating CTA",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/floating-cta/floating-cta-embed.html",
+      "sha256": "a034897c76a2c5d9347bb413ba48982441bfd5452af7ec04070429d5582d3264",
+      "contentLength": 8384
+    },
+    {
+      "id": "embed06",
+      "kind": "plugin",
+      "title": "Grid Cluster",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/grid-cluster/grid-cluster-embed.html",
+      "sha256": "d828b0333a2330acb2dcf8302ff320ace8b7a8c31b1bc417bf60677a35d90249",
+      "contentLength": 9768
+    },
+    {
+      "id": "embed05",
+      "kind": "plugin",
+      "title": "Header Nav",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/header-nav/header-nav-embed.html",
+      "sha256": "d9adf52aaa1f6480e2f67b287fb5545819d6bbdb28cfabda8db7e32467d6fd8a",
+      "contentLength": 5015
+    },
+    {
+      "id": "embed07",
+      "kind": "plugin",
+      "title": "Modal",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/modal/modal-embed.html",
+      "sha256": "604a1b2cd5da635223e2b4f288b545a728d22c6f48a8a1257ae1401528398bb9",
+      "contentLength": 11198
+    },
+    {
+      "id": "embed13",
+      "kind": "plugin",
+      "title": "Slider | Part: 1/2",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/slider/slider-embed-part1.html",
+      "sha256": "d427652f80df0251498da13d62b9720dcb27d593ea1070a059b441d5931f7bf4",
+      "contentLength": 10936
+    },
+    {
+      "id": "embed09",
+      "kind": "plugin",
+      "title": "Slider | Part: 2/2",
+      "expectedClass": "embed-plugin-in-body-end",
+      "sourcePath": "dist/slider/slider-embed-part2.html",
+      "sha256": "43d3c3b8c31164b4b53c9942399479419026987931cbbbc078b718821329a983",
+      "contentLength": 10502
+    },
+    {
+      "id": "embed10",
+      "kind": "config",
+      "title": "Theme JS Custom (BODY END)",
+      "expectedClass": "embed-in-body-end",
+      "sourcePath": "generated:faktura-slider-config",
+      "sha256": "77fd0f1b22a8363481b8cb2e2daa64d53c58155e0a115e044cf45cfa54d0e3ae",
+      "contentLength": 431
+    }
+  ],
+  "result": {
+    "dirtyPublishButton": false,
+    "checks": [
+      {
+        "id": "embed08",
+        "kind": "plugin",
+        "title": "No Load Waiting (in HEAD)",
+        "classes": "embed-in-head",
+        "location": "head",
+        "expectedClass": "embed-in-head",
+        "expectedHash": "455a1f36c75e958e17b0d3a243960b0dec33aa448bab8f80621459fe7b36b88d",
+        "actualHash": "455a1f36c75e958e17b0d3a243960b0dec33aa448bab8f80621459fe7b36b88d",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 3198,
+        "actualContentLength": 3198,
+        "sourcePath": "dist/no-loadwaiting/no-loadwaiting-embed.html"
+      },
+      {
+        "id": "embed02",
+        "kind": "plugin",
+        "title": "Cookie Banner",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "9f4fbd480ba9247c0e78d46af73899b3ce25d6f5f5d8b06407ceaf1449256235",
+        "actualHash": "9f4fbd480ba9247c0e78d46af73899b3ce25d6f5f5d8b06407ceaf1449256235",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 7444,
+        "actualContentLength": 7444,
+        "sourcePath": "dist/cookie-banner/cookie-banner-embed.html"
+      },
+      {
+        "id": "embed03",
+        "kind": "plugin",
+        "title": "FAQ",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "457898099720b62f04430a210003e1968e1717be84ece908383d155c920063c9",
+        "actualHash": "457898099720b62f04430a210003e1968e1717be84ece908383d155c920063c9",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 9784,
+        "actualContentLength": 9784,
+        "sourcePath": "dist/faq/faq-embed.html"
+      },
+      {
+        "id": "embed04",
+        "kind": "plugin",
+        "title": "Floating CTA",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "a034897c76a2c5d9347bb413ba48982441bfd5452af7ec04070429d5582d3264",
+        "actualHash": "a034897c76a2c5d9347bb413ba48982441bfd5452af7ec04070429d5582d3264",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 8384,
+        "actualContentLength": 8384,
+        "sourcePath": "dist/floating-cta/floating-cta-embed.html"
+      },
+      {
+        "id": "embed06",
+        "kind": "plugin",
+        "title": "Grid Cluster",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "d828b0333a2330acb2dcf8302ff320ace8b7a8c31b1bc417bf60677a35d90249",
+        "actualHash": "d828b0333a2330acb2dcf8302ff320ace8b7a8c31b1bc417bf60677a35d90249",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 9768,
+        "actualContentLength": 9768,
+        "sourcePath": "dist/grid-cluster/grid-cluster-embed.html"
+      },
+      {
+        "id": "embed05",
+        "kind": "plugin",
+        "title": "Header Nav",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "d9adf52aaa1f6480e2f67b287fb5545819d6bbdb28cfabda8db7e32467d6fd8a",
+        "actualHash": "d9adf52aaa1f6480e2f67b287fb5545819d6bbdb28cfabda8db7e32467d6fd8a",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 5015,
+        "actualContentLength": 5015,
+        "sourcePath": "dist/header-nav/header-nav-embed.html"
+      },
+      {
+        "id": "embed07",
+        "kind": "plugin",
+        "title": "Modal",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "604a1b2cd5da635223e2b4f288b545a728d22c6f48a8a1257ae1401528398bb9",
+        "actualHash": "604a1b2cd5da635223e2b4f288b545a728d22c6f48a8a1257ae1401528398bb9",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 11198,
+        "actualContentLength": 11198,
+        "sourcePath": "dist/modal/modal-embed.html"
+      },
+      {
+        "id": "embed13",
+        "kind": "plugin",
+        "title": "Slider | Part: 1/2",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "d427652f80df0251498da13d62b9720dcb27d593ea1070a059b441d5931f7bf4",
+        "actualHash": "d427652f80df0251498da13d62b9720dcb27d593ea1070a059b441d5931f7bf4",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 10936,
+        "actualContentLength": 10936,
+        "sourcePath": "dist/slider/slider-embed-part1.html"
+      },
+      {
+        "id": "embed09",
+        "kind": "plugin",
+        "title": "Slider | Part: 2/2",
+        "classes": "embed-plugin-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-plugin-in-body-end",
+        "expectedHash": "43d3c3b8c31164b4b53c9942399479419026987931cbbbc078b718821329a983",
+        "actualHash": "43d3c3b8c31164b4b53c9942399479419026987931cbbbc078b718821329a983",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 10502,
+        "actualContentLength": 10502,
+        "sourcePath": "dist/slider/slider-embed-part2.html"
+      },
+      {
+        "id": "embed10",
+        "kind": "config",
+        "title": "Theme JS Custom (BODY END)",
+        "classes": "embed-in-body-end",
+        "location": "body-end",
+        "expectedClass": "embed-in-body-end",
+        "expectedHash": "77fd0f1b22a8363481b8cb2e2daa64d53c58155e0a115e044cf45cfa54d0e3ae",
+        "actualHash": "77fd0f1b22a8363481b8cb2e2daa64d53c58155e0a115e044cf45cfa54d0e3ae",
+        "matchesExpected": true,
+        "classMatches": true,
+        "changed": true,
+        "expectedContentLength": 431,
+        "actualContentLength": 431,
+        "sourcePath": "generated:faktura-slider-config"
+      }
+    ]
+  }
+}

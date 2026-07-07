@@ -1,5 +1,5 @@
 // Probe: выбрать image17 (ребёнок container29) и изучить UI выбора: #annotations, панель, breadcrumb.
-const { chromium } = require("/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/koryphey-online/automation/node_modules/playwright-core");
+const { chromium } = require("playwright-core");
 const BUILD_URL = "carrd.co/dashboard/4778178033233108/build";
 
 (async () => {

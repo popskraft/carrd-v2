@@ -1,6 +1,6 @@
 // Read-only разведка билдера Carrd (faktura): карта канваса + структура properties-panel.
 // Ничего не кликает, кроме выбора ОДНОГО элемента для дампа панели (затем Escape).
-const { chromium } = require("/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/koryphey-online/automation/node_modules/playwright-core");
+const { chromium } = require("playwright-core");
 
 const BUILD_URL = "carrd.co/dashboard/4778178033233108/build";
 

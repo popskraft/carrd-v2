@@ -1,0 +1,57 @@
+{
+  "mode": "write",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "changedIds": [
+    "buttons01",
+    "container20",
+    "container21",
+    "container19"
+  ],
+  "dirty": false,
+  "beforeSha256": "414220eda04f4ef6bcf526f16d13bd41ce6b5cbf6a79b7d99edbc9c6eee63cbe",
+  "afterSha256": "70427905c2f04c0c0c76a3e75429fc6141b9345008b5bce7536180a1448739ee",
+  "before": {
+    "buttons01": {
+      "type": "buttons",
+      "classes": "",
+      "attributes": "data-switcher=cases\ndata-switcher-mode=cluster"
+    },
+    "container20": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-cluster=cases"
+    },
+    "container21": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-cluster=cases"
+    },
+    "container19": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-cluster=cases"
+    }
+  },
+  "after": {
+    "buttons01": {
+      "type": "buttons",
+      "classes": "",
+      "attributes": "data-switcher=cases"
+    },
+    "container20": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-target=cases\ndata-switcher-index=1"
+    },
+    "container21": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-target=cases\ndata-switcher-index=2"
+    },
+    "container19": {
+      "type": "container",
+      "classes": "",
+      "attributes": "data-switcher-target=cases\ndata-switcher-index=3"
+    }
+  }
+}

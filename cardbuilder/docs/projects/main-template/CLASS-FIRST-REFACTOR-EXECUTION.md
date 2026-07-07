@@ -1,5 +1,7 @@
 # Class-First Refactor Execution
 
+> Historical execution record. Shopping Cart target classes/attributes described below were retired by `docs/decisions/shopping-cart-checkout-contract.md` and are not part of the current contract.
+
 ## Status
 
 Published and verified.

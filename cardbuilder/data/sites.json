@@ -31,6 +31,6 @@
     "pluginDistRoot": "dist",
     "runtimeMode": "devtools-first",
     "savePublishPolicy": "operator-only",
-    "status": "draft-clean-runtime-updated"
+    "status": "draft-clean-runtime-synced"
   }
 ]

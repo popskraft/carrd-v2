@@ -6,21 +6,21 @@
   "knowledgePolicyVersion": 1,
   "knowledgeDomains": {
     "builderStatic": {
-      "status": "reused-shared-canon",
-      "lastScanAt": "2026-06-23T15:29:00Z",
-      "notes": "Reuse shared builder-static Carrd canon until the live Builder itself is re-verified."
+      "status": "reverified-live-builder",
+      "lastScanAt": "2026-06-30T21:32:20Z",
+      "notes": "Live Builder surface was reverified on faktura: hasBuilder/hasComponents/hasUiPanel true, propertiesPanel.showById available, and a fresh tabs snapshot was captured."
     },
     "templateInstance": {
-      "status": "draft-v2-updated",
-      "lastScanAt": "2026-06-23T15:32:18Z",
-      "notes": "Canonical Builder scan, DOM audit, tabs map, live plugin inventory, published-site inventory, and repo sync diff are captured. Plugin/theme embeds were updated to v2 in the Builder draft and verified by exact hash readback. Published page still needs operator publish and post-publish scan."
+      "status": "draft-clean-runtime-synced",
+      "lastScanAt": "2026-06-30T21:32:20Z",
+      "notes": "Canonical Builder scan, DOM audit, tabs map, live plugin inventory, and repo sync diff were refreshed after the clean-runtime draft sync. Plugin embeds match current dist by exact hash readback, embed10 now uses CarrdPluginOptions, and embed14 was preserved untouched."
     }
   },
   "fullScanCompletedAt": null,
-  "lastPartialScanAt": "2026-06-23T15:32:18Z",
+  "lastPartialScanAt": "2026-06-30T21:32:20Z",
   "publicCarrdDocsIndexLastSeenAt": null,
-  "status": "draft-v2-updated",
-  "reason": "Builder-side scan package exists and v2 plugin refresh is verified in draft. Full status is blocked until operator publish and post-publish verification.",
+  "status": "draft-clean-runtime-synced",
+  "reason": "Builder-side scan package and runtime sync were refreshed on 2026-06-30. The current Builder draft is aligned with repo dist, but the published site remains behind until operator publish and post-publish verification.",
   "requiredArtifacts": [
     "builder component snapshot",
     "dom audit snapshot",
@@ -32,7 +32,7 @@
     "template-instance scan report"
   ],
   "freshScanRequiredWhen": [
-    "operator publishes the v2 draft",
+    "operator publishes the clean-runtime draft",
     "active Builder URL changes for this site package",
     "plugin sync or deterministic audit is requested",
     "meaningful template or plugin changes happen after the latest scan"

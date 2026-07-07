@@ -4,7 +4,7 @@
 // ЖЁСТКОЕ ПРАВИЛО: скрипт НИКОГДА не нажимает Save/Publish. Сохранение — вручную владельцем.
 const fs = require("fs");
 const path = require("path");
-const { chromium } = require("/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/koryphey-online/automation/node_modules/playwright-core");
+const { chromium } = require("playwright-core");
 
 const BUILD_URL = "carrd.co/dashboard/4778178033233108/build";
 const EXECUTE = process.argv.includes("--execute");

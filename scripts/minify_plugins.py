@@ -55,10 +55,9 @@ HEADER_NAV_CRITICAL_CSS = (
     "}"
 )
 REQUIRED_PLUGIN_README_SECTIONS = (
-    "What You Do in Carrd",
-    "How It Works in Carrd",
-    "How To Check That It Works",
+    "Carrd Setup",
     "Configuration",
+    "Verify",
 )
 ALLOWED_PLUGIN_README_TAIL_SECTIONS = (
     "Design",
@@ -72,21 +71,121 @@ def build_html_banner(title: str, version: str) -> str:
     return f"<!-- Plugin: {title} | Version: {version} -->"
 
 
-def build_inline_install_steps(plugin_slug: str) -> str:
-    if plugin_slug in SPLIT_EMBED_PLUGINS:
-        return "\n".join([
-            f"1. Open `{plugin_slug}-embed-part1.html` and `{plugin_slug}-embed-part2.html` from this folder.",
-            "2. In Carrd, add two **Code → Hidden → Body End** embeds.",
-            "3. Paste part 1 into the first embed and part 2 into the second embed.",
-            "4. Keep the embeds in that order, publish the page, and refresh.",
-        ])
+def plugin_script_placement(plugin_slug: str, has_js: bool = True) -> str:
+    if plugin_slug == "no-loadwaiting" or not has_js:
+        return "Head"
+    return "Body End"
 
-    return "\n".join([
-        f"1. Open `{plugin_slug}-embed.html` from this folder.",
-        "2. Copy the full contents.",
-        "3. In Carrd add `Embed → Code → Hidden → Body End` and paste.",
-        "4. Publish the page and refresh.",
+
+def markdown_steps(steps: List[str]) -> str:
+    return "\n".join(f"{index}. {step}" for index, step in enumerate(steps, start=1))
+
+
+def build_cdn_paste_step(plugin_slug: str, has_css: bool, has_js: bool) -> str:
+    placements: List[str] = []
+    if has_css:
+        placements.append("Head")
+    if has_js:
+        placements.append(plugin_script_placement(plugin_slug))
+    placements = list(dict.fromkeys(placements))
+
+    if placements == ["Head"]:
+        return "Paste the marked block into `Hidden → Head`."
+    if placements == ["Body End"]:
+        return "Paste the marked block into `Hidden → Body End`."
+    return "Paste the `Head` and `Body End` blocks into the matching Carrd locations."
+
+
+def build_inline_install_steps(
+    plugin_slug: str,
+    needs_shared_theme: bool,
+    has_js: bool,
+) -> str:
+    steps: List[str] = []
+    if needs_shared_theme:
+        steps.append(
+            "Install `theme-design-system.html` once in `Hidden → Head` "
+            "using the [root guide](../README.md)."
+        )
+
+    if plugin_slug in SPLIT_EMBED_PLUGINS:
+        steps.extend([
+            f"Open `{plugin_slug}-embed-part1.html` and `{plugin_slug}-embed-part2.html`.",
+            "Add two `Code → Hidden → Body End` embeds.",
+            "Paste part 1 into the first embed and part 2 into the second.",
+            "Keep that order, publish, and refresh.",
+        ])
+        return markdown_steps(steps)
+
+    placement = plugin_script_placement(plugin_slug, has_js)
+    steps.extend([
+        f"Open `{plugin_slug}-embed.html`.",
+        f"Paste the full file into `Code → Hidden → {placement}`.",
+        "Publish and refresh.",
     ])
+    return markdown_steps(steps)
+
+
+def build_plugin_installation(
+    repo_root: Path,
+    plugin_dir: Path,
+    has_css: bool,
+    has_js: bool,
+) -> str:
+    plugin_slug = plugin_dir.name
+    bundle_config = load_bundle_config(repo_root).get("cdn_bundle", {})
+    bundle_name = bundle_config.get("name", "theme-core")
+    bundled_plugins = set(bundle_config.get("plugins", []))
+    bundle_enabled = bundle_config.get("enabled", False)
+    is_bundled = bundle_enabled and plugin_slug in bundled_plugins
+
+    sections = ["## Install", "", "Choose one method.", ""]
+    if bundle_enabled:
+        if is_bundled:
+            sections.extend([
+                "### CDN Bundle (recommended)",
+                "",
+                f"`{bundle_name}` already includes this plugin. Install the bundle from the "
+                "[root guide](../README.md), then continue with **Carrd Setup** below.",
+                "",
+            ])
+        else:
+            sections.extend([
+                "### Bundle Add-on (recommended when the bundle is installed)",
+                "",
+                f"`{bundle_name}` does not include this plugin.",
+                "",
+                markdown_steps([
+                    f"Install `{bundle_name}` from the [root guide](../README.md).",
+                    f"Open `{plugin_slug}-cdn.html`.",
+                    build_cdn_paste_step(plugin_slug, has_css, has_js),
+                    "Publish and refresh.",
+                ]),
+                "",
+            ])
+
+    cdn_steps: List[str] = []
+    if has_css:
+        cdn_steps.append(
+            "Install the shared theme files once using **CDN Individual** in the "
+            "[root guide](../README.md)."
+        )
+    cdn_steps.extend([
+        f"Open `{plugin_slug}-cdn.html`.",
+        build_cdn_paste_step(plugin_slug, has_css, has_js),
+        "Publish and refresh.",
+    ])
+    sections.extend([
+        "### CDN Individual",
+        "",
+        markdown_steps(cdn_steps),
+        "",
+        "### Inline Embed",
+        "",
+        build_inline_install_steps(plugin_slug, has_css, has_js),
+    ])
+
+    return "\n".join(sections)
 
 
 def build_split_embed_parts(
@@ -319,7 +418,7 @@ def create_plugin_cdn_embed(
         ])
 
     if has_js:
-        placement = "Head" if plugin_slug == "no-loadwaiting" else "Body End"
+        placement = plugin_script_placement(plugin_slug)
         parts.extend([
             f"<!-- {placement} -->",
             f'<script src="{plugin_base}/{plugin_slug}.min.js"></script>',
@@ -412,16 +511,16 @@ def process_plugin(
     meta_list: List[PluginMetadata] = []
     
     plugin_name = plugin_dir.name.replace("-", " ").title()
+    plugin_summary = ""
     plugin_body = ""
     readme = plugin_dir / "README.md"
     if readme.exists():
         content = readme.read_text(encoding="utf-8")
         validate_plugin_readme_contract(content, plugin_dir.name)
-        plugin_name, plugin_body = split_readme_title_body(content)
+        plugin_name, plugin_summary, plugin_body = split_plugin_readme(content)
         if not plugin_name:
             plugin_name = plugin_dir.name.replace("-", " ").title()
             plugin_body = content.strip()
-        plugin_body = strip_section(plugin_body, "Installation")
 
     # Process CSS
     css_files = sorted(plugin_dir.glob("*.css"))
@@ -461,10 +560,15 @@ def process_plugin(
             {
                 "PLUGIN_TITLE": plugin_name,
                 "PLUGIN_SLUG": plugin_dir.name,
-                "INLINE_INSTALL_STEPS": build_inline_install_steps(plugin_dir.name),
+                "PLUGIN_SUMMARY": plugin_summary,
+                "INSTALLATION": build_plugin_installation(
+                    repo_root,
+                    plugin_dir,
+                    has_css,
+                    has_js,
+                ),
                 "PLUGIN_BODY": plugin_body,
                 "VERSION": version,
-                "BUILD_DATE": build_date,
             },
         )
         output_readme.write_text(rendered_readme, encoding="utf-8")
@@ -562,20 +666,45 @@ def split_readme_title_body(content: str) -> Tuple[str, str]:
     return "", content.strip()
 
 
+def split_plugin_readme(content: str) -> Tuple[str, str, str]:
+    title, content_body = split_readme_title_body(content)
+    section_match = re.search(r"^##\s+", content_body, flags=re.MULTILINE)
+    if not section_match:
+        return title, content_body.strip(), ""
+
+    summary = content_body[:section_match.start()].strip()
+    body = content_body[section_match.start():].strip()
+    return title, summary, body
+
+
 def extract_top_level_readme_sections(content: str) -> List[str]:
     return re.findall(r"^##\s+(.+?)\s*$", content, flags=re.MULTILINE)
 
 
 def validate_plugin_readme_contract(content: str, plugin_slug: str) -> None:
-    title, _ = split_readme_title_body(content)
+    title, summary, _ = split_plugin_readme(content)
     if not title:
         raise ValueError(f"{plugin_slug}/README.md must start with a '# ' title heading.")
 
+    expected_title = plugin_slug.replace("-", " ").title()
+    if title != expected_title:
+        raise ValueError(
+            f"{plugin_slug}/README.md title must be '{expected_title}'; found '{title}'."
+        )
+
+    if not summary or "\n\n" in summary or summary.startswith(("#", "-", "*", "```")):
+        raise ValueError(
+            f"{plugin_slug}/README.md must contain one short summary paragraph after the title."
+        )
+
     top_level_sections = extract_top_level_readme_sections(content)
-    disallowed_sections = [section for section in top_level_sections if section == "Installation"]
+    disallowed_sections = [
+        section for section in top_level_sections
+        if section in {"Install", "Installation"}
+    ]
     if disallowed_sections:
         raise ValueError(
-            f"{plugin_slug}/README.md must not define '## Installation'; install flow is template-owned."
+            f"{plugin_slug}/README.md must not define install sections; install flow is template-owned."
         )
 
     for section in REQUIRED_PLUGIN_README_SECTIONS:
@@ -603,7 +732,7 @@ def validate_plugin_readme_contract(content: str, plugin_slug: str) -> None:
     invalid_tail_sections = [
         section for section in tail_sections
         if not any(
-            section == allowed or section.startswith(allowed)
+            section.startswith(allowed) if allowed.endswith(":") else section == allowed
             for allowed in ALLOWED_PLUGIN_README_TAIL_SECTIONS
         )
     ]
@@ -735,6 +864,7 @@ def write_root_readme(
             "BUILD_DATE": build_date,
         },
     )
+    rendered_readme = rendered_readme.rstrip() + "\n"
     output_path = dist_dir / "README.md"
     output_path.write_text(rendered_readme, encoding="utf-8")
     print(f"Generated README: {output_path} <- {ROOT_README_TEMPLATE}")

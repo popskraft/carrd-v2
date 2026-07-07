@@ -23,17 +23,19 @@ def minify_css(content: str) -> str:
     Returns:
         Minified CSS string
     """
+    descendant_space = "\ue000"
     content = re.sub(r"/\*.*?\*/", "", content, flags=re.DOTALL)  # Remove comments
+    content = re.sub(
+        r"((?::not|:is|:has|:where)\((?:[^()]|\([^()]*\))*\))\s+(?=[.#\[:a-zA-Z_])",
+        rf"\1{descendant_space}",
+        content,
+    )  # Preserve only descendant whitespace that existed in the source
     content = re.sub(r"\s+", " ", content)  # Collapse whitespace
     content = re.sub(r"\s*([:;{},)])", r"\1", content)  # Remove space before delimiters
     content = re.sub(r"([:;{},)])\s*", r"\1", content)  # Remove space after delimiters
     content = re.sub(r"\s*\(\s*", "(", content)  # Remove space around (
     content = re.sub(r"(?<!:)(and|or|not)\(", r"\1 (", content)  # Restore space after and/or/not in media queries (but not :not())
-    content = re.sub(
-        r"((?::not|:is|:has|:where)\((?:[^()]|\([^()]*\))*\))(?=[.#\[:a-zA-Z_])",
-        r"\1 ",
-        content,
-    )  # Preserve descendant combinator after selector pseudo-classes, including one nested () level
+    content = content.replace(descendant_space, " ")
     content = content.replace(";}", "}")  # Remove trailing semicolon
     return content.strip()
 

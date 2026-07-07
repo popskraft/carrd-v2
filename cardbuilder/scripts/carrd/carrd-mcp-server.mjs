@@ -3,13 +3,13 @@
 import readline from "node:readline";
 
 import {
-  checkProfile,
   listProfiles,
   readTarget,
   resolveTarget,
   syncProfile,
   updateTarget
 } from "./lib/control-core.mjs";
+import { checkProfileDeep, onboardSite } from "./lib/onboarding-core.mjs";
 
 const SERVER_INFO = {
   name: "carrd-builder-mcp",
@@ -21,6 +21,7 @@ const SUPPORTED_PROTOCOL_VERSION = "2025-11-25";
 function buildInstructions() {
   return [
     "Use list_profiles first, then check_profile for the target site.",
+    "Use onboard_site to map a new or drifted site automatically (dryRun=true by default); new sites need operator-provided slug and chromeProfileDir.",
     "Use resolve_target before read_target or update_target.",
     "For update_target, pass commit=true only after checking the returned allowlisted path and expectedBefore value.",
     "This server never publishes Carrd sites and respects operator-only save/publish policy."
@@ -52,7 +53,10 @@ function toolTextSummary(name, payload) {
     return `Profiles: ${payload.profiles.map((item) => item.siteSlug).join(", ")}`;
   }
   if (name === "check_profile") {
-    return `Profile ${payload.siteSlug}: safeToEdit=${payload.safeToEdit}`;
+    return `Profile ${payload.siteSlug}: safeToEdit=${payload.safeToEdit} readiness=${payload.readinessStatus || "unknown"}`;
+  }
+  if (name === "onboard_site") {
+    return `Onboarding ${payload.siteSlug || "new site"}: ${payload.status}`;
   }
   if (name === "resolve_target") {
     return `Target resolution: ${payload.resolution.status}`;
@@ -126,6 +130,32 @@ const TOOL_DEFINITIONS = [
         port: { type: "string" },
         live: { type: "boolean" },
         write: { type: "boolean" }
+      },
+      additionalProperties: false
+    },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false
+    }
+  },
+  {
+    name: "onboard_site",
+    description:
+      "Automatically onboard a Carrd site into full MCP control: inventory the live Builder, generate a deterministic semantic target map, run self-checks, and report readiness. dryRun=true (default) reports without writing. Never saves or publishes. New sites require operator-provided slug and chromeProfileDir.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        site: { type: "string" },
+        builderUrl: { type: "string" },
+        slug: { type: "string" },
+        chromeProfileDir: { type: "string" },
+        publishedSiteUrl: { type: "string" },
+        port: { type: "string" },
+        dryRun: { type: "boolean" },
+        autoEnableWrite: { type: "boolean" },
+        panelProbe: { type: "boolean" }
       },
       additionalProperties: false
     },
@@ -213,9 +243,11 @@ async function handleToolCall(params) {
     case "list_profiles":
       return { profiles: listProfiles() };
     case "check_profile":
-      return checkProfile(args);
+      return checkProfileDeep(args);
     case "sync_profile":
       return syncProfile(args);
+    case "onboard_site":
+      return onboardSite(args);
     case "resolve_target":
       return resolveTarget(args);
     case "read_target":
