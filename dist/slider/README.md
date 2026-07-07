@@ -53,7 +53,25 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
-Common options: `showDots`, `showArrows`, `slidesPerView`, `gap`, `peek`, `loop`, `autoplay`, `hideOverflow`, and `freeScroll`.
+| Option | Default | Result |
+|---|---|---|
+| `showDots` | `true` | Shows pagination dots |
+| `showArrows` | `true` | Shows prev/next arrows |
+| `slidesPerView` | `1` | Number of slides visible at once |
+| `gap` | `16` | Space between slides in px |
+| `peek` | `0.1` | Fraction of the next slide visible at the edge |
+| `loop` | `false` | Wraps navigation from the last slide back to the first |
+| `autoplay` | `false` | Advances slides automatically |
+| `autoplayInterval` | `5000` | Delay between autoplay advances, in milliseconds |
+| `hideOverflow` | `false` | Clips slides outside the visible track |
+| `freeScroll` | `false` | Keeps inertia after release instead of snapping to a slide |
+| `wheelScroll` | `false` | Enables horizontal wheel/shift-wheel scrolling |
+| `snapThreshold` | `0.3` | Fraction of slide width a drag must cross before it snaps to the next slide |
+| `maxSlideWidth` | `400` | Maximum slide width in px |
+| `equalHeight` | `true` | Equalizes slide heights to the tallest slide |
+| `slideSelector` | `'[data-slider]'` | Selector used to find slide containers |
+| `sliderAttribute` | `'data-slider'` | Attribute name used to group slides into one slider |
+| `breakpoints` | `{ 737: { slidesPerView: 3 }, 1280: { slidesPerView: 4 } }` | Viewport-width keyed overrides, merged with the defaults |
 
 For one slider only, use its `data-slider` name under `instances`:
 

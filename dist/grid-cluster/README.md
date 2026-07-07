@@ -47,7 +47,32 @@ Add responsive and spacing controls to the first container:
 | `data-grid-gap-mobile=0.75` | Overrides the mobile gap |
 | `data-grid-justify=true` | Stretches the cluster edge to edge |
 
+`data-gap` and `data-gap-mobile` are accepted as legacy aliases of `data-grid-gap` and `data-grid-gap-mobile`.
+
 Use `data-grid-width=50%` on an individual item when it needs a custom desktop width.
+
+To change the grouping attribute or the built-in width shorthands, add this in `Body End` above the bundle or plugin script:
+
+```html
+<script>
+window.CarrdPluginOptions = {
+  gridCluster: {
+    enabled: true,
+    gridAttribute: 'data-grid',
+    widthClasses: {
+      'w-33': '33%'
+    }
+  }
+};
+</script>
+```
+
+| Option | Default | Result |
+|---|---|---|
+| `enabled` | `true` | Set `false` to disable the plugin globally |
+| `gridAttribute` | `'data-grid'` | Attribute name used to group containers into a cluster |
+| `gridClasses` | `['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6']` | Class names recognized as a column-count shorthand |
+| `widthClasses` | `{ 'w-20': '20%', ..., 'w-80': '80%' }` | Map of width shorthand classes to percentage values; merged with, not replacing, the defaults |
 
 ## Verify
 

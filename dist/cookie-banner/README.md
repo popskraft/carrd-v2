@@ -65,6 +65,21 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
+| Option | Default | Result |
+|---|---|---|
+| `cookieName` | `'cookies_accepted'` | Cookie name used to store consent |
+| `cookieDays` | `7` | Consent lifetime in days (global default for `data-cookie-days`) |
+| `fadeInDuration` | `400` | Fade-in duration in milliseconds |
+| `fadeOutDuration` | `300` | Fade-out duration in milliseconds |
+| `showDelay` | `1000` | Delay before showing the banner, in milliseconds (global default for `data-cookie-delay`) |
+| `position` | `'bottom-left'` | Global default position (global default for `data-cookie-position`) |
+| `breakpoint` | `736` | Viewport width, in px, below which the mobile indent applies |
+| `indent` | `'1'` | Global default desktop offset in rem (global default for `data-cookie-indent`) |
+| `indentMobile` | `'1-0.5'` | Global default mobile offset in rem (global default for `data-cookie-indent-mobile`) |
+| `ariaLabel` | `'Cookie notice'` | Accessible label applied to the banner container |
+
+Per-container `data-cookie-*` attributes override these global values.
+
 ## Verify
 
 1. Publish and open the page in a private window.

@@ -42,7 +42,25 @@ Add either attribute to the FAQ container when needed:
 | `data-faq-allow-multiple=true` | Keeps multiple answers open |
 | `data-faq-default-open=true` | Opens the first answer on load |
 
-No global JavaScript configuration is required.
+To change global defaults or the divider/heading detection, add this in `Body End` above the bundle or plugin script:
+
+```html
+<script>
+window.CarrdPluginOptions = {
+  faq: {
+    allowMultipleOpen: false,
+    defaultOpen: false
+  }
+};
+</script>
+```
+
+| Option | Default | Result |
+|---|---|---|
+| `allowMultipleOpen` | `false` | Global default for `data-faq-allow-multiple` |
+| `defaultOpen` | `false` | Global default for `data-faq-default-open` |
+| `dividerSelector` | `'hr.divider-component'` | Selector used to detect the divider that starts each question |
+| `headerTags` | `['H1', 'H2', 'H3']` | Tag names recognized as a question heading |
 
 ## Verify
 
