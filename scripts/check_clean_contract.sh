@@ -38,7 +38,7 @@ search_pattern() {
   local output_file
   output_file="$(mktemp)"
 
-  if rg -n -e "${pattern}" "${TARGET_FILES[@]}" >"${output_file}"; then
+  if grep -n -E -e "${pattern}" "${TARGET_FILES[@]}" >"${output_file}"; then
     echo "[FAIL] ${label}"
     cat "${output_file}"
     FAILED=1
