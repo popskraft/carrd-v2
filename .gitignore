@@ -17,6 +17,7 @@
 !.eslintrc.json
 !.agent-kit-validate.conf
 !bundle.config.json
+!knip.json
 !package.json
 !pnpm-lock.yaml
 

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "src/**/*.js",
+    "tests-js/**/*.js",
+    "cardbuilder/scripts/**/*.mjs"
+  ],
+  "project": [
+    "src/**/*.js",
+    "tests-js/**/*.js",
+    "cardbuilder/scripts/**/*.mjs"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "ignoreBinaries": ["python3"]
+}

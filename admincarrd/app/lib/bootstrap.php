@@ -206,6 +206,14 @@ if (!function_exists('adminCarrdApplySecurityHeaders')) {
         header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
         header('X-Request-Id: ' . adminCarrdRequestId());
 
+        // HSTS — HTTPS-only so plain-HTTP local dev is never locked out; config-gated.
+        $isHttps = (!empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off')
+            || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string) $_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+            || (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower((string) $_SERVER['HTTP_X_FORWARDED_SSL']) === 'on');
+        if ($isHttps && ($config['security']['hsts'] ?? true)) {
+            header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+        }
+
         $cspCfg = (array) ($config['security']['csp'] ?? []);
         if (!($cspCfg['enabled'] ?? true)) {
             return;

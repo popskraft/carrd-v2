@@ -4,7 +4,8 @@
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "eslint": "^8.57.0",
-    "jsdom": "^24.0.0"
+    "jsdom": "^24.0.0",
+    "knip": "^6.25.0"
   },
   "scripts": {
     "build": "python3 scripts/minify_plugins.py",
@@ -13,14 +14,17 @@
     "check:clean-contract": "bash scripts/check_clean_contract.sh",
     "check:legacy": "bash scripts/check_legacy_consistency.sh",
     "check:tabs-drift": "node cardbuilder/scripts/carrd/check-element-tabs-drift.mjs --site main-template",
+    "check:bundle-budget": "python3 scripts/check_bundle_budget.py",
+    "check:deadcode": "knip",
     "lint": "eslint \"src/**/*.js\" \"tests-js/**/*.js\" \"cardbuilder/scripts/**/*.mjs\"",
     "mcp:carrd": "node cardbuilder/scripts/carrd/carrd-mcp-server.mjs",
     "onboard:site": "node cardbuilder/scripts/carrd/onboard-site.mjs",
     "sync:mcp:main-template": "node cardbuilder/scripts/carrd/sync-mcp-profile.mjs --site main-template",
     "verify:dist": "python3 scripts/verify_dist.py",
-    "validate": "npm run verify:dist --silent && npm run check:clean-contract --silent && npm run test --silent && npm run lint --silent",
+    "validate": "npm run verify:dist --silent && npm run check:bundle-budget --silent && npm run check:clean-contract --silent && npm run check:deadcode --silent && npm run test --silent && npm run test:coverage --silent && npm run lint --silent",
     "test:py": "python3 -m unittest discover -s tests",
     "test:js": "node --test $(find tests-js -name '*.test.js' ! -name 'site-registry.test.js' | sort)",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-include='src/**' --test-coverage-lines=0.9 --test-coverage-branches=0.85 --test-coverage-functions=0.9 $(find tests-js -name '*.test.js' ! -name 'site-registry.test.js' | sort)",
     "test:cardbuilder": "node --test tests-js/site-registry.test.js tests-js/carrd-mcp-core.test.js tests-js/carrd-mcp-server.test.js tests-js/carrd-mcp-onboarding.test.js",
     "test": "npm run check:legacy && npm run check:clean-contract && npm run test:py && npm run test:js && npm run test:cardbuilder",
     "cdn:purge": "python3 scripts/purge_jsdelivr.py",
