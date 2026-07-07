@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 import textwrap
@@ -23,6 +24,7 @@ def run_harness(command: str, payload: dict) -> dict:
     return json.loads(proc.stdout)
 
 
+@unittest.skipUnless(shutil.which("php"), "php CLI not available")
 class AdminCarrdOptimizerTests(unittest.TestCase):
     def test_css_minifier_preserves_calc_spacing(self):
         css = "body { width: calc(100% - 20px); color: red; }\n/* comment */\n.box { margin: 0 auto; }"

@@ -1,3 +1,4 @@
+import shutil
 import tempfile
 import subprocess
 import unittest
@@ -34,6 +35,7 @@ class AdminCarrdInstallerPackageTests(unittest.TestCase):
                 self.assertIn("'setup_complete' => false", config)
                 self.assertIn("'password_hash' => ''", config)
 
+    @unittest.skipUnless(shutil.which("php"), "php CLI not available")
     def test_installer_config_writer_preserves_bcrypt_dollar_signs(self):
         with tempfile.TemporaryDirectory() as tmp:
             script = Path(tmp) / "check.php"
