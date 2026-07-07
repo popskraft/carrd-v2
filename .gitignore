@@ -69,6 +69,8 @@ tests/__pycache__/
 admincarrd/.DS_Store
 cardbuilder/.DS_Store
 cardbuilder/**/.DS_Store
+# FUSE leftover artifacts (deleted-but-open files on mounted filesystems)
+**/.fuse_hidden*
 cardbuilder/.claude/
 admincarrd/_docs/
 cardbuilder/_docs/

@@ -22,7 +22,8 @@
     position: 'bottom-left',
     breakpoint: 736,
     indent: '1',
-    indentMobile: '1-0.5'
+    indentMobile: '1-0.5',
+    ariaLabel: 'Cookie notice'
   };
 
   const externalOptions =
@@ -205,6 +206,18 @@
     return banner.classList.contains('columns') ? 'flex' : 'block';
   }
 
+  function applyAccessibility(banner) {
+    if (!banner.hasAttribute('role')) {
+      banner.setAttribute('role', 'region');
+    }
+    if (!banner.hasAttribute('aria-label') && !banner.hasAttribute('aria-labelledby')) {
+      const label = typeof CONFIG.ariaLabel === 'string' && CONFIG.ariaLabel.trim()
+        ? CONFIG.ariaLabel.trim()
+        : DEFAULTS.ariaLabel;
+      banner.setAttribute('aria-label', label);
+    }
+  }
+
   function findBanners() {
     const banners = [];
     const seen = new Set();
@@ -293,6 +306,7 @@
 
     banner.dataset.cookieBannerInitialized = 'true';
     banner.classList.add('theme-cookie-banner');
+    applyAccessibility(banner);
     updateBannerLayout(banner);
 
     const acceptBtn =

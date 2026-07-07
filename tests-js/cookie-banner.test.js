@@ -248,3 +248,39 @@ test('cookie banner keeps legacy data-cookie="banner" marker as fallback', () =>
   assert.equal(dom.window.document.querySelector('[data-cookie="banner"]').dataset.cookieBannerInitialized, 'true');
   timers.restore();
 });
+
+test('cookie banner adds a region role and aria-label for assistive tech', () => {
+  const dom = createDom(
+    '<div data-cookie="consent"><a role="button" href="#">Accept</a></div>'
+  );
+  const timers = useFakeTimers(dom);
+  setPluginOptions(dom, { cookieBanner: { showDelay: 0, fadeInDuration: 0 } });
+
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
+  triggerDomReady(dom);
+  timers.flush();
+
+  const banner = dom.window.document.querySelector('[data-cookie]');
+  assert.equal(banner.getAttribute('role'), 'region');
+  assert.equal(banner.getAttribute('aria-label'), 'Cookie notice');
+  timers.restore();
+});
+
+test('cookie banner preserves author-provided role and aria-label', () => {
+  const dom = createDom(
+    '<div data-cookie="consent" role="alert" aria-label="Custom notice">' +
+      '<a role="button" href="#">Accept</a>' +
+    '</div>'
+  );
+  const timers = useFakeTimers(dom);
+  setPluginOptions(dom, { cookieBanner: { showDelay: 0, fadeInDuration: 0 } });
+
+  loadScript(dom, 'src/cookie-banner/cookie-banner.js');
+  triggerDomReady(dom);
+  timers.flush();
+
+  const banner = dom.window.document.querySelector('[data-cookie]');
+  assert.equal(banner.getAttribute('role'), 'alert');
+  assert.equal(banner.getAttribute('aria-label'), 'Custom notice');
+  timers.restore();
+});

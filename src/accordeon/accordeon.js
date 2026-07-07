@@ -33,6 +33,7 @@
   const requestFrame = window.requestAnimationFrame || (cb => setTimeout(cb, 16));
   const groups = new Map();
   let listenerBound = false;
+  let panelIdCounter = 0;
   const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
 
   const HASH_PREFIXES = [
@@ -126,6 +127,20 @@
     target.setAttribute('aria-hidden', open ? 'false' : 'true');
   }
 
+  function ensureTargetId(target) {
+    if (!target.id) {
+      panelIdCounter += 1;
+      target.id = 'theme-accordeon-panel-' + panelIdCounter;
+    }
+    return target.id;
+  }
+
+  function linkControls(group) {
+    if (!group.controls.length || !group.targets.length) return;
+    const ids = group.targets.map(ensureTargetId).join(' ');
+    group.controls.forEach(control => control.setAttribute('aria-controls', ids));
+  }
+
   function buildGroup(name) {
     const existing = groups.get(name);
     const open = existing ? existing.open : CONFIG.defaultOpen === true;
@@ -139,6 +154,7 @@
     if (!group.targets.length) return null;
 
     groups.set(name, group);
+    linkControls(group);
     setGroupOpen(name, open);
     return group;
   }

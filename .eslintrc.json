@@ -9,6 +9,14 @@
   "overrides": [
     {
       "files": [
+        "src/**/*.js"
+      ],
+      "rules": {
+        "complexity": ["warn", 10]
+      }
+    },
+    {
+      "files": [
         "tests-js/**/*.js"
       ],
       "env": {
