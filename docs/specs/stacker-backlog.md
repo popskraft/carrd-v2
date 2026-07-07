@@ -68,7 +68,7 @@
 - P1 (задачи 1–6): done. `src/stacker/` реализован, dist собран, `data-stacked` работает как alias, overflow-fix через `.theme-stacker-overflow-fix` (селектор `.site-wrapper` + computed-check остальных предков).
 - P2 (задачи 7–9): done. 14 jsdom-тестов в `tests-js/stacker.test.js`, включая smoke на реальном `carrd-source/index.html`.
 - P3 (задачи 10–12): done. Live-тест оператором на `mini.crd.co` пройден; уточнение по итогам: default offset не пишется inline, `:root`-переопределение `--theme-stacker-offset` работает.
-- P4: README done; плагин включён в CDN bundle `theme-core` (`bundle.config.json`), ждёт push + jsDelivr purge. Опциональные scale/dim эффекты — не начаты.
+- P4: README done; rollout into the version-pinned runtime delivery is still pending operator publish/purge. Опциональные scale/dim эффекты — не начаты.
 
 ## Open Questions
 1. `data-stacked` vs `data-stacker` → вынесен в `OPEN-QUESTIONS.md` как Q010; решить после live-теста.

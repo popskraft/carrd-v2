@@ -9,12 +9,13 @@ const BUILDER_URL = "https://carrd.co/dashboard/4155176224428477/build";
 const write = process.argv.includes("--write");
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
 const evidenceDir = path.join(ROOT, "cardbuilder/projects/main-template/data/migration", `clean-runtime-${stamp}`);
+const VERSION = fs.readFileSync(path.join(ROOT, "VERSION"), "utf8").trim();
 
 const embeds = {
-  embed14: { title: "Theme Core CSS CDN (HEAD)", location: "head", content: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.css">' },
-  embed08: { title: "No Loadwaiting CDN (HEAD)", location: "head", content: '<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/no-loadwaiting/no-loadwaiting.min.js"></script>' },
-  embed02: { title: "Theme Core JS (BODY END)", location: "body-end", content: '<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.js"></script>' },
-  embed01: { title: "Shopping Cart + Cookie Banner CDN (BODY END)", location: "body-end", content: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/shopping-cart/shopping-cart.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/cookie-banner/cookie-banner.min.css">\n<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/shopping-cart/shopping-cart.min.js"></script>\n<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/cookie-banner/cookie-banner.min.js"></script>' },
+  embed14: { title: "Theme Runtime CSS CDN (HEAD)", location: "head", content: `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/theme-runtime.min.css">` },
+  embed08: { title: "No Loadwaiting CDN (HEAD)", location: "head", content: `<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/no-loadwaiting/no-loadwaiting.min.js"></script>` },
+  embed02: { title: "Theme Runtime JS (BODY END)", location: "body-end", content: `<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/theme-runtime.min.js"></script>` },
+  embed01: { title: "Shopping Cart + Cookie Banner CDN (BODY END)", location: "body-end", content: `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/shopping-cart/shopping-cart.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/cookie-banner/cookie-banner.min.css">\n<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/shopping-cart/shopping-cart.min.js"></script>\n<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/cookie-banner/cookie-banner.min.js"></script>` },
 };
 
 const componentPatches = {

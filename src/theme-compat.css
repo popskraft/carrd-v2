@@ -1,0 +1,16 @@
+:root {
+  /* Legacy token bridge for mutable @main installs and old site-owned overrides. */
+  --theme-color-primary-focus: var(--theme-color-primary-hover);
+  --theme-color-dark: var(--theme-color-primary-dark, #222222);
+  --theme-color-heading: var(--theme-color-headlines, var(--theme-color-primary-dark, #222222));
+  --theme-color-surface: var(--theme-color-bg, #FFFFFF);
+  --theme-color-surface-muted: var(--theme-card-bg-default, var(--theme-color-primary-light, #F8F8F8));
+  --theme-focus-ring-color: var(--theme-color-primary-focus, var(--theme-color-primary-hover, #AD3624));
+  --theme-button-primary-bg: var(--theme-btn-primary-bg, var(--theme-color-primary, #EF4444));
+  --theme-button-primary-bg-hover: var(--theme-btn-primary-hover-bg, var(--theme-color-primary-hover, #AD3624));
+  --theme-button-primary-text: var(--theme-btn-text, #FFFFFF);
+  --theme-link-color-hover: var(--theme-link-hover-color, var(--theme-color-primary-hover, #AD3624));
+  --theme-nav-color: var(--theme-color-headlines, var(--theme-color-primary-dark, #222222));
+  --theme-color-success: var(--theme-color-brand-green, #10B981);
+  --theme-shopcart-danger: var(--theme-color-danger, var(--theme-color-brand-red, #EF4444));
+}

@@ -1,8 +1,38 @@
+:where(:root) {
+  --theme-shopcart-widget-bg: var(--theme-color-dark);
+  --theme-shopcart-widget-color: var(--theme-color-white);
+  --theme-shopcart-badge-bg: var(--theme-color-brand-red);
+  --theme-shopcart-badge-text: var(--theme-color-white);
+  --theme-shopcart-badge-border: var(--theme-color-white);
+  --theme-shopcart-font: var(--theme-font-family);
+  --theme-shopcart-overlay-bg: var(--theme-overlay-bg);
+  --theme-shopcart-bg: var(--theme-color-surface);
+  --theme-shopcart-text: var(--theme-color-text);
+  --theme-shopcart-border: var(--theme-color-border);
+  --theme-shopcart-heading-color: var(--theme-color-heading);
+  --theme-shopcart-danger: var(--theme-color-brand-red);
+  --theme-shopcart-footer-bg: var(--theme-color-surface-muted);
+  --theme-shopcart-btn-bg: var(--theme-button-primary-bg);
+  --theme-shopcart-btn-bg-hover: var(--theme-button-primary-bg-hover);
+  --theme-shopcart-btn-text: var(--theme-button-primary-text);
+  --theme-shopcart-btn-border-color: var(--theme-button-primary-border-color);
+  --theme-shopcart-btn-radius: 0.125rem;
+  --theme-shopcart-qty-bg: var(--theme-ui-surface-muted);
+  --theme-shopcart-qty-hover-bg: var(--theme-ui-surface-muted-hover);
+  --theme-shopcart-input-bg: var(--theme-color-surface);
+  --theme-shopcart-input-text: var(--theme-color-text);
+  --theme-shopcart-accent: var(--theme-color-primary);
+  --theme-shopcart-toast-bg: var(--theme-color-text);
+  --theme-shopcart-toast-text: var(--theme-color-white);
+  --theme-shopcart-close-icon-size: var(--theme-ui-icon-size);
+  --theme-shopcart-close-icon-stroke: var(--theme-ui-icon-stroke);
+}
+
 .theme-shopcart-widget {
   position: fixed;
   z-index: 999990;
-  background: var(--theme-color-primary-dark);
-  color: var(--theme-shopcart-widget-color, #ffffff);
+  background: var(--theme-shopcart-widget-bg);
+  color: var(--theme-shopcart-widget-color);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -37,7 +67,7 @@
 .theme-shopcart-close:focus-visible,
 .theme-shopcart-btn-qty:focus-visible,
 .theme-shopcart-btn-main:focus-visible {
-  outline: 2px solid var(--theme-color-primary);
+  outline: 2px solid var(--theme-shopcart-accent);
   outline-offset: 3px;
 }
 
@@ -84,20 +114,20 @@
   display: none;
   top: -5px;
   right: -5px;
-  background: var(--theme-shopcart-badge-bg, var(--theme-color-danger));
-  color: var(--theme-shopcart-badge-text, #ffffff);
+  background: var(--theme-shopcart-badge-bg);
+  color: var(--theme-shopcart-badge-text);
   border-radius: 10px;
   padding: 2px 6px;
   font-size: 12px;
   font-weight: bold;
-  border: 2px solid var(--theme-shopcart-badge-border, #ffffff);
-  font-family: var(--theme-shopcart-font, var(--theme-font-family));
+  border: 2px solid var(--theme-shopcart-badge-border);
+  font-family: var(--theme-shopcart-font);
 }
 
 .theme-shopcart-overlay {
   position: fixed;
   inset: 0;
-  background: var(--theme-shopcart-overlay-bg, var(--theme-overlay-bg));
+  background: var(--theme-shopcart-overlay-bg);
   backdrop-filter: blur(20px);
   z-index: 999998;
   opacity: 0;
@@ -117,14 +147,14 @@
   bottom: 0;
   width: 100%;
   max-width: 500px;
-  background: var(--theme-shopcart-bg, var(--theme-color-bg));
-  color: var(--theme-shopcart-text, var(--theme-color-text));
+  background: var(--theme-shopcart-bg);
+  color: var(--theme-shopcart-text);
   z-index: 999999;
   transform: translateX(110%);
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  font-family: var(--theme-shopcart-font, var(--theme-font-family));
+  font-family: var(--theme-shopcart-font);
   /* Fallback for browsers without native inert support */
   pointer-events: none;
 }
@@ -140,7 +170,7 @@ body.theme-shopcart-open {
 
 .theme-shopcart-header {
   padding: 20px;
-  border-bottom: 1px solid var(--theme-shopcart-border, var(--theme-color-border));
+  border-bottom: 1px solid var(--theme-shopcart-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -150,7 +180,7 @@ body.theme-shopcart-open {
   margin: 0;
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--theme-color-headlines, #19355A);
+  color: var(--theme-shopcart-heading-color);
 }
 
 .theme-shopcart-close {
@@ -159,6 +189,14 @@ body.theme-shopcart-open {
   color: inherit;
   cursor: pointer;
   padding: 5px;
+}
+
+.theme-shopcart-close svg {
+  width: var(--theme-shopcart-close-icon-size);
+  height: var(--theme-shopcart-close-icon-size);
+  stroke: currentColor;
+  stroke-width: var(--theme-shopcart-close-icon-stroke);
+  fill: none;
 }
 
 .theme-shopcart-body {
@@ -172,7 +210,7 @@ body.theme-shopcart-open {
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
-  border-bottom: 1px solid var(--theme-shopcart-border, var(--theme-color-border));
+  border-bottom: 1px solid var(--theme-shopcart-border);
 }
 
 .theme-shopcart-item-info {
@@ -183,7 +221,7 @@ body.theme-shopcart-open {
   font-weight: 600;
   display: block;
   margin-bottom: 4px;
-  color: var(--theme-color-headlines, #19355A);
+  color: var(--theme-shopcart-heading-color);
 }
 
 .theme-shopcart-item-price {
@@ -204,10 +242,18 @@ body.theme-shopcart-open {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--theme-shopcart-qty-bg);
+  border: none;
+  border-radius: var(--theme-shopcart-btn-radius);
+  color: inherit;
+}
+
+.theme-shopcart-btn-qty:hover {
+  background: var(--theme-shopcart-qty-hover-bg);
 }
 
 .theme-shopcart-btn-remove {
-  color: var(--theme-shopcart-danger, var(--theme-color-danger));
+  color: var(--theme-shopcart-danger);
   margin-left: 5px;
 }
 
@@ -219,8 +265,8 @@ body.theme-shopcart-open {
 
 .theme-shopcart-footer {
   padding: 20px;
-  border-top: 1px solid var(--theme-shopcart-border, var(--theme-color-border));
-  background: var(--theme-shopcart-footer-bg, var(--theme-color-primary-light));
+  border-top: 1px solid var(--theme-shopcart-border);
+  background: var(--theme-shopcart-footer-bg);
 }
 
 .theme-shopcart-total-row {
@@ -229,15 +275,15 @@ body.theme-shopcart-open {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 20px;
-  color: var(--theme-color-headlines, #19355A);
+  color: var(--theme-shopcart-heading-color);
 }
 
 .theme-shopcart-btn-main {
   width: 100%;
   padding: .75rem 1.5rem;
-  background: var(--theme-shopcart-btn-bg, var(--theme-color-success));
-  color: var(--theme-shopcart-btn-text, #ffffff);
-  border: none;
+  background: var(--theme-shopcart-btn-bg);
+  color: var(--theme-shopcart-btn-text);
+  border: 1px solid var(--theme-shopcart-btn-border-color);
   border-radius: 5px;
   font-size: 1rem;
   font-weight: bold;
@@ -247,6 +293,7 @@ body.theme-shopcart-open {
 }
 
 .theme-shopcart-btn-main:hover {
+  background: var(--theme-shopcart-btn-bg-hover);
   opacity: 1;
 }
 
@@ -269,15 +316,15 @@ body.theme-shopcart-open {
 .theme-shopcart-input {
   width: 100%;
   padding: 10px;
-  background: var(--theme-shopcart-input-bg, var(--theme-color-bg));
-  border: 1px solid var(--theme-shopcart-border, var(--theme-color-border));
-  color: var(--theme-shopcart-input-text, var(--theme-color-text));
+  background: var(--theme-shopcart-input-bg);
+  border: 1px solid var(--theme-shopcart-border);
+  color: var(--theme-shopcart-input-text);
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 .theme-shopcart-input:focus {
-  outline: 2px solid var(--theme-shopcart-accent, var(--theme-color-primary));
+  outline: 2px solid var(--theme-shopcart-accent);
   border-color: transparent;
 }
 
@@ -285,17 +332,17 @@ body.theme-shopcart-open {
   position: fixed;
   bottom: 90px;
   right: 20px;
-  background: var(--theme-shopcart-toast-bg, var(--theme-color-text));
-  color: var(--theme-shopcart-toast-text, #ffffff);
+  background: var(--theme-shopcart-toast-bg);
+  color: var(--theme-shopcart-toast-text);
   padding: 1rem 1.5rem;
-  border-radius: var(--theme-shopcart-btn-radius, .125rem);
+  border-radius: var(--theme-shopcart-btn-radius);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 999999;
   transform: translateY(20px);
   opacity: 0;
   transition: 0.3s;
   pointer-events: none;
-  font-family: var(--theme-shopcart-font, var(--theme-font-family));
+  font-family: var(--theme-shopcart-font);
 }
 
 .theme-shopcart-toast.visible {

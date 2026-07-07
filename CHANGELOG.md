@@ -20,11 +20,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Theme Tokens**: Limited `theme-design-tokens.css` to global/shared primitives and moved every component default into the owning plugin CSS through low-specificity `:where(:root)` blocks.
+- **Plugin CSS**: Removed canonical `--theme-*` fallback arguments and returned slider, modal, and Shopping Cart component selectors from shared `theme-ui.css` to their owning plugins.
 - **Code Quality**: Refactored all functions exceeding the cyclomatic-complexity budget (cards, faq, stacker, shopping-cart, slider, modal) into focused helpers within each plugin's single IIFE — no runtime/embed structure change — and promoted the ESLint `complexity` rule from `warn` to `error` (max 10). Behaviour preserved; 225/225 JS tests green.
 - **Tests**: Made `test:py` machine-independent — admincarrd PHP-harness tests now `skipUnless(shutil.which("php"))`, so `npm run test` no longer errors on hosts without the `php` CLI (skipped, not error).
 
 ### Fixed
 
+- **Theme Guardrails**: Added exact compatibility-bridge mapping checks, version-pin enforcement for canonical automation paths, token ownership validation, and protection against compatibility-only `theme-ui.css` leaking into new-install snippets.
 - **Plugin README completeness**: Documented every previously-undocumented `CarrdPluginOptions` key across accordeon, cards, cookie-banner, faq, floating-cta, grid-cluster, modal, shopping-cart, slider, stacker, switcher, and typography (`src/<plugin>/README.md`, generated `dist/` copies rebuilt). FAQ's README no longer contradicts the code by claiming no JS configuration exists.
 
 ### Removed

@@ -1,7 +1,16 @@
+:where(:root) {
+  --theme-grid-row-gap: 1rem;
+  --theme-grid-column-gap: 1rem;
+  --theme-grid-column-gap-sm: 0.5rem;
+  --theme-grid-row-gap-desktop: 2rem;
+  --theme-grid-column-gap-desktop: 1.5rem;
+  --theme-grid-column-gap-desktop-large: 2rem;
+}
+
 .theme-grid {
   --grid-columns: 1;
-  --local-row-gap: var(--gap-override, var(--theme-grid-row-gap, 1rem));
-  --local-column-gap: var(--gap-override, var(--theme-grid-column-gap, 1rem));
+  --local-row-gap: var(--gap-override, var(--theme-grid-row-gap));
+  --local-column-gap: var(--gap-override, var(--theme-grid-column-gap));
   --grid-template: repeat(var(--grid-columns), minmax(0, 1fr));
   display: grid;
   grid-template-columns: var(--grid-template);
@@ -11,8 +20,8 @@
 
 @media (max-width: 736px) {
   .theme-grid {
-    --local-row-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-row-gap, 1rem)));
-    --local-column-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-column-gap, 1rem)));
+    --local-row-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-row-gap)));
+    --local-column-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-column-gap)));
   }
 
   .theme-grid.grid-sm-1 {
@@ -33,8 +42,8 @@
   .theme-grid.grid-sm-4,
   .theme-grid.grid-sm-5,
   .theme-grid.grid-sm-6 {
-    --local-row-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-row-gap, 1rem)));
-    --local-column-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-column-gap-sm, 0.5rem)));
+    --local-row-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-row-gap)));
+    --local-column-gap: var(--gap-mobile-override, var(--gap-override, var(--theme-grid-column-gap-sm)));
   }
 }
 
@@ -66,8 +75,8 @@
 
 @media (min-width: 1025px) {
   .theme-grid {
-    --local-row-gap: var(--gap-override, var(--theme-grid-row-gap-desktop, 2rem));
-    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop, 1.5rem));
+    --local-row-gap: var(--gap-override, var(--theme-grid-row-gap-desktop));
+    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop));
   }
 
   .theme-grid.grid-3,
@@ -83,17 +92,17 @@
 
 @media (min-width: 1280px) {
   .theme-grid {
-    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop-large, 2rem));
+    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop-large));
   }
 
   .theme-grid.grid-5 {
     --grid-columns: 5;
-    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop, 1.5rem));
+    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap-desktop));
   }
 
   .theme-grid.grid-6 {
     --grid-columns: 6;
-    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap, 1rem));
+    --local-column-gap: var(--gap-override, var(--theme-grid-column-gap));
   }
 
   .theme-grid.grid-lg-1 { --grid-columns: 1; }

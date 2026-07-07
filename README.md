@@ -8,15 +8,17 @@ All install files are in `dist/`. Open the plugin folder you need and follow its
 
 Use the CDN Bundle for new sites.
 
-1. Open `dist/theme-core-cdn.html`.
+1. Open `dist/theme-runtime-cdn.html`.
 2. Paste the `Head` part into `Hidden → Head`.
 3. Paste the `Body End` part into `Hidden → Body End`.
-4. Publish and refresh.
-5. Open each plugin folder you use and complete the Carrd-side setup from that plugin `README.md`.
+4. Paste `dist/theme-design-tokens-embed.html` into a separate `Hidden → Head` embed.
+5. Edit token values inside that embed for the project brand.
+6. Publish and refresh.
+7. Open each plugin folder you use and complete the Carrd-side setup from that plugin `README.md`.
 
 Bundle plugins:
 
-| Plugin | Included in `theme-core` bundle |
+| Plugin | Included in `theme-runtime` bundle |
 |---|---|
 | Accordeon | Yes |
 | Cards | Yes |
@@ -39,11 +41,22 @@ Bundle plugins:
 Recommended for most sites.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.css">
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.css">
+<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.js"></script>
 ```
 
-Use `dist/theme-core-cdn.html` as the copy source.
+Use `dist/theme-runtime-cdn.html` as the copy source.
+Then paste `dist/theme-design-tokens-embed.html` into a separate `Head` embed and edit the values there.
+Do not point new installs at mutable refs such as `@main`.
+
+### Compatibility Bundle
+
+Use this only to keep existing `@main` sites stable while they still rely on legacy token names or the old one-file bundle contract.
+
+- Artifact: `dist/theme-core-cdn.html`
+- Runtime files: `theme-core.min.css` + `theme-core.min.js`
+- Behavior: ships default tokens plus a legacy token bridge for old site-owned overrides
+- New installs: do not use this path
 
 ### Bundle Add-ons
 
@@ -59,13 +72,15 @@ This applies to:
 Use this when you want only selected plugins instead of the full bundle.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-design-tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-ui-runtime.css">
 ```
 
 Then open each plugin `*-cdn.html` file and:
 - Paste the `<!-- Head -->` part into `Hidden → Head`.
 - Paste the `<!-- Body End -->` part into `Hidden → Body End` when present.
+
+Paste `dist/theme-design-tokens-embed.html` into a separate `Head` embed and edit the values there.
+Use `dist/theme-design-tokens.css` as the reference contract when you need to inspect the full token list.
 
 `no-loadwaiting` is a special case: its script belongs in `Head`.
 
@@ -82,16 +97,20 @@ Use this when you do not want CDN files.
 Do not edit jsDelivr files. Add custom code in separate Carrd embeds.
 
 - Brand or theme changes: use a `Head` embed with `:root { --theme-* }`.
+- Plugin defaults ship with each plugin CSS; override its `--theme-<plugin>-*` tokens in the same `Head` embed when needed.
 - Site-only CSS: use a separate `Head` embed with your selectors.
 - Plugin behavior: use `window.CarrdPluginOptions` in a `Body End` embed above plugin scripts or embeds.
 - Site-only JS: use a separate `Body End` script below plugin scripts.
 
-Example token override:
+Short override example. Use this only on top of the full `theme-design-tokens-embed.html` layer:
 
 ```html
 <style>
 :root {
   --theme-color-primary: #0055FF;
+  --theme-color-primary-hover: #003FCC;
+  --theme-color-primary-focus: #003FCC;
+  --theme-color-heading: #1F2937;
 }
 </style>
 ```

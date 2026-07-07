@@ -1,3 +1,11 @@
+:where(:root) {
+  --theme-faq-heading-color: var(--theme-color-heading);
+  --theme-faq-focus-color: var(--theme-focus-ring-color);
+  --theme-faq-icon-color: var(--theme-color-primary);
+  --theme-faq-icon-size: 1.75rem;
+  --theme-faq-spacing: 0.75rem;
+}
+
 [data-faq] .theme-faq-question {
   position: relative;
   margin: 0;
@@ -11,7 +19,7 @@
   margin: 0;
   border: 0;
   background: transparent;
-  color: var(--theme-color-headlines, #19355A);
+  color: var(--theme-faq-heading-color);
   transition: color 0.2s ease;
   text-align: inherit;
   font: inherit;
@@ -22,7 +30,8 @@
 
 [data-faq] .theme-faq-trigger:focus,
 [data-faq] .theme-faq-trigger:focus-visible {
-  outline: none;
+  outline: 2px solid var(--theme-faq-focus-color);
+  outline-offset: 2px;
   box-shadow: none;
 }
 
@@ -32,9 +41,9 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: var(--theme-faq-icon-size, 1.75rem);
+  font-size: var(--theme-faq-icon-size);
   line-height: 1;
-  color: var(--theme-faq-icon-color, var(--theme-color-primary));
+  color: var(--theme-faq-icon-color);
   transition: transform 0.3s ease;
   font-weight: 400;
 }
@@ -59,8 +68,8 @@
 [data-faq] .theme-faq-answer.is-open {
   opacity: 1;
   visibility: visible;
-  margin-top: var(--theme-faq-spacing, 0.75rem);
-  margin-bottom: var(--theme-faq-spacing, 1rem);
+  margin-top: var(--theme-faq-spacing);
+  margin-bottom: var(--theme-faq-spacing);
 }
 
 [data-faq] .theme-faq-answer>*:first-child {

@@ -137,9 +137,9 @@ Required behavior:
 
 [data-switcher] .theme-switcher-button.is-active,
 [data-switcher] .theme-switcher-button.is-active:hover {
-  background-color: var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838)) !important;
-  border-color: var(--theme-switcher-active-bg, var(--theme-color-primary-dark, #041838)) !important;
-  color: var(--theme-switcher-active-color, var(--theme-btn-text, #ffffff)) !important;
+  background-color: var(--theme-switcher-active-bg) !important;
+  border-color: var(--theme-switcher-active-border) !important;
+  color: var(--theme-switcher-active-color) !important;
 }
 
 .theme-switcher-panel[hidden] {
@@ -151,8 +151,8 @@ Recommended variables:
 
 | Variable | Default |
 |---|---|
-| `--theme-switcher-active-bg` | `var(--theme-color-primary-dark, #041838)` |
-| `--theme-switcher-active-color` | `var(--theme-btn-text, #ffffff)` |
+| `--theme-switcher-active-bg` | `var(--theme-button-primary-bg)` |
+| `--theme-switcher-active-color` | `var(--theme-button-primary-text)` |
 | `--theme-switcher-active-border` | active background |
 | `--theme-switcher-animation-duration` | `1s` |
 | `--theme-switcher-animation-distance` | `0.75rem` |

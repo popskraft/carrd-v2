@@ -134,7 +134,7 @@ def build_plugin_installation(
 ) -> str:
     plugin_slug = plugin_dir.name
     bundle_config = load_bundle_config(repo_root).get("cdn_bundle", {})
-    bundle_name = bundle_config.get("name", "theme-core")
+    bundle_name = bundle_config.get("name", "theme-runtime")
     bundled_plugins = set(bundle_config.get("plugins", []))
     bundle_enabled = bundle_config.get("enabled", False)
     is_bundled = bundle_enabled and plugin_slug in bundled_plugins
@@ -247,14 +247,48 @@ def copy_shared_theme_assets(
     source_dir: Path,
 ) -> None:
     theme_css = source_dir / "theme-design-tokens.css"
+    theme_compat_css = source_dir / "theme-compat.css"
     theme_ui_css = source_dir / "theme-ui.css"
 
     if theme_css.exists():
         shutil.copy(theme_css, dist_dir / "theme-design-tokens.css")
         print(f"Copied: {dist_dir / 'theme-design-tokens.css'}")
+        create_theme_design_tokens_embed(dist_dir, source_dir, read_version(source_dir.parent))
     if theme_ui_css.exists():
-        shutil.copy(theme_ui_css, dist_dir / "theme-ui.css")
-        print(f"Copied: {dist_dir / 'theme-ui.css'}")
+        shutil.copy(theme_ui_css, dist_dir / "theme-ui-runtime.css")
+        print(f"Copied: {dist_dir / 'theme-ui-runtime.css'}")
+
+        compat_parts: List[str] = [
+            "/* Compatibility-only artifact for legacy @main installs. Do not use for new sites. */"
+        ]
+        if theme_compat_css.exists():
+            compat_parts.append(theme_compat_css.read_text(encoding="utf-8").strip())
+        compat_parts.append(theme_ui_css.read_text(encoding="utf-8").strip())
+        (dist_dir / "theme-ui.css").write_text("\n\n".join(compat_parts) + "\n", encoding="utf-8")
+        print(f"Created Compat CSS: {dist_dir / 'theme-ui.css'}")
+
+
+def create_theme_design_tokens_embed(
+    dist_dir: Path,
+    source_dir: Path,
+    version: str,
+) -> None:
+    theme_css = source_dir / "theme-design-tokens.css"
+    if not theme_css.exists():
+        return
+
+    output_path = dist_dir / "theme-design-tokens-embed.html"
+    output_path.write_text(
+        "\n".join([
+            build_html_banner("Theme Design Tokens", version),
+            "<style>",
+            theme_css.read_text(encoding="utf-8").strip(),
+            "</style>",
+            "",
+        ]),
+        encoding="utf-8",
+    )
+    print(f"Created Embed: {output_path}")
 
 
 def create_theme_design_system_embed(
@@ -302,11 +336,28 @@ def create_cdn_bundle(
     source_dir: Path,
     dist_dir: Path,
 ) -> None:
-    bundle_config = load_bundle_config(repo_root).get("cdn_bundle", {})
-    if not bundle_config.get("enabled", False):
-        return
+    bundle_root = load_bundle_config(repo_root)
+    primary_bundle = bundle_root.get("cdn_bundle", {})
+    compat_bundle = bundle_root.get("compat_bundle", {})
 
-    bundle_name = bundle_config.get("name", "theme-core")
+    if primary_bundle.get("enabled", False):
+        create_named_cdn_bundle(repo_root, source_dir, dist_dir, primary_bundle)
+
+    if compat_bundle.get("enabled", False):
+        merged_compat_bundle = dict(primary_bundle)
+        merged_compat_bundle.update(compat_bundle)
+        merged_compat_bundle["plugins"] = compat_bundle.get("plugins", primary_bundle.get("plugins", []))
+        merged_compat_bundle["prepend_js"] = compat_bundle.get("prepend_js", primary_bundle.get("prepend_js", []))
+        create_named_cdn_bundle(repo_root, source_dir, dist_dir, merged_compat_bundle)
+
+
+def create_named_cdn_bundle(
+    repo_root: Path,
+    source_dir: Path,
+    dist_dir: Path,
+    bundle_config: dict,
+) -> None:
+    bundle_name = bundle_config.get("name", "theme-runtime")
     shared_css_files = bundle_config.get("shared_css", [])
     prepend_js_files = bundle_config.get("prepend_js", [])
     plugin_slugs = bundle_config.get("plugins", [])
@@ -783,14 +834,21 @@ def cleanup_stale_dist_outputs(source_dir: Path, dist_dir: Path, docs_only: bool
 
     keep_root_files = {"README.md", "CHANGELOG.md"}
     if not docs_only:
-        bundle_name = load_bundle_config(source_dir.parent).get("cdn_bundle", {}).get("name", "theme-core")
+        bundle_root = load_bundle_config(source_dir.parent)
+        bundle_name = bundle_root.get("cdn_bundle", {}).get("name", "theme-runtime")
+        compat_bundle_name = bundle_root.get("compat_bundle", {}).get("name", "theme-core")
         keep_root_files.update({
             "theme-design-system.html",
             "theme-design-tokens.css",
+            "theme-design-tokens-embed.html",
             "theme-ui.css",
+            "theme-ui-runtime.css",
             f"{bundle_name}.min.css",
             f"{bundle_name}.min.js",
             f"{bundle_name}-cdn.html",
+            f"{compat_bundle_name}.min.css",
+            f"{compat_bundle_name}.min.js",
+            f"{compat_bundle_name}-cdn.html",
         })
 
     for child in dist_dir.iterdir():

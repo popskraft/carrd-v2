@@ -14,7 +14,11 @@ PURGE_BASE = "https://purge.jsdelivr.net/gh/popskraft/carrd-v2@main/dist"
 def collect_cdn_assets() -> list[str]:
     assets = [
         "theme-design-tokens.css",
+        "theme-design-tokens-embed.html",
         "theme-ui.css",
+        "theme-ui-runtime.css",
+        "theme-runtime.min.css",
+        "theme-runtime.min.js",
         "theme-core.min.css",
         "theme-core.min.js",
     ]

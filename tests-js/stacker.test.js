@@ -104,7 +104,7 @@ test('stacker falls back to 0px on invalid offset', () => {
   assert.equal(wrapper.style.getPropertyValue('--theme-stacker-offset'), '0px');
 });
 
-test('stacker leaves the offset var unset by default for :root overrides', () => {
+test('stacker leaves the inline offset unset so the plugin root default applies', () => {
   const dom = createDom(stackMarkup());
   loadScript(dom, 'src/stacker/stacker.js');
   triggerDomReady(dom);

@@ -1,10 +1,17 @@
+:where(:root) {
+  --theme-accordeon-toggle-duration: 0.25s;
+  --theme-accordeon-animation-duration: 0.28s;
+  --theme-accordeon-animation-easing: ease-out;
+  --theme-accordeon-animation-distance: 0.5rem;
+}
+
 .theme-accordeon-toggle {
   cursor: pointer;
 }
 
 .theme-accordeon-toggle svg {
   transform-origin: center;
-  transition: transform var(--theme-accordeon-toggle-duration, 0.25s) ease;
+  transition: transform var(--theme-accordeon-toggle-duration) ease;
 }
 
 .theme-accordeon-toggle.is-open svg {
@@ -17,15 +24,15 @@
 
 .theme-accordeon-panel.is-open {
   animation: theme-accordeon-fade-down
-    var(--theme-accordeon-animation-duration, 0.28s)
-    var(--theme-accordeon-animation-easing, ease-out)
+    var(--theme-accordeon-animation-duration)
+    var(--theme-accordeon-animation-easing)
     both;
 }
 
 @keyframes theme-accordeon-fade-down {
   from {
     opacity: 0;
-    transform: translateY(calc(var(--theme-accordeon-animation-distance, 0.5rem) * -1));
+    transform: translateY(calc(var(--theme-accordeon-animation-distance) * -1));
   }
 
   to {

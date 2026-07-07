@@ -9,6 +9,7 @@ FAILED=0
 TARGET_FILES=(
   "README.md"
   "package.json"
+  "bundle.config.json"
   "scripts/templates/plugin_readme.md"
   "docs/specs/carrd-markup-contract.md"
   "docs/specs/plugin-data-contract.md"
@@ -80,6 +81,7 @@ search_pattern '\btheme-core-v2\b' 'Legacy theme-core-v2 bundle name'
 search_pattern '/dist/[a-z0-9-]+-v2/' 'Legacy dist plugin paths'
 search_pattern '/dist/theme-core-v2' 'Legacy theme bundle path'
 search_pattern '\b(sync-v2|migrate-v2)\b' 'Legacy automation names'
+search_pattern '@main/dist/theme-(runtime|design-tokens|ui-runtime)' 'Mutable canonical theme paths'
 
 if [[ "${FAILED}" -ne 0 ]]; then
   echo

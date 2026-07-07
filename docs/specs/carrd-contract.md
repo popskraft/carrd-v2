@@ -13,14 +13,28 @@
 
 ## Theme и delivery
 - `theme-design-system.html` — required base artifact для inline installs.
-- `theme-design-tokens.css` и `theme-ui.css` — low-level support files.
-- `theme-core.min.css` и `theme-core.min.js` — CDN bundle artifacts.
-- `theme-core-cdn.html` — single helper для Head/Body End snippets.
+- `theme-design-tokens.css` — reference/default contract containing only global palette, roles, typography and shared UI tokens for site-owned `:root { --theme-* }` embeds.
+- `theme-design-tokens-embed.html` — ready-to-paste full token layer for CDN installs.
+- `theme-ui-runtime.css` — clean shared UI support file for new `CDN Individual` installs.
+- `theme-ui.css` — compatibility shared UI artifact with the legacy token bridge for mutable `@main` consumers.
+- `theme-runtime.min.css` и `theme-runtime.min.js` — canonical CDN bundle artifacts for new installs.
+- `theme-runtime-cdn.html` — canonical Head/Body End helper.
+- `theme-core.min.css` и `theme-core.min.js` — compatibility CDN bundle artifacts.
+- `theme-core-cdn.html` — compatibility helper for legacy rollout only.
 - `no-loadwaiting` остаётся вне bundle, потому что он должен работать первым.
 
-## Pre-release target theme contract
-- До публичного v2 release delivery contract должен сойтись к трём canonical bundle artifacts: `theme-tokens.css` (tokens only), `theme-bundle.css` (shared UI + bundle plugin CSS без tokens) и `theme-bundle.js` (bundle plugin JS).
-- `theme-ui.css` остаётся shared UI support file только для `CDN Individual` / manual path и не документируется как обязательный include рядом с `theme-bundle.css`.
+Current install contract:
+- New installs use `theme-runtime.min.css` + `theme-runtime.min.js` plus a separate full token layer from `theme-design-tokens-embed.html`.
+- `theme-runtime.min.css` ships shared UI + bundled plugin CSS and the low-specificity defaults owned by those plugins, but never global token defaults.
+- `theme-core.min.css` is a compatibility artifact that ships default tokens and the legacy token bridge for existing mutable `@main` installs.
+- Site token values still belong in Carrd `Head` embeds as site-owned custom layers.
+- `theme-design-tokens.css` remains published as a repo-owned reference/default set, not as a required CDN include.
+- Every plugin CSS owns its public `--theme-<plugin>-*` defaults in a leading `:where(:root)` block. Optional plugin namespaces never leak into the global token layer or bundles that exclude that plugin.
+
+## Runtime contract
+- Canonical new-install artifacts: `theme-design-tokens-embed.html`, `theme-runtime.min.css`, `theme-runtime.min.js`.
+- `theme-ui-runtime.css` остаётся shared UI support file только для `CDN Individual` / manual path и не документируется как обязательный include рядом с `theme-runtime.min.css`.
+- `theme-core.*` и `theme-ui.css` сохраняются только как compatibility tail для already-live installs на mutable `@main`.
 - Custom site code не публикуется из `dist/` как `theme-custom-*` CDN artifacts и не считается частью repo-owned delivery surface.
 - Canonical site-owned custom layers:
   - `Brand Token Override` — только `:root { --theme-* }`.
@@ -33,6 +47,7 @@
   3. Поменять поведение plugin → `window.CarrdPluginOptions`.
   4. Добавить site-only behavior, который не решается CSS/config → `Site Custom JS`.
 - User-facing docs должны явно говорить, что site custom layers добавляются в Carrd embeds и не редактируют jsDelivr files.
+- User-facing docs не рекомендуют mutable refs (`@main`) для новых installs.
 
 ## README build map
 - `dist/README.md` собирается из root `README.md` через `scripts/templates/root_readme.md`.
@@ -60,7 +75,9 @@
 
 ## Coding и config rules
 - Vanilla JS only, без внешних runtime dependencies.
-- CSS variables используют префикс `--theme-` и всегда имеют fallback.
+- Global/shared CSS variables используют `--theme-color-*`, `--theme-button-*`, `--theme-link-*`, `--theme-nav-*`, `--theme-ui-*`, `--theme-font-*`, `--theme-focus-*` или `--theme-overlay-*` и определяются только в `theme-design-tokens.css`.
+- Public component variables используют namespace `--theme-<plugin>-*` и определяются только в leading `:where(:root)` block соответствующего plugin CSS.
+- Canonical CSS использует обязательные `var(--theme-*)` без fallback argument. Fallback chains разрешены только в rollout-only `theme-compat.css`; private optional variables без `--theme-` могут использовать fallback.
 - Public plugin globals используют формат `window.Carrd<Plugin>`.
 - Legacy globals `window.Carrd<Plugin>V2` допускаются только как backward-compat aliases.
 - Configuration идёт через `window.CarrdPluginOptions`.

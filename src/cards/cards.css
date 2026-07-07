@@ -1,6 +1,12 @@
+:where(:root) {
+  --theme-card-padding: 2rem;
+  --theme-card-padding-mobile: var(--theme-card-padding);
+  --theme-card-border-radius: 0;
+}
+
 .theme-card-item {
-  padding: var(--theme-card-padding, 2rem);
-  border-radius: var(--theme-card-border-radius, 0);
+  padding: var(--theme-card-padding);
+  border-radius: var(--theme-card-border-radius);
   height: 100%;
   box-sizing: border-box;
 }
@@ -11,6 +17,6 @@
 
 @media screen and (max-width: 736px) {
   .theme-card-item {
-    padding: var(--theme-card-padding-mobile, var(--theme-card-padding, 2rem));
+    padding: var(--theme-card-padding-mobile);
   }
 }

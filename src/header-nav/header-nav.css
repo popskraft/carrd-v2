@@ -1,3 +1,22 @@
+:where(:root) {
+  --theme-header-nav-toggle-position: fixed;
+  --theme-header-nav-toggle-top: 1rem;
+  --theme-header-nav-toggle-right: 1rem;
+  --theme-header-nav-toggle-size: 46px;
+  --theme-header-nav-toggle-radius: 0.5rem;
+  --theme-header-nav-toggle-bg: rgba(255, 255, 255, 0.2);
+  --theme-header-nav-toggle-backdrop: blur(10px);
+  --theme-header-nav-toggle-z-index: 100000;
+  --theme-header-nav-toggle-outline: 2px solid var(--theme-focus-ring-color);
+  --theme-header-nav-toggle-outline-offset: 2px;
+  --theme-header-nav-bar-gap: 5px;
+  --theme-header-nav-bar-width: 22px;
+  --theme-header-nav-bar-height: 2px;
+  --theme-header-nav-bar-color: var(--theme-nav-color);
+  --theme-header-nav-bar-radius: 999px;
+  --theme-header-nav-duration: 300ms;
+}
+
 /*
  * Header Nav - anti-jump mobile collapse.
  *
@@ -28,40 +47,40 @@
  * ------------------------------------------------------------------ */
 
 .theme-header-nav-toggle {
-  position: var(--theme-header-nav-toggle-position, fixed);
-  top: var(--theme-header-nav-toggle-top, 1rem);
-  right: var(--theme-header-nav-toggle-right, 1rem);
-  width: var(--theme-header-nav-toggle-size, 46px);
-  height: var(--theme-header-nav-toggle-size, 46px);
+  position: var(--theme-header-nav-toggle-position);
+  top: var(--theme-header-nav-toggle-top);
+  right: var(--theme-header-nav-toggle-right);
+  width: var(--theme-header-nav-toggle-size);
+  height: var(--theme-header-nav-toggle-size);
   display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--theme-header-nav-bar-gap, 5px);
+  gap: var(--theme-header-nav-bar-gap);
   padding: 0;
   border: none;
-  border-radius: var(--theme-header-nav-toggle-radius, 0.5rem);
-  background: var(--theme-header-nav-toggle-bg, rgba(255, 255, 255, 0.2));
-  -webkit-backdrop-filter: var(--theme-header-nav-toggle-backdrop, blur(10px));
-  backdrop-filter: var(--theme-header-nav-toggle-backdrop, blur(10px));
-  color: var(--theme-header-nav-bar-color, var(--theme-color-primary-dark, currentColor));
+  border-radius: var(--theme-header-nav-toggle-radius);
+  background: var(--theme-header-nav-toggle-bg);
+  -webkit-backdrop-filter: var(--theme-header-nav-toggle-backdrop);
+  backdrop-filter: var(--theme-header-nav-toggle-backdrop);
+  color: var(--theme-header-nav-bar-color);
   cursor: pointer;
-  z-index: var(--theme-header-nav-toggle-z-index, 100000);
+  z-index: var(--theme-header-nav-toggle-z-index);
 }
 
 .theme-header-nav-toggle:focus-visible {
-  outline: var(--theme-header-nav-toggle-outline, 2px solid currentColor);
-  outline-offset: var(--theme-header-nav-toggle-outline-offset, 2px);
+  outline: var(--theme-header-nav-toggle-outline);
+  outline-offset: var(--theme-header-nav-toggle-outline-offset);
 }
 
 .theme-header-nav-toggle-bar {
-  width: var(--theme-header-nav-bar-width, 22px);
-  height: var(--theme-header-nav-bar-height, 2px);
-  background: var(--theme-header-nav-bar-color, var(--theme-color-primary-dark, currentColor));
-  border-radius: var(--theme-header-nav-bar-radius, 999px);
+  width: var(--theme-header-nav-bar-width);
+  height: var(--theme-header-nav-bar-height);
+  background: var(--theme-header-nav-bar-color);
+  border-radius: var(--theme-header-nav-bar-radius);
   transition:
-    opacity var(--theme-header-nav-duration, 300ms) ease,
-    transform var(--theme-header-nav-duration, 300ms) ease;
+    opacity var(--theme-header-nav-duration) ease,
+    transform var(--theme-header-nav-duration) ease;
 }
 
 /* ------------------------------------------------------------------ *

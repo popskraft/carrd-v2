@@ -42,14 +42,22 @@ def expected_dist_files(repo_root: Path) -> set[str]:
         expected.add("CHANGELOG.md")
     if (src_dir / "theme-design-tokens.css").exists():
         expected.add("theme-design-tokens.css")
+        expected.add("theme-design-tokens-embed.html")
         expected.add("theme-design-system.html")
     if (src_dir / "theme-ui.css").exists():
         expected.add("theme-ui.css")
+        expected.add("theme-ui-runtime.css")
     if bundle_config.get("enabled", False):
-        bundle_name = bundle_config.get("name", "theme-core")
+        bundle_name = bundle_config.get("name", "theme-runtime")
         expected.add(f"{bundle_name}.min.css")
         expected.add(f"{bundle_name}.min.js")
         expected.add(f"{bundle_name}-cdn.html")
+    compat_bundle = build.load_bundle_config(repo_root).get("compat_bundle", {})
+    if compat_bundle.get("enabled", False):
+        compat_name = compat_bundle.get("name", "theme-core")
+        expected.add(f"{compat_name}.min.css")
+        expected.add(f"{compat_name}.min.js")
+        expected.add(f"{compat_name}-cdn.html")
 
     for entry in sorted(src_dir.iterdir(), key=lambda path: path.name):
         if not entry.is_dir() or entry.name.startswith("."):

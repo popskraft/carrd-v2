@@ -1,3 +1,7 @@
+:where(:root) {
+  --theme-stacker-offset: 0px;
+}
+
 /* Stacker: scroll-stacking containers */
 
 .theme-stacker-group {
@@ -9,7 +13,7 @@
 .theme-stacker-group > .theme-stacker-item {
   position: sticky;
   position: -webkit-sticky;
-  top: var(--theme-stacker-offset, 0px);
+  top: var(--theme-stacker-offset);
 }
 
 .theme-stacker-group.is-disabled > .theme-stacker-item {

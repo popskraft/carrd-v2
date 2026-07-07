@@ -19,7 +19,8 @@ Two runtime repos:
 ## Public Naming Policy
 The repo path stays `popskraft/carrd-v2`, but the public runtime surface uses clean names.
 - Repo: `popskraft/carrd-v2` · Package path: `carrd-v2` · Public title: `Carrd Plugins`
-- Bundle: `theme-core.min.css`, `theme-core.min.js`, `theme-core-cdn.html`
+- Canonical bundle: `theme-runtime.min.css`, `theme-runtime.min.js`, `theme-runtime-cdn.html`
+- Compatibility bundle: `theme-core.min.css`, `theme-core.min.js`, `theme-core-cdn.html`
 - Plugin folders/files: `src/<plugin>/`, `dist/<plugin>/<plugin>.min.*`
 - Globals: `window.Carrd<Plugin>`, `window.CarrdPluginOptions`
 - Legacy globals: `window.Carrd<Plugin>V2` are transient migration code and are removed before the clean-runtime release
@@ -28,13 +29,13 @@ The repo path stays `popskraft/carrd-v2`, but the public runtime surface uses cl
 
 Example CDN bundle:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.css">
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main/dist/theme-core.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.css">
+<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.0.0/dist/theme-runtime.min.js"></script>
 ```
 
 ## Migration Policy
 - **Old sites:** stay on `popskraft/carrd-plugins`, keep old snippets, receive only emergency legacy fixes.
-- **New sites:** use only `popskraft/carrd-v2`, current bundle/snippets, and clean names in docs/attrs/globals.
+- **New sites:** use only `popskraft/carrd-v2`, immutable bundle/snippets, and clean names in docs/attrs/globals.
 - **Migrated sites:** migrated manually; replace old CDN snippets with current `carrd-v2` snippets; replace legacy markup attrs/classes/hashes with the clean contract; validate before old snippets are removed.
 
 ## Implemented State

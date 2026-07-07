@@ -1,17 +1,26 @@
+:where(:root) {
+  --theme-floating-cta-z-index: 99999;
+  --theme-floating-cta-fade-duration: 0.3s;
+  --theme-floating-cta-move-duration: 0.45s;
+  --theme-floating-cta-edge: 1.25rem;
+  --theme-floating-cta-mobile-edge: 1rem;
+  --theme-floating-cta-offset: 24px;
+}
+
 .theme-floating-cta {
   position: fixed;
   top: auto;
   right: auto;
   bottom: auto;
   left: auto;
-  z-index: var(--theme-floating-cta-z-index, 99999);
+  z-index: var(--theme-floating-cta-z-index);
   margin: 0 !important;
   opacity: 0;
   pointer-events: none;
   box-sizing: border-box;
   transition:
-    opacity var(--theme-floating-cta-fade-duration, 0.3s) ease,
-    transform var(--theme-floating-cta-move-duration, 0.45s) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--theme-floating-cta-fade-duration) ease,
+    transform var(--theme-floating-cta-move-duration) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .buttons-component.theme-floating-cta:not(:first-child),
@@ -26,39 +35,39 @@
 }
 
 .theme-floating-cta:is([data-floating-position="top-left"], [data-floating-position="top-left"]) {
-  top: var(--theme-floating-cta-edge, 1.25rem);
-  left: var(--theme-floating-cta-edge, 1.25rem);
-  transform: translate3d(0, calc(var(--theme-floating-cta-offset, 24px) * -1), 0);
+  top: var(--theme-floating-cta-edge);
+  left: var(--theme-floating-cta-edge);
+  transform: translate3d(0, calc(var(--theme-floating-cta-offset) * -1), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="top-center"], [data-floating-position="top-center"]) {
-  top: var(--theme-floating-cta-edge, 1.25rem);
+  top: var(--theme-floating-cta-edge);
   left: 50%;
-  transform: translate3d(-50%, calc(var(--theme-floating-cta-offset, 24px) * -1), 0);
+  transform: translate3d(-50%, calc(var(--theme-floating-cta-offset) * -1), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="top-right"], [data-floating-position="top-right"]) {
-  top: var(--theme-floating-cta-edge, 1.25rem);
-  right: var(--theme-floating-cta-edge, 1.25rem);
-  transform: translate3d(0, calc(var(--theme-floating-cta-offset, 24px) * -1), 0);
+  top: var(--theme-floating-cta-edge);
+  right: var(--theme-floating-cta-edge);
+  transform: translate3d(0, calc(var(--theme-floating-cta-offset) * -1), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="bottom-left"], [data-floating-position="bottom-left"]) {
-  bottom: var(--theme-floating-cta-edge, 1.25rem);
-  left: var(--theme-floating-cta-edge, 1.25rem);
-  transform: translate3d(0, var(--theme-floating-cta-offset, 24px), 0);
+  bottom: var(--theme-floating-cta-edge);
+  left: var(--theme-floating-cta-edge);
+  transform: translate3d(0, var(--theme-floating-cta-offset), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="bottom-center"], [data-floating-position="bottom-center"]) {
-  bottom: var(--theme-floating-cta-edge, 1.25rem);
+  bottom: var(--theme-floating-cta-edge);
   left: 50%;
-  transform: translate3d(-50%, var(--theme-floating-cta-offset, 24px), 0);
+  transform: translate3d(-50%, var(--theme-floating-cta-offset), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="bottom-right"], [data-floating-position="bottom-right"]) {
-  right: var(--theme-floating-cta-edge, 1.25rem);
-  bottom: var(--theme-floating-cta-edge, 1.25rem);
-  transform: translate3d(0, var(--theme-floating-cta-offset, 24px), 0);
+  right: var(--theme-floating-cta-edge);
+  bottom: var(--theme-floating-cta-edge);
+  transform: translate3d(0, var(--theme-floating-cta-offset), 0);
 }
 
 .theme-floating-cta:is([data-floating-position="top-left"], [data-floating-position="top-left"]).is-visible,
@@ -77,17 +86,17 @@
   .theme-floating-cta {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    max-width: calc(100vw - (var(--theme-floating-cta-mobile-edge, 1rem) * 2));
+    max-width: calc(100vw - (var(--theme-floating-cta-mobile-edge) * 2));
   }
 
   .theme-floating-cta:is([data-floating-position="top-left"], [data-floating-position="top-left"]),
   .theme-floating-cta:is([data-floating-position="bottom-left"], [data-floating-position="bottom-left"]) {
-    left: var(--theme-floating-cta-mobile-edge, 1rem);
+    left: var(--theme-floating-cta-mobile-edge);
   }
 
   .theme-floating-cta:is([data-floating-position="top-right"], [data-floating-position="top-right"]),
   .theme-floating-cta:is([data-floating-position="bottom-right"], [data-floating-position="bottom-right"]) {
-    right: var(--theme-floating-cta-mobile-edge, 1rem);
+    right: var(--theme-floating-cta-mobile-edge);
   }
 
   .theme-floating-cta:is([data-floating-position="top-center"], [data-floating-position="top-center"]),

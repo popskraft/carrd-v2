@@ -141,17 +141,19 @@ test('grid-cluster css applies gap overrides to both row and column gaps', () =>
     'utf-8'
   );
 
+  assert.match(gridCss, /--theme-grid-row-gap:\s*1rem;/m);
+  assert.match(gridCss, /--theme-grid-row-gap-desktop:\s*2rem;/m);
   assert.match(
     gridCss,
-    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap,\s*1rem\)\);/m
+    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap\)\);/m
   );
   assert.match(
     gridCss,
-    /--local-row-gap:\s*var\(--gap-mobile-override,\s*var\(--gap-override,\s*var\(--theme-grid-row-gap,\s*1rem\)\)\);/m
+    /--local-row-gap:\s*var\(--gap-mobile-override,\s*var\(--gap-override,\s*var\(--theme-grid-row-gap\)\)\);/m
   );
   assert.match(
     gridCss,
-    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap-desktop,\s*2rem\)\);/m
+    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap-desktop\)\);/m
   );
 });
 

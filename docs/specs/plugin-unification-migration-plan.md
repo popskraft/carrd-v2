@@ -2,7 +2,7 @@
 
 ## Суть
 
-Привести `/Users/popskraft/Projects/carrd-v2` к самостоятельному clean-only runtime второй версии, проверить каждый плагин до любых изменений реальных сайтов и затем выполнить миграцию строго по цепочке:
+Привести `/Users/popskraft/Projects/carrd-v2` к clean source/runtime contract второй версии с controlled compatibility delivery tails, проверить каждый плагин до любых изменений реальных сайтов и затем выполнить миграцию строго по цепочке:
 
 1. Репозиторий и все плагины.
 2. Отдельная полная тестовая и remediation-сессия.
@@ -15,7 +15,8 @@
 ### Целевой контракт
 
 - Repo/CDN path остаётся `popskraft/carrd-v2`.
-- Public bundle: `theme-core.min.css`, `theme-core.min.js`, `theme-core-cdn.html`.
+- Canonical new-install bundle: `theme-runtime.min.css`, `theme-runtime.min.js`, `theme-runtime-cdn.html`.
+- Compatibility bundle for mutable `@main` consumers: `theme-core.min.css`, `theme-core.min.js`, `theme-core-cdn.html`.
 - Plugin paths: `src/<plugin>/` и `dist/<plugin>/<plugin>.min.*`.
 - Config: только `window.CarrdPluginOptions`.
 - API globals: только `window.Carrd<Plugin>`.
@@ -218,7 +219,7 @@ Gate `faktura-app`: generated assets соответствуют clean Carrd expo
 
 ### Done
 
-- `carrd-v2` является clean-only runtime и проходит полный Reviewer audit.
+- `carrd-v2` использует clean source/runtime contract и проходит полный Reviewer audit; compatibility delivery tails допустимы только как rollout bridge.
 - Все plugins протестированы до первой live migration.
 - `main-template` мигрирован и подтверждён первым.
 - Carrd `faktura` мигрирован только после PASS `main-template`.

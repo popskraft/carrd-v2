@@ -12,6 +12,8 @@
 - [x] Plugin install wording is derived from bundle membership and placement rules, with no manual `dist/` edits or build-date drift.
 - [x] Public README files contain no local project or user filesystem paths.
 - [x] `theme-design-system.html` remains the required base artifact for inline installs.
+- [x] `theme-design-tokens.css` owns only global/shared tokens; every plugin CSS owns its `--theme-<plugin>-*` defaults.
+- [x] Canonical CSS consumes mandatory `--theme-*` tokens without fallback arguments; compatibility fallbacks stay isolated in `theme-compat.css`.
 
 ## Validation
 - [x] `npm run build`
