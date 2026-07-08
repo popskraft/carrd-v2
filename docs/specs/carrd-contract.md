@@ -85,14 +85,17 @@ Current install contract:
 - Commit messages — English, формат `Action Component: Description`.
 
 ## Release workflow
-1. Править `src/<plugin>/...` и, если нужно, source README.
-2. Запустить `npm run build:docs` или `python3 scripts/minify_plugins.py --docs-only`.
-3. Проверить generated `dist/` и public README.
-4. При code changes дополнительно прогнать `npm run verify:dist`, `npm run test`, `npm run lint`.
-5. После push изменений, влияющих на CDN, запустить `npm run cdn:purge`.
+Полный owner процесса: `docs/specs/release-contract.md`.
+
+- Разработка идёт в `main`; активный Carrd draft может временно быть подключён к `@main` во время доработки.
+- Freeze, release candidate, опубликованный продаваемый шаблон и клиентская поставка никогда не подключаются к `@main`.
+- Каждый публичный runtime получает новый SemVer, immutable Git tag и version-pinned jsDelivr URL.
+- Старые release tags не изменяются и не удаляются.
+- Release candidate готовится через `npm run release:prepare`; публикация tag, purge и переключение Carrd выполняются отдельными явными шагами.
 
 ## Related docs
 - `docs/specs/carrd-markup-contract.md`
+- `docs/specs/release-contract.md`
 - `docs/specs/plugin-data-contract.md`
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`

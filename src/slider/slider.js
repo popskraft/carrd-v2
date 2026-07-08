@@ -69,6 +69,11 @@
     return true;
   }
 
+  /**
+   * One slider instance owns the generated wrapper, navigation state,
+   * drag lifecycle, autoplay, and responsive layout recalculation for
+   * a contiguous cluster of `[data-slider]` elements.
+   */
   class Slider {
     constructor(slides, config) {
       this.slides = slides;
@@ -680,6 +685,9 @@
     return clusters;
   }
 
+  /**
+   * Discover contiguous slider clusters and initialize missing instances.
+   */
   function init() {
     findSliderClusters().forEach(cluster => {
       const id =
@@ -692,6 +700,9 @@
     });
   }
 
+  /**
+   * Destroy a slider instance by its configured id and restore source markup.
+   */
   function destroyById(id) {
     const i = SLIDER_INSTANCES.findIndex(e => e.instanceId === id);
     if (i === -1) return false;
@@ -700,15 +711,25 @@
     return true;
   }
 
+  /**
+   * Destroy every initialized slider instance on the current page.
+   */
   function destroyAll() {
     SLIDER_INSTANCES.forEach(e => e.instance.destroy());
     SLIDER_INSTANCES.length = 0;
   }
 
+  /**
+   * Recalculate layout for every initialized slider instance.
+   * Use this after late DOM mutations outside the plugin.
+   */
   function refresh() {
     SLIDER_INSTANCES.forEach(e => e.instance.refreshLayout());
   }
 
+  /**
+   * Public API for late initialization, teardown, and forced layout refresh.
+   */
   window.CarrdSlider = { init, destroyAll, destroyById, refresh, getInstances: () => SLIDER_INSTANCES.map(e => e.instance) };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

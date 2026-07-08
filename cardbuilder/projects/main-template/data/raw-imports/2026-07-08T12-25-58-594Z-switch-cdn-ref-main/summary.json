@@ -1,0 +1,13 @@
+{
+  "mode": "switch-to-main",
+  "changedIds": [
+    "embed08",
+    "embed14",
+    "embed02",
+    "embed04",
+    "embed05"
+  ],
+  "dirty": false,
+  "beforeSha256": "1a79f0d71db675256f9117bc983715461303ae8c5cdf55f5465225ea64e91b26",
+  "afterSha256": "8e81b76e87e250a094967a39d81cdd5846061ceca9e1107967532a0a7ae57b68"
+}

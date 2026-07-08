@@ -93,7 +93,10 @@ function resolveSnapshotDirectory(args) {
 function readSnapshot(filePath) {
   const raw = fs.readFileSync(filePath, "utf8");
   const parsed = JSON.parse(raw);
-  const value = parsed?.value;
+  const value =
+    parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed.value && typeof parsed.value === "object" ? parsed.value : parsed)
+      : null;
   if (!value || !Array.isArray(value.rows)) {
     fail(`Invalid snapshot format: ${filePath}`);
   }

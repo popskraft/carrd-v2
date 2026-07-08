@@ -144,7 +144,7 @@ test('header-nav CDN snippet includes no-flash critical CSS in Head', () => {
   assert.ok(cdn.includes('<style>'));
   assert.ok(
     cdn.includes(
-      '#header:not(.is-nav-open) .header-mobile-el-collapsing'
+      '#header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing)'
     )
   );
   assert.ok(cdn.indexOf('<style>') < cdn.indexOf('header-nav.min.css'));
@@ -347,7 +347,7 @@ test('published dist scripts execute in a jsdom smoke harness', () => {
     'grid-cluster':
       '<div data-grid="features">A</div><div data-grid="features">B</div>',
     'header-nav':
-      '<header id="header"><div class="container-component"><div class="wrapper"><div class="inner"><div>Brand</div><div class="header-mobile-el-collapsing"><a href="#a">A</a></div></div></div></div></header>',
+      '<header id="header"><div class="container-component"><div class="wrapper"><div class="inner"><div>Brand</div><div class="header-mobile-hide"><a href="#a">A</a></div></div></div></div></header>',
     'modal':
       '<div data-modal="smoke" class="container-component"><div class="wrapper"><div class="inner">Modal</div></div></div>',
     'no-loadwaiting': '<div id="loader"></div>',

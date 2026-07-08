@@ -22,11 +22,12 @@
  *
  * Activation model:
  *   The plugin is active on any page where the embed is installed AND #header
- *   contains at least one `.header-mobile-el-collapsing` element. No
+ *   contains at least one `.header-mobile-hide` element. Legacy
+ *   `.header-mobile-el-collapsing` still works as an alias. No
  *   `site-header` / `header-collapsing` classes are needed.
  *
- *   On mobile (<= breakpoint) every `.header-mobile-el-collapsing` inside
- *   #header collapses behind a hamburger. That's it: no sticky, no spacer.
+ *   On mobile (<= breakpoint) every marked element inside `#header`
+ *   collapses behind a hamburger. That's it: no sticky, no spacer.
  *
  * Contract: the plugin ONLY hides/shows flagged elements. It must never
  * restyle them. While open it applies zero overrides; while closed it only
@@ -110,7 +111,7 @@
    * display:none fully removes the element from flow: zero height, no
    * margin/padding/wrapper leak (which is why max-height:0 wasn't enough).
    * !important beats Carrd's own per-instance display rules while closed. */
-  #header:not(.is-nav-open) .header-mobile-el-collapsing {
+  #header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing) {
     display: none !important;
   }
 }

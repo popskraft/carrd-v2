@@ -9,7 +9,7 @@
   "structure": {
     "builderScan": "cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json",
     "domAudit": "cardbuilder/projects/main-template/data/snapshots/template-instance-dom-audit.json",
-    "tabsMap": "cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-06-29.json",
+    "tabsMap": "cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-07-07.json",
     "styleMap": "cardbuilder/projects/main-template/data/style-maps/template-instance-style-map.json",
     "containerRegistry": "cardbuilder/projects/main-template/data/inventories/container-registry.json"
   },

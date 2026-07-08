@@ -9,9 +9,10 @@ Accepted
 `header-nav` remains a structural exception. Its public Carrd contract stays:
 
 - `#header` scope
-- one or more `.header-mobile-el-collapsing` elements inside `#header`
+- one or more `.header-mobile-hide` elements inside `#header`
 
 No new public `data-*` contract is required.
+Legacy `.header-mobile-el-collapsing` remains a backward-compat alias during the transition.
 
 ## Evidence
 
@@ -26,5 +27,5 @@ No new public `data-*` contract is required.
 
 ## Consequence
 
-- `header-nav` docs continue to describe `.header-mobile-el-collapsing` as the only required authored marker.
+- `header-nav` docs continue to describe `.header-mobile-hide` as the canonical authored marker.
 - Header migrations should remove legacy `site-header`, `header-collapsing`, and `site-header-cta` hooks unless a compatibility need is explicitly retained.

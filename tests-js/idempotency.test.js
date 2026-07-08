@@ -106,9 +106,9 @@ test('header-nav does not duplicate toggle on repeated init', () => {
   const dom = createDom(
     '<header id="header">' +
       '<div class="container-component">' +
-        '<div class="wrapper"><div class="inner">' +
-          '<div>' +
-            '<div class="links-component header-mobile-el-collapsing">' +
+          '<div class="wrapper"><div class="inner">' +
+            '<div>' +
+            '<div class="links-component header-mobile-hide">' +
               '<nav><a href="#a">A</a></nav>' +
             '</div>' +
           '</div>' +

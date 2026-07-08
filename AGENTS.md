@@ -14,10 +14,11 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 
 ## Commands
 - `npm run build` — пересобрать `dist/` из `src/` (минификация, README, embeds, `theme-core` bundle)
-- `npm run validate` — полная проверка: verify:dist + clean-contract + тесты + lint
+- `npm run validate` — полная проверка: verify:dist + bundle-budget + clean-contract + dead-code + tests + `src/**` coverage + `cardbuilder/**` coverage + lint
 - `npm run test:js` — только jsdom-тесты плагинов
+- `npm run release:prepare` — пересобрать `dist/`, выполнить `validate` и проверить новую release version без commit/push/tag
 - `npm run cdn:purge` — сброс jsDelivr-кэша для `dist/` assets
-- `npm run deploy` — build → `git add dist/` → commit → push → purge (публикация CDN)
+- Release/publish — только по `docs/specs/release-contract.md`; универсальный автодеплой запрещён
 
 ## Structure
 - `src/` — editable plugin source и source README
@@ -47,6 +48,7 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 - `admincarrd/app/config/config.php` is tracked only as a sanitized default config; runtime logs, sessions, uploads, and local secrets stay out of git.
 - Keep secrets, tokens, cookies, and `.env` values out of docs.
 - Validate the touched surface with the repository's native checks.
+- Sold templates use only immutable SemVer CDN refs; never move or overwrite a published release tag.
 
 ## Glossary
 - `theme` → shared Carrd foundation (`theme-design-system.html`, `theme-core`)

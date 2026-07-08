@@ -2,12 +2,36 @@
   "meta": {
     "domain": "template-instance",
     "templateId": "main-template",
-    "generatedAt": "2026-04-07T00:00:00.000Z",
-    "builderScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json",
+    "generatedAt": "2026-07-07T19:20:21.058Z",
+    "builderScan": "live builder embed/runtime contract read",
     "publishedScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/inventories/published-site-plugin-scan.json",
-    "method": "normalized-post-migration-inventory"
+    "method": "bundle-aware-runtime-contract-inventory"
   },
   "plugins": [
+    {
+      "plugin": "accordeon",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdAccordeon"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdAccordeon"
+        }
+      ]
+    },
     {
       "plugin": "cards",
       "detectedInBuilderScan": true,
@@ -17,36 +41,50 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed05 Cards"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:9"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:10"
+          "source": "published:marker",
+          "detail": "cards:1"
         }
       ]
     },
     {
-      "plugin": "columns",
-      "detectedInBuilderScan": false,
-      "detectedInPublishedScan": false,
-      "builderGlobals": [],
-      "publishedGlobals": [],
-      "confidence": "low",
-      "evidence": []
-    },
-    {
       "plugin": "cookie-banner",
-      "detectedInBuilderScan": false,
-      "detectedInPublishedScan": false,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "builderGlobals": [],
-      "publishedGlobals": [],
-      "confidence": "low",
-      "evidence": []
+      "publishedGlobals": [
+        "CarrdCookieBanner"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed05 cookie-banner"
+        },
+        {
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/cookie-banner/cookie-banner.min.js"
+        },
+        {
+          "source": "published:style",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/cookie-banner/cookie-banner.min.css"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdCookieBanner"
+        },
+        {
+          "source": "published:marker",
+          "detail": "cookieBanner:1"
+        }
+      ]
     },
     {
       "plugin": "faq",
@@ -57,16 +95,34 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed01 FAQ"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:15"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:16"
+          "source": "published:marker",
+          "detail": "faq:1"
+        }
+      ]
+    },
+    {
+      "plugin": "floating-cta",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "medium",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         }
       ]
     },
@@ -79,27 +135,40 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed09 Grid Cluster"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:11"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:12"
+          "source": "published:marker",
+          "detail": "gridCluster:5"
         }
       ]
     },
     {
       "plugin": "header-nav",
-      "detectedInBuilderScan": false,
-      "detectedInPublishedScan": false,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "builderGlobals": [],
       "publishedGlobals": [],
-      "confidence": "low",
-      "evidence": []
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:marker",
+          "detail": "headerNav:2"
+        }
+      ]
     },
     {
       "plugin": "modal",
@@ -112,20 +181,20 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed07 Modal"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:13"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:14"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
           "source": "published:global",
           "detail": "CarrdModal"
+        },
+        {
+          "source": "published:marker",
+          "detail": "modal:1"
         }
       ]
     },
@@ -138,12 +207,16 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed08 No Load Waiting in HEAD"
+          "source": "builder:embed",
+          "detail": "embed08 no-loadwaiting"
         },
         {
-          "source": "published:inline",
-          "detail": "script:2"
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/no-loadwaiting/no-loadwaiting.min.js"
+        },
+        {
+          "source": "published:marker",
+          "detail": "noLoadwaiting:1"
         }
       ]
     },
@@ -158,20 +231,16 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed04 Shopping Cart CSS"
+          "source": "builder:embed",
+          "detail": "embed04 shopping-cart"
         },
         {
-          "source": "builder:embed-title",
-          "detail": "embed03 Shopping Cart JS"
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/shopping-cart/shopping-cart.min.js"
         },
         {
-          "source": "published:inline",
-          "detail": "style:5"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:6"
+          "source": "published:style",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/shopping-cart/shopping-cart.min.css"
         },
         {
           "source": "published:global",
@@ -190,31 +259,102 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed06 Slider"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:7"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:8"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
           "source": "published:global",
           "detail": "CarrdSlider"
+        },
+        {
+          "source": "published:marker",
+          "detail": "slider:7"
+        }
+      ]
+    },
+    {
+      "plugin": "stacker",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdStacker"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdStacker"
+        },
+        {
+          "source": "published:marker",
+          "detail": "stacker:3"
+        }
+      ]
+    },
+    {
+      "plugin": "switcher",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "builderGlobals": [],
+      "publishedGlobals": [
+        "CarrdSwitcher"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdSwitcher"
+        },
+        {
+          "source": "published:marker",
+          "detail": "switcher:10"
         }
       ]
     },
     {
       "plugin": "typography",
-      "detectedInBuilderScan": false,
-      "detectedInPublishedScan": false,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "builderGlobals": [],
-      "publishedGlobals": [],
-      "confidence": "low",
-      "evidence": []
+      "publishedGlobals": [
+        "CarrdTypography"
+      ],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdTypography"
+        }
+      ]
     }
   ]
 }

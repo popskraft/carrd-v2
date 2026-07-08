@@ -53,6 +53,11 @@
     });
   };
 
+  /**
+   * Initialize every valid FAQ container on the page.
+   * Each container becomes a disclosure list with synchronized
+   * button state and answer visibility.
+   */
   function init() {
     const containers = Array.from(document.querySelectorAll(CONTAINER_SELECTOR)).filter(isFaqContainer);
     if (!containers.length) return;
@@ -214,6 +219,10 @@
     trigger.addEventListener('click', toggle);
   }
 
+  /**
+   * Toggle one answer and keep the container-level open registry in sync.
+   * This allows single-open FAQ groups to close stale answers deterministically.
+   */
   function toggleAnswer(header, answer) {
     const container = header.closest(CONTAINER_SELECTOR);
     const containerConfig = getContainerConfig(container);

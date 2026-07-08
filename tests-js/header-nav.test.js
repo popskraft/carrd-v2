@@ -18,7 +18,7 @@ function createHeaderMarkup(extraRootClasses = '') {
         '<div class="wrapper"><div class="inner">' +
           '<div class="brand-slot">Brand</div>' +
           '<div class="nav-slot">' +
-            '<ul class="links-component header-mobile-el-collapsing">' +
+            '<ul class="links-component header-mobile-hide">' +
               '<li><a href="#menu">Menu</a></li>' +
             '</ul>' +
           '</div>' +
@@ -57,7 +57,7 @@ test('header-nav initializes from #header collapsing markers and toggles mobile 
   assert.equal(header.classList.contains('is-nav-open'), true);
   assert.equal(toggle.getAttribute('aria-expanded'), 'true');
 
-  click(dom, header.querySelector('.header-mobile-el-collapsing a'));
+  click(dom, header.querySelector('.header-mobile-hide a'));
 
   assert.equal(header.classList.contains('is-nav-open'), false);
   assert.equal(toggle.getAttribute('aria-expanded'), 'false');
@@ -104,6 +104,27 @@ test('header-nav does not initialize without a collapsing marker', () => {
   assert.equal(header.querySelector('.theme-header-nav-toggle'), null);
 });
 
+test('header-nav still initializes from the legacy collapsing marker alias', () => {
+  const dom = createDom(
+    '<header id="header">' +
+      '<div class="container-component">' +
+        '<div class="wrapper"><div class="inner">' +
+          '<div>Brand</div>' +
+          '<div><ul class="links-component header-mobile-el-collapsing"><li><a href="#a">A</a></li></ul></div>' +
+        '</div></div>' +
+      '</div>' +
+    '</header>'
+  );
+  mockViewport(dom, 480);
+
+  loadScript(dom, 'src/header-nav/header-nav.js');
+  triggerDomReady(dom);
+
+  const header = dom.window.document.querySelector('#header');
+  assert.equal(header.getAttribute('data-header-nav-bound'), 'true');
+  assert.ok(header.querySelector('.theme-header-nav-toggle'));
+});
+
 test('header-nav does not require legacy site-header or header-collapsing classes', () => {
   const dom = createDom(createHeaderMarkup());
   mockViewport(dom, 480);
@@ -122,7 +143,7 @@ test('header-nav finds collapsing elements anywhere inside #header', () => {
   const dom = createDom(
     '<header id="header">' +
       '<div class="external-nav-slot">' +
-        '<ul class="links-component header-mobile-el-collapsing">' +
+        '<ul class="links-component header-mobile-hide">' +
           '<li><a href="#a">A</a></li>' +
         '</ul>' +
       '</div>' +
@@ -142,7 +163,7 @@ test('header-nav finds collapsing elements anywhere inside #header', () => {
   const doc = dom.window.document;
   const header = doc.querySelector('#header');
   const toggle = header.querySelector('.theme-header-nav-toggle');
-  const externalNav = doc.querySelector('.external-nav-slot .header-mobile-el-collapsing');
+  const externalNav = doc.querySelector('.external-nav-slot .header-mobile-hide');
 
   assert.ok(toggle);
   assert.equal(header.getAttribute('data-header-nav-bound'), 'true');
@@ -205,7 +226,7 @@ test('header-nav respects closeOnLinkClick false', () => {
   const toggle = header.querySelector('.theme-header-nav-toggle');
 
   click(dom, toggle);
-  click(dom, header.querySelector('.header-mobile-el-collapsing a'));
+  click(dom, header.querySelector('.header-mobile-hide a'));
 
   assert.equal(header.classList.contains('is-nav-open'), true);
 });
@@ -237,7 +258,7 @@ test('header-nav does not create sticky shell, spacer, or overlay artifacts', ()
       '<div class="container-component site-header header-fixed header-collapsing">' +
         '<div class="wrapper"><div class="inner">' +
           '<div>Brand</div>' +
-          '<div><ul class="header-mobile-el-collapsing"><li><a href="#a">A</a></li></ul></div>' +
+          '<div><ul class="header-mobile-hide"><li><a href="#a">A</a></li></ul></div>' +
         '</div></div>' +
       '</div>' +
     '</header>'

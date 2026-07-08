@@ -5,7 +5,8 @@
    * Header Nav - anti-jump mobile collapse.
    *
    * Activation: any #header that contains at least one
-   * `.header-mobile-el-collapsing` element. No `site-header` /
+   * `.header-mobile-hide` element. Legacy
+   * `.header-mobile-el-collapsing` still works as an alias. No `site-header` /
    * `header-collapsing` classes required. No sticky.
    *
    * On mobile (<= breakpoint) flagged elements collapse behind a
@@ -23,7 +24,7 @@
   };
 
   const HEADER_SELECTOR = '#header';
-  const COLLAPSING_SELECTOR = '.header-mobile-el-collapsing';
+  const COLLAPSING_SELECTOR = '.header-mobile-hide, .header-mobile-el-collapsing';
   const CLASSNAMES = {
     open: 'is-nav-open',
     primarySection: 'theme-header-nav-primary-section',
@@ -34,6 +35,9 @@
   const INSTANCES = [];
   let globalsBound = false;
 
+  /**
+   * Build the fixed-position hamburger button used on mobile breakpoints.
+   */
   function createToggle() {
     const button = document.createElement('button');
     button.type = 'button';
@@ -76,6 +80,10 @@
     });
   }
 
+  /**
+   * Bind one Carrd header instance if it contains collapsible mobile rows.
+   * The menu stays in normal document flow; JS only injects/toggles the button.
+   */
   function initializeHeader(header) {
     if (header.getAttribute('data-header-nav-bound') === 'true') return;
     // Only activate if there is something to collapse.
@@ -142,6 +150,9 @@
     onResize();
   }
 
+  /**
+   * Initialize every matching Carrd header on the page.
+   */
   function init() {
     document.querySelectorAll(HEADER_SELECTOR).forEach(initializeHeader);
     bindGlobals();

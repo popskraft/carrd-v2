@@ -338,6 +338,31 @@ test("serializeRuntimePayload escapes U+2028/U+2029 line separators", async () =
   assert.equal(roundTrip.value, "line break end");
 });
 
+test("findMatchingSiteTab prioritizes the Builder tab over the published site tab", async () => {
+  const { findMatchingSiteTab } = await cdpPromise;
+  const site = {
+    builderUrl: "https://carrd.co/dashboard/4155176224428477/build",
+    publishedSiteUrl: "https://mini.crd.co/"
+  };
+  const tabs = [
+    {
+      id: "published",
+      type: "page",
+      url: "https://mini.crd.co/",
+      title: "minigree"
+    },
+    {
+      id: "builder",
+      type: "page",
+      url: "https://carrd.co/dashboard/4155176224428477/build",
+      title: "minigree - My Sites - Dashboard - Carrd"
+    }
+  ];
+
+  const match = findMatchingSiteTab(tabs, site);
+  assert.equal(match.id, "builder");
+});
+
 test("evaluateTab rejects with a timeout instead of hanging forever", async () => {
   const { evaluateTab } = await cdpPromise;
 

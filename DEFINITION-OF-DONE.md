@@ -17,11 +17,16 @@
 
 ## Validation
 - [x] `npm run build`
-- [x] `npm run verify:dist`
-- [x] `npm run test`
-- [x] `npm run lint`
+- [x] `npm run validate`
+- [x] `npm run test:coverage` owns `src/**`
+- [x] `npm run test:coverage:cardbuilder` owns `cardbuilder/scripts/**/*.mjs`
 
 ## Release Done
+- [x] Проданные шаблоны используют только immutable `@X.Y.Z` jsDelivr refs; `@main` запрещён.
+- [x] Опубликованный tag никогда не перемещается и не перезаписывается; любое runtime-изменение получает новый SemVer.
+- [x] `VERSION`, changelog, generated snippets и annotated Git tag совпадают.
+- [x] `npm run release:prepare` выполняет build + полный validate + release preflight без автоматического commit/push/tag.
+- [x] CDN и Carrd проходят version-consistency и post-publish smoke до передачи шаблона покупателю.
 - [x] Legacy `popskraft/carrd-plugins` has a named historical freeze ref before public v2 rollout.
 - [x] `popskraft/carrd-v2` main and tag `v2.0.0` are pushed.
 - [x] Only v2 jsDelivr paths are purged after publish.

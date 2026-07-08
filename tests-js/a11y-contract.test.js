@@ -117,7 +117,7 @@ test('a11y: accordeon control aria-expanded mirrors target aria-hidden', () => {
   assert.equal(target.getAttribute('aria-hidden'), 'false');
 });
 
-test('a11y: switcher controller is a group with aria-pressed reflecting state', () => {
+test('a11y: switcher keeps list semantics and reflects pressed state', () => {
   const dom = createDom(
     '<section>' +
       '<ul id="buttons01" class="buttons-component" data-switcher="switcher">' +
@@ -137,7 +137,8 @@ test('a11y: switcher controller is a group with aria-pressed reflecting state', 
   const controller = doc.getElementById('buttons01');
   const buttons = controller.querySelectorAll('a');
 
-  assert.equal(controller.getAttribute('role'), 'group');
+  assert.equal(controller.tagName, 'UL');
+  assert.equal(controller.hasAttribute('role'), false);
   assert.equal(buttons[0].getAttribute('aria-pressed'), 'true');
   assert.equal(buttons[1].getAttribute('aria-pressed'), 'false');
   assert.equal(doc.getElementById('t2').getAttribute('aria-hidden'), 'true');

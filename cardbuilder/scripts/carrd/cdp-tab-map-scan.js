@@ -2,6 +2,16 @@
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const txt = (el) =>
     (el && el.textContent ? el.textContent : "").replace(/\s+/g, " ").trim();
+  const waitForShownId = async (propertiesPanel, expectedId, timeoutMs = 1200) => {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      if (propertiesPanel.component?.id === expectedId) {
+        return true;
+      }
+      await sleep(40);
+    }
+    return propertiesPanel.component?.id === expectedId;
+  };
 
   async function run() {
     const builder = window.app?.builder;
@@ -42,7 +52,19 @@
         continue;
       }
 
-      await sleep(140);
+      const matched = await waitForShownId(propertiesPanel, el.id);
+      if (!matched) {
+        rows.push({
+          id: el.id,
+          type: el.type,
+          builderType: component.type || "unknown",
+          shownId: propertiesPanel.component?.id || null,
+          shownType: propertiesPanel.component?.type || null,
+          found: false,
+          tabs: [],
+        });
+        continue;
+      }
       const tabs = Array.from(document.querySelectorAll("#properties-panel header li"))
         .map((li) => txt(li))
         .filter(Boolean);

@@ -47,6 +47,12 @@ test('site registry resolves the active template pointer through the registry', 
 
 test('site registry resolves explicit builder URLs even when the active pointer is different', async () => {
   const { resolveSite } = await loadRegistryModule();
+  const canonicalProfile = JSON.parse(
+    fs.readFileSync(
+      repoPath('cardbuilder', 'projects', 'main-template', 'data', 'manifests', 'site-profile.json'),
+      'utf8'
+    )
+  );
   const resolved = resolveSite({
     builderUrl: 'carrd.co/dashboard/4155176224428477/build'
   });
@@ -55,14 +61,7 @@ test('site registry resolves explicit builder URLs even when the active pointer 
   assert.equal(resolved.matchedBy, 'builderUrl');
   assert.equal(
     resolved.profile.structure.tabsMap,
-    repoPath(
-      'cardbuilder',
-      'projects',
-      'main-template',
-      'data',
-      'snapshots',
-      'template-instance-element-tabs-map-2026-06-29.json'
-    )
+    repoPath(canonicalProfile.structure.tabsMap)
   );
 });
 

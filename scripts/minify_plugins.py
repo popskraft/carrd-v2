@@ -51,7 +51,7 @@ SPLIT_EMBED_PLUGINS = {
 BUNDLE_CONFIG_FILE = "bundle.config.json"
 HEADER_NAV_CRITICAL_CSS = (
     "@media (max-width: 736px) { "
-    "#header:not(.is-nav-open) .header-mobile-el-collapsing { display: none !important; } "
+    "#header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing) { display: none !important; } "
     "}"
 )
 REQUIRED_PLUGIN_README_SECTIONS = (

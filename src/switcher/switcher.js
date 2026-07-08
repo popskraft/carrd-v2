@@ -31,6 +31,10 @@
   const instances = new Map();
   const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
 
+  /**
+   * Resolve the effective switcher config for one named instance.
+   * Per-instance options override the global plugin defaults.
+   */
   function getConfig(switcherName) {
     const instanceOptions = (switcherName && INSTANCE_OPTIONS[switcherName]) || {};
     return { ...CONFIG, ...instanceOptions };
@@ -287,7 +291,9 @@
     };
 
     controller.classList.add(SELECTORS.controller);
-    controller.setAttribute('role', 'group');
+    if (!/^(UL|OL)$/.test(controller.tagName)) {
+      controller.setAttribute('role', 'group');
+    }
 
     buttons.forEach((button, index) => {
       if (button.dataset.switcherBound === 'true') return;
@@ -333,6 +339,12 @@
     return null;
   }
 
+  /**
+   * Public API for named switcher controllers.
+   * - `refresh()` discovers newly-added controllers.
+   * - `show(name|controller, index)` activates a 1-based target index.
+   * - `next()` / `prev()` cycle through the available target groups.
+   */
   window.CarrdSwitcher = {
     refresh: function() {
       init();

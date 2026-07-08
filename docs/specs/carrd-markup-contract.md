@@ -42,7 +42,7 @@ Contract types and escalation notes only. The authoritative per-plugin binding s
 | Plugin | Contract type | Escalation / exception notes |
 |--------|--------------|-------|
 | `accordeon` | Clean hash + attribute group | Only `#data-accordeon-<name>` with matching `data-accordeon="<name>"` is supported |
-| `header-nav` | Header scope + collapse marker | `#header` activates only with `.header-mobile-el-collapsing`; mobile anti-jump collapse only, no sticky shell. See `docs/decisions/header-nav-structural-contract.md` |
+| `header-nav` | Header scope + collapse marker | `#header` activates only with `.header-mobile-hide`; legacy `.header-mobile-el-collapsing` stays as alias; mobile anti-jump collapse only, no sticky shell. See `docs/decisions/header-nav-structural-contract.md` |
 | `floating-cta` | Clean data marker + position | Runtime clones source elements to fixed position; position/hide options per instance |
 | `cookie-banner` | Clean data marker + legacy fallback | Per-banner indent/delay/days/position options; shared consent cookie |
 | `shopping-cart` | Carrd section + form + clean output marker | Use `#shopping-cart`, `#form-shopping-cart` and `data-shopping-cart-output="order-details"`; no separate target marker |

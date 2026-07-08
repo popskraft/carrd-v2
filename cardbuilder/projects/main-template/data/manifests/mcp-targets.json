@@ -8,7 +8,7 @@
       "This file is the deterministic MCP target map for main-template.",
       "semanticKey is the primary stable handle; proposedClass is the preferred persistent Carrd marking when operator policy allows rollout."
     ],
-    "lastSyncedAt": "2026-06-29T10:57:29.721Z",
+    "lastSyncedAt": "2026-07-07T19:18:32.579Z",
     "targetCount": 10,
     "liveBuilderUrl": "https://carrd.co/dashboard/4155176224428477/build"
   },
@@ -25,9 +25,7 @@
       "sectionScope": "header",
       "proposedClass": "cx-site-header",
       "currentElementId": "",
-      "existingClasses": [
-        "site-header"
-      ],
+      "existingClasses": [],
       "readPaths": [
         "settings.element.id",
         "settings.element.classes",
@@ -52,14 +50,12 @@
       ],
       "notes": "Logo + primary navigation wrapper.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container02",
         "componentType": "container",
         "elementId": "",
-        "classes": [
-          "site-header"
-        ],
+        "classes": [],
         "attributes": "",
         "childIds": [
           "image01",
@@ -111,7 +107,7 @@
       ],
       "notes": "Main intro block after the header marker.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container01",
         "componentType": "container",
@@ -176,13 +172,13 @@
       ],
       "notes": "Quick-order shopping cards demo container.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container06",
         "componentType": "container",
         "elementId": "",
         "classes": [],
-        "attributes": "data-cards-v2=cards\ndata-cards-v2-color-1=#ff9bd9\ndata-cards-v2-color-2=#9bdaff\ndata-cards-v2-color-3=#fff259",
+        "attributes": "data-cards=cards\ndata-cards-color-1=#ff9bd9\ndata-cards-color-2=#9bdaff\ndata-cards-color-3=#fff259",
         "childIds": [
           "text21",
           "text22",
@@ -190,7 +186,7 @@
           "text01",
           "buttons02"
         ],
-        "topLevelIndex": 5,
+        "topLevelIndex": 9,
         "tabs": [
           "Container",
           "Appearance",
@@ -232,13 +228,13 @@
       ],
       "notes": "FAQ container with heading and answer blocks.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container03",
         "componentType": "container",
         "elementId": "",
         "classes": [],
-        "attributes": "data-faq-v2=main",
+        "attributes": "data-faq=main",
         "childIds": [
           "divider02",
           "text14",
@@ -252,7 +248,7 @@
           "text23",
           "text40"
         ],
-        "topLevelIndex": 25,
+        "topLevelIndex": 29,
         "tabs": [
           "Container",
           "Appearance",
@@ -295,17 +291,17 @@
       ],
       "notes": "Order form container after the shopping-cart section break.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container10",
         "componentType": "container",
         "elementId": "",
         "classes": [],
-        "attributes": "data-shopping-cart-v2-target",
+        "attributes": "",
         "childIds": [
           "form01"
         ],
-        "topLevelIndex": 27,
+        "topLevelIndex": 31,
         "tabs": [
           "Container",
           "Appearance",
@@ -348,17 +344,17 @@
       ],
       "notes": "Modal body container used by contact modal flow.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "container12",
         "componentType": "container",
         "elementId": "",
         "classes": [],
-        "attributes": "data-modal-v2=contact",
+        "attributes": "data-modal=contact",
         "childIds": [
           "text36"
         ],
-        "topLevelIndex": 30,
+        "topLevelIndex": 34,
         "tabs": [
           "Container",
           "Appearance",
@@ -413,7 +409,7 @@
       ],
       "notes": "Header logo image.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "image01",
         "componentType": "image",
@@ -496,7 +492,7 @@
       ],
       "notes": "Header navigation links element.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "links02",
         "componentType": "links",
@@ -561,15 +557,15 @@
       ],
       "notes": "Primary CTA button inside the hero block.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "buttons01",
         "componentType": "buttons",
         "elementId": "",
         "classes": [],
-        "attributes": "data-switcher-v2=cases\ndata-switcher-v2-mode=cluster",
+        "attributes": "data-switcher=cases",
         "childIds": [],
-        "topLevelIndex": 21,
+        "topLevelIndex": 25,
         "tabs": [
           "Buttons",
           "Appearance",
@@ -619,7 +615,7 @@
       ],
       "notes": "Main H1 text element inside the hero block.",
       "live": {
-        "syncedAt": "2026-06-29T10:57:29.721Z",
+        "syncedAt": "2026-07-07T19:18:32.579Z",
         "exists": true,
         "componentId": "text03",
         "componentType": "text",

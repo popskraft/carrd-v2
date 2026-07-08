@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const axeCore = require('axe-core');
 const { JSDOM, ResourceLoader } = require('jsdom');
 
 class TestResourceLoader extends ResourceLoader {
@@ -190,6 +191,32 @@ function useFakeTimers(dom) {
   return { flush, restore };
 }
 
+async function runAxe(dom, context = null, options = {}) {
+  if (!dom.window.axe) {
+    dom.window.eval(axeCore.source);
+  }
+
+  const defaultRules = {
+    'color-contrast': { enabled: false },
+    'document-title': { enabled: false },
+    'html-has-lang': { enabled: false },
+    'landmark-one-main': { enabled: false },
+    'page-has-heading-one': { enabled: false },
+    'region': { enabled: false }
+  };
+
+  return dom.window.axe.run(
+    context || dom.window.document.body,
+    {
+      rules: {
+        ...defaultRules,
+        ...(options.rules || {})
+      },
+      ...options
+    }
+  );
+}
+
 module.exports = {
   createDom,
   installBrowserMocks,
@@ -201,5 +228,6 @@ module.exports = {
   mockViewport,
   mockResizeObserver,
   mockMutationObserver,
+  runAxe,
   useFakeTimers
 };

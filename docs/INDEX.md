@@ -18,6 +18,7 @@
 - `docs/specs/switcher-contract.md`
 - `docs/specs/carrd-source-reference.md`
 - `docs/specs/breakpoints-contract.md`
+- `docs/specs/release-contract.md`
 - `docs/specs/mcp-auto-onboarding-plan.md`
 - `docs/specs/stacker-backlog.md`
 
@@ -31,6 +32,13 @@
 
 ## Templates
 - `docs/templates/plugin-readme-template.md`
+
+## Reports
+- `docs/reports/2026-07-07-code-live-audit.md`
+- `docs/reports/2026-07-07-full-project-audit.md`
+
+## Audits
+- `docs/audits/QUALITY-AUDIT-2026-07-07.md`
 
 ## Module Workspaces
 - `admincarrd/docs/INDEX.md`

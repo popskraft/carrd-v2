@@ -2,70 +2,132 @@
   "meta": {
     "domain": "template-instance",
     "templateId": "main-template",
-    "generatedAt": "2026-04-06T15:47:35.060Z",
+    "generatedAt": "2026-07-07T19:20:21.061Z",
     "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
     "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
-    "method": "normalized-post-migration-sync-diff"
+    "method": "bundle-aware-runtime-contract-sync-diff"
   },
   "plugins": [
     {
-      "plugin": "cards",
+      "plugin": "accordeon",
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed05 Cards"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:9"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:10"
+          "source": "published:global",
+          "detail": "CarrdAccordeon"
         }
       ],
       "recommendedNextAction": "none"
     },
     {
-      "plugin": "columns",
+      "plugin": "cards",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": false,
-      "mismatchType": "repo-only",
-      "evidence": [],
-      "recommendedNextAction": "none; legacy plugin intentionally removed from live baseline"
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:marker",
+          "detail": "cards:1"
+        }
+      ],
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "cookie-banner",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": false,
-      "mismatchType": "repo-only",
-      "evidence": [],
-      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed05 cookie-banner"
+        },
+        {
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/cookie-banner/cookie-banner.min.js"
+        },
+        {
+          "source": "published:style",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/cookie-banner/cookie-banner.min.css"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdCookieBanner"
+        },
+        {
+          "source": "published:marker",
+          "detail": "cookieBanner:1"
+        }
+      ],
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "faq",
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed01 FAQ"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:15"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:16"
+          "source": "published:marker",
+          "detail": "faq:1"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "floating-cta",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         }
       ],
       "recommendedNextAction": "none"
@@ -75,19 +137,21 @@
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed09 Grid Cluster"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:11"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "script:12"
+          "source": "published:marker",
+          "detail": "gridCluster:5"
         }
       ],
       "recommendedNextAction": "none"
@@ -96,33 +160,50 @@
       "plugin": "header-nav",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": false,
-      "mismatchType": "repo-only",
-      "evidence": [],
-      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:marker",
+          "detail": "headerNav:2"
+        }
+      ],
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "modal",
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed07 Modal"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:13"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:14"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
           "source": "published:global",
           "detail": "CarrdModal"
+        },
+        {
+          "source": "published:marker",
+          "detail": "modal:1"
         }
       ],
       "recommendedNextAction": "none"
@@ -132,15 +213,21 @@
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed08 No Load Waiting in HEAD"
+          "source": "builder:embed",
+          "detail": "embed08 no-loadwaiting"
         },
         {
-          "source": "published:inline",
-          "detail": "script:2"
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/no-loadwaiting/no-loadwaiting.min.js"
+        },
+        {
+          "source": "published:marker",
+          "detail": "noLoadwaiting:1"
         }
       ],
       "recommendedNextAction": "none"
@@ -150,23 +237,21 @@
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed04 Shopping Cart CSS"
+          "source": "builder:embed",
+          "detail": "embed04 shopping-cart"
         },
         {
-          "source": "builder:embed-title",
-          "detail": "embed03 Shopping Cart JS"
+          "source": "published:script",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/shopping-cart/shopping-cart.min.js"
         },
         {
-          "source": "published:inline",
-          "detail": "style:5"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:6"
+          "source": "published:style",
+          "detail": "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/shopping-cart/shopping-cart.min.css"
         },
         {
           "source": "published:global",
@@ -180,23 +265,25 @@
       "existsInSrc": true,
       "existsInDist": true,
       "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:embed-title",
-          "detail": "embed06 Slider"
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
         },
         {
-          "source": "published:inline",
-          "detail": "style:7"
-        },
-        {
-          "source": "published:inline",
-          "detail": "script:8"
+          "source": "published:bundle",
+          "detail": "theme-runtime"
         },
         {
           "source": "published:global",
           "detail": "CarrdSlider"
+        },
+        {
+          "source": "published:marker",
+          "detail": "slider:7"
         }
       ],
       "recommendedNextAction": "none"
@@ -205,19 +292,81 @@
       "plugin": "stacker",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": false,
-      "mismatchType": "repo-only",
-      "evidence": [],
-      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdStacker"
+        },
+        {
+          "source": "published:marker",
+          "detail": "stacker:3"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "switcher",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdSwitcher"
+        },
+        {
+          "source": "published:marker",
+          "detail": "switcher:10"
+        }
+      ],
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "typography",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": false,
-      "mismatchType": "repo-only",
-      "evidence": [],
-      "recommendedNextAction": "optional or intentionally absent; only install if product scope changes"
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": true,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:bundle",
+          "detail": "theme-runtime"
+        },
+        {
+          "source": "published:global",
+          "detail": "CarrdTypography"
+        }
+      ],
+      "recommendedNextAction": "none"
     }
   ]
 }

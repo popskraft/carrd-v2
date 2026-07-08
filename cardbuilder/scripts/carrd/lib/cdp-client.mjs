@@ -17,12 +17,20 @@ export function findMatchingSiteTab(tabs, site) {
   const published = normalizeUrlLike(site?.publishedSiteUrl || "");
 
   const pages = Array.isArray(tabs) ? tabs.filter((tab) => tab.type === "page") : [];
-  const matches = pages.filter((tab) => {
+  const builderMatches = pages.filter((tab) => {
     const tabUrl = normalizeUrlLike(tab.url || "");
-    return (target && tabUrl.includes(target)) || (published && tabUrl.includes(published));
+    return target && tabUrl.includes(target);
+  });
+  if (builderMatches.length) {
+    return builderMatches[0];
+  }
+
+  const publishedMatches = pages.filter((tab) => {
+    const tabUrl = normalizeUrlLike(tab.url || "");
+    return published && tabUrl.includes(published);
   });
 
-  return matches[0] || null;
+  return publishedMatches[0] || null;
 }
 
 export function pickPageTab(tabs, options = {}) {

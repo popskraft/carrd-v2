@@ -5,77 +5,88 @@
 - Template id: `main-template`
 - Builder URL: `https://carrd.co/dashboard/4155176224428477/build`
 - Published URL: `https://mini.crd.co/`
-- Scan date: `2026-04-06` (post-publish refresh)
-- Operator: `user + codex workflow`
+- Refresh date: `2026-07-07`
+- Refresh mode: `read-only operational truth refresh`
 
 ## Inputs
 
 - `template-instance-builder-scan.json`
-- `template-instance-dom-audit.json`
-- `template-instance-style-map.json`
+- `template-instance-element-tabs-map-2026-07-07.json`
 - `published-site-plugin-scan.json`
 - `live-plugin-inventory.json`
 - `template-vs-repo-plugin-sync.json`
+- `mcp-targets.json`
 
-## Builder Snapshot Summary
+## Builder Summary
 
-- Total components: `80`
-- Component types: `{'container': 15, 'image': 10, 'links': 2, 'control': 4, 'text': 32, 'list': 1, 'buttons': 3, 'divider': 3, 'form': 1, 'embed': 8}`
-- Component types: `{'container': 15, 'image': 10, 'links': 2, 'control': 4, 'text': 32, 'list': 1, 'buttons': 3, 'divider': 3, 'form': 1, 'embed': 9}`
-- Top-level controls: `4`
-- Anchors: `8`
-- Embeds: `9`
+- Total components: `106`
+- Component types: `container=25`, `image=11`, `links=2`, `buttons=7`, `control=3`, `text=46`, `list=1`, `divider=3`, `form=1`, `icons=1`, `embed=6`
+- Embed elements: `6`
+- Tabs map status: `refreshed`
+- Deterministic MCP target map status: `re-synced`
 
-## Style and Structure Summary
+## Runtime Contract Summary
 
-- Top-level ordering: `32` top-level items captured
-- Style families in use: `['(none)', 'style1', 'style2', 'style3', 'style4', 'style5', 'style6', 'style7']`
-- Controls and anchors map summary: `{'scrollpoint04 / section04': 'control04', '#shopping-cart': 'control03', '(#exclude-section-bellow-the-line)': 'control01', 'scrollpoint02 / section02': 'control02'}`
-- Notable hidden sections or control boundaries: `section04`, `#shopping-cart`, `exclude-section-bellow-the-line`, `section02`
+- Builder draft embed contract:
+  - `embed08` — `no-loadwaiting` CDN script in `Head`
+  - `embed03` — `theme-design-tokens` inline `Head` embed
+  - `embed14` — critical mobile header CSS + `theme-runtime.min.css` in `Head`
+  - `embed02` — `theme-runtime.min.js` in `Body End`
+  - `embed04` — `shopping-cart` CDN CSS + JS in `Body End`
+  - `embed05` — `cookie-banner` CDN CSS + JS in `Body End`
+- Published asset contract:
+  - scripts: `no-loadwaiting`, `theme-runtime`, `shopping-cart`, `cookie-banner`
+  - styles: `theme-runtime`, `shopping-cart`, `cookie-banner`
+  - mutable `@main` references: `0`
+  - legacy `data-*-v2` markers: `0`
 
 ## Live Plugin Inventory
 
-| Plugin | Builder evidence | Published evidence | Confidence | Notes |
-|--------|------------------|-------------------|------------|-------|
-| cards | yes | yes | high | builder:embed-title `embed05`; published style/script pair |
-| columns | no | no | low | legacy plugin intentionally removed from live baseline |
-| cookie-banner | no | no | low |  |
-| faq | yes | yes | high | builder:embed-title `embed01`; published style/script pair |
-| grid-cluster | yes | yes | high | builder:embed-title `embed09`; published style/script pair |
-| header-nav | no | no | low |  |
-| modal | yes | yes | high | builder:embed-title `embed07`; published style/script/global |
-| no-loadwaiting | yes | yes | high | builder:embed-title `embed08`; published script |
-| shopping-cart | yes | yes | high | builder:embed-title `embed03` + `embed04`; published style/script/global |
-| slider | yes | yes | high | builder:embed-title `embed06`; published style/script/global |
-| typography | no | no | low | not installed as a dedicated live plugin layer |
+- Bundled via `theme-runtime`: `accordeon`, `cards`, `faq`, `floating-cta`, `grid-cluster`, `header-nav`, `modal`, `slider`, `stacker`, `switcher`, `typography`
+- Added separately: `no-loadwaiting`, `shopping-cart`, `cookie-banner`
+- Published runtime globals observed: `CarrdAccordeon`, `CarrdCookieBanner`, `CarrdModal`, `CarrdShoppingCart`, `CarrdSlider`, `CarrdStacker`, `CarrdSwitcher`, `CarrdTypography`
+- Direct published markup markers observed:
+  - `cards=1`
+  - `faq=1`
+  - `gridCluster=5`
+  - `headerNav=2`
+  - `modal=1`
+  - `noLoadwaiting=1`
+  - `slider=7`
+  - `stacker=3`
+  - `switcher=10`
+  - `cookieBanner=1`
+- Provisioned without direct page markers in this scan:
+  - `accordeon`
+  - `floating-cta`
+  - `shopping-cart`
+  - `typography`
 
 ## Repo Sync Result
 
-| Plugin | In `src` | In `dist` | Detected live | Mismatch type | Recommended action |
-|--------|----------|-----------|---------------|---------------|--------------------|
-| cards | yes | yes | yes | none | none |
-| columns | yes | yes | no | repo-only | keep absent; legacy plugin intentionally removed from live baseline |
-| cookie-banner | yes | yes | no | repo-only | optional or intentionally absent |
-| faq | yes | yes | yes | none | none |
-| grid-cluster | yes | yes | yes | none | none |
-| header-nav | yes | yes | no | repo-only | optional or intentionally absent until stabilized and selected |
-| modal | yes | yes | yes | none | none |
-| no-loadwaiting | yes | yes | yes | none | none |
-| shopping-cart | yes | yes | yes | none | none |
-| slider | yes | yes | yes | none | none |
-| typography | yes | yes | no | repo-only | optional or intentionally absent |
+- Repo plugin roots with current live runtime coverage: `14/14`
+- `src/` vs `dist/`: no missing plugin distributives detected
+- Bundle/add-on sync status on `mini.crd.co`: `match`
+- Current sync model: bundle-aware runtime contract, not legacy per-embed plugin-title matching
 
 ## Drift Summary
 
-- Live-only plugins: `[]`
-- Repo-only plugins: `['columns', 'cookie-banner', 'header-nav', 'typography']`
-- Builder/published mismatch: `none detected for the active live plugin set after post-publish rescan`
-- Structural mismatches: `live template contains 80 builder components with 9 embeds and style families ['(none)', 'style1', 'style2', 'style3', 'style4', 'style5', 'style6', 'style7']`
+- Resolved during this refresh:
+  - tabs snapshot drift between `96` and `106` elements
+  - stale published inventory that still described inline `v0.1.15` assets
+  - stale MCP target metadata that still carried `data-switcher-v2-mode=cluster`
+  - tab-resolution bug where MCP sync could pick the published tab before the Builder tab
+- Remaining note:
+  - `template-instance-dom-audit.json` and `template-instance-style-map.json` were not re-captured in this pass
 
 ## Final Assessment
 
-- Template-instance scan completeness: `post-publish raw scans + inventory + sync diff complete`
-- Ready for plugin sync work: `yes`
-- Follow-up required: `only optional plugin/product-scope decisions remain`
-- Current decision-oriented follow-up doc: `PLUGIN-SYNC-REVIEW.md`
-- Owner-approved sync direction now realized: `grid-cluster` is live, `columns` is removed from the universal template baseline, and the target block/grid pair is `cards + grid-cluster`
+- Template-instance operational truth: `current`
+- Builder draft vs published runtime contract: `aligned`
+- Ready for deterministic read/write tooling: `yes, for the refreshed target map and current runtime contract`
+- Current evidence owners:
+  - `cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-07-07.json`
+  - `cardbuilder/projects/main-template/data/inventories/published-site-plugin-scan.json`
+  - `cardbuilder/projects/main-template/data/inventories/live-plugin-inventory.json`
+  - `cardbuilder/projects/main-template/data/diffs/template-vs-repo-plugin-sync.json`
+  - `cardbuilder/projects/main-template/data/manifests/mcp-targets.json`

@@ -5,10 +5,11 @@ Adds a mobile hamburger for selected elements inside Carrd's header.
 ## Carrd Setup
 
 1. Build the header inside the `#header` section.
-2. Add class `header-mobile-el-collapsing` to every element that should hide behind the hamburger.
+2. Add class `header-mobile-hide` to every element that should hide behind the hamburger.
 3. Leave always-visible elements, such as the logo, without that class.
 
 No wrapper or sticky-header class is required.
+Legacy class `header-mobile-el-collapsing` still works, but use `header-mobile-hide` for new markup.
 
 ## Configuration
 
@@ -32,7 +33,7 @@ window.CarrdPluginOptions = {
 3. Open the menu, click a link, and press `Escape` to check close behavior.
 4. Resize above the breakpoint and confirm the full header returns.
 
-If inactive, confirm `#header` contains at least one `.header-mobile-el-collapsing` element.
+If inactive, confirm `#header` contains at least one `.header-mobile-hide` element.
 
 ## Design
 
