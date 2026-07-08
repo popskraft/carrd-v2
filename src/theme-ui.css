@@ -1,10 +1,6 @@
 /* Theme styles */
 body {
   -webkit-font-smoothing: antialiased;
-  font-family: var(--theme-font-family);
-  font-size: var(--theme-font-size-base);
-  line-height: var(--theme-line-height-base);
-  color: var(--theme-color-text);
 }
 
 /* Opt-in semantic link utility */
