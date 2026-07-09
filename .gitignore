@@ -49,9 +49,6 @@
 _docs/
 _temp/
 
-# Keep generated changelog out of dist tracking policy
-/dist/CHANGELOG.md
-
 # Always ignore secrets, local tool state, and heavy/generated folders
 .git/
 .DS_Store
