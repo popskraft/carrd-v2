@@ -17,20 +17,18 @@ body {
 .text-component a,
 .text-component u {
   text-decoration-line: underline;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: 1px !important;
   text-decoration-color: currentColor;
+  text-underline-offset: 0.15em;
 }
 
 /* Color utilities */
-.links-component>li>a,
-.inverse .theme-typography-h1,
-.inverse .theme-typography-h2,
-.inverse .theme-typography-h3,
+.inverse .links-component>li>a,
+.inverse .links-component code,
 .inverse.list-component,
 .inverse .list-component,
-.inverse.text-component code,
-.inverse .text-component code,
 .inverse.text-component,
+.inverse .text-component code,
 .inverse .text-component {
   color: var(--theme-color-white) !important;
 }

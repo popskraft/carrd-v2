@@ -16,6 +16,13 @@
   margin-bottom: .675em;
 }
 
+.inverse .theme-typography-h1,
+.inverse .theme-typography-h2,
+.inverse .theme-typography-h3,
+.inverse .theme-typography-h4 {
+  color: var(--theme-color-white) !important;
+}
+
 .theme-typography-h1:first-child,
 .theme-typography-h2:first-child,
 .theme-typography-h3:first-child,
