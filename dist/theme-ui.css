@@ -33,25 +33,22 @@ body {
   color: var(--theme-link-color-hover);
 }
 
-.text-component a {
-  position: relative;
-  text-decoration: none;
-}
-
-.text-component a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.08em;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
+.text-component a,
+.text-component u {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
 }
 
 /* Color utilities */
-
+.links-component>li>a,
+.inverse .theme-typography-h1,
+.inverse .theme-typography-h2,
+.inverse .theme-typography-h3,
 .inverse.list-component,
 .inverse .list-component,
+.inverse.text-component code,
+.inverse .text-component code,
 .inverse.text-component,
 .inverse .text-component {
   color: var(--theme-color-white) !important;
