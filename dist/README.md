@@ -1,7 +1,7 @@
 ## Version
 
 - Version: `2.1.0`
-- Build date (UTC): `2026-07-08`
+- Build date (UTC): `2026-07-09`
 - [View Changelog](CHANGELOG.md)
 
 ---

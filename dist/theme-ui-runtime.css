@@ -14,7 +14,30 @@ body {
   color: var(--theme-link-color-hover);
 }
 
+.text-component > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.text-component > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.08em;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+
 /* Color utilities */
+
+.inverse.list-component,
+.inverse .list-component,
+.inverse.text-component,
+.inverse .text-component {
+  color: var(--theme-color-white) !important;
+}
+
 .bg-primary,
 .container-component.bg-primary > .wrapper {
   background: var(--theme-color-primary) !important;
