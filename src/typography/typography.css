@@ -1,6 +1,7 @@
 :where(:root) {
   --theme-typography-heading-color: var(--theme-color-heading);
   --theme-typography-border-color: var(--theme-color-border);
+  --theme-typography-font-weight: 500;
 }
 
 /* Headings */
@@ -8,11 +9,11 @@
 .theme-typography-h2,
 .theme-typography-h3,
 .theme-typography-h4 {
-  font-weight: 500;
-  line-height: 1.3;
+  font-weight: var(--theme-typography-font-weight);
+  line-height: 1.25;
   color: var(--theme-typography-heading-color);
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin-top: 1.5em;
+  margin-bottom: .675em;
 }
 
 .theme-typography-h1:first-child,
