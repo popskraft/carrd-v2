@@ -23,9 +23,11 @@
 
 ## Release Done
 - [x] Проданные шаблоны используют только immutable `@X.Y.Z` jsDelivr refs; `@main` запрещён.
+- [x] Development draft на `@main` использует единый ручной `?rev=YYYYMMDD-XX` во всех repo-owned CDN URLs; голый `@main` без `rev` запрещён.
 - [x] Опубликованный tag никогда не перемещается и не перезаписывается; любое runtime-изменение получает новый SemVer.
 - [x] `VERSION`, changelog, generated snippets и annotated Git tag совпадают.
 - [x] `npm run release:prepare` выполняет build + полный validate + release preflight без автоматического commit/push/tag.
+- [x] Pre-sale validation подтверждает, что в финальном Carrd решении нет `@main` и нет dev-only `?rev=...`.
 - [x] CDN и Carrd проходят version-consistency и post-publish smoke до передачи шаблона покупателю.
 - [x] Legacy `popskraft/carrd-plugins` has a named historical freeze ref before public v2 rollout.
 - [x] `popskraft/carrd-v2` main and tag `v2.0.0` are pushed.

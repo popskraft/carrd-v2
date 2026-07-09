@@ -35,6 +35,7 @@ Current install contract:
 - Canonical new-install artifacts: `theme-design-tokens-embed.html`, `theme-runtime.min.css`, `theme-runtime.min.js`.
 - `theme-ui-runtime.css` остаётся shared UI support file только для `CDN Individual` / manual path и не документируется как обязательный include рядом с `theme-runtime.min.css`.
 - `theme-core.*` и `theme-ui.css` сохраняются только как compatibility tail для already-live installs на mutable `@main`.
+- Mutable `@main` draft installs допустимы только как development surface и только с единым ручным `?rev=...` во всех repo-owned CDN URLs.
 - Custom site code не публикуется из `dist/` как `theme-custom-*` CDN artifacts и не считается частью repo-owned delivery surface.
 - Canonical site-owned custom layers:
   - `Brand Token Override` — только `:root { --theme-* }`.
@@ -88,7 +89,10 @@ Current install contract:
 Полный owner процесса: `docs/specs/release-contract.md`.
 
 - Разработка идёт в `main`; активный Carrd draft может временно быть подключён к `@main` во время доработки.
+- Если draft подключён к `@main`, все repo-owned CDN refs обязаны иметь один и тот же ручной cache-buster `?rev=YYYYMMDD-XX`.
+- Голый `@main` без `?rev=...` считается невалидным development contract.
 - Freeze, release candidate, опубликованный продаваемый шаблон и клиентская поставка никогда не подключаются к `@main`.
+- Pre-sale validation обязана отдельно проверить отсутствие `@main` и `?rev=...` в финальном Carrd решении.
 - Каждый публичный runtime получает новый SemVer, immutable Git tag и version-pinned jsDelivr URL.
 - Старые release tags не изменяются и не удаляются.
 - Release candidate готовится через `npm run release:prepare`; публикация tag, purge и переключение Carrd выполняются отдельными явными шагами.

@@ -23,7 +23,18 @@
 - `vX.Y.Z` — immutable Git tag опубликованного релиза.
 - `@X.Y.Z` — immutable jsDelivr ref, который вставляется в продаваемый Carrd-шаблон.
 - `@main` — разрешён только для активного development draft, пока шаблон находится в доработке и ещё не frozen к продаже.
+- `@main` без ручного cache-buster параметра запрещён даже для development draft.
+- Development draft на `@main` обязан использовать один и тот же ручной параметр `?rev=...` во всех repo-owned CDN URLs этого Carrd-сайта.
 - `@main` — запрещён для опубликованного продаваемого шаблона, release candidate и любой клиентской поставки.
+
+### Development draft на `@main`
+
+- `@main` считается mutable dev-channel и не является стабильным release source.
+- jsDelivr branch-cache для `@main` может отставать от GitHub `main` и в отдельных случаях отдавать stale snapshot даже после purge.
+- Поэтому development draft на `@main` обновляется только через ручную смену `?rev=...` во всех repo-owned CDN refs.
+- Рекомендуемый формат: `?rev=YYYYMMDD-XX`, например `?rev=20260709-01`.
+- Пока `rev` не изменён вручную, draft считается привязанным к предыдущему dev-snapshot.
+- В одном Carrd draft запрещено смешивать разные `rev` между CSS/JS/runtime/add-on asset URLs.
 
 ### Что происходит со старыми версиями
 
@@ -42,7 +53,7 @@
 
 1. Подготовить изменения в `main`.
    - Изменить только `src/`, source README, config и внутреннюю документацию.
-   - Если ведётся активная доработка Carrd draft, допускается временно держать его на `@main`, чтобы он отражал текущее состояние ветки.
+   - Если ведётся активная доработка Carrd draft, допускается временно держать его на `@main`, но только с единым ручным `?rev=...` на всех repo-owned CDN refs.
    - Записать изменения в `CHANGELOG.md` под `[Unreleased]`.
    - Не менять существующий tag и не редактировать `dist/` вручную.
 
@@ -74,10 +85,20 @@
 
 5. Проверить CDN и обновить Carrd.
    - Открыть CSS и JS по `https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.1/dist/...` и проверить ожидаемое содержимое.
-   - В тестовом Carrd-шаблоне заменить все repo-owned CDN refs с `@main` на один и тот же release номер.
+   - В тестовом Carrd-шаблоне заменить все repo-owned CDN refs с `@main?rev=...` на один и тот же release номер.
    - Проверить Builder draft, desktop и mobile.
    - Опубликовать Carrd только после ручного подтверждения владельца.
-   - Выполнить post-publish smoke и убедиться, что на странице нет `@main` и смешанных версий.
+   - Выполнить post-publish smoke и убедиться, что на странице нет `@main`, `?rev=...` и смешанных версий.
+
+### Pre-sale validation
+
+Перед тем как считать решение готовым к продаже, обязательно проверить:
+
+- В Carrd нет ни одного repo-owned CDN URL на `@main`.
+- В Carrd нет ни одного dev-only `?rev=...` параметра.
+- Все repo-owned CDN URLs указывают на один и тот же immutable `@X.Y.Z`.
+- Published page реально отдаёт те же immutable refs, а не старый branch snapshot.
+- Post-publish smoke подтверждает, что runtime/CSS/plug-in assets загружены из release URL, а не из development branch.
 
 ### Продажа шаблона
 
@@ -93,6 +114,7 @@
 ### Запрещено
 
 - Подключать продаваемый шаблон к `@main`, branch ref или commit из незавершённой разработки.
+- Подключать продаваемый шаблон к `@main?rev=...` и считать это release-ready.
 - Оставлять `@main` в draft после freeze решения о релизе.
 - Перемещать `vX.Y.Z` на новый commit или удалять опубликованный tag.
 - Публиковать изменённый runtime под уже использованным номером.
@@ -105,5 +127,5 @@
 - `pnpm run release:prepare` завершён без ошибок, включая `release:check`.
 - Release commit и annotated tag отправлены в GitHub.
 - Version-pinned jsDelivr assets доступны и содержат release commit.
-- Carrd использует одну версию, не содержит `@main` и прошёл post-publish smoke.
+- Carrd использует одну версию, не содержит `@main`, не содержит `?rev=...` и прошёл post-publish smoke.
 - Старые tags сохранены без изменений.
