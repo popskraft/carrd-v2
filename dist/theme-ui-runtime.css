@@ -14,12 +14,12 @@ body {
   color: var(--theme-link-color-hover);
 }
 
-.text-component > a {
+.text-component a {
   position: relative;
   text-decoration: none;
 }
 
-.text-component > a::after {
+.text-component a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -38,127 +38,154 @@ body {
   color: var(--theme-color-white) !important;
 }
 
-.bg-primary,
+.container-component.container-bg-primary,
 .container-component.bg-primary > .wrapper {
   background: var(--theme-color-primary) !important;
 }
 
-.bg-brand-1,
+.container-component.container-bg-brand-1,
 .container-component.bg-brand-1 > .wrapper {
   background: var(--theme-color-brand-1) !important;
 }
 
-.bg-red,
+.container-component.container-bg-red,
 .container-component.bg-red > .wrapper {
   background: var(--theme-color-brand-red) !important;
 }
 
-.bg-red-light,
+.container-component.container-bg-red-light,
 .container-component.bg-red-light > .wrapper {
   background: var(--theme-color-brand-red-light) !important;
 }
 
-.bg-green,
+.container-component.container-bg-green,
 .container-component.bg-green > .wrapper {
   background: var(--theme-color-brand-green) !important;
 }
 
-.bg-green-light,
+.container-component.container-bg-green-light,
 .container-component.bg-green-light > .wrapper {
   background: var(--theme-color-brand-green-light) !important;
 }
 
-.bg-yellow,
+.container-component.container-bg-yellow,
 .container-component.bg-yellow > .wrapper {
   background: var(--theme-color-brand-yellow) !important;
 }
 
-.bg-yellow-light,
+.container-component.container-bg-yellow-light,
 .container-component.bg-yellow-light > .wrapper {
   background: var(--theme-color-brand-yellow-light) !important;
 }
 
-.bg-blue,
+.container-component.container-bg-blue,
 .container-component.bg-blue > .wrapper {
   background: var(--theme-color-brand-blue) !important;
 }
 
-.bg-blue-light,
+.container-component.container-bg-blue-light,
 .container-component.bg-blue-light > .wrapper {
   background: var(--theme-color-brand-blue-light) !important;
 }
 
-.bg-dark,
+.container-component.container-bg-dark,
 .container-component.bg-dark > .wrapper {
   background: var(--theme-color-dark) !important;
 }
 
-.bg-gray,
+.container-component.container-bg-gray,
 .container-component.bg-gray > .wrapper {
   background: var(--theme-color-gray) !important;
 }
 
-.bg-light,
+.container-component.container-bg-light,
 .container-component.bg-light > .wrapper {
   background: var(--theme-color-light) !important;
 }
 
-.bg-lighter,
+.container-component.container-bg-lighter,
 .container-component.bg-lighter > .wrapper {
   background: var(--theme-color-lighter) !important;
 }
 
-.bg-white,
+.container-component.container-bg-white,
 .container-component.bg-white > .wrapper {
   background: var(--theme-color-white) !important;
 }
 
-.text-primary,
-.container-component.text-primary > .wrapper {
+.text-primary.text-component,
+.text-primary .text-component,
+.text-primary.list-component,
+.text-primary .list-component {
   color: var(--theme-color-primary) !important;
 }
 
-.text-brand-1,
-.container-component.text-brand-1 > .wrapper {
+.text-brand-1.text-component,
+.text-brand-1 .text-component,
+.text-brand-1.list-component,
+.text-brand-1 .list-component {
   color: var(--theme-color-brand-1) !important;
 }
 
-.text-red,
-.container-component.text-red > .wrapper {
+.text-red.text-component,
+.text-red .text-component,
+.text-red.list-component,
+.text-red .list-component {
   color: var(--theme-color-brand-red) !important;
 }
 
-.text-green,
-.container-component.text-green > .wrapper {
+.text-green.text-component,
+.text-green .text-component,
+.text-green.list-component,
+.text-green .list-component {
   color: var(--theme-color-brand-green) !important;
 }
 
-.text-yellow,
-.container-component.text-yellow > .wrapper {
+.text-yellow.text-component,
+.text-yellow .text-component,
+.text-yellow.list-component,
+.text-yellow .list-component {
   color: var(--theme-color-brand-yellow) !important;
 }
 
-.text-blue,
-.container-component.text-blue > .wrapper {
+.text-blue.text-component,
+.text-blue .text-component,
+.text-blue.list-component,
+.text-blue .list-component {
   color: var(--theme-color-brand-blue) !important;
 }
 
-.text-dark {
+.text-dark.text-component,
+.text-dark .text-component,
+.text-dark.list-component,
+.text-dark .list-component {
   color: var(--theme-color-dark) !important;
 }
 
-.text-gray {
+.text-gray.text-component,
+.text-gray .text-component,
+.text-gray.list-component,
+.text-gray .list-component {
   color: var(--theme-color-gray) !important;
 }
 
-.text-light {
+.text-light.text-component,
+.text-light .text-component,
+.text-light.list-component,
+.text-light .list-component {
   color: var(--theme-color-light) !important;
 }
 
-.text-lighter {
+.text-lighter.text-component,
+.text-lighter .text-component,
+.text-lighter.list-component,
+.text-lighter .list-component {
   color: var(--theme-color-lighter) !important;
 }
 
-.text-white {
+.text-white.text-component,
+.text-white .text-component,
+.text-white.list-component,
+.text-white .list-component {
   color: var(--theme-color-white) !important;
 }

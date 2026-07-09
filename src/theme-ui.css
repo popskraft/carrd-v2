@@ -38,62 +38,77 @@ body {
   color: var(--theme-color-white) !important;
 }
 
+.container-component.container-bg-primary,
 .container-component.bg-primary > .wrapper {
   background: var(--theme-color-primary) !important;
 }
 
+.container-component.container-bg-brand-1,
 .container-component.bg-brand-1 > .wrapper {
   background: var(--theme-color-brand-1) !important;
 }
 
+.container-component.container-bg-red,
 .container-component.bg-red > .wrapper {
   background: var(--theme-color-brand-red) !important;
 }
 
+.container-component.container-bg-red-light,
 .container-component.bg-red-light > .wrapper {
   background: var(--theme-color-brand-red-light) !important;
 }
 
+.container-component.container-bg-green,
 .container-component.bg-green > .wrapper {
   background: var(--theme-color-brand-green) !important;
 }
 
+.container-component.container-bg-green-light,
 .container-component.bg-green-light > .wrapper {
   background: var(--theme-color-brand-green-light) !important;
 }
 
+.container-component.container-bg-yellow,
 .container-component.bg-yellow > .wrapper {
   background: var(--theme-color-brand-yellow) !important;
 }
 
+.container-component.container-bg-yellow-light,
 .container-component.bg-yellow-light > .wrapper {
   background: var(--theme-color-brand-yellow-light) !important;
 }
 
+.container-component.container-bg-blue,
 .container-component.bg-blue > .wrapper {
   background: var(--theme-color-brand-blue) !important;
 }
 
+.container-component.container-bg-blue-light,
 .container-component.bg-blue-light > .wrapper {
   background: var(--theme-color-brand-blue-light) !important;
 }
 
+.container-component.container-bg-dark,
 .container-component.bg-dark > .wrapper {
   background: var(--theme-color-dark) !important;
 }
 
+.container-component.container-bg-gray,
 .container-component.bg-gray > .wrapper {
   background: var(--theme-color-gray) !important;
 }
 
+.container-component.container-bg-light,
 .container-component.bg-light > .wrapper {
   background: var(--theme-color-light) !important;
 }
 
+.container-component.container-bg-lighter,
 .container-component.bg-lighter > .wrapper {
   background: var(--theme-color-lighter) !important;
 }
 
+.container-component.container-bg-white,
 .container-component.bg-white > .wrapper {
   background: var(--theme-color-white) !important;
 }
