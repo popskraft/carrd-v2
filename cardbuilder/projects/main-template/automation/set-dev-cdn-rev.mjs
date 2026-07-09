@@ -20,8 +20,7 @@ const ref = getArg("--ref", DEFAULT_REF).trim();
 const rev = getArg("--rev").trim();
 
 if (!ref) throw new Error("--ref is required");
-if (!rev) throw new Error("--rev is required");
-if (!/^\d{8}-\d{2}$/.test(rev)) {
+if (rev && !/^\d{8}-\d{2}$/.test(rev)) {
   throw new Error(`Invalid --rev "${rev}". Expected YYYYMMDD-XX.`);
 }
 
@@ -44,7 +43,7 @@ const expression = `(() => {
   const targetRev = ${JSON.stringify(rev)};
   const repoPrefix = "https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@";
   const targetPrefix = repoPrefix + targetRef + "/";
-  const targetSuffix = "?rev=" + targetRev;
+  const targetSuffix = targetRev ? "?rev=" + targetRev : "";
   const canonicalPaths = {
     "no-loadwaiting.min.js": "dist/no-loadwaiting/no-loadwaiting.min.js",
     "theme-runtime.min.css": "dist/theme-runtime.min.css",

@@ -36,6 +36,7 @@ Current install contract:
 - `theme-ui-runtime.css` остаётся shared UI support file только для `CDN Individual` / manual path и не документируется как обязательный include рядом с `theme-runtime.min.css`.
 - `theme-core.*` и `theme-ui.css` сохраняются только как compatibility tail для already-live installs на mutable `@main`.
 - Mutable `@main` draft installs допустимы только как development surface и только с единым ручным `?rev=...` во всех repo-owned CDN URLs.
+- Если jsDelivr branch-cache продолжает отдавать stale `@main` snapshot даже после смены `?rev=...`, development draft временно переводится на конкретный commit SHA из `main` как аварийный exact-ref fallback.
 - Custom site code не публикуется из `dist/` как `theme-custom-*` CDN artifacts и не считается частью repo-owned delivery surface.
 - Canonical site-owned custom layers:
   - `Brand Token Override` — только `:root { --theme-* }`.
