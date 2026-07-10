@@ -48,6 +48,8 @@ SPLIT_EMBED_PLUGINS = {
     "shopping-cart",
     "slider",
 }
+DESIGN_PALETTE_SLUG = "design-palette"
+DESIGN_PALETTE_TARGET_MARKUP = "<div data-design-palette></div>"
 BUNDLE_CONFIG_FILE = "bundle.config.json"
 HEADER_NAV_CRITICAL_CSS = (
     "@media (max-width: 736px) { "
@@ -114,6 +116,14 @@ def build_inline_install_steps(
             "Add two `Code → Hidden → Body End` embeds.",
             "Paste part 1 into the first embed and part 2 into the second.",
             "Keep that order, publish, and refresh.",
+        ])
+        return markdown_steps(steps)
+
+    if plugin_slug == "design-palette":
+        steps.extend([
+            f"Open `{plugin_slug}-embed.html`.",
+            "Paste the full file into a visible `Code → Embed` element where the palette should appear.",
+            "Publish and refresh.",
         ])
         return markdown_steps(steps)
 
@@ -476,6 +486,13 @@ def create_plugin_cdn_embed(
             ""
         ])
 
+    if plugin_slug == DESIGN_PALETTE_SLUG:
+        parts.extend([
+            "<!-- Visible: place in a visible embed where the palette should appear -->",
+            DESIGN_PALETTE_TARGET_MARKUP,
+            "",
+        ])
+
     if len(parts) == 1:
         return
 
@@ -664,6 +681,12 @@ def process_plugin(
                     "<script>",
                     output_js.read_text(encoding="utf-8"),
                     "</script>",
+                ])
+
+            if plugin_dir.name == DESIGN_PALETTE_SLUG:
+                embed_parts.extend([
+                    "<!-- Palette target: keep this div where the palette should appear -->",
+                    DESIGN_PALETTE_TARGET_MARKUP,
                 ])
 
             if len(embed_parts) > 1:

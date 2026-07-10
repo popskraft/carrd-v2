@@ -130,7 +130,16 @@
 
     toggle.addEventListener('click', () => {
       if (!isMobile()) return;
-      setOpen(!header.classList.contains(CLASSNAMES.open));
+      const open = header.classList.contains(CLASSNAMES.open);
+      /* If the menu is open but the user has scrolled away from the header,
+       * the expanded menu is off-screen. Closing it here would be invisible
+       * and disorienting, so instead scroll back to the header where the
+       * open menu lives. Closing only happens while the header is in view. */
+      if (open && header.getBoundingClientRect().top < 0) {
+        revealHeader();
+        return;
+      }
+      setOpen(!open);
     });
 
     if (CONFIG.closeOnLinkClick) {

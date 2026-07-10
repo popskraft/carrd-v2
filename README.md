@@ -31,6 +31,7 @@ Bundle plugins:
 | Switcher | Yes |
 | Typography | Yes |
 | Cookie Banner | No, add separately |
+| Design Palette | No, add separately |
 | No-loadwaiting | No, add separately |
 | Shopping Cart | No, add separately |
 
@@ -64,6 +65,7 @@ If your site already uses the bundle and you need a plugin that is not inside it
 
 This applies to:
 - `cookie-banner`
+- `design-palette`
 - `no-loadwaiting`
 - `shopping-cart`
 

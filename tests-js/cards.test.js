@@ -138,6 +138,33 @@ test('cards re-syncs inherited padding on resize', () => {
   timers.restore();
 });
 
+test('cards captures inherited padding into the mobile token at mobile width', () => {
+  const dom = createDom(
+    '<div data-cards="cards" style="padding: 12px 16px;">' +
+      '<div class="inner">' +
+        '<div><p>One</p></div>' +
+      '</div>' +
+    '</div>'
+  );
+  // Simulate a mobile viewport before the plugin initializes.
+  dom.window.matchMedia = () => ({
+    matches: true,
+    addEventListener() {},
+    removeEventListener() {},
+    addListener() {},
+    removeListener() {}
+  });
+
+  loadScript(dom, 'src/cards/cards.js');
+  triggerDomReady(dom);
+
+  const container = dom.window.document.querySelector('[data-cards="cards"]');
+  // Mobile keeps its own value; it must NOT leak into the desktop token.
+  assert.equal(container.style.getPropertyValue('--theme-card-padding-mobile'), '12px 16px 12px 16px');
+  assert.equal(container.style.getPropertyValue('--theme-card-padding'), '');
+  assert.equal(container.style.getPropertyValue('padding'), '0px');
+});
+
 test('cards does not re-wrap if theme-card-item already exists', () => {
   const dom = createDom(
     '<div data-cards="cards">' +

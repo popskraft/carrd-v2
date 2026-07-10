@@ -19,6 +19,7 @@
 - `docs/specs/carrd-source-reference.md`
 - `docs/specs/breakpoints-contract.md`
 - `docs/specs/release-contract.md`
+- `docs/specs/dual-repo-migration-plan.md`
 - `docs/specs/mcp-auto-onboarding-plan.md`
 - `docs/specs/stacker-backlog.md`
 

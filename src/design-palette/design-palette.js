@@ -1,0 +1,254 @@
+(function() {
+  'use strict';
+
+  const TOKEN_GROUPS = [
+    {
+      title: 'Named colors',
+      tokens: [
+        '--theme-color-brand-red-light',
+        '--theme-color-brand-red',
+        '--theme-color-brand-green-light',
+        '--theme-color-brand-green',
+        '--theme-color-brand-yellow-light',
+        '--theme-color-brand-yellow',
+        '--theme-color-brand-blue-light',
+        '--theme-color-brand-blue'
+      ]
+    },
+    {
+      title: 'Neutrals',
+      tokens: [
+        '--theme-color-black',
+        '--theme-color-darker',
+        '--theme-color-dark',
+        '--theme-color-gray',
+        '--theme-color-light',
+        '--theme-color-lighter',
+        '--theme-color-white'
+      ]
+    },
+    {
+      title: 'Brand and roles',
+      tokens: [
+        '--theme-color-brand-1-light',
+        '--theme-color-brand-1',
+        '--theme-color-brand-1-dark',
+        '--theme-color-primary',
+        '--theme-color-primary-hover',
+        '--theme-color-primary-focus',
+        '--theme-color-text',
+        '--theme-color-heading',
+        '--theme-color-surface',
+        '--theme-color-surface-muted',
+        '--theme-color-border',
+        '--theme-focus-ring-color',
+        '--theme-overlay-bg'
+      ]
+    },
+    {
+      title: 'Components',
+      tokens: [
+        '--theme-button-primary-bg',
+        '--theme-button-primary-bg-hover',
+        '--theme-button-primary-text',
+        '--theme-button-secondary-bg',
+        '--theme-button-secondary-bg-hover',
+        '--theme-button-secondary-text',
+        '--theme-button-secondary-border-color',
+        '--theme-link-color',
+        '--theme-link-color-hover',
+        '--theme-nav-color',
+        '--theme-ui-control-bg',
+        '--theme-ui-control-bg-hover',
+        '--theme-ui-control-color',
+        '--theme-ui-control-border-color',
+        '--theme-ui-dot-bg',
+        '--theme-ui-dot-hover-bg',
+        '--theme-ui-dot-active-bg',
+        '--theme-ui-surface-muted',
+        '--theme-ui-surface-muted-hover'
+      ]
+    }
+  ];
+
+  const DEFAULTS = {
+    enabled: true,
+    title: 'Design palette',
+    targetSelector: '[data-design-palette]',
+    showEmpty: false,
+    tokens: TOKEN_GROUPS
+  };
+
+  const options = {
+    ...DEFAULTS,
+    ...((window.CarrdPluginOptions && window.CarrdPluginOptions.designPalette) || {})
+  };
+
+  let autoHost = null;
+
+  function normalizeGroups(input) {
+    if (!Array.isArray(input)) return TOKEN_GROUPS;
+    if (input.every(item => typeof item === 'string')) {
+      return [{ title: 'Colors', tokens: input }];
+    }
+    return input
+      .filter(group => group && Array.isArray(group.tokens))
+      .map(group => ({
+        title: String(group.title || 'Colors'),
+        tokens: group.tokens.filter(token => typeof token === 'string')
+      }))
+      .filter(group => group.tokens.length > 0);
+  }
+
+  function getRootStyle() {
+    return window.getComputedStyle(document.documentElement);
+  }
+
+  function readToken(token, visited) {
+    if (visited.has(token)) return '';
+    visited.add(token);
+
+    const raw = getRootStyle().getPropertyValue(token).trim();
+    if (!raw) return '';
+
+    const varMatch = raw.match(/^var\(\s*(--theme-[\w-]+)\s*(?:,\s*([^)]+))?\)$/);
+    if (!varMatch) return raw;
+
+    return readToken(varMatch[1], visited) || (varMatch[2] || '').trim();
+  }
+
+  function toHexChannel(value) {
+    const number = Math.max(0, Math.min(255, Math.round(Number(value) || 0)));
+    return number.toString(16).padStart(2, '0').toUpperCase();
+  }
+
+  function normalizeHex(value) {
+    const raw = value.trim();
+    const hex = raw.match(/^#([0-9a-f]{3,8})$/i);
+    if (!hex) return '';
+
+    const body = hex[1];
+    if (body.length === 3 || body.length === 4) {
+      return `#${body.split('').map(char => char + char).join('').toUpperCase()}`;
+    }
+    if (body.length === 6 || body.length === 8) {
+      return `#${body.toUpperCase()}`;
+    }
+    return '';
+  }
+
+  function normalizeRgb(value) {
+    const modern = value.match(/^rgba?\(\s*([\d.]+)(?:\s+|,\s*)([\d.]+)(?:\s+|,\s*)([\d.]+)(?:\s*[/,]\s*([\d.]+%?))?\s*\)$/i);
+    if (!modern) return '';
+
+    const alphaRaw = modern[4];
+    let alpha = 1;
+    if (alphaRaw) {
+      alpha = alphaRaw.endsWith('%') ? Number(alphaRaw.slice(0, -1)) / 100 : Number(alphaRaw);
+    }
+
+    const hex = `#${toHexChannel(modern[1])}${toHexChannel(modern[2])}${toHexChannel(modern[3])}`;
+    if (!Number.isFinite(alpha) || alpha >= 1) return hex;
+    return `${hex}${toHexChannel(alpha * 255)}`;
+  }
+
+  function formatColor(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    if (trimmed.toLowerCase() === 'transparent') return '#00000000';
+    return normalizeHex(trimmed) || normalizeRgb(trimmed) || trimmed;
+  }
+
+  function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function buildSwatch(token) {
+    const resolved = readToken(token, new Set());
+    const value = formatColor(resolved);
+    if (!value && !options.showEmpty) return null;
+
+    const swatch = createElement('article', 'theme-design-palette__swatch');
+    swatch.setAttribute('aria-label', `${token}: ${value || 'unresolved'}`);
+    swatch.style.setProperty('--design-palette-swatch', resolved || 'transparent');
+
+    swatch.appendChild(createElement('span', 'theme-design-palette__color'));
+
+    const meta = createElement('div', 'theme-design-palette__meta');
+    meta.appendChild(createElement('span', 'theme-design-palette__token', token));
+    meta.appendChild(createElement('span', 'theme-design-palette__value', value || 'unresolved'));
+    swatch.appendChild(meta);
+
+    return swatch;
+  }
+
+  function renderInto(target) {
+    const groups = normalizeGroups(options.tokens);
+    const palette = createElement('section', 'theme-design-palette');
+    palette.setAttribute('aria-label', options.title);
+    palette.appendChild(createElement('h2', 'theme-design-palette__title', options.title));
+
+    groups.forEach(group => {
+      const groupElement = createElement('section', 'theme-design-palette__group');
+      groupElement.appendChild(createElement('h3', 'theme-design-palette__group-title', group.title));
+
+      const grid = createElement('div', 'theme-design-palette__grid');
+      group.tokens.forEach(token => {
+        const swatch = buildSwatch(token);
+        if (swatch) grid.appendChild(swatch);
+      });
+
+      if (grid.children.length === 0) return;
+      groupElement.appendChild(grid);
+      palette.appendChild(groupElement);
+    });
+
+    target.textContent = '';
+    target.appendChild(palette);
+  }
+
+  function createAutoHost() {
+    if (autoHost) return autoHost;
+
+    autoHost = document.createElement('div');
+    autoHost.setAttribute('data-design-palette-generated', '');
+
+    const script = document.currentScript;
+    if (script && script.parentElement && !['HEAD', 'HTML'].includes(script.parentElement.tagName)) {
+      script.parentElement.insertBefore(autoHost, script);
+    } else {
+      document.body.appendChild(autoHost);
+    }
+
+    return autoHost;
+  }
+
+  function getTargets() {
+    const explicitTargets = Array.from(document.querySelectorAll(options.targetSelector));
+    if (explicitTargets.length > 0) return explicitTargets;
+    return [createAutoHost()];
+  }
+
+  function refresh() {
+    if (options.enabled === false) return;
+    getTargets().forEach(renderInto);
+  }
+
+  function init() {
+    refresh();
+  }
+
+  window.CarrdDesignPalette = {
+    refresh,
+    getTokens: () => normalizeGroups(options.tokens)
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+})();

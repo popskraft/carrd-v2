@@ -252,6 +252,37 @@ test('header-nav scrolls header into view when opening off-screen menu', () => {
   assert.equal(scrollOptions.block, 'start');
 });
 
+test('header-nav toggle click while open and scrolled away scrolls up instead of closing', () => {
+  const dom = createDom(createHeaderMarkup());
+  mockViewport(dom, 480);
+
+  loadScript(dom, 'src/header-nav/header-nav.js');
+  triggerDomReady(dom);
+
+  const header = dom.window.document.querySelector('#header');
+  const toggle = header.querySelector('.theme-header-nav-toggle');
+  let scrollCount = 0;
+
+  dom.window.matchMedia = () => ({ matches: false });
+  header.getBoundingClientRect = () => ({ top: 0 });
+  header.scrollIntoView = () => { scrollCount += 1; };
+
+  click(dom, toggle);
+  assert.equal(header.classList.contains('is-nav-open'), true);
+
+  // User scrolls down: header is now off-screen, menu still open.
+  header.getBoundingClientRect = () => ({ top: -300 });
+
+  click(dom, toggle);
+  assert.equal(header.classList.contains('is-nav-open'), true, 'menu stays open');
+  assert.equal(scrollCount, 1, 'click scrolls back to header');
+
+  // Header back in view: click closes normally.
+  header.getBoundingClientRect = () => ({ top: 0 });
+  click(dom, toggle);
+  assert.equal(header.classList.contains('is-nav-open'), false);
+});
+
 test('header-nav does not create sticky shell, spacer, or overlay artifacts', () => {
   const dom = createDom(
     '<header id="header">' +

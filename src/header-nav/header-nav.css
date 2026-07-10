@@ -4,7 +4,7 @@
   --theme-header-nav-toggle-right: 1rem;
   --theme-header-nav-toggle-size: 46px;
   --theme-header-nav-toggle-radius: 0.5rem;
-  --theme-header-nav-toggle-bg: rgba(255, 255, 255, 0.2);
+  --theme-header-nav-toggle-bg: rgba(255, 255, 255, 0.4);
   --theme-header-nav-toggle-backdrop: blur(10px);
   --theme-header-nav-toggle-z-index: 100000;
   --theme-header-nav-toggle-outline: 2px solid var(--theme-focus-ring-color);
@@ -112,6 +112,23 @@
    * margin/padding/wrapper leak (which is why max-height:0 wasn't enough).
    * !important beats Carrd's own per-instance display rules while closed. */
   #header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing) {
+    display: none !important;
+  }
+
+  /* Carrd wraps components in row/column divs that carry their own
+   * padding/gap. When EVERY element inside such a wrapper is flagged as
+   * hidden, the now-empty wrapper would still reserve its padding and
+   * inflate the header height. Hide the wrapper itself too.
+   *
+   * Matches: a div that has at least one flagged direct child AND no
+   * unflagged direct children. Pure CSS (`:has()`), so it applies on first
+   * paint (no jump) and releases automatically when the menu opens.
+   * Covers one wrapper level — Carrd's row markup. If a flagged element
+   * sits deeper (row > column > element), flag the column too. */
+  #header:not(.is-nav-open)
+    div:has(> :is(.header-mobile-hide, .header-mobile-el-collapsing)):not(
+      :has(> :not(.header-mobile-hide, .header-mobile-el-collapsing))
+    ) {
     display: none !important;
   }
 }

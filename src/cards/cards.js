@@ -22,7 +22,20 @@
     'padding-left'
   ];
   const requestFrame = window.requestAnimationFrame || (cb => setTimeout(cb, 16));
+  const MOBILE_BREAKPOINT = '(max-width: 736px)';
   let pendingPaddingSync = false;
+
+  const isMobileViewport = () =>
+    typeof window.matchMedia === 'function' && window.matchMedia(MOBILE_BREAKPOINT).matches;
+
+  const normalizePaddingValue = value =>
+    value
+      .split(/\s+/)
+      .map(val => {
+        const num = parseFloat(val);
+        return isNaN(num) ? val : `${num}rem`;
+      })
+      .join(' ');
 
   const getContainerPaddingValues = style => [
     style.paddingTop,
@@ -111,40 +124,37 @@
     paddingTargets.forEach(restoreAuthorPaddingStyles);
 
     const inheritedPadding = getInheritedPadding(container);
+    const mobile = isMobileViewport();
 
-    if (inheritedPadding) {
+    const dataPadding = getFirstAttribute(container, [
+      'data-cards-padding',
+      'data-padding'
+    ]);
+    const dataPaddingMobile = getFirstAttribute(container, [
+      'data-cards-padding-mobile',
+      'data-padding-mobile'
+    ]);
+
+    // Desktop token. Carrd's inherited padding wins, but only when captured at
+    // desktop width so a mobile-width capture never overwrites the desktop value.
+    // Falls back to the explicit data attribute, otherwise clears the override.
+    if (inheritedPadding && !mobile) {
       container.style.setProperty('--theme-card-padding', inheritedPadding);
+    } else if (dataPadding) {
+      container.style.setProperty('--theme-card-padding', normalizePaddingValue(dataPadding));
+    } else if (!inheritedPadding) {
+      container.style.removeProperty('--theme-card-padding');
+    }
+
+    // Mobile token. Symmetric: capture Carrd's inherited padding only at mobile
+    // width so mobile keeps its own (smaller) value instead of falling back to the
+    // desktop token. Falls back to the explicit mobile data attribute.
+    if (inheritedPadding && mobile) {
+      container.style.setProperty('--theme-card-padding-mobile', inheritedPadding);
+    } else if (dataPaddingMobile) {
+      container.style.setProperty('--theme-card-padding-mobile', normalizePaddingValue(dataPaddingMobile));
+    } else if (!inheritedPadding) {
       container.style.removeProperty('--theme-card-padding-mobile');
-    } else {
-      const dataPadding = getFirstAttribute(container, [
-        'data-cards-padding',
-        'data-padding'
-      ]);
-      const dataPaddingMobile = getFirstAttribute(container, [
-        'data-cards-padding-mobile',
-        'data-padding-mobile'
-      ]);
-
-      if (dataPadding) {
-        const normalizedPadding = dataPadding
-          .split(/\s+/)
-          .map(val => {
-            const num = parseFloat(val);
-            return isNaN(num) ? val : `${num}rem`;
-          })
-          .join(' ');
-        container.style.setProperty('--theme-card-padding', normalizedPadding);
-      } else {
-        container.style.removeProperty('--theme-card-padding');
-      }
-
-      if (dataPaddingMobile) {
-        const num = parseFloat(dataPaddingMobile);
-        const normalizedMobile = isNaN(num) ? dataPaddingMobile : `${num}rem`;
-        container.style.setProperty('--theme-card-padding-mobile', normalizedMobile);
-      } else {
-        container.style.removeProperty('--theme-card-padding-mobile');
-      }
     }
 
     paddingTargets.forEach(resetElementPadding);
@@ -169,6 +179,15 @@
     if (window.__themeCardsPaddingSyncBound === true) return;
     window.__themeCardsPaddingSyncBound = true;
     window.addEventListener('resize', scheduleAllCardPaddings);
+
+    if (typeof window.matchMedia === 'function') {
+      const mql = window.matchMedia(MOBILE_BREAKPOINT);
+      if (typeof mql.addEventListener === 'function') {
+        mql.addEventListener('change', scheduleAllCardPaddings);
+      } else if (typeof mql.addListener === 'function') {
+        mql.addListener(scheduleAllCardPaddings);
+      }
+    }
   }
 
   function pickCardItemBackground(cardItem, ctx) {

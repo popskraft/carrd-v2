@@ -1,7 +1,7 @@
 ## Version
 
 - Version: `2.1.0`
-- Build date (UTC): `2026-07-09`
+- Build date (UTC): `2026-07-10`
 - [View Changelog](CHANGELOG.md)
 
 ---
@@ -39,6 +39,7 @@ Bundle plugins:
 | Switcher | Yes |
 | Typography | Yes |
 | Cookie Banner | No, add separately |
+| Design Palette | No, add separately |
 | No-loadwaiting | No, add separately |
 | Shopping Cart | No, add separately |
 
@@ -72,6 +73,7 @@ If your site already uses the bundle and you need a plugin that is not inside it
 
 This applies to:
 - `cookie-banner`
+- `design-palette`
 - `no-loadwaiting`
 - `shopping-cart`
 
@@ -152,6 +154,7 @@ window.CarrdPluginOptions = {
 | **Accordeon** | `dist/accordeon/` |
 | **Cards** | `dist/cards/` |
 | **Cookie Banner** | `dist/cookie-banner/` |
+| **Design Palette** | `dist/design-palette/` |
 | **Faq** | `dist/faq/` |
 | **Floating Cta** | `dist/floating-cta/` |
 | **Grid Cluster** | `dist/grid-cluster/` |
