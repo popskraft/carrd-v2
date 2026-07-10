@@ -82,16 +82,16 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 ### Grid Cluster
 
 ```html
-<div data-grid="features" data-grid-columns="3">A</div>
+<div data-grid="features" data-grid-cols="3">A</div>
 <div data-grid="features">B</div>
 <div data-grid="features">C</div>
 ```
 
 - Consecutive elements with the same `data-grid` value form one grid.
-- `data-grid-columns`, `data-grid-sm`, `data-grid-md`, and `data-grid-lg` set column counts.
+- `data-grid-cols`, `data-grid-cols-sm`, and `data-grid-cols-lg` set column counts.
+- `data-grid-span`, `data-grid-span-sm`, and `data-grid-span-lg` let one item occupy more than one track.
 - `data-grid-gap` and `data-grid-gap-mobile` are the primary gap controls.
-- `data-grid-width` sets an item width for desktop template helpers.
-- Legacy `data-gap`, `data-gap-mobile`, `grid-N`, `grid-sm-N`, `grid-md-N`, `grid-lg-N`, `w-*`, and `justify` classes remain fallback during migration.
+- `data-grid-justify` stretches container content edge to edge inside the grid cell.
 
 ### Switcher
 

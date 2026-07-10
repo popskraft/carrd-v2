@@ -47,20 +47,7 @@ window.CarrdPluginOptions.cards = window.CarrdPluginOptions.cards || {
 
 /* Grid Cluster */
 window.CarrdPluginOptions.gridCluster = window.CarrdPluginOptions.gridCluster || {
-    enabled: true,
-    gridAttribute: 'data-grid',
-    gridClasses: ['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6'],
-    widthClasses: {
-        'w-20': '20%',
-        'w-25': '25%',
-        'w-30': '33%',
-        'w-40': '40%',
-        'w-50': '50%',
-        'w-60': '60%',
-        'w-70': '67%',
-        'w-75': '75%',
-        'w-80': '80%'
-    }
+    enabled: true
 };
 
 /* Archived note: the old `columns` plugin no longer participates in the active contract. */

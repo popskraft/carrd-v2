@@ -10,8 +10,8 @@ const { createDom, loadScript, triggerDomReady, click, mockViewport } = require(
 test('grid-cluster does not double-wrap on repeated init', () => {
   const dom = createDom(
     '<div id="root">' +
-      '<div class="grid-2">A</div>' +
-      '<div class="grid-2">B</div>' +
+      '<div data-grid="features" data-grid-cols="2">A</div>' +
+      '<div data-grid="features">B</div>' +
     '</div>'
   );
 

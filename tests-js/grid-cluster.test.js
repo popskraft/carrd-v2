@@ -4,217 +4,169 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createDom, loadScript, triggerDomReady } = require('./helpers');
 
-test('grid-cluster wraps consecutive grid blocks into theme-grid wrapper', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div class="grid-2 w-20">A</div>' +
-      '<div class="grid-2 w-80">B</div>' +
-    '</div>'
-  );
+const SCRIPT = 'src/grid-cluster/grid-cluster.js';
 
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
+function initialize(html, options = null) {
+  const dom = createDom(html);
+  if (options) dom.window.CarrdPluginOptions = options;
+  loadScript(dom, SCRIPT);
   triggerDomReady(dom);
+  return dom;
+}
 
-  const doc = dom.window.document;
-  const wrapper = doc.querySelector('.theme-grid.grid-2.theme-grid--desktop-widths');
-  assert.ok(wrapper, 'wrapper with theme-grid classes should exist');
-  assert.equal(wrapper.children.length, 2);
-  assert.equal(
-    wrapper.style.getPropertyValue('--theme-grid-desktop-template'),
-    '20% 80%'
-  );
-});
-
-test('grid-cluster wraps consecutive data-grid blocks with data-driven options', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div data-grid="features" data-grid-columns="3" data-grid-sm="1" data-grid-lg="2" data-grid-width="30%" data-grid-gap="2">A</div>' +
-      '<div data-grid="features" data-grid-width="70%">B</div>' +
-      '<div data-grid="features">C</div>' +
-      '<div data-grid="reviews" data-grid-columns="2">D</div>' +
-      '<div data-grid="reviews">E</div>' +
-    '</div>'
-  );
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
+test('grid-cluster supports equal grids from two through six columns', () => {
+  const groups = [2, 3, 4, 5, 6].map(columns => (
+    `<section>` +
+      `<div data-grid="grid${columns}" data-grid-cols="${columns}" data-grid-span="1">A</div>` +
+      `<div data-grid="grid${columns}" data-grid-span="1">B</div>` +
+    `</section>`
+  )).join('');
+  const dom = initialize(groups);
   const wrappers = dom.window.document.querySelectorAll('.theme-grid');
-  assert.equal(wrappers.length, 2);
-  assert.ok(wrappers[0].classList.contains('grid-3'));
-  assert.ok(wrappers[0].classList.contains('grid-sm-1'));
-  assert.ok(wrappers[0].classList.contains('grid-lg-2'));
-  assert.equal(wrappers[0].style.getPropertyValue('--gap-override'), '2rem');
-  assert.equal(
-    wrappers[0].style.getPropertyValue('--theme-grid-desktop-template'),
-    '30% 70%'
-  );
-  assert.ok(wrappers[1].classList.contains('grid-2'));
-});
 
-test('grid-cluster keeps legacy data-gap attributes as fallback', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div data-grid="features" data-gap="2">A</div>' +
-      '<div data-grid="features">B</div>' +
-    '</div>'
-  );
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  const wrapper = dom.window.document.querySelector('.theme-grid');
-  assert.equal(wrapper.style.getPropertyValue('--gap-override'), '2rem');
-});
-
-test('grid-cluster marks blocks as initialized', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div class="grid-3">A</div>' +
-      '<div class="grid-3">B</div>' +
-      '<div class="grid-3">C</div>' +
-    '</div>'
-  );
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  const doc = dom.window.document;
-  const items = doc.querySelectorAll('.theme-grid > .grid-3');
-  assert.equal(items.length, 3, 'should have 3 grid items inside wrapper');
-  items.forEach(el => {
-    assert.equal(el.dataset.gridInitialized, 'true');
-  });
-});
-
-test('grid-cluster does not use any columns-prefixed class names', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div class="grid-2">A</div>' +
-      '<div class="grid-2">B</div>' +
-    '</div>'
-  );
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  const doc = dom.window.document;
-  const allElements = doc.querySelectorAll('*');
-  allElements.forEach(el => {
-    const classes = Array.from(el.classList);
-    classes.forEach(cls => {
-      assert.ok(
-        !cls.includes('columns'),
-        `Found class "${cls}" containing "columns" -- grid-cluster must not use columns-prefixed names`
-      );
+  assert.equal(wrappers.length, 5);
+  wrappers.forEach((wrapper, index) => {
+    assert.equal(wrapper.style.getPropertyValue('--grid-cols'), String(index + 2));
+    assert.equal(wrapper.style.getPropertyValue('--grid-cols-sm'), '1');
+    assert.equal(wrapper.style.getPropertyValue('--grid-cols-lg'), String(index + 2));
+    Array.from(wrapper.children).forEach(item => {
+      assert.equal(item.style.getPropertyValue('--grid-span'), '1');
+      assert.equal(item.style.getPropertyValue('--grid-span-sm'), '1');
+      assert.equal(item.style.getPropertyValue('--grid-span-lg'), '1');
     });
   });
 });
 
+test('grid-cluster applies independent small, default, and large layouts', () => {
+  const dom = initialize(
+    '<div id="root">' +
+      '<div data-grid="features" data-grid-cols="2" data-grid-cols-sm="2" data-grid-cols-lg="6" data-grid-span="1" data-grid-span-sm="1" data-grid-span-lg="4">A</div>' +
+      '<div data-grid="features" data-grid-span="1" data-grid-span-sm="1" data-grid-span-lg="1">B</div>' +
+      '<div data-grid="features" data-grid-span="1" data-grid-span-sm="1" data-grid-span-lg="1">C</div>' +
+    '</div>'
+  );
+  const wrapper = dom.window.document.querySelector('.theme-grid');
+  const items = Array.from(wrapper.children);
+
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols'), '2');
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols-sm'), '2');
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols-lg'), '6');
+  assert.deepEqual(items.map(item => item.style.getPropertyValue('--grid-span-lg')), ['4', '1', '1']);
+});
+
+test('grid-cluster clamps oversized spans and safely defaults invalid values', () => {
+  const dom = initialize(
+    '<div id="root">' +
+      '<div data-grid="safe" data-grid-cols="4" data-grid-cols-sm="bad" data-grid-cols-lg="0" data-grid-span="6" data-grid-span-sm="bad" data-grid-span-lg="6">A</div>' +
+      '<div data-grid="safe">B</div>' +
+    '</div>'
+  );
+  const wrapper = dom.window.document.querySelector('.theme-grid');
+  const [first, second] = wrapper.children;
+
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols'), '4');
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols-sm'), '1');
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols-lg'), '4');
+  assert.equal(first.style.getPropertyValue('--grid-span'), '4');
+  assert.equal(first.style.getPropertyValue('--grid-span-sm'), '1');
+  assert.equal(first.style.getPropertyValue('--grid-span-lg'), '4');
+  assert.equal(second.style.getPropertyValue('--grid-span'), '1');
+  assert.equal(second.style.getPropertyValue('--grid-span-lg'), '1');
+});
+
+test('grid-cluster keeps groups contiguous, named, and idempotent', () => {
+  const dom = initialize(
+    '<div id="root">' +
+      '<div data-grid="alpha" data-grid-cols="2">A</div>' +
+      '<div data-grid="alpha">B</div>' +
+      '<p>break</p>' +
+      '<div data-grid="alpha">C</div>' +
+      '<div data-grid="">ignored</div>' +
+    '</div>'
+  );
+  const doc = dom.window.document;
+
+  assert.equal(doc.querySelectorAll('.theme-grid').length, 2);
+  assert.equal(doc.querySelector('.theme-grid').children.length, 2);
+  assert.equal(doc.querySelector('[data-grid=""]').dataset.gridInitialized, undefined);
+
+  loadScript(dom, SCRIPT);
+  triggerDomReady(dom);
+  assert.equal(doc.querySelectorAll('.theme-grid').length, 2);
+});
+
+test('grid-cluster applies canonical gaps and justify mode', () => {
+  const dom = initialize(
+    '<div id="root">' +
+      '<div class="container-component" data-grid="layout" data-grid-cols="2" data-grid-gap="1.5" data-grid-gap-mobile="calc(1rem + 2px)" data-grid-justify="true">A</div>' +
+      '<div class="container-component" data-grid="layout">B</div>' +
+    '</div>'
+  );
+  const wrapper = dom.window.document.querySelector('.theme-grid');
+
+  assert.ok(wrapper.classList.contains('theme-grid--justify'));
+  assert.equal(wrapper.style.getPropertyValue('--grid-gap-override'), '1.5rem');
+  assert.equal(wrapper.style.getPropertyValue('--grid-gap-mobile-override'), 'calc(1rem + 2px)');
+});
+
 test('grid-cluster respects enabled:false', () => {
-  const dom = createDom(
-    '<div id="root"><div class="grid-2">A</div><div class="grid-2">B</div></div>'
+  const disabled = initialize(
+    '<div data-grid="disabled" data-grid-cols="2">A</div>',
+    { gridCluster: { enabled: false } }
   );
-  dom.window.CarrdPluginOptions = { gridCluster: { enabled: false } };
 
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  assert.equal(dom.window.document.querySelectorAll('.theme-grid').length, 0);
+  assert.equal(disabled.window.document.querySelectorAll('.theme-grid').length, 0);
 });
 
-test('grid-cluster css preserves justify inner width behavior through the scoped helper class', () => {
-  const gridCss = fs.readFileSync(
-    path.resolve(__dirname, '..', 'src/grid-cluster/grid-cluster.css'),
-    'utf-8'
-  );
-
-  assert.match(
-    gridCss,
-    /\.container-component\.theme-grid-justify\s+\.inner\s*\{\s*width:\s*100%;/m
-  );
-});
-
-test('grid-cluster css applies gap overrides to both row and column gaps', () => {
-  const gridCss = fs.readFileSync(
-    path.resolve(__dirname, '..', 'src/grid-cluster/grid-cluster.css'),
-    'utf-8'
-  );
-
-  assert.match(gridCss, /--theme-grid-row-gap:\s*1rem;/m);
-  assert.match(gridCss, /--theme-grid-row-gap-desktop:\s*2rem;/m);
-  assert.match(
-    gridCss,
-    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap\)\);/m
-  );
-  assert.match(
-    gridCss,
-    /--local-row-gap:\s*var\(--gap-mobile-override,\s*var\(--gap-override,\s*var\(--theme-grid-row-gap\)\)\);/m
-  );
-  assert.match(
-    gridCss,
-    /--local-row-gap:\s*var\(--gap-override,\s*var\(--theme-grid-row-gap-desktop\)\);/m
-  );
-});
-
-test('grid-cluster keeps default width classes when partial overrides are provided', () => {
-  const dom = createDom(
+test('grid-cluster uses canonical data-grid markers and cols/span contract', () => {
+  const dom = initialize(
     '<div id="root">' +
-      '<div class="grid-2 w-20">A</div>' +
-      '<div class="grid-2 w-80">B</div>' +
-    '</div>'
-  );
-  dom.window.CarrdPluginOptions = {
-    gridCluster: {
-      widthClasses: {
-        'w-20': '22%'
-      }
-    }
-  };
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  const wrapper = dom.window.document.querySelector('.theme-grid');
-  assert.equal(wrapper.style.getPropertyValue('--theme-grid-desktop-template'), '22% 80%');
-});
-
-test('grid-cluster promotes responsive helper classes from cluster items to wrapper', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div class="grid-4 grid-sm-2 grid-md-3 grid-lg-5">A</div>' +
-      '<div class="grid-4">B</div>' +
-      '<div class="grid-4">C</div>' +
-      '<div class="grid-4">D</div>' +
-      '</div>'
-  );
-
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
-  const wrapper = dom.window.document.querySelector('.theme-grid');
-  assert.ok(wrapper.classList.contains('grid-sm-2'));
-  assert.ok(wrapper.classList.contains('grid-md-3'));
-  assert.ok(wrapper.classList.contains('grid-lg-5'));
-});
-
-test('grid-cluster uses grid-lg column count for desktop width helpers', () => {
-  const dom = createDom(
-    '<div id="root">' +
-      '<div class="grid-4 grid-lg-5 w-20">A</div>' +
-      '<div class="grid-4 w-20">B</div>' +
-      '<div class="grid-4 w-20">C</div>' +
-      '<div class="grid-4 w-20">D</div>' +
-      '<div class="grid-4 w-20">E</div>' +
+      '<div data-grid="experimental" data-grid-cols="3" data-grid-span="1">A</div>' +
+      '<div data-grid="experimental" data-grid-span="2">B</div>' +
     '</div>'
   );
 
-  loadScript(dom, 'src/grid-cluster/grid-cluster.js');
-  triggerDomReady(dom);
-
   const wrapper = dom.window.document.querySelector('.theme-grid');
-  assert.equal(
-    wrapper.style.getPropertyValue('--theme-grid-desktop-template'),
-    '20% 20% 20% 20% 20%'
+  assert.equal(wrapper.children.length, 2);
+  assert.equal(wrapper.style.getPropertyValue('--grid-cols'), '3');
+});
+
+test('grid-cluster is included in the stable theme bundle', () => {
+  const config = JSON.parse(fs.readFileSync(
+    path.resolve(__dirname, '..', 'bundle.config.json'),
+    'utf8'
+  ));
+  const runtimeJs = fs.readFileSync(
+    path.resolve(__dirname, '..', 'dist/theme-runtime.min.js'),
+    'utf8'
   );
+
+  assert.ok(config.cdn_bundle.plugins.includes('grid-cluster'));
+  assert.ok(runtimeJs.includes('data-grid-span'));
+  assert.ok(runtimeJs.includes('data-grid-cols'));
+  assert.ok(!runtimeJs.includes('gridCluster2'));
+});
+
+test('grid-cluster publishes standard dist artifacts for active delivery', () => {
+  const pluginDir = path.resolve(__dirname, '..', 'dist/grid-cluster');
+  const readme = fs.readFileSync(path.join(pluginDir, 'README.md'), 'utf8');
+
+  assert.ok(fs.existsSync(path.join(pluginDir, 'grid-cluster-embed.html')));
+  assert.ok(fs.existsSync(path.join(pluginDir, 'grid-cluster-cdn.html')));
+  assert.match(readme, /CDN Bundle \(recommended\)|CDN Individual/);
+});
+
+test('grid-cluster CSS owns dynamic tracks, spans, breakpoints, and image containment', () => {
+  const css = fs.readFileSync(
+    path.resolve(__dirname, '..', 'src/grid-cluster/grid-cluster.css'),
+    'utf8'
+  );
+
+  assert.match(css, /repeat\(var\(--grid-cols-sm, 1\), minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(min-width: 737px\)/);
+  assert.match(css, /@media \(min-width: 1280px\)/);
+  assert.match(css, /grid-column:\s*span var\(--grid-span-lg/);
+  assert.match(css, /\.theme-grid \.image-component > \.frame\s*\{\s*max-width:\s*100%;/m);
+  assert.match(css, /\.theme-grid > \[data-grid\]/);
+  assert.doesNotMatch(css, /theme-grid--desktop-widths|data-grid-width|w-20|data-grid-columns|grid-sm-2/);
 });

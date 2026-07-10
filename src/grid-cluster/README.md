@@ -1,62 +1,151 @@
 # Grid Cluster
 
-Groups consecutive Carrd containers into one responsive CSS grid.
+Groups consecutive Carrd containers into one responsive CSS Grid with a dynamic `1–6` track count and an independent span for every item.
 
 ## Carrd Setup
 
 1. Place the containers next to each other with no unrelated element between them.
-2. Add the same group name to each container, for example `data-grid=features`.
-3. Add `data-grid-columns=3` to the first container.
+2. Add the same group name to every container, for example `data-grid=features`.
+3. On the first container, set the row capacity with `data-grid-cols=3`.
+4. Add `data-grid-span*` only when a specific container must occupy more than one track.
 
-The first container controls the whole cluster.
+Equal three-column example:
 
-## Configuration
+```text
+data-grid=features
+data-grid-cols=3
 
-Add responsive and spacing controls to the first container:
+data-grid=features
+
+data-grid=features
+```
+
+For an equal grid, this is enough: the first container defines `data-grid-cols*`, and every next container may use only `data-grid=<name>`. Each item defaults to `span = 1`, so equal cards do not need `data-grid-span*`.
+
+The first container owns group-level controls. Every container owns its own span only when an item needs a custom width.
+
+### Responsive Layout
+
+| Attribute | Owner | Result |
+|---|---|---|
+| `data-grid-cols=2` | First container | Track count from 737px; defaults to `1` |
+| `data-grid-cols-sm=2` | First container | Track count through 736px; defaults to `1` |
+| `data-grid-cols-lg=6` | First container | Track count from 1280px; defaults to `data-grid-cols` |
+| `data-grid-span=1` | Every container | Occupied default tracks; defaults to `1` |
+| `data-grid-span-sm=1` | Every container | Occupied mobile tracks; defaults to `1` |
+| `data-grid-span-lg=4` | Every container | Occupied large tracks; defaults to `data-grid-span` |
+
+Values must be whole numbers from `1` through `6`. A span larger than the active track count is limited to the full row.
+
+Example: two equal columns on mobile/default, then one long and two short items on large screens.
+
+```text
+data-grid=features
+data-grid-cols=2
+data-grid-cols-sm=2
+data-grid-cols-lg=6
+data-grid-span=1
+data-grid-span-sm=1
+data-grid-span-lg=4
+
+data-grid=features
+
+data-grid=features
+```
+
+### When You Need Extra Attributes
+
+Use only `data-grid-cols*` when every item has the same width inside the row.
+
+Example: equal 2 / 2 / 4 grid. Only the first container needs column settings.
+
+```text
+1st container
+data-grid=features
+data-grid-cols=2
+data-grid-cols-sm=2
+data-grid-cols-lg=4
+
+2nd container
+data-grid=features
+
+3rd container
+data-grid=features
+
+4th container
+data-grid=features
+```
+
+Add `data-grid-span*` when one item must be wider or narrower than the others.
+
+Example: on large screens one long card plus two short cards.
+
+```text
+1st container
+data-grid=features
+data-grid-cols=2
+data-grid-cols-sm=2
+data-grid-cols-lg=6
+data-grid-span-lg=4
+
+2nd container
+data-grid=features
+
+3rd container
+data-grid=features
+```
+
+Add `data-grid-gap*` when the spacing between items must differ from the defaults.
+
+```text
+1st container
+data-grid=features
+data-grid-cols=3
+data-grid-gap=1.5
+data-grid-gap-mobile=0.75
+```
+
+Add `data-grid-justify=true` when Carrd container content must stretch edge to edge inside each grid cell.
+
+```text
+1st container
+data-grid=features
+data-grid-cols=2
+data-grid-justify=true
+```
+
+### Spacing And Alignment
+
+Add these only to the first container:
 
 | Attribute | Result |
 |---|---|
-| `data-grid-sm=2` | Sets mobile columns |
-| `data-grid-md=3` | Sets tablet columns |
-| `data-grid-lg=5` | Sets large desktop columns |
-| `data-grid-gap=1.5` | Sets the cluster gap in rem |
-| `data-grid-gap-mobile=0.75` | Overrides the mobile gap |
-| `data-grid-justify=true` | Stretches the cluster edge to edge |
+| `data-grid-gap=1.5` | Sets row and column gap in rem |
+| `data-grid-gap-mobile=0.75` | Overrides both gaps through 736px |
+| `data-grid-justify=true` | Stretches Carrd container contents edge to edge |
 
-`data-gap` and `data-gap-mobile` are accepted as legacy aliases of `data-grid-gap` and `data-grid-gap-mobile`.
+## Configuration
 
-Use `data-grid-width=50%` on an individual item when it needs a custom desktop width.
-
-To change the grouping attribute or the built-in width shorthands, add this in `Body End` above the bundle or plugin script:
+To disable the plugin, add this in `Body End` above its script:
 
 ```html
 <script>
 window.CarrdPluginOptions = {
   gridCluster: {
-    enabled: true,
-    gridAttribute: 'data-grid',
-    widthClasses: {
-      'w-33': '33%'
-    }
+    enabled: false
   }
 };
 </script>
 ```
 
-| Option | Default | Result |
-|---|---|---|
-| `enabled` | `true` | Set `false` to disable the plugin globally |
-| `gridAttribute` | `'data-grid'` | Attribute name used to group containers into a cluster |
-| `gridClasses` | `['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6']` | Class names recognized as a column-count shorthand |
-| `widthClasses` | `{ 'w-20': '20%', ..., 'w-80': '80%' }` | Map of width shorthand classes to percentage values; merged with, not replacing, the defaults |
-
 ## Verify
 
 1. Publish or refresh the page.
 2. Confirm the containers form the requested number of columns.
-3. Resize through mobile and desktop widths.
+3. Check widths below 737px, from 737px, and from 1280px.
+4. Confirm items wrap when their spans exceed the remaining row capacity.
 
-If the grid stays single-column, confirm the containers are consecutive and share the same `data-grid` value.
+If the grid does not initialize, confirm every container has the same non-empty `data-grid` name and directly follows the previous container.
 
 ## Design
 

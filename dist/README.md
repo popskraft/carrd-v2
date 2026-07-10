@@ -158,7 +158,6 @@ window.CarrdPluginOptions = {
 | **Faq** | `dist/faq/` |
 | **Floating Cta** | `dist/floating-cta/` |
 | **Grid Cluster** | `dist/grid-cluster/` |
-| **Grid Cluster 2** | `dist/grid-cluster-2/` |
 | **Header Nav** | `dist/header-nav/` |
 | **Modal** | `dist/modal/` |
 | **No Loadwaiting** | `dist/no-loadwaiting/` |

@@ -46,4 +46,4 @@
 - `cardbuilder/docs/INDEX.md`
 
 ## Archive
-- `docs/_archive/` holds inactive historical/research docs that are no longer indexed or maintained.
+- `docs/_archive/` holds inactive historical/research docs that are no longer indexed or maintained, including archived plugin source snapshots such as `grid-cluster-v1-source/`.

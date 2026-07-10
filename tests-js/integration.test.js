@@ -12,8 +12,8 @@ function createRichDom() {
   return createDom(
       '<div id="root">' +
       // grid-cluster blocks
-      '<div class="grid-2 w-20">A</div>' +
-      '<div class="grid-2 w-80">B</div>' +
+      '<div data-grid="features" data-grid-cols="2">A</div>' +
+      '<div data-grid="features">B</div>' +
       // cards container
       '<div data-cards="cards"><div class="wrapper"><div class="inner">' +
         '<div>Card 1</div><div>Card 2</div>' +
@@ -125,7 +125,7 @@ test('cards and grid-cluster use separate initialization markers', () => {
   const doc = dom.window.document;
 
   // Grid blocks use gridInitialized
-  const gridItems = doc.querySelectorAll('.theme-grid > [data-grid-initialized]');
+  const gridItems = doc.querySelectorAll('.theme-grid > [data-grid]');
   gridItems.forEach(el => {
     assert.equal(el.dataset.gridInitialized, 'true');
   });

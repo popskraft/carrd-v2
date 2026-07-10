@@ -50,9 +50,7 @@ SPLIT_EMBED_PLUGINS = {
 }
 DESIGN_PALETTE_SLUG = "design-palette"
 DESIGN_PALETTE_TARGET_MARKUP = "<div data-design-palette></div>"
-INLINE_ONLY_PLUGIN_SLUGS = {
-    "grid-cluster-2",
-}
+INLINE_ONLY_PLUGIN_SLUGS = set()
 BUNDLE_CONFIG_FILE = "bundle.config.json"
 HEADER_NAV_CRITICAL_CSS = (
     "@media (max-width: 736px) { "

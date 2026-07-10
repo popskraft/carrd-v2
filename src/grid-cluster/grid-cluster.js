@@ -1,243 +1,100 @@
 (function() {
   'use strict';
 
-  const DEFAULTS = {
-    enabled: true,
-    gridAttribute: 'data-grid',
-    gridClasses: ['grid-2', 'grid-3', 'grid-4', 'grid-5', 'grid-6'],
-    widthClasses: {
-      'w-20': '20%',
-      'w-25': '25%',
-      'w-30': '33%',
-      'w-40': '40%',
-      'w-50': '50%',
-      'w-60': '60%',
-      'w-70': '67%',
-      'w-75': '75%',
-      'w-80': '80%'
-    }
+  const options = (window.CarrdPluginOptions && window.CarrdPluginOptions.gridCluster) || {};
+  const ATTRIBUTES = {
+    group: 'data-grid',
+    columns: 'data-grid-cols',
+    columnsSmall: 'data-grid-cols-sm',
+    columnsLarge: 'data-grid-cols-lg',
+    span: 'data-grid-span',
+    spanSmall: 'data-grid-span-sm',
+    spanLarge: 'data-grid-span-lg',
+    gap: 'data-grid-gap',
+    gapMobile: 'data-grid-gap-mobile',
+    justify: 'data-grid-justify'
   };
+  const WRAPPER_CLASS = 'theme-grid';
+  const JUSTIFY_CLASS = 'theme-grid--justify';
 
-  const externalOptions = (typeof window !== 'undefined' && (
-    (window.CarrdPluginOptions && window.CarrdPluginOptions.gridCluster)
-  )) || {};
-
-  const CONFIG = { ...DEFAULTS, ...externalOptions };
-  const SELECTORS = {
-    gridContainer: 'theme-grid',
-    desktopWidths: 'theme-grid--desktop-widths',
-    justify: 'theme-grid-justify',
-    constrainWidth: 'theme-grid-constrain',
-    imageFrameInGrid: '.theme-grid .image-component > .frame'
-  };
-
-  const GRID_CLASSES = CONFIG.gridClasses;
-  const GRID_ATTRIBUTE = CONFIG.gridAttribute || 'data-grid';
-  const WIDTH_CLASS_MAP = { ...DEFAULTS.widthClasses, ...(externalOptions.widthClasses || {}) };
-  const GRID_SELECTOR = [`[${GRID_ATTRIBUTE}]`, '[data-grid]', ...GRID_CLASSES.map(cls => `.${cls}`)].join(',');
-  const WIDTH_CLASSES = Object.keys(WIDTH_CLASS_MAP);
-  const RESPONSIVE_GRID_CLASS_PATTERN = /^grid-(sm|md|lg)-([1-6])$/;
-  const RESPONSIVE_GRID_ATTRIBUTES = {
-    sm: 'data-grid-sm',
-    md: 'data-grid-md',
-    lg: 'data-grid-lg'
-  };
-  const requestFrame = window.requestAnimationFrame || (cb => setTimeout(cb, 16));
-  let pendingFrame = null;
-  const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
-
-  const parseGap = val => {
-    if (!val) return null;
-    return !isNaN(val) ? val + 'rem' : val;
-  };
-
-  const parseGridCount = value => {
-    const numeric = parseInt(value, 10);
-    return Number.isInteger(numeric) && numeric >= 1 && numeric <= 6 ? numeric : null;
-  };
-
-  const normalizeName = value => (value || '')
-    .trim()
-    .replace(/&quot;/g, '"')
-    .replace(/^["']+|["']+$/g, '');
-
-  const getFirstAttribute = (element, attributes) => {
-    if (!element || !element.getAttribute) return null;
-    for (const attribute of attributes) {
-      const value = element.getAttribute(attribute);
-      if (value !== null && value !== '') {
-        return value;
-      }
-    }
-    return null;
-  };
-
-  const getGridName = element => {
-    const name = normalizeName(
-      element && element.getAttribute
-        ? (element.getAttribute(GRID_ATTRIBUTE) || element.getAttribute('data-grid'))
-        : ''
-    );
-    return safeNamePattern.test(name) ? name : '';
-  };
-
-  const isGridBlock = element =>
-    element && (
-      (element.hasAttribute && (element.hasAttribute(GRID_ATTRIBUTE) || element.hasAttribute('data-grid'))) ||
-      GRID_CLASSES.some(cls => element.classList && element.classList.contains(cls))
-    );
-
-  const getGridSize = (element, fallbackLength = null) => {
-    if (!element || !element.classList) return null;
-    const dataColumns = parseGridCount(element.getAttribute('data-grid-columns'));
-    if (dataColumns) return dataColumns;
-
-    const sizeClass = GRID_CLASSES.find(cls => element.classList.contains(cls));
-    if (sizeClass) {
-      const numeric = parseInt(sizeClass.split('-')[1], 10);
-      return Number.isNaN(numeric) ? null : numeric;
-    }
-
-    if (getGridName(element)) {
-      return Math.min(6, Math.max(1, fallbackLength || 1));
-    }
-
-    return null;
-  };
-
-  const widthValueForElement = element => {
-    if (!element || !element.classList) return null;
-    const dataWidth = element.getAttribute('data-grid-width');
-    if (dataWidth) return dataWidth;
-
-    const widthClass = WIDTH_CLASSES.find(cls => element.classList.contains(cls));
-    return widthClass ? WIDTH_CLASS_MAP[widthClass] : null;
-  };
-
-  const getResponsiveGridClasses = cluster => {
-    const responsiveClasses = new Set();
-    cluster.forEach(element => {
-      if (!element || !element.classList) return;
-      Object.entries(RESPONSIVE_GRID_ATTRIBUTES).forEach(([breakpoint, attribute]) => {
-        const count = parseGridCount(element.getAttribute(attribute));
-        if (count) responsiveClasses.add(`grid-${breakpoint}-${count}`);
-      });
-      element.classList.forEach(className => {
-        if (RESPONSIVE_GRID_CLASS_PATTERN.test(className)) {
-          responsiveClasses.add(className);
-        }
-      });
-    });
-    return Array.from(responsiveClasses);
-  };
-
-  const getDesktopGridSize = (gridSize, responsiveClasses) => {
-    const lgClass = responsiveClasses.find(cls => cls.startsWith('grid-lg-'));
-    if (!lgClass) return gridSize;
-
-    const numeric = parseInt(lgClass.split('-')[2], 10);
-    return Number.isNaN(numeric) ? gridSize : numeric;
-  };
-
-  function wrapCluster(cluster, gridSize) {
-    if (!cluster.length || !cluster[0].parentNode) return;
-
-    if (
-      cluster[0].classList.contains('justify') ||
-      (cluster[0].getAttribute('data-grid-justify') === 'true')
-    ) {
-      cluster.forEach(node => node.classList.add(SELECTORS.justify));
-    }
-
-    const container = document.createElement('div');
-    const classList = [SELECTORS.gridContainer];
-    const responsiveClasses = getResponsiveGridClasses(cluster);
-
-    if (gridSize && gridSize >= 2) {
-      classList.push(`grid-${gridSize}`);
-    }
-
-    classList.push(...responsiveClasses);
-
-    container.className = classList.join(' ');
-    cluster[0].parentNode.insertBefore(container, cluster[0]);
-    cluster.forEach(node => container.appendChild(node));
-
-    const gap = parseGap(getFirstAttribute(cluster[0], ['data-grid-gap', 'data-gap']));
-    const gapMobile = parseGap(getFirstAttribute(cluster[0], ['data-grid-gap-mobile', 'data-gap-mobile']));
-    if (gap) container.style.setProperty('--gap-override', gap);
-    if (gapMobile) container.style.setProperty('--gap-mobile-override', gapMobile);
-
-    applyDesktopWidths(container, cluster, getDesktopGridSize(gridSize, responsiveClasses));
+  function parseUnit(value) {
+    const unit = Number(value);
+    return Number.isInteger(unit) && unit >= 1 && unit <= 6 ? unit : null;
   }
 
-  function applyDesktopWidths(container, cluster, gridSize) {
-    if (!gridSize || gridSize < 2 || cluster.length < gridSize) return;
-
-    const initialRow = cluster.slice(0, gridSize);
-    const columnWidths = initialRow.map(widthValueForElement);
-    if (!columnWidths.some(Boolean)) return;
-
-    const templateParts = columnWidths.map(value => value || 'minmax(0, 1fr)');
-    container.classList.add(SELECTORS.desktopWidths);
-    container.style.setProperty('--theme-grid-desktop-template', templateParts.join(' '));
+  function parseGap(value) {
+    const normalized = (value || '').trim();
+    if (!normalized) return null;
+    const numeric = Number(normalized);
+    return Number.isFinite(numeric) ? `${numeric}rem` : normalized;
   }
 
-  function constrainImageFrames() {
-    document.querySelectorAll(SELECTORS.imageFrameInGrid).forEach(frame => {
-      const computedWidth = window.getComputedStyle(frame).width;
-      const widthInRem = parseFloat(computedWidth) / parseFloat(getComputedStyle(document.documentElement).fontSize);
+  function getGroupName(element) {
+    return (element.getAttribute(ATTRIBUTES.group) || '').trim();
+  }
 
-      if (widthInRem > 20) {
-        frame.classList.add(SELECTORS.constrainWidth);
-      }
+  function readSpan(element, attribute, columns, fallback) {
+    const span = parseUnit(element.getAttribute(attribute)) || fallback;
+    return Math.min(span, columns);
+  }
+
+  function applyLayout(wrapper, cluster) {
+    const first = cluster[0];
+    const columns = parseUnit(first.getAttribute(ATTRIBUTES.columns)) || 1;
+    const columnsSmall = parseUnit(first.getAttribute(ATTRIBUTES.columnsSmall)) || 1;
+    const columnsLarge = parseUnit(first.getAttribute(ATTRIBUTES.columnsLarge)) || columns;
+
+    wrapper.style.setProperty('--grid-cols', columns);
+    wrapper.style.setProperty('--grid-cols-sm', columnsSmall);
+    wrapper.style.setProperty('--grid-cols-lg', columnsLarge);
+
+    cluster.forEach(item => {
+      const span = readSpan(item, ATTRIBUTES.span, columns, 1);
+      const spanSmall = readSpan(item, ATTRIBUTES.spanSmall, columnsSmall, 1);
+      const spanLarge = readSpan(item, ATTRIBUTES.spanLarge, columnsLarge, span);
+
+      item.style.setProperty('--grid-span', span);
+      item.style.setProperty('--grid-span-sm', spanSmall);
+      item.style.setProperty('--grid-span-lg', spanLarge);
     });
   }
 
-  function scheduleConstrainImageFrames() {
-    if (pendingFrame !== null) return;
-    pendingFrame = requestFrame(() => {
-      pendingFrame = null;
-      constrainImageFrames();
-    });
+  function wrapCluster(cluster) {
+    const first = cluster[0];
+    const wrapper = document.createElement('div');
+    wrapper.className = first.getAttribute(ATTRIBUTES.justify) === 'true'
+      ? `${WRAPPER_CLASS} ${JUSTIFY_CLASS}`
+      : WRAPPER_CLASS;
+
+    first.parentNode.insertBefore(wrapper, first);
+    cluster.forEach(item => wrapper.appendChild(item));
+    applyLayout(wrapper, cluster);
+
+    const gap = parseGap(first.getAttribute(ATTRIBUTES.gap));
+    const gapMobile = parseGap(first.getAttribute(ATTRIBUTES.gapMobile));
+    if (gap) wrapper.style.setProperty('--grid-gap-override', gap);
+    if (gapMobile) wrapper.style.setProperty('--grid-gap-mobile-override', gapMobile);
   }
 
   function init() {
-    if (CONFIG.enabled === false) return;
+    if (options.enabled === false) return;
 
-    const collected = new Set();
-    const gridBlocks = document.querySelectorAll(GRID_SELECTOR);
-
-    gridBlocks.forEach(block => {
-      if (collected.has(block)) return;
+    document.querySelectorAll(`[${ATTRIBUTES.group}]`).forEach(block => {
       if (block.dataset.gridInitialized === 'true') return;
-      if (block.classList.contains(SELECTORS.gridContainer)) return;
+
+      const name = getGroupName(block);
+      if (!name) return;
 
       const cluster = [block];
-      const baseName = getGridName(block);
-      const baseSize = getGridSize(block);
       let sibling = block.nextElementSibling;
-
-      while (isGridBlock(sibling)) {
-        const siblingName = getGridName(sibling);
-        if (baseName || siblingName) {
-          if (siblingName !== baseName) break;
-        } else if (baseSize !== null && getGridSize(sibling) !== baseSize) {
-          break;
-        }
+      while (sibling && getGroupName(sibling) === name) {
         cluster.push(sibling);
-        collected.add(sibling);
         sibling = sibling.nextElementSibling;
       }
 
-      collected.add(block);
-      cluster.forEach(node => node.dataset.gridInitialized = 'true');
-      wrapCluster(cluster, getGridSize(block, cluster.length));
+      cluster.forEach(item => { item.dataset.gridInitialized = 'true'; });
+      wrapCluster(cluster);
     });
-
-    constrainImageFrames();
-    window.addEventListener('load', scheduleConstrainImageFrames, { once: true });
-    window.addEventListener('resize', scheduleConstrainImageFrames);
   }
 
   if (document.readyState === 'loading') {
