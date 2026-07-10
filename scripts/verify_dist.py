@@ -75,7 +75,7 @@ def expected_dist_files(repo_root: Path) -> set[str]:
             expected.add(f"{entry.name}/{entry.name}.min.css")
         if has_js:
             expected.add(f"{entry.name}/{entry.name}.min.js")
-        if has_css or has_js:
+        if (has_css or has_js) and entry.name not in build.INLINE_ONLY_PLUGIN_SLUGS:
             expected.add(f"{entry.name}/{entry.name}-cdn.html")
         if has_css or has_js:
             expected.add(f"{entry.name}/{entry.name}-embed.html")

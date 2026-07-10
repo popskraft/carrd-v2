@@ -112,6 +112,22 @@ class MinifyPluginsTests(unittest.TestCase):
             self.assertNotIn("Bundle Add-on", no_bundle)
             self.assertIn("CDN Individual", no_bundle)
 
+    def test_experimental_grid_cluster_install_is_inline_only(self):
+        with TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir)
+            plugin_dir = repo_root / "src" / "grid-cluster-2"
+            plugin_dir.mkdir(parents=True)
+            (repo_root / "bundle.config.json").write_text(
+                '{"cdn_bundle":{"enabled":true,"name":"theme-runtime","plugins":[]}}',
+                encoding="utf-8",
+            )
+
+            install = m.build_plugin_installation(repo_root, plugin_dir, True, True)
+
+            self.assertIn("Inline Embed (required for testing)", install)
+            self.assertNotIn("CDN Individual", install)
+            self.assertNotIn("Bundle Add-on", install)
+
     def test_inline_installation_uses_special_placement_and_split_files(self):
         no_load = m.build_inline_install_steps("no-loadwaiting", False, True)
         self.assertIn("Code → Hidden → Head", no_load)
@@ -144,7 +160,11 @@ class MinifyPluginsTests(unittest.TestCase):
             with self.subTest(plugin=plugin_slug):
                 self.assertNotIn("Build date", content)
                 self.assertNotIn("[[", content)
-                if plugin_slug in bundle_plugins:
+                if plugin_slug in m.INLINE_ONLY_PLUGIN_SLUGS:
+                    self.assertIn("inline-only", content)
+                    self.assertIn("Inline Embed (required for testing)", content)
+                    self.assertNotIn("Bundle Add-on", content)
+                elif plugin_slug in bundle_plugins:
                     self.assertIn("already includes this plugin", content)
                     self.assertNotIn("Bundle Add-on", content)
                 else:

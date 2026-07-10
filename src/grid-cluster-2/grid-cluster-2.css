@@ -1,0 +1,89 @@
+:where(:root) {
+  --theme-grid-2-row-gap: 1rem;
+  --theme-grid-2-column-gap: 1rem;
+  --theme-grid-2-column-gap-sm: 0.5rem;
+  --theme-grid-2-row-gap-desktop: 2rem;
+  --theme-grid-2-column-gap-desktop: 1.5rem;
+  --theme-grid-2-column-gap-desktop-large: 2rem;
+}
+
+.theme-grid-2 {
+  --grid-2-local-row-gap: var(
+    --grid-2-gap-mobile-override,
+    var(--grid-2-gap-override, var(--theme-grid-2-row-gap))
+  );
+  --grid-2-local-column-gap: var(
+    --grid-2-gap-mobile-override,
+    var(--grid-2-gap-override, var(--theme-grid-2-column-gap-sm))
+  );
+  display: grid;
+  grid-template-columns: repeat(var(--grid-2-cols-sm, 1), minmax(0, 1fr));
+  row-gap: var(--grid-2-local-row-gap);
+  column-gap: var(--grid-2-local-column-gap);
+}
+
+.theme-grid-2 > [data-grid-2] {
+  grid-column: span var(--grid-2-span-sm, 1);
+  min-width: 0;
+}
+
+@media (min-width: 737px) {
+  .theme-grid-2 {
+    --grid-2-local-row-gap: var(--grid-2-gap-override, var(--theme-grid-2-row-gap));
+    --grid-2-local-column-gap: var(--grid-2-gap-override, var(--theme-grid-2-column-gap));
+    grid-template-columns: repeat(var(--grid-2-cols, 1), minmax(0, 1fr));
+  }
+
+  .theme-grid-2 > [data-grid-2] {
+    grid-column: span var(--grid-2-span, 1);
+  }
+}
+
+@media (min-width: 1025px) {
+  .theme-grid-2 {
+    --grid-2-local-row-gap: var(
+      --grid-2-gap-override,
+      var(--theme-grid-2-row-gap-desktop)
+    );
+    --grid-2-local-column-gap: var(
+      --grid-2-gap-override,
+      var(--theme-grid-2-column-gap-desktop)
+    );
+  }
+}
+
+@media (min-width: 1280px) {
+  .theme-grid-2 {
+    --grid-2-local-column-gap: var(
+      --grid-2-gap-override,
+      var(--theme-grid-2-column-gap-desktop-large)
+    );
+    grid-template-columns: repeat(var(--grid-2-cols-lg, var(--grid-2-cols, 1)), minmax(0, 1fr));
+  }
+
+  .theme-grid-2 > [data-grid-2] {
+    grid-column: span var(--grid-2-span-lg, var(--grid-2-span, 1));
+  }
+}
+
+.theme-grid-2--justify > .container-component,
+.theme-grid-2--justify > .container-component > .wrapper {
+  display: flex;
+}
+
+.theme-grid-2--justify > .container-component > .inner,
+.theme-grid-2--justify > .container-component > .wrapper > .inner {
+  width: 100%;
+}
+
+.theme-grid-2 > .container-component {
+  margin: 0;
+}
+
+.theme-grid-2 + .theme-grid-2 {
+  margin-top: var(--grid-2-local-row-gap);
+}
+
+.theme-grid-2 .image-component > .frame {
+  max-width: 100%;
+}

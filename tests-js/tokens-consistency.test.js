@@ -39,6 +39,7 @@ const PLUGIN_PREFIXES = {
   faq: ['--theme-faq-'],
   'floating-cta': ['--theme-floating-cta-'],
   'grid-cluster': ['--theme-grid-'],
+  'grid-cluster-2': ['--theme-grid-2-'],
   'header-nav': ['--theme-header-nav-'],
   modal: ['--theme-modal-'],
   'shopping-cart': ['--theme-shopcart-'],

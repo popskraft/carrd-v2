@@ -50,6 +50,9 @@ SPLIT_EMBED_PLUGINS = {
 }
 DESIGN_PALETTE_SLUG = "design-palette"
 DESIGN_PALETTE_TARGET_MARKUP = "<div data-design-palette></div>"
+INLINE_ONLY_PLUGIN_SLUGS = {
+    "grid-cluster-2",
+}
 BUNDLE_CONFIG_FILE = "bundle.config.json"
 HEADER_NAV_CRITICAL_CSS = (
     "@media (max-width: 736px) { "
@@ -148,6 +151,17 @@ def build_plugin_installation(
     bundled_plugins = set(bundle_config.get("plugins", []))
     bundle_enabled = bundle_config.get("enabled", False)
     is_bundled = bundle_enabled and plugin_slug in bundled_plugins
+
+    if plugin_slug in INLINE_ONLY_PLUGIN_SLUGS:
+        return "\n".join([
+            "## Install",
+            "",
+            "This experimental plugin is inline-only until it receives a published release.",
+            "",
+            "### Inline Embed (required for testing)",
+            "",
+            build_inline_install_steps(plugin_slug, has_css, has_js),
+        ])
 
     sections = ["## Install", "", "Choose one method.", ""]
     if bundle_enabled:
@@ -693,15 +707,16 @@ def process_plugin(
                 output_embed.write_text("\n".join(embed_parts) + "\n", encoding="utf-8")
                 print(f"Created Embed: {output_embed}")
 
-        create_plugin_cdn_embed(
-            repo_root,
-            plugin_dir.name,
-            plugin_name,
-            target_dir,
-            version,
-            output_css.exists(),
-            output_js.exists(),
-        )
+        if plugin_dir.name not in INLINE_ONLY_PLUGIN_SLUGS:
+            create_plugin_cdn_embed(
+                repo_root,
+                plugin_dir.name,
+                plugin_name,
+                target_dir,
+                version,
+                output_css.exists(),
+                output_js.exists(),
+            )
         
     # Recurse for nested plugins (like themes/mini)
     for sub in plugin_dir.iterdir():
