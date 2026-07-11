@@ -4,6 +4,8 @@
 
 Accepted — 2026-06-30. Resolves `OPEN-QUESTIONS.md` Q004.
 
+**Superseded in part — 2026-07-11 (`2.0.0`, resolves Q016).** The compatibility-tail delivery described below (`theme-core.*`, `theme-ui.css` as a legacy bridge, mutable `@main` CDN rollout) was removed entirely. Distribution is now inline-embed-only; there is no CDN/jsDelivr channel and no compatibility bridge. The clean-naming decision (no version suffixes, no `V2` aliases) still stands. See `docs/specs/release-contract.md` and `docs/specs/carrd-contract.md` for the current contract.
+
 ## Context
 
 Legacy sites remain permanently attached to `popskraft/carrd-plugins`. The separate `popskraft/carrd-v2` repo should keep a clean source/runtime contract for new installs, but mutable `@main` consumers and old site-owned token overrides still need a controlled compatibility bridge during rollout.

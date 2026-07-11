@@ -12,32 +12,24 @@
 - `scripts/minify_plugins.py` — генератор `dist/` docs и assets.
 
 ## Theme и delivery
-- `theme-design-system.html` — required base artifact для inline installs.
-- `theme-design-tokens.css` — reference/default contract containing only global palette, roles, typography and shared UI tokens for site-owned `:root { --theme-* }` embeds.
-- `theme-design-tokens-embed.html` — ready-to-paste full token layer for CDN installs.
-- `theme-ui-runtime.css` — clean shared UI support file for new `CDN Individual` installs.
-- `theme-ui.css` — compatibility shared UI artifact with the legacy token bridge for mutable `@main` consumers.
-- `theme-runtime.min.css` и `theme-runtime.min.js` — canonical CDN bundle artifacts for new installs.
-- `theme-runtime-cdn.html` — canonical Head/Body End helper.
-- `theme-core.min.css` и `theme-core.min.js` — compatibility CDN bundle artifacts.
-- `theme-core-cdn.html` — compatibility helper for legacy rollout only.
-- `no-loadwaiting` остаётся вне bundle, потому что он должен работать первым.
+Начиная с `2.0.0` доставка — только inline embed. CDN/jsDelivr-артефактов (`*.min.css`, `*.min.js`, `*-cdn.html`) в `dist/` больше нет; полный rationale и версионирование — `docs/specs/release-contract.md`.
+
+- `theme-design-system.html` — required base artifact для inline installs; несёт склеенные design tokens + shared UI styles.
+- `theme-design-tokens.css` — plain-CSS reference contract с global palette, roles, typography и shared UI tokens.
+- `theme-design-tokens-embed.html` — ready-to-paste token layer, отдельный `Head` embed.
+- `theme-ui.css` — shared UI support file (base styles, без tokens).
+- `theme-ui-embed.html` — ready-to-paste версия `theme-ui.css`, отдельный `Head` embed.
+- `no-loadwaiting` остаётся вне общего embed-flow, потому что он должен работать первым и вставляется в `Head`.
 
 Current install contract:
-- New installs use `theme-runtime.min.css` + `theme-runtime.min.js` plus a separate full token layer from `theme-design-tokens-embed.html`.
-- `theme-runtime.min.css` ships shared UI + bundled plugin CSS and the low-specificity defaults owned by those plugins, but never global token defaults.
-- `theme-core.min.css` is a compatibility artifact that ships default tokens and the legacy token bridge for existing mutable `@main` installs.
-- Site token values still belong in Carrd `Head` embeds as site-owned custom layers.
-- `theme-design-tokens.css` remains published as a repo-owned reference/default set, not as a required CDN include.
-- Every plugin CSS owns its public `--theme-<plugin>-*` defaults in a leading `:where(:root)` block. Optional plugin namespaces never leak into the global token layer or bundles that exclude that plugin.
+- Единственный путь — Inline Embed: `theme-design-system.html` в `Head` один раз на сайт, либо раздельно `theme-design-tokens-embed.html` + `theme-ui-embed.html`, когда нужно редактировать только tokens.
+- Site token values по-прежнему живут в отдельном Carrd `Head` embed как site-owned custom layer, поверх `theme-design-tokens-embed.html`.
+- Every plugin CSS owns its public `--theme-<plugin>-*` defaults in a leading `:where(:root)` block. Optional plugin namespaces never leak into the global token layer.
 
 ## Runtime contract
-- Canonical new-install artifacts: `theme-design-tokens-embed.html`, `theme-runtime.min.css`, `theme-runtime.min.js`.
-- `theme-ui-runtime.css` остаётся shared UI support file только для `CDN Individual` / manual path и не документируется как обязательный include рядом с `theme-runtime.min.css`.
-- `theme-core.*` и `theme-ui.css` сохраняются только как compatibility tail для already-live installs на mutable `@main`.
-- Mutable `@main` draft installs допустимы только как development surface и только с единым ручным `?rev=...` во всех repo-owned CDN URLs.
-- Если jsDelivr branch-cache продолжает отдавать stale `@main` snapshot даже после смены `?rev=...`, development draft временно переводится на конкретный commit SHA из `main` как аварийный exact-ref fallback.
-- Custom site code не публикуется из `dist/` как `theme-custom-*` CDN artifacts и не считается частью repo-owned delivery surface.
+- Canonical artifacts: `theme-design-system.html` (или раздельно `theme-design-tokens-embed.html` + `theme-ui-embed.html`), затем `<plugin>-embed.html` для каждого используемого плагина.
+- CDN/jsDelivr delivery не существует; никакой mutable `@main` ref никогда не документируется и не поставляется покупателю.
+- Custom site code не публикуется из `dist/` и не считается частью repo-owned delivery surface.
 - Canonical site-owned custom layers:
   - `Brand Token Override` — только `:root { --theme-* }`.
   - `Site CSS Override` — site-level selector overrides и layout fixes.
@@ -48,8 +40,7 @@ Current install contract:
   2. Поменять только этот сайт → `Site CSS Override`.
   3. Поменять поведение plugin → `window.CarrdPluginOptions`.
   4. Добавить site-only behavior, который не решается CSS/config → `Site Custom JS`.
-- User-facing docs должны явно говорить, что site custom layers добавляются в Carrd embeds и не редактируют jsDelivr files.
-- User-facing docs не рекомендуют mutable refs (`@main`) для новых installs.
+- User-facing docs должны явно говорить, что site custom layers добавляются в Carrd embeds и что `dist/` файлы не редактируются вручную — только через `npm run build`.
 
 ## README build map
 - `dist/README.md` собирается из root `README.md` через `scripts/templates/root_readme.md`.
@@ -69,17 +60,17 @@ Current install contract:
 - После заголовка обязателен один короткий paragraph, описывающий user-visible result.
 - Required order: `Carrd Setup` → `Configuration` → `Verify`.
 - После required flow разрешены только `Design`, `Advanced: ...`, `API`, `Troubleshooting`.
-- Generated install flow показывает `CDN Bundle` или `Bundle Add-on`, затем `CDN Individual` и `Inline Embed`.
+- Generated install flow показывает единственный путь — Inline Embed.
 - `no-loadwaiting` всегда документируется в `Head`; split plugins перечисляют обе inline parts в правильном порядке.
 - `:root` overrides всегда показываются как отдельный `Head` embed после theme files.
 - Custom guidance должна оставаться короткой и однозначной: brand/theme changes через token override, site-only styling через site CSS, plugin behavior через `window.CarrdPluginOptions`, site-only behavior через custom JS.
-- Source README не содержит repo maintenance, build commands и повторяющиеся CDN URLs.
+- Source README не содержит repo maintenance, build commands и любые CDN URLs.
 
 ## Coding и config rules
 - Vanilla JS only, без внешних runtime dependencies.
 - Global/shared CSS variables используют `--theme-color-*`, `--theme-button-*`, `--theme-link-*`, `--theme-nav-*`, `--theme-ui-*`, `--theme-font-*`, `--theme-focus-*` или `--theme-overlay-*` и определяются только в `theme-design-tokens.css`.
 - Public component variables используют namespace `--theme-<plugin>-*` и определяются только в leading `:where(:root)` block соответствующего plugin CSS.
-- Canonical CSS использует обязательные `var(--theme-*)` без fallback argument. Fallback chains разрешены только в rollout-only `theme-compat.css`; private optional variables без `--theme-` могут использовать fallback.
+- Canonical CSS использует обязательные `var(--theme-*)` без fallback argument. Private optional variables без `--theme-` могут использовать fallback. Legacy compat-слой (`theme-compat.css`) удалён в `2.0.0` — не воссоздавать.
 - Public plugin globals используют формат `window.Carrd<Plugin>`.
 - Legacy globals `window.Carrd<Plugin>V2` допускаются только как backward-compat aliases.
 - Configuration идёт через `window.CarrdPluginOptions`.
@@ -89,14 +80,10 @@ Current install contract:
 ## Release workflow
 Полный owner процесса: `docs/specs/release-contract.md`.
 
-- Разработка идёт в `main`; активный Carrd draft может временно быть подключён к `@main` во время доработки.
-- Если draft подключён к `@main`, все repo-owned CDN refs обязаны иметь один и тот же ручной cache-buster `?rev=YYYYMMDD-XX`.
-- Голый `@main` без `?rev=...` считается невалидным development contract.
-- Freeze, release candidate, опубликованный продаваемый шаблон и клиентская поставка никогда не подключаются к `@main`.
-- Pre-sale validation обязана отдельно проверить отсутствие `@main` и `?rev=...` в финальном Carrd решении.
-- Каждый публичный runtime получает новый SemVer, immutable Git tag и version-pinned jsDelivr URL.
-- Старые release tags не изменяются и не удаляются.
-- Release candidate готовится через `npm run release:prepare`; публикация tag, purge и переключение Carrd выполняются отдельными явными шагами.
+- Разработка идёт в `main`; доставка покупателю — только inline embed из текущего `dist/`, никакого CDN-канала нет.
+- Версионирование с `2.0.0` — собственная линия (не продолжение старого `2.1.x` SemVer): `2.0.x`/`2.x.0` — embed-only изменения, `3.0.0` зарезервирован под возврат CDN или другое несовместимое изменение embed-контракта.
+- Старые release tags (включая `v2.1.0` и раньше) не изменяются и не удаляются — они остаются провенансом для уже опубликованных на старом CDN-пути сайтов, но не являются активным каналом для новой работы.
+- Release candidate готовится через `npm run release:prepare`; после релиза изменённые `dist/*-embed.html` вставляются в Carrd вручную, без автообновления покупателя.
 
 ## Related docs
 - `docs/specs/carrd-markup-contract.md`
