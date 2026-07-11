@@ -408,7 +408,12 @@ def create_named_cdn_bundle(
     for plugin_slug in plugin_slugs:
         plugin_dir = source_dir / plugin_slug
         for js_file in sorted(plugin_dir.glob("*.js")):
-            js_chunks.append(minify_js(js_file.read_text(encoding="utf-8")))
+            js_chunks.append(
+                wrap_plugin_runtime(
+                    minify_js(js_file.read_text(encoding="utf-8")),
+                    plugin_slug,
+                )
+            )
 
     output_css = dist_dir / f"{bundle_name}.min.css"
     output_js = dist_dir / f"{bundle_name}.min.js"
@@ -459,6 +464,26 @@ def build_cdn_base(repo_root: Path) -> str:
     version = read_version(repo_root)
     cdn_ref = bundle_config.get("cdn_ref", version)
     return f"https://cdn.jsdelivr.net/gh/{github_repo}@{cdn_ref}/dist"
+
+
+def wrap_plugin_runtime(source: str, plugin_slug: str) -> str:
+    """Isolate plugin init failures while keeping them observable."""
+    label = json.dumps(plugin_slug)
+    return (
+        "(function(){try{"
+        + source
+        + "}catch(error){"
+        + "var runtime=typeof globalThis!=='undefined'?globalThis:{};"
+        + "var errors=runtime.CarrdPluginRuntimeErrors||(runtime.CarrdPluginRuntimeErrors=[]);"
+        + "errors.push({plugin:"
+        + label
+        + ",error:String(error)});"
+        + "if(runtime.console&&typeof runtime.console.error==='function'){"
+        + "runtime.console.error('[CarrdPluginRuntime] '+"
+        + label
+        + "+' failed',error);"
+        + "}}})();"
+    )
 
 
 def create_plugin_cdn_embed(

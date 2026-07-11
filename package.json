@@ -6,7 +6,8 @@
     "axe-core": "^4.12.1",
     "eslint": "^8.57.0",
     "jsdom": "^24.0.0",
-    "knip": "^6.25.0"
+    "knip": "^6.25.0",
+    "playwright-core": "1.58.2"
   },
   "scripts": {
     "build": "python3 scripts/minify_plugins.py",
@@ -18,6 +19,10 @@
     "check:bundle-budget": "python3 scripts/check_bundle_budget.py",
     "check:deadcode": "knip",
     "lint": "eslint \"src/**/*.js\" \"tests-js/**/*.js\" \"cardbuilder/scripts/**/*.mjs\"",
+    "lab:plugins": "node scripts/local-plugin-lab/run.mjs",
+    "lab:plugins:base": "node scripts/local-plugin-lab/run.mjs --base-only",
+    "lab:plugins:matrix": "node scripts/local-plugin-lab/run.mjs --matrix-only",
+    "lab:plugins:list": "node scripts/local-plugin-lab/run.mjs --list",
     "mcp:carrd": "node cardbuilder/scripts/carrd/carrd-mcp-server.mjs",
     "onboard:site": "node cardbuilder/scripts/carrd/onboard-site.mjs",
     "sync:mcp:main-template": "node cardbuilder/scripts/carrd/sync-mcp-profile.mjs --site main-template",
@@ -30,6 +35,7 @@
     "test:cardbuilder": "node --test tests-js/site-registry.test.js tests-js/carrd-mcp-core.test.js tests-js/carrd-mcp-server.test.js tests-js/carrd-mcp-onboarding.test.js",
     "test": "npm run check:legacy && npm run check:clean-contract && npm run test:py && npm run test:js && npm run test:cardbuilder",
     "release:check": "python3 scripts/check_release.py",
+    "check:published": "python3 scripts/check_published_site.py",
     "release:prepare": "npm run build && npm run validate && npm run release:check",
     "cdn:purge": "python3 scripts/purge_jsdelivr.py",
     "cdn:purge:main": "python3 scripts/purge_jsdelivr.py --ref main"

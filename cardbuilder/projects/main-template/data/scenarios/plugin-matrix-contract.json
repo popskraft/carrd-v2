@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "limit": 320,
+  "plugins": [
+    {
+      "id": "slider",
+      "global": "CarrdSlider",
+      "parameters": [
+        { "selector": "#container11", "attribute": "data-slider-mode", "values": [{ "id": "v", "value": "center", "kind": "valid" }, { "id": "i", "value": "sideways", "kind": "invalid" }, { "id": "b", "value": "free", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-spv", "values": [{ "id": "v", "value": "1 2 4", "kind": "valid" }, { "id": "i", "value": "0", "kind": "invalid" }, { "id": "b", "value": "1.25", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-gap", "values": [{ "id": "v", "value": "8 16 24", "kind": "valid" }, { "id": "i", "value": "-1", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-autoplay", "values": [{ "id": "v", "value": "2500", "kind": "valid" }, { "id": "i", "value": "soon", "kind": "invalid" }, { "id": "b", "value": "false", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-dots", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-arrows", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] },
+        { "selector": "#container11", "attribute": "data-slider-arrows-mobile", "values": [{ "id": "v", "value": "on", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "off", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "grid",
+      "parameters": [
+        { "selector": "#container13", "attribute": "data-grid-cols", "values": [{ "id": "v", "value": "4", "kind": "valid" }, { "id": "i", "value": "0", "kind": "invalid" }, { "id": "b", "value": "2", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-cols-sm", "values": [{ "id": "v", "value": "2", "kind": "valid" }, { "id": "i", "value": "99", "kind": "invalid" }, { "id": "b", "value": "1", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-cols-lg", "values": [{ "id": "v", "value": "5", "kind": "valid" }, { "id": "i", "value": "wide", "kind": "invalid" }, { "id": "b", "value": "6", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-span", "values": [{ "id": "v", "value": "2", "kind": "valid" }, { "id": "i", "value": "0", "kind": "invalid" }, { "id": "b", "value": "1", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-span-sm", "values": [{ "id": "v", "value": "2", "kind": "valid" }, { "id": "i", "value": "half", "kind": "invalid" }, { "id": "b", "value": "1", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-span-lg", "values": [{ "id": "v", "value": "3", "kind": "valid" }, { "id": "i", "value": "-1", "kind": "invalid" }, { "id": "b", "value": "1", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-gap", "values": [{ "id": "v", "value": "1.5rem", "kind": "valid" }, { "id": "i", "value": "oops;url(x)", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-gap-mobile", "values": [{ "id": "v", "value": "0.5rem", "kind": "valid" }, { "id": "i", "value": "calc(?)", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container13", "attribute": "data-grid-justify", "values": [{ "id": "v", "value": "true", "kind": "valid" }, { "id": "i", "value": "sometimes", "kind": "invalid" }, { "id": "b", "value": "false", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "cookie",
+      "global": "CarrdCookieBanner",
+      "parameters": [
+        { "selector": "#container17", "attribute": "data-cookie-indent", "values": [{ "id": "v", "value": "2-3", "kind": "valid" }, { "id": "i", "value": "left", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container17", "attribute": "data-cookie-indent-mobile", "values": [{ "id": "v", "value": "1-0.5", "kind": "valid" }, { "id": "i", "value": "1-2-3", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container17", "attribute": "data-cookie-delay", "values": [{ "id": "v", "value": "10", "kind": "valid" }, { "id": "i", "value": "now", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#container17", "attribute": "data-cookie-days", "values": [{ "id": "v", "value": "30", "kind": "valid" }, { "id": "i", "value": "0", "kind": "invalid" }, { "id": "b", "value": "1", "kind": "boundary" }] },
+        { "selector": "#container17", "attribute": "data-cookie-position", "values": [{ "id": "v", "value": "top-right", "kind": "valid" }, { "id": "i", "value": "middle", "kind": "invalid" }, { "id": "b", "value": "bottom-left", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "cards",
+      "parameters": [
+        { "selector": "#offer", "attribute": "data-cards-color", "values": [{ "id": "v", "value": "#ffffff", "kind": "valid" }, { "id": "i", "value": "not-a-color", "kind": "invalid" }, { "id": "b", "value": "transparent", "kind": "boundary" }] },
+        { "selector": "#offer", "attribute": "data-cards-color-2", "values": [{ "id": "v", "value": "#FEF3C7", "kind": "valid" }, { "id": "i", "value": "#12", "kind": "invalid" }, { "id": "b", "value": "transparent", "kind": "boundary" }] },
+        { "selector": "#offer", "attribute": "data-cards-border-color-2", "values": [{ "id": "v", "value": "#111111", "kind": "valid" }, { "id": "i", "value": "wrong", "kind": "invalid" }, { "id": "b", "value": "transparent", "kind": "boundary" }] },
+        { "selector": "#offer", "attribute": "data-cards-padding", "values": [{ "id": "v", "value": "2rem", "kind": "valid" }, { "id": "i", "value": "calc(?)", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] },
+        { "selector": "#offer", "attribute": "data-cards-padding-mobile", "values": [{ "id": "v", "value": "1rem", "kind": "valid" }, { "id": "i", "value": "wide", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "modal",
+      "global": "CarrdModal",
+      "parameters": [
+        { "selector": "#data-modal-contact", "attribute": "data-modal-close-on-overlay", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] },
+        { "selector": "#data-modal-contact", "attribute": "data-modal-close-on-escape", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] },
+        { "selector": "#data-modal-contact", "attribute": "data-modal-show-close", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] },
+        { "selector": "#data-modal-contact", "attribute": "data-modal-lock-scroll", "values": [{ "id": "v", "value": "off", "kind": "valid" }, { "id": "i", "value": "maybe", "kind": "invalid" }, { "id": "b", "value": "on", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "faq",
+      "parameters": [
+        { "selector": "#faq", "attribute": "data-faq-allow-multiple", "values": [{ "id": "v", "value": "true", "kind": "valid" }, { "id": "i", "value": "sometimes", "kind": "invalid" }, { "id": "b", "value": "false", "kind": "boundary" }] },
+        { "selector": "#faq", "attribute": "data-faq-default-open", "values": [{ "id": "v", "value": "true", "kind": "valid" }, { "id": "i", "value": "sometimes", "kind": "invalid" }, { "id": "b", "value": "false", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "switcher",
+      "global": "CarrdSwitcher",
+      "parameters": [
+        { "selector": "#buttons01", "attribute": "data-switcher-default-index", "values": [{ "id": "v", "value": "2", "kind": "valid" }, { "id": "i", "value": "0", "kind": "invalid" }, { "id": "b", "value": "3", "kind": "boundary" }] }
+      ]
+    },
+    {
+      "id": "stacker",
+      "global": "CarrdStacker",
+      "parameters": [
+        { "selector": "#why", "attribute": "data-stacker-offset", "values": [{ "id": "v", "value": "2rem", "kind": "valid" }, { "id": "i", "value": "oops;url(x)", "kind": "invalid" }, { "id": "b", "value": "0", "kind": "boundary" }] }
+      ]
+    }
+  ]
+}

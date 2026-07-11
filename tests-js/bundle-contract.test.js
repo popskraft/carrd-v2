@@ -246,6 +246,14 @@ test('theme-runtime CDN bundle includes selected plugin defaults but no global o
   assert.ok(!tokenDefs.some(token => token.startsWith('--theme-shopcart-')), 'runtime should not define add-on tokens');
 });
 
+test('theme bundles isolate plugin initialization failures and expose runtime errors', () => {
+  for (const bundle of ['theme-runtime.min.js', 'theme-core.min.js']) {
+    const source = fs.readFileSync(dist(bundle), 'utf8');
+    assert.match(source, /CarrdPluginRuntimeErrors/);
+    assert.match(source, /\[CarrdPluginRuntime\]/);
+  }
+});
+
 test('theme-core compatibility bundle keeps token defaults and legacy bridge definitions', () => {
   const css = fs.readFileSync(dist('theme-core.min.css'), 'utf-8');
   assert.match(css, /:root\{[^}]*--theme-color-primary:/, 'theme-core.min.css should ship token defaults');

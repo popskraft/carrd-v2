@@ -78,6 +78,19 @@
   --theme-ui-surface-muted-hover: rgba(226, 226, 226, 0.4);
 }
 
+/* Responsive font-size scaling: +10% on mid-range viewports only */
+@media (min-width: 981px) and (max-width: 1680px) {
+  html {
+    font-size: 110%;
+  }
+}
+
+@media (min-width: 737px) and (max-width: 980px) {
+  html {
+    font-size: 110%;
+  }
+}
+
 /* Theme styles */
 body {
   -webkit-font-smoothing: antialiased;

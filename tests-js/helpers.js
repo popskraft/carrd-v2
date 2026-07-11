@@ -4,7 +4,7 @@ const axeCore = require('axe-core');
 const { JSDOM, ResourceLoader } = require('jsdom');
 
 class TestResourceLoader extends ResourceLoader {
-  fetch(url, options) {
+  fetch(url) {
     if (url.startsWith('https://example.test/assets/')) {
       return Promise.resolve(Buffer.from(''));
     }

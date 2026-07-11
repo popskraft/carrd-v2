@@ -4,6 +4,7 @@ Canonical navigation for the `main-template` site package.
 
 ## Canonical Docs
 
+- [LIVE-SCENARIO-TESTING-PLAN.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/LIVE-SCENARIO-TESTING-PLAN.md)
 - [BUILDER-GUI-ACTION-MAP.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-GUI-ACTION-MAP.md)
 - [KNOWLEDGE-SYSTEM.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/KNOWLEDGE-SYSTEM.md)
 - [TEMPLATE-INSTANCE-SCAN-RUNBOOK.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/TEMPLATE-INSTANCE-SCAN-RUNBOOK.md)

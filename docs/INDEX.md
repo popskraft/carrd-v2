@@ -24,6 +24,7 @@
 - `docs/specs/stacker-backlog.md`
 - `docs/specs/slider-v2-plan.md`
 - `docs/specs/plugin-options-data-migration-plan.md`
+- `docs/specs/browser-smoke-contract.md`
 
 ## Decisions
 - `docs/decisions/clean-runtime-contract.md`
@@ -40,6 +41,7 @@
 - `docs/reports/2026-07-07-code-live-audit.md`
 - `docs/reports/2026-07-07-full-project-audit.md`
 - `docs/reports/2026-07-11-slider-analysis.md`
+- `docs/reports/2026-07-11-project-readiness-audit.md`
 
 ## Audits
 - `docs/audits/QUALITY-AUDIT-2026-07-07.md`

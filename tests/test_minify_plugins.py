@@ -216,6 +216,14 @@ class MinifyPluginsTests(unittest.TestCase):
         out = m.minify_js(src)
         self.assertIn("return\\n/a\\\\/b/;", out)
 
+    def test_wrap_plugin_runtime_isolates_and_reports_init_failure(self):
+        wrapped = m.wrap_plugin_runtime("throw new Error('boom')", "demo")
+
+        self.assertIn("CarrdPluginRuntimeErrors", wrapped)
+        self.assertIn('plugin:\"demo\"', wrapped)
+        self.assertIn("console.error", wrapped)
+        self.assertTrue(wrapped.startswith("(function(){try{"))
+
     def test_minify_css_removes_comments(self):
         src = "/*comment*/ .a { color: red; }"
         out = m.minify_css(src)

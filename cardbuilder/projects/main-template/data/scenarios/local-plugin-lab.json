@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "source": "carrd-source/index.html",
+  "matrixContract": "cardbuilder/projects/main-template/data/scenarios/plugin-matrix-contract.json",
+  "scenarios": [
+    {
+      "id": "baseline-desktop",
+      "title": "Full downloaded template starts without runtime errors",
+      "viewport": { "width": 1440, "height": 900 },
+      "assertions": [
+        { "type": "global", "path": "CarrdSlider" },
+        { "type": "global", "path": "CarrdSwitcher" },
+        { "type": "global", "path": "CarrdModal" },
+        { "type": "count", "selector": "[data-slider=main]", "value": 5 }
+      ]
+    },
+    {
+      "id": "slider-parameter-mobile",
+      "title": "Slider accepts deterministic mobile data parameters",
+      "viewport": { "width": 390, "height": 844 },
+      "reducedMotion": "reduce",
+      "mutations": [
+        { "selector": "#container11", "attribute": "data-slider-spv", "value": "1", "expectedMatches": 1 },
+        { "selector": "#container11", "attribute": "data-slider-gap", "value": "8", "expectedMatches": 1 },
+        { "selector": "#container11", "attribute": "data-slider-autoplay", "value": "false", "expectedMatches": 1 },
+        { "selector": "#container11", "attribute": "data-slider-arrows-mobile", "value": "true", "expectedMatches": 1 }
+      ],
+      "assertions": [
+        { "type": "attribute", "selector": "#container11", "attribute": "data-slider-spv", "value": "1" },
+        { "type": "attribute", "selector": "#container11", "attribute": "data-slider-gap", "value": "8" },
+        { "type": "global", "path": "CarrdSlider" }
+      ]
+    },
+    {
+      "id": "cookie-immediate-top-right",
+      "title": "Cookie banner supports delay, position and indent overrides",
+      "viewport": { "width": 1440, "height": 900 },
+      "mutations": [
+        { "selector": "#container17", "attribute": "data-cookie-delay", "value": "0" },
+        { "selector": "#container17", "attribute": "data-cookie-position", "value": "top-right" },
+        { "selector": "#container17", "attribute": "data-cookie-indent", "value": "2-3" }
+      ],
+      "actions": [{ "type": "wait", "ms": 500 }],
+      "assertions": [
+        { "type": "attribute", "selector": "#container17", "attribute": "data-cookie-banner-initialized", "value": "true" },
+        { "type": "visible", "selector": "#container17", "value": true },
+        { "type": "global", "path": "CarrdCookieBanner" }
+      ]
+    },
+    {
+      "id": "switcher-default-case",
+      "title": "Switcher starts from a replaced default index",
+      "mutations": [
+        { "selector": "#buttons01", "attribute": "data-switcher-default-index", "value": "2" }
+      ],
+      "assertions": [
+        { "type": "attribute", "selector": "#buttons01", "attribute": "data-switcher-default-index", "value": "2" },
+        { "type": "global", "path": "CarrdSwitcher" }
+      ]
+    },
+    {
+      "id": "plugin-options-isolation",
+      "title": "Per-run CarrdPluginOptions are injected before plugins",
+      "pluginOptions": {
+        "cookieBanner": { "showDelay": 0, "fadeInDuration": 0 },
+        "floatingCta": { "scrollY": 0 }
+      },
+      "assertions": [
+        { "type": "count", "selector": "script[data-local-plugin-lab=options]", "value": 1 },
+        { "type": "global", "path": "CarrdPluginOptions.cookieBanner" }
+      ]
+    },
+    {
+      "id": "flow-modal-keyboard-close",
+      "title": "User opens the contact modal and closes it with Escape",
+      "actions": [
+        { "type": "click", "selector": "#header a[href=\"#data-modal-contact\"]" },
+        { "type": "wait", "ms": 100 },
+        { "type": "press", "selector": "body", "key": "Escape" },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "class", "selector": "#data-modal-contact", "value": "is-open", "expected": false },
+        { "type": "attribute", "selector": "#data-modal-contact", "attribute": "aria-hidden", "value": "true" }
+      ]
+    },
+    {
+      "id": "flow-switcher-price-and-cases",
+      "title": "User switches pricing and case-study panels",
+      "actions": [
+        { "type": "click", "selector": "#buttons07 a", "nth": 1 },
+        { "type": "click", "selector": "#buttons01 a", "nth": 2 },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "class", "selector": "#text29", "value": "is-active" },
+        { "type": "attribute", "selector": "#container19", "attribute": "aria-hidden", "value": "false" },
+        { "type": "class", "selector": "#buttons01", "value": "theme-switcher-controller" }
+      ]
+    },
+    {
+      "id": "flow-faq-single-open",
+      "title": "User opens one FAQ answer and keeps its ARIA state coherent",
+      "actions": [
+        { "type": "click", "selector": "#faq .theme-faq-trigger", "nth": 0 },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "attribute", "selector": "#faq .theme-faq-trigger", "attribute": "aria-expanded", "value": "true" },
+        { "type": "class", "selector": "#faq .theme-faq-answer", "value": "is-open" }
+      ]
+    },
+    {
+      "id": "flow-cookie-accept",
+      "title": "User accepts cookies and the banner disappears",
+      "pluginOptions": { "cookieBanner": { "showDelay": 0, "fadeInDuration": 0, "fadeOutDuration": 0 } },
+      "actions": [
+        { "type": "wait", "ms": 100 },
+        { "type": "click", "selector": "#container17 a[role=\"button\"]" },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "visible", "selector": "#container17", "value": false }
+      ]
+    },
+    {
+      "id": "flow-header-mobile-keyboard",
+      "title": "Mobile navigation opens and closes with Escape",
+      "viewport": { "width": 390, "height": 844 },
+      "actions": [
+        { "type": "click", "selector": "#header .theme-header-nav-toggle" },
+        { "type": "press", "selector": "body", "key": "Escape" },
+        { "type": "wait", "ms": 50 }
+      ],
+      "assertions": [
+        { "type": "class", "selector": "#header", "value": "is-nav-open", "expected": false },
+        { "type": "attribute", "selector": "#header .theme-header-nav-toggle", "attribute": "aria-expanded", "value": "false" }
+      ]
+    },
+    {
+      "id": "flow-floating-scroll",
+      "title": "Named floating CTA is cloned and revealed after scroll",
+      "fixtures": [{ "selector": "body", "position": "beforeend", "html": "<a data-floating=\"test-contact\" href=\"#data-modal-contact\">Contact</a>" }],
+      "actions": [
+        { "type": "scroll", "y": 900 },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "count", "selector": "[data-floating-clone=\"true\"]", "value": 1 },
+        { "type": "class", "selector": ".theme-floating-cta-clone", "value": "is-visible" },
+        { "type": "attribute", "selector": ".theme-floating-cta-clone", "attribute": "aria-hidden", "value": "false" }
+      ]
+    },
+    {
+      "id": "flow-shopping-cart-api",
+      "title": "Cart API adds an item, opens the panel and renders the line",
+      "fixtures": [{ "selector": "body", "position": "beforeend", "html": "<section id=\"shopping-cart\"><form id=\"form-shopping-cart\"><textarea data-shopping-cart-output=\"order-details\"></textarea></form></section>" }],
+      "actions": [
+        { "type": "api", "path": "CarrdShoppingCart.add", "args": ["Demo kit", 19, { "id": "demo-kit" }] },
+        { "type": "api", "path": "CarrdShoppingCart.open" },
+        { "type": "wait", "ms": 100 }
+      ],
+      "assertions": [
+        { "type": "attribute", "selector": ".theme-shopcart-panel", "attribute": "aria-hidden", "value": "false" },
+        { "type": "count", "selector": ".theme-shopcart-item", "value": 1 },
+        { "type": "attribute", "selector": ".theme-shopcart-widget", "attribute": "aria-expanded", "value": "true" }
+      ]
+    }
+  ]
+}

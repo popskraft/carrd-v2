@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "site": "main-template",
+  "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
+  "publishedUrl": "https://mini.crd.co/",
+  "mode": "read-only-until-operator-approval",
+  "requiredLayers": ["local-pass", "builder-pass", "browser-pass", "release-pass"],
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "tablet", "width": 768, "height": 1024 },
+    { "name": "mobile", "width": 390, "height": 844 }
+  ],
+  "conditions": [
+    "normal-motion",
+    "reduced-motion",
+    "keyboard-only",
+    "clean-storage",
+    "existing-storage",
+    "duplicate-init",
+    "late-dom-refresh",
+    "delayed-cdn"
+  ],
+  "plugins": [
+    "accordeon",
+    "cards",
+    "cookie-banner",
+    "design-palette",
+    "faq",
+    "floating-cta",
+    "grid-cluster",
+    "header-nav",
+    "modal",
+    "no-loadwaiting",
+    "shopping-cart",
+    "slider",
+    "stacker",
+    "switcher",
+    "typography",
+    "theme-runtime"
+  ],
+  "evidence": {
+    "artifactRoot": "cardbuilder/projects/main-template/data/runs",
+    "required": [
+      "before-snapshot.json",
+      "mutation-readback.json",
+      "published-scan.json",
+      "browser-console.json",
+      "network-failures.json",
+      "verdict.json"
+    ]
+  }
+}
