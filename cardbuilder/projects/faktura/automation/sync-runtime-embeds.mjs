@@ -6,7 +6,7 @@
  * - Never mutates embed14. It is a protected legacy theme/style layer.
  * - Service embeds (JIVO / Metrika / Calibri) are never touched.
  * - Plugin embeds are mapped by stable IDs to current repo dist assets.
- * - Site-owned config embed10 is opt-in via --write-config.
+ * - Site-owned slider markup/config migration is opt-in via --write-config.
  * - Default mode is dry-run. Writing requires --write.
  * - Always supports before-backup and exact hash readback.
  */
@@ -82,24 +82,19 @@ const CONFIG_TARGET = {
   id: "embed10",
   title: "Theme JS Custom (BODY END)",
   expectedClass: "embed-in-body-end",
-  sourcePath: "generated:faktura-slider-config",
+  sourcePath: "generated:faktura-slider-config-retired",
   buildContent() {
-    return `<script>
-window.CarrdPluginOptions = window.CarrdPluginOptions || {};
-window.CarrdPluginOptions.slider = {
-  ...(window.CarrdPluginOptions.slider || {}),
-  instances: {
-    ...((window.CarrdPluginOptions.slider && window.CarrdPluginOptions.slider.instances) || {}),
-    portfolio: {
-      breakpoints: {
-        737: { slidesPerView: 2, peek: 0 },
-        1280: { slidesPerView: 3, gap: 32, peek: 0 }
-      }
-    }
-  }
-};
-</script>`;
+    return `<!-- Slider options are now stored on the first [data-slider="portfolio"] container. -->`;
   },
+};
+
+const SLIDER_MARKUP_TARGET = {
+  id: "container14",
+  kind: "element",
+  title: "Portfolio Slider First Container",
+  expectedClass: "slider-item-card-default\nportfolio-item",
+  sourcePath: "generated:faktura-slider-data-contract",
+  attributes: "data-slider=portfolio\ndata-slider-spv=1 2 3\ndata-slider-gap=16 16 32",
 };
 
 function parseArgs(argv) {
@@ -180,6 +175,12 @@ function buildTargets({ includeConfig }) {
       content: configContent,
       sha256: sha256(configContent),
       contentLength: configContent.length,
+    },
+    {
+      ...SLIDER_MARKUP_TARGET,
+      content: SLIDER_MARKUP_TARGET.attributes,
+      sha256: sha256(SLIDER_MARKUP_TARGET.attributes),
+      contentLength: SLIDER_MARKUP_TARGET.attributes.length,
     },
   ];
 }
@@ -283,6 +284,7 @@ async function main() {
     title: target.title,
     expectedClass: target.expectedClass,
     content: target.content,
+    attributes: target.attributes,
     sourcePath: target.sourcePath,
     sha256: target.sha256,
     kind: target.kind,
@@ -310,7 +312,9 @@ async function main() {
         style: component.embed?.code?.style || "",
         defer: component.embed?.code?.defer ?? null,
         classes: component.settings?.element?.classes || "",
-        content: component.embed?.code?.content || "",
+        content: component.type === "embed"
+          ? component.embed?.code?.content || ""
+          : component.settings?.element?.attributes || "",
       };
     };
 
@@ -329,7 +333,8 @@ async function main() {
 
     for (const spec of specs) {
       const component = b.site.components[spec.id];
-      if (!component || component.type !== "embed") {
+      const isElementTarget = spec.kind === "element";
+      if (!component || (!isElementTarget && component.type !== "embed")) {
         before.push({ id: spec.id, missing: true });
         after.push({ id: spec.id, missing: true });
         continue;
@@ -339,10 +344,16 @@ async function main() {
       before.push(existing);
 
       if (write) {
-        component.embed = component.embed || {};
-        component.embed.title = spec.title;
-        component.embed.code = component.embed.code || {};
-        component.embed.code.content = spec.content;
+        if (isElementTarget) {
+          component.settings = component.settings || {};
+          component.settings.element = component.settings.element || {};
+          component.settings.element.attributes = spec.attributes;
+        } else {
+          component.embed = component.embed || {};
+          component.embed.title = spec.title;
+          component.embed.code = component.embed.code || {};
+          component.embed.code.content = spec.content;
+        }
         changedIds.push(component.id);
       }
 

@@ -28,6 +28,18 @@ test('plugin source files read shared CarrdPluginOptions namespaces', () => {
   });
 });
 
+test('promoted slider has no active JS options contract', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'src/theme-config.js'), 'utf-8');
+  const readme = fs.readFileSync(path.resolve(__dirname, '..', 'README.md'), 'utf-8');
+  const automation = fs.readFileSync(path.resolve(__dirname, '..', 'cardbuilder/projects/faktura/automation/sync-runtime-embeds.mjs'), 'utf-8');
+
+  assert.doesNotMatch(source, /CarrdPluginOptions\.slider\b/);
+  assert.doesNotMatch(readme, /slider:\s*\{\s*autoplay/);
+  assert.doesNotMatch(automation, /CarrdPluginOptions\.slider\b/);
+  assert.match(automation, /data-slider-spv/);
+  assert.match(automation, /data-slider-gap/);
+});
+
 test('public APIs are exposed with unified Carrd names', () => {
   const dom = createDom(
       '<div data-slider>A</div>' +

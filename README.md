@@ -101,7 +101,7 @@ Do not edit jsDelivr files. Add custom code in separate Carrd embeds.
 - Brand or theme changes: use a `Head` embed with `:root { --theme-* }`.
 - Plugin defaults ship with each plugin CSS; override its `--theme-<plugin>-*` tokens in the same `Head` embed when needed.
 - Site-only CSS: use a separate `Head` embed with your selectors.
-- Plugin behavior: use `window.CarrdPluginOptions` in a `Body End` embed above plugin scripts or embeds.
+- Plugin behavior: use the plugin's documented `data-*` attributes when the behavior belongs to one instance; use `window.CarrdPluginOptions` only for plugins that explicitly document global/site-owned options.
 - Site-only JS: use a separate `Body End` script below plugin scripts.
 
 Short override example. Use this only on top of the full `theme-design-tokens-embed.html` layer:
@@ -117,24 +117,22 @@ Short override example. Use this only on top of the full `theme-design-tokens-em
 </style>
 ```
 
-Example plugin config:
+Example per-instance plugin configuration:
 
 ```html
-<script>
-window.CarrdPluginOptions = {
-  slider: { autoplay: true }
-};
-</script>
+<div data-slider="gallery" data-slider-autoplay="5000" data-slider-spv="1 2 3">
+  …
+</div>
 ```
 
 ## Placement Rules
 
 - `Hidden → Head`: theme files, CDN CSS, token overrides, site CSS, and any plugin snippet that explicitly says `Head`.
-- `Hidden → Body End`: plugin scripts, plugin embeds, `window.CarrdPluginOptions`, and site custom JS.
+- `Hidden → Body End`: plugin scripts, plugin embeds, documented `window.CarrdPluginOptions`, and site custom JS.
 
 ## Troubleshooting
 
 - Nothing happens: check the plugin `README.md` and confirm the required attrs, names, classes, or IDs match exactly.
 - Styles look wrong: confirm the shared theme layer is installed in `Head`.
-- Config does not apply: make sure `window.CarrdPluginOptions` is above the plugin script or embed.
+- Config does not apply: confirm that the plugin's documented `data-*` attributes are on the correct element; for global options, place `window.CarrdPluginOptions` above the plugin script or embed.
 - A plugin still does not work: reopen that plugin folder `README.md` and follow it step by step.

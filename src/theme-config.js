@@ -61,27 +61,6 @@ window.CarrdPluginOptions.noLoadwaiting = window.CarrdPluginOptions.noLoadwaitin
     rafPulseCount: 2
 };
 
-/* Slider */
-window.CarrdPluginOptions.slider = window.CarrdPluginOptions.slider || {
-    slideSelector: '[data-slider]',
-    sliderAttribute: 'data-slider',
-    showDots: true,
-    showArrows: true,
-    loop: false,
-    autoplay: false,
-    autoplayInterval: 5000,
-    gap: 16,
-    hideOverflow: false,
-    slidesPerView: 1,
-    peek: 0,
-    maxSlideWidth: 400,
-    equalHeight: true,
-    breakpoints: {
-        737: { slidesPerView: 3 },            // Tablet/Mobile
-        1280: { slidesPerView: 4, gap: 32 }   // Desktop M
-    }
-};
-
 /* Modal */
 window.CarrdPluginOptions.modal = window.CarrdPluginOptions.modal || {
     modalSelector: '.container-component[data-modal]',

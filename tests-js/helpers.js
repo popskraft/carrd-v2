@@ -8,7 +8,9 @@ class TestResourceLoader extends ResourceLoader {
     if (url.startsWith('https://example.test/assets/')) {
       return Promise.resolve(Buffer.from(''));
     }
-    return super.fetch(url, options);
+    // Plugin tests are local contract tests. Never contact third-party CDNs,
+    // fonts, or mutable refs from the test harness.
+    return null;
   }
 }
 
