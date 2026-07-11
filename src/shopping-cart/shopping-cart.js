@@ -93,6 +93,19 @@
   // Final merged configuration
   const CONFIG = deepMerge(DEFAULTS, externalOptions);
 
+  const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
+
+  // data-shopping-cart-checkout-target on the cart section overrides CONFIG.checkoutTargetId.
+  function resolveCheckoutTargetId() {
+    const el = document.querySelector('[data-shopping-cart-checkout-target]');
+    if (el) {
+      const raw = (el.getAttribute('data-shopping-cart-checkout-target') || '').trim();
+      if (safeNamePattern.test(raw)) return raw;
+      if (raw) console.warn(`Shopping Cart: invalid data-shopping-cart-checkout-target "${raw}", using default`);
+    }
+    return CONFIG.checkoutTargetId;
+  }
+
   // ==========================================
   // SECURITY UTILITIES
   // ==========================================
@@ -454,7 +467,8 @@
   }
 
   function getCheckoutHref() {
-    return CONFIG.checkoutTargetId ? '#' + CONFIG.checkoutTargetId : '#shopping-cart';
+    const targetId = resolveCheckoutTargetId();
+    return targetId ? '#' + targetId : '#shopping-cart';
   }
 
   function getCheckoutScrollTarget(orderField) {

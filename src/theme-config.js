@@ -113,11 +113,7 @@ window.CarrdPluginOptions.cookieBanner = window.CarrdPluginOptions.cookieBanner 
 /* Header Nav */
 window.CarrdPluginOptions.headerNav = window.CarrdPluginOptions.headerNav || {
     breakpoint: 736,
-    closeOnLinkClick: true,
-    sticky: true,
-    hideOnScrollDown: false,
-    stickyTop: 0,
-    navMaxHeight: '80vh'
+    closeOnLinkClick: true
 };
 
 /* Floating CTA */

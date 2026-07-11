@@ -237,3 +237,71 @@ test('accordeon links controls to their panels via aria-controls', () => {
   assert.ok(controls.includes('one'));
   assert.ok(controls.includes('two'));
 });
+
+test('accordeon data-accordeon-default-open overrides JS defaultOpen for that group', () => {
+  const dom = createDom(
+    '<a href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div id="one" data-accordeon="ppf" data-accordeon-default-open="on">One</div>' +
+    '<div id="two" data-accordeon="ppf">Two</div>'
+  );
+  setPluginOptions(dom, { accordeon: { defaultOpen: false } });
+  loadScript(dom, 'src/accordeon/accordeon.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  assert.equal(doc.getElementById('one').hidden, false);
+  assert.equal(doc.getElementById('two').hidden, false);
+});
+
+test('accordeon data-accordeon-scroll="off" disables scroll-into-view for that group', () => {
+  const dom = createDom(
+    '<a href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div id="one" data-accordeon="ppf" data-accordeon-scroll="off">One</div>'
+  );
+  dom.window.requestAnimationFrame = (callback) => callback();
+  setPluginOptions(dom, { accordeon: { scrollOnOpen: true } });
+  loadScript(dom, 'src/accordeon/accordeon.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  let scrolled = false;
+  doc.getElementById('one').scrollIntoView = () => { scrolled = true; };
+
+  click(dom, doc.querySelector('a[href="#data-accordeon-ppf"]'));
+  assert.equal(scrolled, false);
+});
+
+test('accordeon data-accordeon-scroll-behavior/-block override JS scroll config', () => {
+  const dom = createDom(
+    '<a href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div id="one" data-accordeon="ppf" data-accordeon-scroll-behavior="auto" data-accordeon-scroll-block="end">One</div>'
+  );
+  dom.window.requestAnimationFrame = (callback) => callback();
+  setPluginOptions(dom, { accordeon: { scrollOnOpen: true, scrollBehavior: 'smooth', scrollBlock: 'start' } });
+  loadScript(dom, 'src/accordeon/accordeon.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  let seen = null;
+  doc.getElementById('one').scrollIntoView = (options) => { seen = options; };
+
+  click(dom, doc.querySelector('a[href="#data-accordeon-ppf"]'));
+  assert.equal(seen.behavior, 'auto');
+  assert.equal(seen.block, 'end');
+});
+
+test('accordeon falls back to defaults and warns on invalid data-* values', () => {
+  const dom = createDom(
+    '<a href="#data-accordeon-ppf" role="button">Toggle</a>' +
+    '<div id="one" data-accordeon="ppf" data-accordeon-default-open="maybe" data-accordeon-scroll-behavior="bounce" data-accordeon-scroll-block="middle">One</div>'
+  );
+  const warnings = [];
+  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
+
+  loadScript(dom, 'src/accordeon/accordeon.js');
+  triggerDomReady(dom);
+
+  assert.equal(dom.window.document.getElementById('one').hidden, true);
+  ['data-accordeon-default-open', 'data-accordeon-scroll-behavior', 'data-accordeon-scroll-block']
+    .forEach((attr) => assert.ok(warnings.some((w) => w.includes(attr)), `expected warning for ${attr}`));
+});

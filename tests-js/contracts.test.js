@@ -5,6 +5,9 @@ const path = require('node:path');
 const { createDom, loadScript, triggerDomReady } = require('./helpers');
 
 test('plugin source files read shared CarrdPluginOptions namespaces', () => {
+  // src/slider intentionally excluded: promoted from slider-v2, a pure
+  // data-* contract with no window.CarrdPluginOptions (see
+  // docs/specs/plugin-data-contract.md "Slider" section).
   const expectedRefs = [
     ['src/accordeon/accordeon.js', 'accordeon'],
     ['src/shopping-cart/shopping-cart.js', 'shoppingCart'],
@@ -12,7 +15,6 @@ test('plugin source files read shared CarrdPluginOptions namespaces', () => {
     ['src/cards/cards.js', 'cards'],
     ['src/grid-cluster/grid-cluster.js', 'gridCluster'],
     ['src/no-loadwaiting/no-loadwaiting.js', 'noLoadwaiting'],
-    ['src/slider/slider.js', 'slider'],
     ['src/modal/modal.js', 'modal'],
     ['src/typography/typography.js', 'typography'],
     ['src/header-nav/header-nav.js', 'headerNav'],

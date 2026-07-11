@@ -46,11 +46,35 @@
   let activeModal = null;
   let overlay = null;
   const modalWrappers = new Map();
+  const modalConfigs = new Map();
   const cartOpenSelector = '.theme-shopcart-panel.open, .theme-shopcart-overlay.open';
   let triggersBound = false;
   let keyboardBound = false;
   let hashBound = false;
   const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
+
+  // --- Per-modal data-* overrides (data-* wins over window.CarrdPluginOptions) ---
+  function parseOnOffAttr(raw, attrName) {
+    if (raw == null) return null;
+    const v = normalizeName(raw).toLowerCase();
+    if (v === 'on') return true;
+    if (v === 'off') return false;
+    console.warn(`Modal: invalid ${attrName} "${raw}", using default`);
+    return null;
+  }
+
+  function resolveModalConfig(modal) {
+    const closeOnOverlay = parseOnOffAttr(modal.getAttribute('data-modal-close-on-overlay'), 'data-modal-close-on-overlay');
+    const closeOnEscape = parseOnOffAttr(modal.getAttribute('data-modal-close-on-escape'), 'data-modal-close-on-escape');
+    const showCloseButton = parseOnOffAttr(modal.getAttribute('data-modal-show-close'), 'data-modal-show-close');
+    const lockBodyScroll = parseOnOffAttr(modal.getAttribute('data-modal-lock-scroll'), 'data-modal-lock-scroll');
+    return {
+      closeOnOverlay: closeOnOverlay !== null ? closeOnOverlay : CONFIG.closeOnOverlay,
+      closeOnEscape: closeOnEscape !== null ? closeOnEscape : CONFIG.closeOnEscape,
+      showCloseButton: showCloseButton !== null ? showCloseButton : CONFIG.showCloseButton,
+      lockBodyScroll: lockBodyScroll !== null ? lockBodyScroll : CONFIG.lockBodyScroll
+    };
+  }
 
   function cssEscape(value) {
     if (window.CSS && typeof window.CSS.escape === 'function') {
@@ -135,12 +159,12 @@
       const id = normalizeModalRef(modalId);
       if (!id) return;
       const modal = getOrInitModal(id);
-      
+
       if (!modal) {
         console.warn(`Modal: No modal found with id "${id}"`);
         return;
       }
-      
+
       // Already open — nothing to do
       if (activeModal === id) return;
 
@@ -148,7 +172,7 @@
       if (activeModal) {
         this.close();
       }
-      
+
       // Store previous focus to restore later
       this.lastFocus = document.activeElement;
 
@@ -165,8 +189,9 @@
         });
       });
 
-      // Lock body scroll
-      if (CONFIG.lockBodyScroll) {
+      // Lock body scroll (per-modal override via data-modal-lock-scroll)
+      const modalConfig = modalConfigs.get(id) || CONFIG;
+      if (modalConfig.lockBodyScroll) {
         document.body.classList.add('modal-open');
       }
 
@@ -213,29 +238,30 @@
      */
     close: function() {
       if (!activeModal) return;
-      
+
       const modal = modalWrappers.get(activeModal);
-      
+      const modalConfig = modalConfigs.get(activeModal) || CONFIG;
+
       // Remove Trap
       document.removeEventListener('keydown', this.handleTabKey);
-      
+
       // Close overlay
       if (overlay) {
         overlay.classList.remove('is-open');
       }
-      
+
       // Close modal
       if (modal) {
         modal.classList.remove('is-visible');
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
       }
-      
-      // Unlock body scroll
-      if (CONFIG.lockBodyScroll) {
+
+      // Unlock body scroll (per-modal override via data-modal-lock-scroll)
+      if (modalConfig.lockBodyScroll) {
         document.body.classList.remove('modal-open');
       }
-      
+
       activeModal = null;
       
       // Restore Focus
@@ -289,11 +315,14 @@
     overlay = document.createElement('div');
     overlay.className = SELECTORS.overlay;
     overlay.setAttribute('aria-hidden', 'true');
-    
-    if (CONFIG.closeOnOverlay) {
-      overlay.addEventListener('click', () => ModalAPI.close());
-    }
-    
+
+    // Always bind — closeOnOverlay is resolved per active modal (data-modal-close-on-overlay),
+    // not fixed at overlay-creation time, since the overlay is a shared singleton.
+    overlay.addEventListener('click', () => {
+      const modalConfig = modalConfigs.get(activeModal) || CONFIG;
+      if (modalConfig.closeOnOverlay) ModalAPI.close();
+    });
+
     document.body.appendChild(overlay);
   }
 
@@ -320,9 +349,12 @@
       console.warn('Modal: Modal element must have an ID or data-modal name', modal);
       return null;
     }
-    
+
+    const modalConfig = resolveModalConfig(modal);
+    modalConfigs.set(modalId, modalConfig);
+
     // Add close button if enabled
-    if (CONFIG.showCloseButton) {
+    if (modalConfig.showCloseButton) {
       // Check if button already exists (to avoid duplicates on re-init)
       if (!modal.querySelector(`.${SELECTORS.modalClose}`)) {
         const closeBtn = document.createElement('button');
@@ -462,12 +494,14 @@
    * Bind keyboard handlers
    */
   function bindKeyboard() {
-    if (keyboardBound || !CONFIG.closeOnEscape) return;
+    if (keyboardBound) return;
     keyboardBound = true;
+    // Always bind — closeOnEscape is resolved per active modal (data-modal-close-on-escape)
+    // on every keypress, not gated once at bind time.
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && activeModal) {
-        ModalAPI.close();
-      }
+      if (e.key !== 'Escape' || !activeModal) return;
+      const modalConfig = modalConfigs.get(activeModal) || CONFIG;
+      if (modalConfig.closeOnEscape) ModalAPI.close();
     });
   }
 

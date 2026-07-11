@@ -40,6 +40,16 @@
     return { ...CONFIG, ...instanceOptions };
   }
 
+  // data-switcher-default-index on the controller wins over JS instances/global config.
+  function resolveDefaultIndexOverride(controller) {
+    const raw = controller.getAttribute('data-switcher-default-index');
+    if (raw == null) return null;
+    const numeric = parseInt(raw, 10);
+    if (Number.isInteger(numeric) && numeric >= 1) return numeric;
+    console.warn(`Switcher: invalid data-switcher-default-index "${raw}", using default`, controller);
+    return null;
+  }
+
   function warn(config, message, context) {
     if (!config.warnOnMismatch && !/invalid|empty/i.test(message)) return;
     if (typeof console !== 'undefined' && console.warn) {
@@ -281,13 +291,16 @@
       warn(config, `missing targets for "${switcherName}" indexes: ${missingGroups.join(', ')}`, controller);
     }
 
+    const defaultIndexOverride = resolveDefaultIndexOverride(controller);
+    const effectiveDefaultIndex = defaultIndexOverride !== null ? defaultIndexOverride : config.defaultIndex;
+
     const instance = {
       name: switcherName,
       controller,
       scope,
       groups,
       config,
-      activeIndex: normalizeIndex(config.defaultIndex, groups.length)
+      activeIndex: normalizeIndex(effectiveDefaultIndex, groups.length)
     };
 
     controller.classList.add(SELECTORS.controller);

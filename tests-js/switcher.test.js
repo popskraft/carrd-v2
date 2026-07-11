@@ -669,3 +669,37 @@ test('switcher supports per-name instance default indexes', () => {
   assert.equal(doc.getElementById('case-one').hidden, false);
   assert.equal(doc.getElementById('case-two').hidden, true);
 });
+
+test('switcher data-switcher-default-index overrides JS defaultIndex and instances', () => {
+  const dom = createSwitcherDom();
+  dom.window.document.getElementById('buttons01').setAttribute('data-switcher-default-index', '2');
+  setPluginOptions(dom, {
+    switcher: {
+      defaultIndex: 1,
+      instances: { switcher: { defaultIndex: 1 } }
+    }
+  });
+
+  loadScript(dom, 'src/switcher/switcher.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  assert.equal(doc.getElementById('text37').hidden, true);
+  assert.equal(doc.getElementById('text29').hidden, false);
+});
+
+test('switcher falls back to JS default index and warns on invalid data-switcher-default-index', () => {
+  const dom = createSwitcherDom();
+  dom.window.document.getElementById('buttons01').setAttribute('data-switcher-default-index', 'abc');
+  const warnings = [];
+  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
+  setPluginOptions(dom, { switcher: { defaultIndex: 2 } });
+
+  loadScript(dom, 'src/switcher/switcher.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  assert.equal(doc.getElementById('text37').hidden, true);
+  assert.equal(doc.getElementById('text29').hidden, false);
+  assert.ok(warnings.some((w) => w.includes('data-switcher-default-index')));
+});

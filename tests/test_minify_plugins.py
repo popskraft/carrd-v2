@@ -142,6 +142,9 @@ class MinifyPluginsTests(unittest.TestCase):
         repo_root = Path(__file__).resolve().parent.parent
         for readme_path in sorted((repo_root / "src").glob("*/README.md")):
             with self.subTest(readme=readme_path.parent.name):
+                # Source README structure is still owner even for plugins
+                # excluded from dist/ (e.g. an unreleased prototype) — only
+                # the generated-output check below skips those.
                 m.validate_plugin_readme_contract(
                     readme_path.read_text(encoding="utf-8"),
                     readme_path.parent.name,
@@ -155,6 +158,8 @@ class MinifyPluginsTests(unittest.TestCase):
 
         for source_readme in sorted((repo_root / "src").glob("*/README.md")):
             plugin_slug = source_readme.parent.name
+            if m.is_dist_build_excluded(Path(plugin_slug)):
+                continue
             generated_readme = repo_root / "dist" / plugin_slug / "README.md"
             content = generated_readme.read_text(encoding="utf-8")
             with self.subTest(plugin=plugin_slug):

@@ -1,673 +1,52 @@
-(function() {
+(function () {
   'use strict';
 
-  const DEFAULTS = {
-    slideSelector: '[data-slider]',
-    sliderAttribute: 'data-slider',
-    showDots: true,
-    showArrows: true,
-    loop: false,
-    autoplay: false,
-    autoplayInterval: 5000,
-    snapThreshold: 0.3,
-    gap: 16,
-    hideOverflow: false,
-    slidesPerView: 1,
-    peek: 0.1,
-    maxSlideWidth: 400,
-    equalHeight: true,
-    freeScroll: false,
-    wheelScroll: false,
-    breakpoints: {
-      737: { slidesPerView: 3 },
-      1280: { slidesPerView: 4 }
-    }
-  };
+  // Native CSS scroll-snap engine. No window.CarrdPluginOptions;
+  // position is always scroller.scrollLeft. See docs/specs/slider-v2-plan.md.
 
-  const ext = (typeof window !== 'undefined' && (
-    (window.CarrdPluginOptions && window.CarrdPluginOptions.slider)
-  )) || {};
-  const BASE_CONFIG = { ...DEFAULTS, ...ext, breakpoints: { ...DEFAULTS.breakpoints, ...(ext.breakpoints || {}) } };
-  const INSTANCE_CONFIGS = ext.instances || {};
-
+  const BREAKPOINTS = [737, 1280];
+  const DEFAULT_SPV = [1.2, 3, 4];
+  const DEFAULT_GAP = [16, 16, 16];
+  const WARN_PREFIX = '[slider]';
   const S = {
-    wrap: 'theme-slider-wrapper', track: 'theme-slider-track',
-    slide: 'theme-slider-slide', dots: 'theme-slider-dots', dot: 'theme-slider-dot',
-    nav: 'theme-slider-nav', prev: 'theme-slider-nav--prev', next: 'theme-slider-nav--next'
+    wrap: 'theme-slider-wrapper', scroller: 'theme-slider-scroller', slide: 'theme-slider-slide',
+    dots: 'theme-slider-dots', dot: 'theme-slider-dot',
+    nav: 'theme-slider-nav', prev: 'theme-slider-nav--prev', next: 'theme-slider-nav--next',
+    grabbing: 'is-grabbing'
   };
   const INTERACTIVE_SELECTOR = 'button, a, input, textarea, select, [role="button"]';
-  const FORM_FIELD_SELECTOR = 'input, textarea, select, [contenteditable="true"]';
-
+  const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
   const ICONS = {
     prev: `<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>`,
     next: `<svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>`
   };
-
   const SLIDER_INSTANCES = [];
-  const SNAP_EASE = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-  const safeNamePattern = /^[a-zA-Z][a-zA-Z0-9_-]*$/;
 
-  function normalizeName(value) {
-    return (value || '')
-      .trim()
-      .replace(/&quot;/g, '"')
-      .replace(/^["']+|["']+$/g, '');
+  function warn(id, msg) { console.warn(`${WARN_PREFIX}${id ? ' [' + id + ']' : ''} ${msg}`); }
+  function prefersReducedMotion() {
+    return typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
+  // --- Cluster detection (ported from v1, attribute hardcoded to data-slider) ---
+  function normalizeName(value) {
+    return (value || '').trim().replace(/&quot;/g, '"').replace(/^["']+|["']+$/g, '');
+  }
   function getSliderName(slide) {
-    const name = normalizeName(
-      slide.getAttribute(BASE_CONFIG.sliderAttribute) ||
-      slide.getAttribute('data-slider')
-    );
+    const name = normalizeName(slide.getAttribute('data-slider'));
     return safeNamePattern.test(name) ? name : '';
   }
-
   function isSameSliderCluster(slide, baseName) {
-    if (!slide || !slide.matches || !slide.matches(BASE_CONFIG.slideSelector)) return false;
+    if (!slide || !slide.matches || !slide.matches('[data-slider]')) return false;
     const slideName = getSliderName(slide);
     if (baseName || slideName) return slideName === baseName;
     return true;
   }
-
-  /**
-   * One slider instance owns the generated wrapper, navigation state,
-   * drag lifecycle, autoplay, and responsive layout recalculation for
-   * a contiguous cluster of `[data-slider]` elements.
-   */
-  class Slider {
-    constructor(slides, config) {
-      this.slides = slides;
-      this.config = config;
-      this.currentIndex = 0;
-      this.isDragging = false;
-      this.startX = 0;
-      this.startY = 0;
-      this.translateX = 0;
-      this.dragStartTranslate = 0;
-      this.draggedTranslate = 0;
-      this.autoplayTimer = null;
-      this.slidesPerView = config.slidesPerView;
-      this.currentGap = config.gap;
-      this.eventHandlers = [];
-      this.dotHandlers = [];
-      this.resizeTimeout = null;
-      this.layoutRefreshId = null;
-      this.layoutRefreshType = null;
-      this.velocity = 0;
-      this.lastDragTime = 0;
-      this.lastDragX = 0;
-      this.animationId = null;
-      this.dragAxis = null;
-      this.snapEndHandler = null;
-      this.snapFallbackTimer = null;
-      this.suppressClick = false;
-      this.suppressClickTimer = null;
-      this.init();
-    }
-
-    init() {
-      this.wrapper = document.createElement('div');
-      this.wrapper.className = S.wrap;
-      this.wrapper.setAttribute('role', 'region');
-      this.wrapper.setAttribute('aria-roledescription', 'carousel');
-      if (this.config.equalHeight) this.wrapper.classList.add('is-equal-height');
-      if (!this.config.hideOverflow) this.wrapper.classList.add('is-overflow-visible');
-      this.slides[0].parentNode.insertBefore(this.wrapper, this.slides[0]);
-
-      this.track = document.createElement('div');
-      this.track.className = S.track;
-      this.wrapper.appendChild(this.track);
-
-      this.slides.forEach((slide, i) => {
-        const w = document.createElement('div');
-        w.className = S.slide;
-        w.dataset.slideIndex = i;
-        w.appendChild(slide);
-        this.track.appendChild(w);
-      });
-      this.slideElements = Array.from(this.track.querySelectorAll('.' + S.slide));
-
-      const multi = this.slides.length > 1;
-      if (this.config.showDots && multi) {
-        this.dotsContainer = document.createElement('div');
-        this.dotsContainer.className = S.dots;
-        this.wrapper.appendChild(this.dotsContainer);
-      }
-      if (this.config.showArrows && multi) this.createArrows();
-      this.bindEvents();
-      this.updateSlidesPerView();
-      this.updateSlider();
-      if (this.config.autoplay && multi) this.startAutoplay();
-    }
-
-    createArrows() {
-      const makeBtn = (cls, label, icon, fn) => {
-        const btn = document.createElement('button');
-        btn.className = S.nav + ' ' + cls;
-        btn.setAttribute('aria-label', label);
-        btn.innerHTML = icon;
-        this.addListener(btn, 'click', () => fn());
-        this.wrapper.appendChild(btn);
-        return btn;
-      };
-      this.prevBtn = makeBtn(S.prev, 'Previous slide', ICONS.prev, () => this.goToSlide(this.currentIndex - 1));
-      this.nextBtn = makeBtn(S.next, 'Next slide', ICONS.next, () => this.goToSlide(this.currentIndex + 1));
-    }
-
-    bindEvents() {
-      const t = this.wrapper;
-      const start = this.onDragStart.bind(this);
-      const move = this.onDragMove.bind(this);
-      const end = this.onDragEnd.bind(this);
-
-      this.addListener(t, 'touchstart', start, { passive: true, capture: true });
-      this.addListener(t, 'touchmove', move, { passive: false, capture: true });
-      for (const evt of ['touchend', 'touchcancel']) this.addListener(t, evt, end, { capture: true });
-
-      this.addListener(t, 'mousedown', start, { capture: true });
-      this.addListener(t, 'mousemove', move, { capture: true });
-      for (const evt of ['mouseup', 'mouseleave']) this.addListener(t, evt, end, { capture: true });
-
-      if (this.config.wheelScroll) {
-        this.addListener(t, 'wheel', this.onWheel.bind(this), { passive: false, capture: true });
-      }
-
-      this.addListener(t, 'dragstart', e => e.preventDefault());
-      this.addListener(t, 'click', e => {
-        if (!this.suppressClick) return;
-        this.suppressClick = false;
-        clearTimeout(this.suppressClickTimer);
-        this.suppressClickTimer = null;
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-      }, { capture: true });
-      t.setAttribute('tabindex', '0');
-      this.addListener(t, 'keydown', e => {
-        if (e.key === 'ArrowLeft') this.goToSlide(this.currentIndex - 1);
-        if (e.key === 'ArrowRight') this.goToSlide(this.currentIndex + 1);
-      });
-
-      if (this.config.autoplay) {
-        this.addListener(t, 'mouseenter', () => this.stopAutoplay());
-        this.addListener(t, 'mouseleave', () => this.startAutoplay());
-      }
-
-      this.addListener(window, 'resize', () => {
-        clearTimeout(this.resizeTimeout);
-        this.resizeTimeout = setTimeout(() => {
-          this.refreshLayout();
-        }, 100);
-      });
-      this.addListener(window, 'load', () => this.scheduleLayoutRefresh(), { once: true });
-      this.scheduleLayoutRefresh();
-    }
-
-    addListener(target, event, handler, options) {
-      target.addEventListener(event, handler, options);
-      this.eventHandlers.push({ target, event, handler, options });
-    }
-
-    destroy() {
-      this.stopAutoplay();
-      this.cancelMomentum();
-      this.dotHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
-      this.dotHandlers = [];
-      this.eventHandlers.forEach(({ target, event, handler, options }) => target.removeEventListener(event, handler, options));
-      this.eventHandlers = [];
-      clearTimeout(this.resizeTimeout);
-      clearTimeout(this.suppressClickTimer);
-      this.cancelLayoutRefresh();
-      this.slides.forEach(slide => {
-        slide.removeAttribute('data-slider-initialized');
-        this.wrapper.parentNode.insertBefore(slide, this.wrapper);
-      });
-      this.wrapper.remove();
-    }
-
-    cancelLayoutRefresh() {
-      if (!this.layoutRefreshId) return;
-      if (this.layoutRefreshType === 'raf') cancelAnimationFrame(this.layoutRefreshId);
-      else clearTimeout(this.layoutRefreshId);
-      this.layoutRefreshId = null;
-      this.layoutRefreshType = null;
-    }
-
-    scheduleLayoutRefresh() {
-      this.cancelLayoutRefresh();
-      const refresh = () => {
-        this.layoutRefreshId = null;
-        this.layoutRefreshType = null;
-        this.refreshLayout();
-      };
-      if (typeof requestAnimationFrame === 'function') {
-        this.layoutRefreshType = 'raf';
-        this.layoutRefreshId = requestAnimationFrame(refresh);
-        return;
-      }
-      this.layoutRefreshType = 'timeout';
-      this.layoutRefreshId = setTimeout(refresh, 0);
-    }
-
-    refreshLayout() {
-      this.updateSlidesPerView();
-      this.updateSlider();
-    }
-
-    resolveResponsiveSettings(w) {
-      let spv = this.config.slidesPerView, gap = this.config.gap;
-      let peek = this.config.peek, msw = this.config.maxSlideWidth;
-
-      const bps = Object.keys(this.config.breakpoints).map(Number).sort((a, b) => a - b);
-      for (const bp of bps) {
-        if (w < bp) continue;
-        const c = this.config.breakpoints[bp] || {};
-        spv = c.slidesPerView || spv;
-        if (Number.isFinite(+c.gap)) gap = +c.gap;
-        if (Number.isFinite(+c.peek)) peek = +c.peek;
-        if (Number.isFinite(+c.maxSlideWidth)) msw = +c.maxSlideWidth;
-      }
-
-      return { spv, gap, peek, msw };
-    }
-
-    updateSlidesPerView() {
-      const w = window.innerWidth;
-      let { spv, gap, peek, msw } = this.resolveResponsiveSettings(w);
-
-      if (peek) spv += peek;
-      this.slidesPerView = Math.min(spv, this.slides.length);
-      this.currentGap = gap;
-      this.currentMaxSlideWidth = msw;
-
-      // Update slide widths
-      const totalGaps = Math.ceil(this.slidesPerView) - 1;
-      let sw = `calc((100% - ${totalGaps * gap}px) / ${this.slidesPerView})`;
-      const maxSW = (w > 736 && Number.isFinite(+msw) && +msw > 0) ? +msw : null;
-      if (maxSW) sw = `min(${maxSW}px, ${sw})`;
-
-      this.slideElements.forEach((el, i) => {
-        el.style.flex = `0 0 ${sw}`;
-        el.style.width = sw;
-        el.style.marginRight = i < this.slides.length - 1 ? `${gap}px` : '0';
-      });
-
-      this.updateDots();
-      const maxIdx = this.getTotalPages() - 1;
-      if (this.currentIndex > maxIdx) this.currentIndex = Math.max(0, maxIdx);
-    }
-
-    updateDots() {
-      if (!this.dotsContainer) return;
-      this.dotHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
-      this.dotHandlers = [];
-      this.dotsContainer.innerHTML = '';
-
-      const pages = this.getTotalPages();
-      if (pages <= 1) {
-        this.dots = [];
-        this.dotsContainer.style.display = 'none';
-        return;
-      }
-      this.dotsContainer.style.display = 'flex';
-
-      for (let i = 0; i < pages; i++) {
-        const dot = document.createElement('button');
-        dot.className = S.dot;
-        if (i === this.currentIndex) dot.classList.add('is-active');
-        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-        const fn = () => this.goToSlide(i);
-        dot.addEventListener('click', fn);
-        this.dotHandlers.push({ el: dot, fn });
-        this.dotsContainer.appendChild(dot);
-      }
-      this.dots = this.dotsContainer.querySelectorAll('.' + S.dot);
-    }
-
-    getTotalPages() {
-      return Math.ceil(Math.max(1, this.slides.length - this.slidesPerView + 1));
-    }
-
-    getViewportWidth() {
-      return Math.max(
-        this.wrapper?.clientWidth || 0,
-        this.wrapper?.getBoundingClientRect?.().width || 0,
-        window.innerWidth || 0
-      );
-    }
-
-    computeFallbackSlideWidth() {
-      const viewportWidth = this.getViewportWidth();
-      if (viewportWidth <= 0 || this.slidesPerView <= 0) return 0;
-
-      const totalGaps = Math.ceil(this.slidesPerView) - 1;
-      let width = (viewportWidth - (totalGaps * this.currentGap)) / this.slidesPerView;
-      if (window.innerWidth > 736 && Number.isFinite(+this.currentMaxSlideWidth) && +this.currentMaxSlideWidth > 0) {
-        width = Math.min(+this.currentMaxSlideWidth, width);
-      }
-      return width;
-    }
-
-    getSlideWidth() {
-      const slide = this.slideElements[0];
-      if (!slide) return 0;
-
-      let width = slide.offsetWidth;
-      if (!width && slide.getBoundingClientRect) {
-        width = slide.getBoundingClientRect().width;
-      }
-      if (!width) {
-        width = this.computeFallbackSlideWidth();
-      }
-
-      return width > 0 ? width + this.currentGap : 0;
-    }
-
-    getMinTranslate() {
-      return -(this.getSlideWidth() * (this.getTotalPages() - 1));
-    }
-
-    getPositionX(e) {
-      const t = e.touches?.[0] || e.changedTouches?.[0];
-      return t ? t.clientX : e.clientX;
-    }
-
-    getPositionY(e) {
-      const t = e.touches?.[0] || e.changedTouches?.[0];
-      return t ? t.clientY : e.clientY;
-    }
-
-    // --- Drag handling ---
-
-    onDragStart(e) {
-      if (this.slides.length <= 1) return;
-      const isTouch = Boolean(e.touches || e.changedTouches);
-      if (isTouch && e.target?.closest?.(FORM_FIELD_SELECTOR)) return;
-      if (!isTouch && e.target?.closest?.(INTERACTIVE_SELECTOR)) return;
-      const renderedTranslate = this.getRenderedTranslate();
-      this.cancelMomentum();
-      this.translateX = this.normalizeTranslate(renderedTranslate);
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-      this.isDragging = true;
-      this.wrapper.classList.add('is-dragging');
-      const x = this.getPositionX(e);
-      this.startX = x;
-      this.startY = this.getPositionY(e);
-      this.dragStartTranslate = this.translateX;
-      this.draggedTranslate = this.translateX;
-      this.dragAxis = null;
-      this.velocity = 0;
-      this.lastDragX = x;
-      this.lastDragTime = Date.now();
-      this.stopAutoplay();
-    }
-
-    suppressNextClick() {
-      this.suppressClick = true;
-      clearTimeout(this.suppressClickTimer);
-      this.suppressClickTimer = setTimeout(() => {
-        this.suppressClick = false;
-        this.suppressClickTimer = null;
-      }, 500);
-    }
-
-    resolveDragAxis(diff, diffY) {
-      if (!this.dragAxis && (Math.abs(diff) > 6 || Math.abs(diffY) > 6)) {
-        this.dragAxis = Math.abs(diff) > Math.abs(diffY) ? 'horizontal' : 'vertical';
-      }
-    }
-
-    clampDragTranslate(t, min) {
-      if (t > 0) return t * 0.2;
-      if (t < min) return min + (t - min) * 0.2;
-      return t;
-    }
-
-    onDragMove(e) {
-      if (!this.isDragging) return;
-      const now = Date.now();
-      const x = this.getPositionX(e);
-      const diff = x - this.startX;
-      const diffY = this.getPositionY(e) - this.startY;
-
-      this.resolveDragAxis(diff, diffY);
-      if (this.dragAxis === 'vertical') return;
-
-      const dt = now - this.lastDragTime;
-      if (dt > 0) { this.velocity = (x - this.lastDragX) / dt; this.lastDragX = x; this.lastDragTime = now; }
-
-      const t = this.clampDragTranslate(this.dragStartTranslate + diff, this.getMinTranslate());
-      this.draggedTranslate = t;
-      this.track.style.transform = `translateX(${t}px)`;
-      if (e.cancelable && this.dragAxis === 'horizontal') e.preventDefault();
-    }
-
-    onDragEnd() {
-      if (!this.isDragging) return;
-      this.isDragging = false;
-      this.wrapper.classList.remove('is-dragging');
-
-      if (!this.dragAxis) {
-        if (this.config.autoplay) this.startAutoplay();
-        return;
-      }
-
-      if (this.dragAxis === 'vertical') {
-        this.dragAxis = null;
-        if (this.config.autoplay) this.startAutoplay();
-        return;
-      }
-
-      if (Math.abs(this.draggedTranslate - this.dragStartTranslate) > 6) {
-        this.suppressNextClick();
-      }
-      this.translateX = this.normalizeTranslate(this.draggedTranslate);
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-      this.dragAxis = null;
-
-      if (!this.config.freeScroll) {
-        this.snapAfterDrag();
-        return;
-      }
-
-      this.startMomentum({ snap: false });
-    }
-
-    snapAfterDrag() {
-      const slideWidth = this.getSlideWidth();
-      if (slideWidth <= 0) return;
-
-      const distance = this.translateX - this.dragStartTranslate;
-      const threshold = slideWidth * this.config.snapThreshold;
-      let targetIndex = this.currentIndex;
-
-      if (Math.abs(distance) >= threshold) {
-        targetIndex += distance < 0 ? 1 : -1;
-      } else {
-        targetIndex = Math.round(Math.abs(this.translateX) / slideWidth);
-      }
-
-      this.animateTo(targetIndex);
-      if (this.config.autoplay) this.startAutoplay();
-    }
-
-    onWheel(e) {
-      if (!this.config.wheelScroll || this.slides.length <= 1) return;
-
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
-      if (!delta) return;
-
-      this.cancelMomentum();
-      this.stopAutoplay();
-      this.translateX = this.normalizeTranslate(this.translateX - delta);
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-
-      if (e.cancelable) e.preventDefault();
-
-      if (this.config.freeScroll) {
-        this.syncIndexToTranslate();
-        if (this.config.autoplay) this.startAutoplay();
-        return;
-      }
-
-      this.snapToNearest();
-    }
-
-    finishMomentum({ snap }) {
-      this.animationId = null;
-      this.translateX = this.normalizeTranslate(this.translateX);
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-
-      if (snap) {
-        this.snapToNearest();
-        return;
-      }
-
-      this.syncIndexToTranslate();
-      if (this.config.autoplay) this.startAutoplay();
-    }
-
-    startMomentum({ snap = true } = {}) {
-      const min = this.getMinTranslate();
-      const step = () => {
-        this.velocity *= 0.95;
-        this.translateX += this.velocity * 16;
-
-        if (this.translateX > 0) { this.translateX *= 0.8; this.velocity *= 0.5; }
-        else if (this.translateX < min) { this.translateX = min + (this.translateX - min) * 0.8; this.velocity *= 0.5; }
-
-        this.track.style.transform = `translateX(${this.translateX}px)`;
-        if (Math.abs(this.velocity) > 0.05) this.animationId = requestAnimationFrame(step);
-        else this.finishMomentum({ snap });
-      };
-
-      if (Math.abs(this.velocity) > 0.05) this.animationId = requestAnimationFrame(step);
-      else this.finishMomentum({ snap });
-    }
-
-    normalizeTranslate(value) {
-      return Math.min(0, Math.max(this.getMinTranslate(), value));
-    }
-
-    syncIndexToTranslate() {
-      const sw = this.getSlideWidth();
-      if (sw <= 0) return;
-
-      const idx = Math.min(
-        this.getTotalPages() - 1,
-        Math.max(0, Math.round(Math.abs(this.translateX) / sw))
-      );
-      this.currentIndex = idx;
-      this.updateDotsAndArrows();
-    }
-
-    snapToNearest() {
-      const sw = this.getSlideWidth();
-      if (sw <= 0) return;
-      const clamped = this.normalizeTranslate(this.translateX);
-      const idx = Math.min(this.getTotalPages() - 1, Math.max(0, Math.round(Math.abs(clamped) / sw)));
-      this.animateTo(idx);
-      if (this.config.autoplay) this.startAutoplay();
-    }
-
-    getRenderedTranslate() {
-      const transform = window.getComputedStyle(this.track).transform || this.track.style.transform;
-      if (!transform || transform === 'none') return this.translateX;
-
-      const matrix3d = transform.match(/^matrix3d\((.+)\)$/);
-      if (matrix3d) {
-        const values = matrix3d[1].split(',').map(Number);
-        return Number.isFinite(values[12]) ? values[12] : this.translateX;
-      }
-
-      const matrix = transform.match(/^matrix\((.+)\)$/);
-      if (matrix) {
-        const values = matrix[1].split(',').map(Number);
-        return Number.isFinite(values[4]) ? values[4] : this.translateX;
-      }
-
-      const translate = transform.match(/translateX\((-?[\d.]+)px\)/);
-      return translate ? Number(translate[1]) : this.translateX;
-    }
-
-    clearSnapTransition() {
-      if (this.snapEndHandler) {
-        this.track.removeEventListener('transitionend', this.snapEndHandler);
-        this.snapEndHandler = null;
-      }
-      if (this.snapFallbackTimer) {
-        clearTimeout(this.snapFallbackTimer);
-        this.snapFallbackTimer = null;
-      }
-      this.track.style.transition = '';
-    }
-
-    // Animate track to a given slide index with transition
-    animateTo(index) {
-      this.cancelMomentum();
-      const maxIdx = this.getTotalPages() - 1;
-      if (index < 0) index = this.config.loop ? maxIdx : 0;
-      else if (index > maxIdx) index = this.config.loop ? 0 : maxIdx;
-
-      this.currentIndex = index;
-      this.translateX = -this.getSlideWidth() * index;
-      this.track.style.transition = SNAP_EASE;
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-      this.snapEndHandler = () => this.clearSnapTransition();
-      this.track.addEventListener('transitionend', this.snapEndHandler);
-      this.snapFallbackTimer = setTimeout(() => this.clearSnapTransition(), 450);
-      this.updateDotsAndArrows();
-    }
-
-    goToSlide(index) { this.animateTo(index); }
-
-    cancelMomentum() {
-      if (this.animationId) { cancelAnimationFrame(this.animationId); this.animationId = null; }
-      this.clearSnapTransition();
-    }
-
-    // Instant position (resize/init)
-    updateSlider() {
-      this.translateX = -this.getSlideWidth() * this.currentIndex;
-      this.track.style.transform = `translateX(${this.translateX}px)`;
-      this.updateDotsAndArrows();
-    }
-
-    updateDotsAndArrows() {
-      if (this.wrapper) {
-        this.wrapper.setAttribute('aria-label', `Slide ${this.currentIndex + 1} of ${this.getTotalPages()}`);
-      }
-      if (this.dots) this.dots.forEach((d, i) => d.classList.toggle('is-active', i === this.currentIndex));
-      if (this.prevBtn && this.nextBtn && !this.config.loop) {
-        this.prevBtn.disabled = this.currentIndex === 0;
-        this.nextBtn.disabled = this.currentIndex >= this.getTotalPages() - 1;
-      }
-    }
-
-    startAutoplay() {
-      this.stopAutoplay();
-      this.autoplayTimer = setInterval(() => this.goToSlide(this.currentIndex + 1), this.config.autoplayInterval);
-    }
-
-    stopAutoplay() {
-      if (this.autoplayTimer) { clearInterval(this.autoplayTimer); this.autoplayTimer = null; }
-    }
-  }
-
-  // --- Cluster detection & initialization ---
-
   function findSliderClusters() {
-    const all = document.querySelectorAll(BASE_CONFIG.slideSelector);
+    const all = document.querySelectorAll('[data-slider]');
     if (!all.length) return [];
     const clusters = [], processed = new Set();
-
-    all.forEach(slide => {
-      if (
-        processed.has(slide) ||
-        slide.getAttribute('data-slider-initialized') === 'true'
-      ) {
-        return;
-      }
+    all.forEach((slide) => {
+      if (processed.has(slide) || slide.getAttribute('data-slider-initialized') === 'true') return;
       const baseName = getSliderName(slide);
       const cluster = [slide];
       processed.add(slide);
@@ -677,60 +56,504 @@
         processed.add(sib);
         sib = sib.nextElementSibling;
       }
-      cluster.forEach(el => {
-        el.setAttribute('data-slider-initialized', 'true');
-      });
+      cluster.forEach((el) => el.setAttribute('data-slider-initialized', 'true'));
       clusters.push(cluster);
     });
     return clusters;
   }
 
-  /**
-   * Discover contiguous slider clusters and initialize missing instances.
-   */
-  function init() {
-    findSliderClusters().forEach(cluster => {
-      const id =
-        getSliderName(cluster[0]) ||
-        cluster[0].getAttribute('data-slider-id') ||
-        '';
-      const opts = (id && INSTANCE_CONFIGS[id]) || {};
-      const cfg = { ...BASE_CONFIG, ...opts, breakpoints: { ...BASE_CONFIG.breakpoints, ...(opts.breakpoints || {}) } };
-      SLIDER_INSTANCES.push({ instance: new Slider(cluster, cfg), instanceId: id });
-    });
+  // --- data-attribute configuration (read only from cluster[0]) ---
+  function parseTriplet(raw, fallback, validate) {
+    if (raw == null) return { value: fallback.slice(), invalid: false };
+    const nums = String(raw).trim().split(/\s+/).filter(Boolean).map(Number);
+    if (!nums.length || nums.length > 3 || nums.some((n) => !validate(n))) return { value: fallback.slice(), invalid: true };
+    if (nums.length === 1) return { value: [nums[0], nums[0], nums[0]], invalid: false };
+    if (nums.length === 2) return { value: [nums[0], nums[1], nums[1]], invalid: false };
+    return { value: nums, invalid: false };
   }
 
-  /**
-   * Destroy a slider instance by its configured id and restore source markup.
-   */
+  function parseMode(raw, warnFn) {
+    if (raw == null) return 'free';
+    const v = normalizeName(raw).toLowerCase();
+    if (v === 'center' || v === 'free') return v;
+    warnFn(`invalid data-slider-mode "${raw}", using default "free"`);
+    return 'free';
+  }
+
+  // Returns true/false for an explicit "on"/"off" value, or null when unset
+  // or invalid (caller decides the default in that case).
+  function parseOnOffFlag(raw, attrName, warnFn) {
+    if (raw == null) return null;
+    const v = normalizeName(raw).toLowerCase();
+    if (v === 'off') return false;
+    if (v === 'on') return true;
+    warnFn(`invalid ${attrName} "${raw}", using default`);
+    return null;
+  }
+
+  function parseAutoplay(raw, warnFn) {
+    if (raw == null) return 0;
+    const n = Number(raw);
+    if (Number.isFinite(n) && n > 0) return n;
+    warnFn(`invalid data-slider-autoplay "${raw}", autoplay disabled`);
+    return 0;
+  }
+
+  function parseSizeTriplet(raw, attrName, fallback, validate, warnFn) {
+    const result = parseTriplet(raw, fallback, validate);
+    if (raw != null && result.invalid) warnFn(`invalid ${attrName} "${raw}", using default "${fallback.join(' ')}"`);
+    return result.value;
+  }
+
+  function parseConfig(firstSlide, warnFn) {
+    const mode = parseMode(firstSlide.getAttribute('data-slider-mode'), warnFn);
+    const spv = parseSizeTriplet(firstSlide.getAttribute('data-slider-spv'), 'data-slider-spv', DEFAULT_SPV, (n) => Number.isFinite(n) && n > 0, warnFn);
+    const gap = parseSizeTriplet(firstSlide.getAttribute('data-slider-gap'), 'data-slider-gap', DEFAULT_GAP, (n) => Number.isFinite(n) && n >= 0, warnFn);
+    const autoplay = parseAutoplay(firstSlide.getAttribute('data-slider-autoplay'), warnFn);
+    const dotsFlag = parseOnOffFlag(firstSlide.getAttribute('data-slider-dots'), 'data-slider-dots', warnFn);
+    const arrowsFlag = parseOnOffFlag(firstSlide.getAttribute('data-slider-arrows'), 'data-slider-arrows', warnFn);
+    const arrowsMobileFlag = parseOnOffFlag(firstSlide.getAttribute('data-slider-arrows-mobile'), 'data-slider-arrows-mobile', warnFn);
+    return {
+      mode, spv, gap, autoplay,
+      dots: dotsFlag !== false,
+      arrows: arrowsFlag !== false,
+      arrowsMobile: arrowsMobileFlag === true
+    };
+  }
+
+  // --- Pure helpers, unit-tested directly (no DOM/layout dependency) ---
+  function resolveBreakpointIndex(width) {
+    if (width >= BREAKPOINTS[1]) return 2;
+    if (width >= BREAKPOINTS[0]) return 1;
+    return 0;
+  }
+  function pickActiveIndex(ratios) {
+    if (!ratios || !ratios.length) return 0;
+    let best = 0, bestRatio = ratios[0];
+    for (let i = 1; i < ratios.length; i++) { if (ratios[i] > bestRatio) { bestRatio = ratios[i]; best = i; } }
+    return best;
+  }
+
+  // One instance owns the generated wrapper/scroller, IO-driven active-index
+  // tracking, mouse-drag (touch stays fully native), autoplay, and breakpoint
+  // CSS-variable recalculation for a contiguous cluster of `[data-slider]` els.
+  class Slider {
+    constructor(slides, config) {
+      this.slides = slides;
+      this.config = config;
+      this.currentIndex = 0;
+      this.eventHandlers = [];
+      this.dotHandlers = [];
+      this.mqlHandlers = [];
+      this.suppressClick = false;
+      this.suppressClickTimer = null;
+      this.scrollSyncTimer = null;
+      this.scrollEndTimer = null;
+      this.scrollEndHandler = null;
+      this.navTargetLeft = null;
+      this.inertiaId = null;
+      this.autoplayTimer = null;
+      this.init();
+    }
+
+    init() {
+      this.wrapper = document.createElement('div');
+      this.wrapper.className = S.wrap;
+      this.wrapper.setAttribute('role', 'region');
+      this.wrapper.setAttribute('aria-roledescription', 'carousel');
+      this.wrapper.setAttribute('tabindex', '0');
+      this.wrapper.setAttribute('data-mode', this.config.mode);
+      this.wrapper.setAttribute('data-arrows-mobile', this.config.arrowsMobile ? 'on' : 'off');
+      this.slides[0].parentNode.insertBefore(this.wrapper, this.slides[0]);
+      this.scroller = document.createElement('div');
+      this.scroller.className = S.scroller;
+      this.wrapper.appendChild(this.scroller);
+      this.slideElements = this.slides.map((slide, index) => {
+        const w = document.createElement('div');
+        w.className = S.slide;
+        w.setAttribute('role', 'group');
+        w.setAttribute('aria-roledescription', 'slide');
+        w.setAttribute('aria-label', `${index + 1} of ${this.slides.length}`);
+        w.appendChild(slide);
+        this.scroller.appendChild(w);
+        return w;
+      });
+      const multi = this.slides.length > 1;
+      if (this.config.dots && multi) {
+        this.dotsContainer = document.createElement('div');
+        this.dotsContainer.className = S.dots;
+        this.wrapper.appendChild(this.dotsContainer);
+        this.buildDots();
+      }
+      if (this.config.arrows && multi) this.createArrows();
+      this.updateResponsiveVars();
+      this.setupBreakpointListeners();
+      this.setupObserver();
+      this.bindScrollEndSync();
+      this.bindPointerDrag();
+      this.bindKeyboard();
+      this.setActiveIndex(0);
+      if (this.config.autoplay && multi) this.startAutoplay();
+      this.bindAutoplayGuards();
+      this.addListener(window, 'load', () => this.refreshLayout(), { once: true });
+    }
+
+    addListener(target, event, handler, options) {
+      target.addEventListener(event, handler, options);
+      this.eventHandlers.push({ target, event, handler, options });
+    }
+
+    // Layout: CSS variables only, recomputed on breakpoint change.
+    updateResponsiveVars() {
+      const idx = resolveBreakpointIndex(window.innerWidth || 0);
+      const spv = this.config.spv[idx], gap = this.config.gap[idx];
+      const totalGaps = Math.max(0, Math.ceil(spv) - 1);
+      this.wrapper.style.setProperty('--slider-gap', gap + 'px');
+      this.wrapper.style.setProperty('--slider-slide-w', `calc((100% - ${totalGaps * gap}px) / ${spv})`);
+    }
+
+    setupBreakpointListeners() {
+      if (typeof window.matchMedia !== 'function') return;
+      const handler = () => this.updateResponsiveVars();
+      [`(min-width: ${BREAKPOINTS[0]}px)`, `(min-width: ${BREAKPOINTS[1]}px)`].forEach((query) => {
+        const mql = window.matchMedia(query);
+        if (mql.addEventListener) mql.addEventListener('change', handler);
+        else if (mql.addListener) mql.addListener(handler);
+        this.mqlHandlers.push({ mql, handler });
+      });
+    }
+
+    refreshLayout() { this.updateResponsiveVars(); }
+
+    // Dots / arrows / active-slide bookkeeping.
+    buildDots() {
+      this.dotHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
+      this.dotHandlers = [];
+      this.dotsContainer.innerHTML = '';
+      this.slideElements.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = S.dot;
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        const fn = () => this.scrollToSlide(i);
+        dot.addEventListener('click', fn);
+        this.dotHandlers.push({ el: dot, fn });
+        this.dotsContainer.appendChild(dot);
+      });
+      this.dots = this.dotsContainer.querySelectorAll('.' + S.dot);
+    }
+
+    createArrows() {
+      const makeBtn = (cls, label, icon, fn) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = S.nav + ' ' + cls;
+        btn.setAttribute('aria-label', label);
+        btn.innerHTML = icon;
+        this.addListener(btn, 'click', () => fn());
+        this.wrapper.appendChild(btn);
+        return btn;
+      };
+      this.prevBtn = makeBtn(S.prev, 'Previous slide', ICONS.prev, () => this.scrollBySlide(-1));
+      this.nextBtn = makeBtn(S.next, 'Next slide', ICONS.next, () => this.scrollBySlide(1));
+      this.addListener(this.scroller, 'scroll', () => this.updateNavState(), { passive: true });
+      this.updateNavState();
+    }
+
+    bindKeyboard() {
+      this.addListener(this.wrapper, 'keydown', (e) => {
+        if (e.key === 'ArrowLeft') this.scrollToSlide(this.currentIndex - 1);
+        if (e.key === 'ArrowRight') this.scrollToSlide(this.currentIndex + 1);
+      });
+    }
+
+    setActiveIndex(i) {
+      this.currentIndex = i;
+      this.wrapper.setAttribute('aria-label', `Slide ${i + 1} of ${this.slideElements.length}`);
+      if (this.dots) this.dots.forEach((d, idx) => d.classList.toggle('is-active', idx === i));
+      this.updateNavState();
+    }
+
+    // Programmatic scroll — arrows/dots/keyboard/autoplay all funnel here.
+    scrollTo(left) {
+      const behavior = prefersReducedMotion() ? 'auto' : 'smooth';
+      if (typeof this.scroller.scrollTo === 'function') this.scroller.scrollTo({ left, behavior });
+      else this.scroller.scrollLeft = left;
+    }
+
+    scrollBySlide(direction) {
+      const first = this.slideElements[0], second = this.slideElements[1];
+      if (!first || !direction) return;
+      const gap = parseFloat(getComputedStyle(this.scroller).gap) || 0;
+      const pitch = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth + gap;
+      if (!(pitch > 0)) return;
+      const maxScroll = Math.max(0, this.scroller.scrollWidth - this.scroller.clientWidth);
+      const base = this.navTargetLeft === null ? this.scroller.scrollLeft : this.navTargetLeft;
+      this.navTargetLeft = Math.max(0, Math.min(maxScroll, base + direction * pitch));
+      this.scrollTo(this.navTargetLeft);
+      this.updateNavState(this.navTargetLeft);
+      this.waitForScrollEnd(() => {
+        this.navTargetLeft = null;
+        this.syncFromScroll();
+      });
+    }
+
+    updateNavState(left = this.scroller.scrollLeft) {
+      if (!this.prevBtn || !this.nextBtn) return;
+      const maxScroll = Math.max(0, this.scroller.scrollWidth - this.scroller.clientWidth);
+      this.prevBtn.disabled = left <= 1;
+      this.nextBtn.disabled = left >= maxScroll - 1;
+    }
+
+    scrollToSlide(index) {
+      const max = this.slideElements.length - 1;
+      index = Math.max(0, Math.min(max, index));
+      const slide = this.slideElements[index];
+      if (!slide) return;
+      const target = slide.offsetLeft - (this.scroller.clientWidth - slide.offsetWidth) / 2;
+      const maxScroll = Math.max(0, this.scroller.scrollWidth - this.scroller.clientWidth);
+      this.scrollTo(Math.max(0, Math.min(maxScroll, target)));
+      this.setActiveIndex(index);
+    }
+
+    // IntersectionObserver active-slide tracking (feature-detected).
+    setupObserver() {
+      if (typeof IntersectionObserver !== 'function') return;
+      this.ratios = new Array(this.slideElements.length).fill(0);
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const idx = this.slideElements.indexOf(entry.target);
+          if (idx !== -1) this.ratios[idx] = entry.intersectionRatio;
+        });
+        this.setActiveIndex(pickActiveIndex(this.ratios));
+      }, { root: this.scroller, threshold: [0, 0.25, 0.5, 0.6, 0.75, 1] });
+      this.slideElements.forEach((el) => this.io.observe(el));
+    }
+
+    // scrollend (or debounced scroll fallback for Safari) — final sync only.
+    bindScrollEndSync() {
+      if ('onscrollend' in window) {
+        this.addListener(this.scroller, 'scrollend', () => this.syncFromScroll());
+      } else {
+        this.addListener(this.scroller, 'scroll', () => {
+          clearTimeout(this.scrollSyncTimer);
+          this.scrollSyncTimer = setTimeout(() => {
+            this.scrollSyncTimer = null;
+            this.syncFromScroll();
+          }, 150);
+        }, { passive: true });
+      }
+    }
+
+    syncFromScroll() {
+      if (!this.slideElements.length) return;
+      this.navTargetLeft = null;
+      this.setActiveIndex(this.nearestIndexToCenter());
+    }
+
+    // One-shot: run callback once the current scroll settles (native
+    // scrollend, or a fixed fallback delay on browsers without it).
+    waitForScrollEnd(callback) {
+      this.clearPendingScrollEnd();
+      if ('onscrollend' in window) {
+        this.scrollEndHandler = () => {
+          this.scroller.removeEventListener('scrollend', this.scrollEndHandler);
+          this.scrollEndHandler = null;
+          callback();
+        };
+        this.scroller.addEventListener('scrollend', this.scrollEndHandler);
+      } else {
+        this.scrollEndTimer = setTimeout(() => {
+          this.scrollEndTimer = null;
+          callback();
+        }, 450);
+      }
+    }
+
+    clearPendingScrollEnd() {
+      clearTimeout(this.scrollEndTimer);
+      this.scrollEndTimer = null;
+      if (this.scrollEndHandler) this.scroller.removeEventListener('scrollend', this.scrollEndHandler);
+      this.scrollEndHandler = null;
+    }
+
+    nearestIndexToCenter() {
+      const center = this.scroller.scrollLeft + this.scroller.clientWidth / 2;
+      let best = 0, bestDist = Infinity;
+      this.slideElements.forEach((el, i) => {
+        const d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      return best;
+    }
+
+    // Mouse drag (Pointer Events) — the only manual input path; touch is native.
+    bindPointerDrag() {
+      const scroller = this.scroller;
+      let dragging = false, startX = 0, startScrollLeft = 0, history = [];
+      const onDown = (e) => {
+        if (e.pointerType !== 'mouse') return;
+        if (e.target && e.target.closest && e.target.closest(INTERACTIVE_SELECTOR)) return;
+        dragging = true;
+        startX = e.clientX;
+        startScrollLeft = scroller.scrollLeft;
+        history = [{ t: performance.now(), x: e.clientX }];
+        scroller.classList.add(S.grabbing);
+        if (scroller.setPointerCapture) scroller.setPointerCapture(e.pointerId);
+        this.stopAutoplay();
+      };
+      const onMove = (e) => {
+        if (!dragging) return;
+        scroller.scrollLeft = startScrollLeft - (e.clientX - startX);
+        const now = performance.now();
+        history.push({ t: now, x: e.clientX });
+        while (history.length > 2 && now - history[0].t > 100) history.shift();
+      };
+      const onUp = () => {
+        if (!dragging) return;
+        dragging = false;
+        let velocity = 0;
+        if (history.length >= 2) {
+          const first = history[0], last = history[history.length - 1];
+          const dt = last.t - first.t;
+          if (dt > 0) velocity = (last.x - first.x) / dt;
+        }
+        if (Math.abs(scroller.scrollLeft - startScrollLeft) > 6) this.suppressNextClick();
+        if (this.config.mode === 'center') {
+          let target = this.currentIndex;
+          if (Math.abs(velocity) > 0.3) target += velocity < 0 ? 1 : -1;
+          else target = this.nearestIndexToCenter();
+          this.scrollToSlide(target);
+          // Keep snap disabled until the smooth scroll actually lands —
+          // removing it mid-flight lets mandatory snap fight the animation.
+          this.waitForScrollEnd(() => scroller.classList.remove(S.grabbing));
+        } else {
+          this.runFreeInertia(velocity, () => scroller.classList.remove(S.grabbing));
+        }
+        if (this.config.autoplay) this.startAutoplay();
+      };
+      this.addListener(scroller, 'pointerdown', onDown);
+      this.addListener(scroller, 'pointermove', onMove);
+      this.addListener(scroller, 'pointerup', onUp);
+      this.addListener(scroller, 'pointercancel', onUp);
+      this.addListener(scroller, 'dragstart', (e) => e.preventDefault());
+      this.addListener(scroller, 'click', (e) => {
+        if (!this.suppressClick) return;
+        this.suppressClick = false;
+        clearTimeout(this.suppressClickTimer);
+        this.suppressClickTimer = null;
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }, true);
+    }
+
+    suppressNextClick() {
+      this.suppressClick = true;
+      clearTimeout(this.suppressClickTimer);
+      this.suppressClickTimer = setTimeout(() => { this.suppressClick = false; this.suppressClickTimer = null; }, 500);
+    }
+
+    runFreeInertia(v0, onDone) {
+      if (Math.abs(v0) <= 0.02) { onDone(); return; }
+      const k = 0.004;
+      let v = v0, last = performance.now();
+      const step = (now) => {
+        const dt = now - last;
+        last = now;
+        v *= Math.exp(-k * dt);
+        this.scroller.scrollLeft -= v * dt;
+        if (Math.abs(v) > 0.02) { this.inertiaId = requestAnimationFrame(step); }
+        else { this.inertiaId = null; onDone(); this.syncFromScroll(); }
+      };
+      this.inertiaId = requestAnimationFrame(step);
+    }
+
+    // Autoplay.
+    startAutoplay() {
+      this.stopAutoplay();
+      if (!this.config.autoplay || prefersReducedMotion()) return;
+      this.autoplayTimer = setInterval(() => {
+        const next = this.currentIndex >= this.slideElements.length - 1 ? 0 : this.currentIndex + 1;
+        this.scrollToSlide(next);
+      }, this.config.autoplay);
+    }
+
+    stopAutoplay() {
+      if (this.autoplayTimer) { clearInterval(this.autoplayTimer); this.autoplayTimer = null; }
+    }
+
+    // Pause while hovered/focused; any direct interaction restarts the
+    // countdown so a tick never fights the user's finger/pointer mid-gesture.
+    bindAutoplayGuards() {
+      if (!this.config.autoplay) return;
+      const pause = () => this.stopAutoplay();
+      const restart = () => this.startAutoplay();
+      this.addListener(this.scroller, 'pointerenter', pause);
+      this.addListener(this.scroller, 'pointerleave', restart);
+      this.addListener(this.wrapper, 'focusin', pause);
+      this.addListener(this.wrapper, 'focusout', restart);
+      this.addListener(this.scroller, 'pointerdown', pause);
+      this.addListener(this.scroller, 'pointerup', restart);
+      this.addListener(this.scroller, 'pointercancel', restart);
+      this.addListener(this.scroller, 'wheel', restart, { passive: true });
+    }
+
+    destroy() {
+      this.stopAutoplay();
+      if (this.inertiaId) { cancelAnimationFrame(this.inertiaId); this.inertiaId = null; }
+      if (this.io) this.io.disconnect();
+      this.mqlHandlers.forEach(({ mql, handler }) => {
+        if (mql.removeEventListener) mql.removeEventListener('change', handler);
+        else if (mql.removeListener) mql.removeListener(handler);
+      });
+      this.mqlHandlers = [];
+      this.dotHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
+      this.dotHandlers = [];
+      this.eventHandlers.forEach(({ target, event, handler, options }) => target.removeEventListener(event, handler, options));
+      this.eventHandlers = [];
+      clearTimeout(this.scrollSyncTimer);
+      this.scrollSyncTimer = null;
+      this.clearPendingScrollEnd();
+      clearTimeout(this.suppressClickTimer);
+      this.suppressClickTimer = null;
+      this.slides.forEach((slide) => {
+        slide.removeAttribute('data-slider-initialized');
+        this.wrapper.parentNode.insertBefore(slide, this.wrapper);
+      });
+      this.wrapper.remove();
+    }
+  }
+
+  // --- Discovery & public API ---
+  function init() {
+    findSliderClusters().forEach((cluster) => {
+      const id = getSliderName(cluster[0]) || '';
+      const config = parseConfig(cluster[0], (msg) => warn(id, msg));
+      SLIDER_INSTANCES.push({ instance: new Slider(cluster, config), instanceId: id });
+    });
+  }
   function destroyById(id) {
-    const i = SLIDER_INSTANCES.findIndex(e => e.instanceId === id);
+    const i = SLIDER_INSTANCES.findIndex((e) => e.instanceId === id);
     if (i === -1) return false;
     SLIDER_INSTANCES[i].instance.destroy();
     SLIDER_INSTANCES.splice(i, 1);
     return true;
   }
-
-  /**
-   * Destroy every initialized slider instance on the current page.
-   */
   function destroyAll() {
-    SLIDER_INSTANCES.forEach(e => e.instance.destroy());
+    SLIDER_INSTANCES.forEach((e) => e.instance.destroy());
     SLIDER_INSTANCES.length = 0;
   }
+  function refresh() { SLIDER_INSTANCES.forEach((e) => e.instance.refreshLayout()); }
 
-  /**
-   * Recalculate layout for every initialized slider instance.
-   * Use this after late DOM mutations outside the plugin.
-   */
-  function refresh() {
-    SLIDER_INSTANCES.forEach(e => e.instance.refreshLayout());
-  }
-
-  /**
-   * Public API for late initialization, teardown, and forced layout refresh.
-   */
-  window.CarrdSlider = { init, destroyAll, destroyById, refresh, getInstances: () => SLIDER_INSTANCES.map(e => e.instance) };
+  // Public API. `pickActiveIndex`/`resolveBreakpointIndex` are exposed purely so
+  // tests-js/slider.test.js can unit-test pure selection logic without
+  // emulating IntersectionObserver/scroll in jsdom.
+  window.CarrdSlider = {
+    init, destroyAll, destroyById, refresh,
+    getInstances: () => SLIDER_INSTANCES.map((e) => e.instance),
+    pickActiveIndex, resolveBreakpointIndex
+  };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

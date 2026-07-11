@@ -59,6 +59,39 @@
     }
   }
 
+  // --- Per-panel data-* overrides (data-* wins over window.CarrdPluginOptions) ---
+  function parseOnOffAttr(raw, attrName) {
+    if (raw == null) return null;
+    const v = normalizeName(raw).toLowerCase();
+    if (v === 'on') return true;
+    if (v === 'off') return false;
+    console.warn(`Accordeon: invalid ${attrName} "${raw}", using default`);
+    return null;
+  }
+
+  function parseEnumAttr(raw, attrName, allowed, fallback) {
+    if (raw == null) return fallback;
+    const v = normalizeName(raw).toLowerCase();
+    if (allowed.indexOf(v) !== -1) return v;
+    console.warn(`Accordeon: invalid ${attrName} "${raw}", using default "${fallback}"`);
+    return fallback;
+  }
+
+  function resolveGroupConfig(target) {
+    if (!target) return CONFIG;
+    const defaultOpenFlag = parseOnOffAttr(target.getAttribute('data-accordeon-default-open'), 'data-accordeon-default-open');
+    const scrollOnOpenFlag = parseOnOffAttr(target.getAttribute('data-accordeon-scroll'), 'data-accordeon-scroll');
+    const scrollBehavior = parseEnumAttr(target.getAttribute('data-accordeon-scroll-behavior'), 'data-accordeon-scroll-behavior', ['smooth', 'auto'], CONFIG.scrollBehavior);
+    const scrollBlock = parseEnumAttr(target.getAttribute('data-accordeon-scroll-block'), 'data-accordeon-scroll-block', ['start', 'center', 'end', 'nearest'], CONFIG.scrollBlock);
+    return {
+      ...CONFIG,
+      defaultOpen: defaultOpenFlag !== null ? defaultOpenFlag : CONFIG.defaultOpen,
+      scrollOnOpen: scrollOnOpenFlag !== null ? scrollOnOpenFlag : CONFIG.scrollOnOpen,
+      scrollBehavior,
+      scrollBlock
+    };
+  }
+
   function getLinkName(link) {
     if (!link || !link.getAttribute) return '';
     const href = (link.getAttribute('href') || '').trim();
@@ -143,11 +176,14 @@
 
   function buildGroup(name) {
     const existing = groups.get(name);
-    const open = existing ? existing.open : CONFIG.defaultOpen === true;
+    const targets = findTargets(name);
+    const config = resolveGroupConfig(targets[0]);
+    const open = existing ? existing.open : config.defaultOpen === true;
     const group = {
       name,
       controls: findControls(name),
-      targets: findTargets(name),
+      targets,
+      config,
       open
     };
 
@@ -175,15 +211,15 @@
   }
 
   function scrollToFirstTarget(group) {
-    if (!group || CONFIG.scrollOnOpen !== true || !group.targets.length) return;
+    if (!group || group.config.scrollOnOpen !== true || !group.targets.length) return;
 
     const firstTarget = group.targets[0];
     if (!firstTarget || typeof firstTarget.scrollIntoView !== 'function') return;
 
     requestFrame(() => {
       firstTarget.scrollIntoView({
-        behavior: CONFIG.scrollBehavior,
-        block: CONFIG.scrollBlock
+        behavior: group.config.scrollBehavior,
+        block: group.config.scrollBlock
       });
     });
   }

@@ -119,6 +119,45 @@ test('shopping cart config exposes only the Carrd section checkout target', () =
   assert.equal(Object.hasOwn(config, 'checkoutTargetSelector'), false);
 });
 
+test('shopping cart data-shopping-cart-checkout-target overrides checkoutTargetId', () => {
+  const dom = createDom(
+    '<section id="custom-checkout" data-shopping-cart-checkout-target="custom-checkout"></section>' +
+    '<textarea class="cart-output" data-shopping-cart-output="order-details"></textarea>'
+  );
+  setPluginOptions(dom, { shoppingCart: { checkoutTargetId: 'shopping-cart' } });
+  loadScript(dom, 'src/shopping-cart/shopping-cart.js');
+  triggerDomReady(dom);
+
+  const api = dom.window.CarrdShoppingCart;
+  const anchorStub = stubHashAnchorClicks(dom);
+  api.add('Product', 9.99);
+  api.checkout();
+
+  assert.equal(anchorStub.getLastHref(), '#custom-checkout');
+  assert.equal(dom.window.location.hash, '#custom-checkout');
+  anchorStub.restore();
+});
+
+test('shopping cart falls back to checkoutTargetId and warns on invalid data-shopping-cart-checkout-target', () => {
+  const dom = createDom(
+    '<section id="shopping-cart" data-shopping-cart-checkout-target="not a safe name!"></section>' +
+    '<textarea class="cart-output" data-shopping-cart-output="order-details"></textarea>'
+  );
+  const warnings = [];
+  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
+  loadScript(dom, 'src/shopping-cart/shopping-cart.js');
+  triggerDomReady(dom);
+
+  const api = dom.window.CarrdShoppingCart;
+  const anchorStub = stubHashAnchorClicks(dom);
+  api.add('Product', 9.99);
+  api.checkout();
+
+  assert.equal(anchorStub.getLastHref(), '#shopping-cart');
+  assert.ok(warnings.some((w) => w.includes('data-shopping-cart-checkout-target')));
+  anchorStub.restore();
+});
+
 test('shopping cart prefers #shopping-cart and #form-shopping-cart for the standard Carrd checkout flow', () => {
   const dom = createDom(`
     <section id="shopping-cart">

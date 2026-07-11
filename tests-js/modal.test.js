@@ -201,3 +201,78 @@ test('modal public API refresh scans new modals without duplicating overlay', ()
   assert.equal(dom.window.document.querySelectorAll('.theme-modal-overlay').length, 1);
   assert.equal(dom.window.document.querySelector('[data-modal="dynamic"]').dataset.modalInitialized, 'true');
 });
+
+test('modal data-modal-close-on-overlay="off" overrides JS closeOnOverlay for that modal only', () => {
+  const dom = createDom(
+    '<div data-modal="contact" data-modal-close-on-overlay="off" class="container-component"><div class="wrapper"><div class="inner">Content</div></div></div>'
+  );
+  mockRaf(dom);
+  setPluginOptions(dom, { modal: { closeOnOverlay: true } });
+  loadScript(dom, 'src/modal/modal.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  dom.window.CarrdModal.open('contact');
+  click(dom, doc.querySelector('.theme-modal-overlay'));
+  assert.equal(dom.window.CarrdModal.isOpen(), true);
+});
+
+test('modal data-modal-close-on-escape="off" overrides JS closeOnEscape for that modal only', () => {
+  const dom = createDom(
+    '<div data-modal="contact" data-modal-close-on-escape="off" class="container-component"><div class="wrapper"><div class="inner">Content</div></div></div>'
+  );
+  mockRaf(dom);
+  setPluginOptions(dom, { modal: { closeOnEscape: true } });
+  loadScript(dom, 'src/modal/modal.js');
+  triggerDomReady(dom);
+
+  dom.window.CarrdModal.open('contact');
+  dom.window.document.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  assert.equal(dom.window.CarrdModal.isOpen(), true);
+});
+
+test('modal data-modal-show-close="off" omits the close button for that modal only', () => {
+  const dom = createDom(
+    '<div data-modal="contact" data-modal-show-close="off" class="container-component"><div class="wrapper"><div class="inner"><h2>Contact</h2></div></div></div>'
+  );
+  mockRaf(dom);
+  setPluginOptions(dom, { modal: { showCloseButton: true } });
+  loadScript(dom, 'src/modal/modal.js');
+  triggerDomReady(dom);
+
+  assert.equal(dom.window.document.querySelector('[data-modal="contact"] .modal-close'), null);
+});
+
+test('modal data-modal-lock-scroll="off" skips body scroll lock for that modal only', () => {
+  const dom = createDom(
+    '<div data-modal="contact" data-modal-lock-scroll="off" class="container-component"><div class="wrapper"><div class="inner">Content</div></div></div>'
+  );
+  mockRaf(dom);
+  setPluginOptions(dom, { modal: { lockBodyScroll: true } });
+  loadScript(dom, 'src/modal/modal.js');
+  triggerDomReady(dom);
+
+  dom.window.CarrdModal.open('contact');
+  assert.equal(dom.window.document.body.classList.contains('modal-open'), false);
+});
+
+test('modal falls back to JS/default config and warns on invalid per-modal data-* values', () => {
+  const dom = createDom(
+    '<div data-modal="contact" data-modal-close-on-overlay="maybe" data-modal-lock-scroll="sure" class="container-component"><div class="wrapper"><div class="inner">Content</div></div></div>'
+  );
+  mockRaf(dom);
+  const warnings = [];
+  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
+  setPluginOptions(dom, { modal: { closeOnOverlay: true, lockBodyScroll: true } });
+  loadScript(dom, 'src/modal/modal.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  dom.window.CarrdModal.open('contact');
+  assert.equal(doc.body.classList.contains('modal-open'), true);
+  click(dom, doc.querySelector('.theme-modal-overlay'));
+  assert.equal(dom.window.CarrdModal.isOpen(), false);
+
+  ['data-modal-close-on-overlay', 'data-modal-lock-scroll']
+    .forEach((attr) => assert.ok(warnings.some((w) => w.includes(attr)), `expected warning for ${attr}`));
+});

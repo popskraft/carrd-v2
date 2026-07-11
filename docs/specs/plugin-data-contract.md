@@ -71,13 +71,24 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 ### Slider
 
 ```html
-<div data-slider="gallery">Slide 1</div>
+<div data-slider="gallery" data-slider-mode="center" data-slider-spv="1.2 3 4">Slide 1</div>
 <div data-slider="gallery">Slide 2</div>
+<div data-slider="gallery">Slide 3</div>
 ```
 
 - Consecutive elements with the same `data-slider` value form one slider.
-- `window.CarrdPluginOptions.slider.instances.gallery` configures that slider.
-- Legacy `.slider` and `data-slider-id` remain fallback during migration.
+- Pure data-* contract, no `window.CarrdPluginOptions` for this plugin — all
+  configuration goes on the first container of the cluster only:
+  `data-slider-mode` (`free`/`center`), `data-slider-spv` and `data-slider-gap`
+  (1–3 space-separated numbers mapped to mobile/≥737px/≥1280px breakpoints),
+  `data-slider-autoplay` (ms), `data-slider-dots`, `data-slider-arrows`,
+  `data-slider-arrows-mobile` (on/off). Invalid values fall back to the
+  default and log one `console.warn('[slider] ...')` per instance. See
+  `src/slider/README.md` for the full table.
+- This is the native CSS scroll-snap engine (formerly developed in parallel
+  as `slider-v2`); it was promoted to the sole `slider` plugin once its
+  mechanics were accepted. The earlier hand-rolled drag/transform engine is
+  archived at `docs/_archive/slider-v1-source/` and no longer shipped.
 
 ### Grid Cluster
 
@@ -109,23 +120,29 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 - `data-switcher-target` identifies targets for that controller.
 - `data-switcher-index` is optional; without it, DOM order maps targets to buttons.
 - Legacy class-index targets remain fallback only. Whole containers use the same `data-switcher-target` + `data-switcher-index` contract.
+- `data-switcher-default-index` on the controller (`[data-switcher]`) sets which 1-based index is active on load, overriding `window.CarrdPluginOptions.switcher.defaultIndex` and any `instances.<name>.defaultIndex`. Invalid values fall back to the JS-configured default and log a `console.warn`.
 
 ### Accordeon
 
 ```html
 <a href="#data-accordeon-ppf">Toggle</a>
-<div data-accordeon="ppf">Panel</div>
+<div data-accordeon="ppf" data-accordeon-default-open="on" data-accordeon-scroll="off">Panel</div>
 ```
 
 - `#data-accordeon-<name>` is the primary hash trigger.
 - `data-accordeon="<name>"` identifies panels.
 - Only `#data-accordeon-<name>` with matching `data-accordeon="<name>"` is supported in the clean runtime.
+- `data-accordeon-default-open="on"|"off"` on the first panel of a group opens it on page load, overriding the group's `window.CarrdPluginOptions.accordeon.defaultOpen`.
+- `data-accordeon-scroll="on"|"off"` on the first panel toggles scroll-into-view on open for that group, overriding `scrollOnOpen`.
+- `data-accordeon-scroll-behavior="smooth"|"auto"` overrides `scrollBehavior` for that group.
+- `data-accordeon-scroll-block="start"|"center"|"end"|"nearest"` overrides `scrollBlock` for that group.
+- Read only from the group's first panel; invalid values fall back to the JS-configured default and log a `console.warn`.
 
 ### Modal
 
 ```html
 <a href="#data-modal-contact">Open modal</a>
-<div data-modal="contact">Modal content</div>
+<div data-modal="contact" data-modal-close-on-overlay="off" data-modal-lock-scroll="on">Modal content</div>
 ```
 
 - `#data-modal-<name>` is the primary hash trigger.
@@ -133,6 +150,11 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 - `data-modal-open="<name>"` is the primary non-link trigger attribute.
 - Legacy `data-modal-target="<name>"` remains fallback during migration.
 - Legacy `.modal` + `id` hash triggers remain fallback during migration.
+- `data-modal-close-on-overlay="on"|"off"` on the modal container overrides `window.CarrdPluginOptions.modal.closeOnOverlay` for that modal only (the overlay is a shared singleton; the setting is resolved per active modal, not fixed at overlay creation).
+- `data-modal-close-on-escape="on"|"off"` overrides `closeOnEscape` for that modal.
+- `data-modal-show-close="on"|"off"` overrides `showCloseButton` for that modal.
+- `data-modal-lock-scroll="on"|"off"` overrides `lockBodyScroll` for that modal.
+- Invalid values fall back to the JS-configured default and log a `console.warn`.
 
 ### Cards
 
@@ -208,7 +230,7 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 
 - `data-shopping-cart-output="order-details"` is the preferred explicit textarea marker.
 - The checkout textarea is resolved only through `data-shopping-cart-output="order-details"` in the clean runtime.
-- Checkout opens the Carrd Section Break `#shopping-cart`; `checkoutTargetId` may override that section name.
+- Checkout opens the Carrd Section Break `#shopping-cart`; `data-shopping-cart-checkout-target="<section-id>"` on any element (typically the cart section itself) overrides that target section id, taking priority over `window.CarrdPluginOptions.shoppingCart.checkoutTargetId`. An invalid (non-safe-name) value falls back to the JS-configured default and logs a `console.warn`.
 
 ## Naming Matrix
 
@@ -224,6 +246,19 @@ If the target is missing, leave the click untouched so native Carrd navigation c
 | `shopping-cart` | `#shopping-cart`, `#form-shopping-cart`, `data-shopping-cart-output` | same | none |
 | `slider` | `data-slider="<name>"` | same | `.slider`, `data-slider-id` |
 | `switcher` | `data-switcher`, `data-switcher-target`, `data-switcher-index` | same | class-index targets |
+
+## Per-Instance Behavior Overrides
+
+Some plugins also expose element-level `data-*` overrides for behavior that used to be JS-only (`window.CarrdPluginOptions.<plugin>`), so a non-technical site owner can adjust one instance without touching custom JS:
+
+- `accordeon`: `data-accordeon-default-open`, `data-accordeon-scroll`, `data-accordeon-scroll-behavior`, `data-accordeon-scroll-block` (read from the group's first panel).
+- `modal`: `data-modal-close-on-overlay`, `data-modal-close-on-escape`, `data-modal-show-close`, `data-modal-lock-scroll` (read per modal container).
+- `switcher`: `data-switcher-default-index` (read from the controller).
+- `shopping-cart`: `data-shopping-cart-checkout-target` (read from any element carrying it, typically the cart section).
+
+Priority order for these is always: element `data-*` attribute > `window.CarrdPluginOptions.<plugin>` (including per-instance `instances.<name>`, where that mechanism exists) > hardcoded plugin default. Invalid attribute values never break the plugin — they fall back to the next level down and log one `console.warn` per instance.
+
+`window.CarrdPluginOptions` is **not legacy debt to retire** — per `AGENTS.md`, it is the permanent site-owned custom layer (set directly in a site's Carrd embeds, never shipped from `dist/`), sitting alongside the repo-owned defaults pre-set in `src/theme-config.js`. Adding a `data-*` override does not remove or deprecate the JS option; both remain valid, with `data-*` taking precedence when both are present.
 
 ## Migration Rules
 
