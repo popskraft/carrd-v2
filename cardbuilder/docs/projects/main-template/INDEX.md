@@ -8,6 +8,7 @@ Canonical navigation for the `main-template` site package.
 - [KNOWLEDGE-SYSTEM.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/KNOWLEDGE-SYSTEM.md)
 - [TEMPLATE-INSTANCE-SCAN-RUNBOOK.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/TEMPLATE-INSTANCE-SCAN-RUNBOOK.md)
 - [TEMPLATE-INSTANCE-SCAN-REPORT.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/TEMPLATE-INSTANCE-SCAN-REPORT.md)
+- [FUNNEL-SALES-STATE.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/FUNNEL-SALES-STATE.md)
 - [BUILDER-LIVE-VERIFICATION-ACCEPTED.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/BUILDER-LIVE-VERIFICATION-ACCEPTED.md)
 - [PLUGIN-SYNC-REVIEW.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/PLUGIN-SYNC-REVIEW.md)
 - [DETERMINISTIC-REPRODUCTION-RULES.md](/Users/popskraft/Projects/carrd-v2/cardbuilder/docs/projects/main-template/DETERMINISTIC-REPRODUCTION-RULES.md)
