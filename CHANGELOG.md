@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-07-11
+
+### Versioning note
+
+This release intentionally uses `2.0.0`, a lower number than the preceding `2.1.0`. Both project owner and this changelog record it as a deliberate, separate lineage rather than a normal SemVer step: `2.0.0` marks the start of the **embed-only era** (no CDN delivery). If CDN/jsDelivr delivery is ever reintroduced, that future release will be numbered `3.0.0`, not a continuation of `2.1.x`. `v2.1.0` and all older tags remain in git history untouched and keep serving already-published `@2.1.0` sites via jsDelivr indefinitely; they are simply no longer the active delivery path for new work.
+
+### Removed
+
+- **CDN/jsDelivr delivery removed entirely.** No more `theme-runtime.min.css/js`, `theme-core.min.css/js`, `theme-runtime-cdn.html`, `theme-core-cdn.html`, or per-plugin `*-cdn.html` files are generated. `dist/` now ships inline Carrd embeds only.
+- **Legacy compatibility layer removed.** `src/theme-compat.css` and the compat-merged `dist/theme-ui.css` variant are gone; there is exactly one canonical `theme-ui.css` (embed: `theme-ui-embed.html`) plus `theme-design-tokens.css` (embed: `theme-design-tokens-embed.html`), matching `src/theme-ui.css` and `src/theme-design-tokens.css` 1:1.
+- `bundle.config.json` no longer declares `cdn_bundle`/`compat_bundle`; the build script no longer has any CDN-bundle or CDN-embed generation code path.
+- `npm run cdn:purge` / `cdn:purge:main` removed from `package.json` (nothing left to purge).
+
+### Changed
+
+- `README.md` "Install Paths" reduced to a single **Inline Embed** path for the whole site (theme + every plugin).
+- `AGENTS.md` release-governance rule rewritten: sold templates are inline-embed-only; the old "immutable SemVer CDN refs" rule no longer applies to new deliveries.
+- `docs/specs/release-contract.md` rewritten for the embed-only distribution model.
+
 ## [2.1.0] - 2026-07-07
 
 ### Added

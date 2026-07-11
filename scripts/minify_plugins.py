@@ -52,11 +52,6 @@ DESIGN_PALETTE_SLUG = "design-palette"
 DESIGN_PALETTE_TARGET_MARKUP = "<div data-design-palette></div>"
 INLINE_ONLY_PLUGIN_SLUGS = set()
 BUNDLE_CONFIG_FILE = "bundle.config.json"
-HEADER_NAV_CRITICAL_CSS = (
-    "@media (max-width: 736px) { "
-    "#header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing) { display: none !important; } "
-    "}"
-)
 REQUIRED_PLUGIN_README_SECTIONS = (
     "Carrd Setup",
     "Configuration",
@@ -82,21 +77,6 @@ def plugin_script_placement(plugin_slug: str, has_js: bool = True) -> str:
 
 def markdown_steps(steps: List[str]) -> str:
     return "\n".join(f"{index}. {step}" for index, step in enumerate(steps, start=1))
-
-
-def build_cdn_paste_step(plugin_slug: str, has_css: bool, has_js: bool) -> str:
-    placements: List[str] = []
-    if has_css:
-        placements.append("Head")
-    if has_js:
-        placements.append(plugin_script_placement(plugin_slug))
-    placements = list(dict.fromkeys(placements))
-
-    if placements == ["Head"]:
-        return "Paste the marked block into `Hidden → Head`."
-    if placements == ["Body End"]:
-        return "Paste the marked block into `Hidden → Body End`."
-    return "Paste the `Head` and `Body End` blocks into the matching Carrd locations."
 
 
 def build_inline_install_steps(
@@ -144,11 +124,6 @@ def build_plugin_installation(
     has_js: bool,
 ) -> str:
     plugin_slug = plugin_dir.name
-    bundle_config = load_bundle_config(repo_root).get("cdn_bundle", {})
-    bundle_name = bundle_config.get("name", "theme-runtime")
-    bundled_plugins = set(bundle_config.get("plugins", []))
-    bundle_enabled = bundle_config.get("enabled", False)
-    is_bundled = bundle_enabled and plugin_slug in bundled_plugins
 
     if plugin_slug in INLINE_ONLY_PLUGIN_SLUGS:
         return "\n".join([
@@ -161,53 +136,13 @@ def build_plugin_installation(
             build_inline_install_steps(plugin_slug, has_css, has_js),
         ])
 
-    sections = ["## Install", "", "Choose one method.", ""]
-    if bundle_enabled:
-        if is_bundled:
-            sections.extend([
-                "### CDN Bundle (recommended)",
-                "",
-                f"`{bundle_name}` already includes this plugin. Install the bundle from the "
-                "[root guide](../README.md), then continue with **Carrd Setup** below.",
-                "",
-            ])
-        else:
-            sections.extend([
-                "### Bundle Add-on (recommended when the bundle is installed)",
-                "",
-                f"`{bundle_name}` does not include this plugin.",
-                "",
-                markdown_steps([
-                    f"Install `{bundle_name}` from the [root guide](../README.md).",
-                    f"Open `{plugin_slug}-cdn.html`.",
-                    build_cdn_paste_step(plugin_slug, has_css, has_js),
-                    "Publish and refresh.",
-                ]),
-                "",
-            ])
-
-    cdn_steps: List[str] = []
-    if has_css:
-        cdn_steps.append(
-            "Install the shared theme files once using **CDN Individual** in the "
-            "[root guide](../README.md)."
-        )
-    cdn_steps.extend([
-        f"Open `{plugin_slug}-cdn.html`.",
-        build_cdn_paste_step(plugin_slug, has_css, has_js),
-        "Publish and refresh.",
-    ])
-    sections.extend([
-        "### CDN Individual",
-        "",
-        markdown_steps(cdn_steps),
+    return "\n".join([
+        "## Install",
         "",
         "### Inline Embed",
         "",
         build_inline_install_steps(plugin_slug, has_css, has_js),
     ])
-
-    return "\n".join(sections)
 
 
 def build_split_embed_parts(
@@ -269,7 +204,6 @@ def copy_shared_theme_assets(
     source_dir: Path,
 ) -> None:
     theme_css = source_dir / "theme-design-tokens.css"
-    theme_compat_css = source_dir / "theme-compat.css"
     theme_ui_css = source_dir / "theme-ui.css"
 
     if theme_css.exists():
@@ -277,17 +211,32 @@ def copy_shared_theme_assets(
         print(f"Copied: {dist_dir / 'theme-design-tokens.css'}")
         create_theme_design_tokens_embed(dist_dir, source_dir, read_version(source_dir.parent))
     if theme_ui_css.exists():
-        shutil.copy(theme_ui_css, dist_dir / "theme-ui-runtime.css")
-        print(f"Copied: {dist_dir / 'theme-ui-runtime.css'}")
+        shutil.copy(theme_ui_css, dist_dir / "theme-ui.css")
+        print(f"Copied: {dist_dir / 'theme-ui.css'}")
+        create_theme_ui_embed(dist_dir, source_dir, read_version(source_dir.parent))
 
-        compat_parts: List[str] = [
-            "/* Compatibility-only artifact for legacy @main installs. Do not use for new sites. */"
-        ]
-        if theme_compat_css.exists():
-            compat_parts.append(theme_compat_css.read_text(encoding="utf-8").strip())
-        compat_parts.append(theme_ui_css.read_text(encoding="utf-8").strip())
-        (dist_dir / "theme-ui.css").write_text("\n\n".join(compat_parts) + "\n", encoding="utf-8")
-        print(f"Created Compat CSS: {dist_dir / 'theme-ui.css'}")
+
+def create_theme_ui_embed(
+    dist_dir: Path,
+    source_dir: Path,
+    version: str,
+) -> None:
+    theme_ui_css = source_dir / "theme-ui.css"
+    if not theme_ui_css.exists():
+        return
+
+    output_path = dist_dir / "theme-ui-embed.html"
+    output_path.write_text(
+        "\n".join([
+            build_html_banner("Theme UI", version),
+            "<style>",
+            theme_ui_css.read_text(encoding="utf-8").strip(),
+            "</style>",
+            "",
+        ]),
+        encoding="utf-8",
+    )
+    print(f"Created Embed: {output_path}")
 
 
 def create_theme_design_tokens_embed(
@@ -353,190 +302,6 @@ def load_bundle_config(repo_root: Path) -> dict:
     return json.loads(bundle_config_path.read_text(encoding="utf-8"))
 
 
-def create_cdn_bundle(
-    repo_root: Path,
-    source_dir: Path,
-    dist_dir: Path,
-) -> None:
-    bundle_root = load_bundle_config(repo_root)
-    primary_bundle = bundle_root.get("cdn_bundle", {})
-    compat_bundle = bundle_root.get("compat_bundle", {})
-
-    if primary_bundle.get("enabled", False):
-        create_named_cdn_bundle(repo_root, source_dir, dist_dir, primary_bundle)
-
-    if compat_bundle.get("enabled", False):
-        merged_compat_bundle = dict(primary_bundle)
-        merged_compat_bundle.update(compat_bundle)
-        merged_compat_bundle["plugins"] = compat_bundle.get("plugins", primary_bundle.get("plugins", []))
-        merged_compat_bundle["prepend_js"] = compat_bundle.get("prepend_js", primary_bundle.get("prepend_js", []))
-        create_named_cdn_bundle(repo_root, source_dir, dist_dir, merged_compat_bundle)
-
-
-def create_named_cdn_bundle(
-    repo_root: Path,
-    source_dir: Path,
-    dist_dir: Path,
-    bundle_config: dict,
-) -> None:
-    bundle_name = bundle_config.get("name", "theme-runtime")
-    shared_css_files = bundle_config.get("shared_css", [])
-    prepend_js_files = bundle_config.get("prepend_js", [])
-    plugin_slugs = bundle_config.get("plugins", [])
-
-    css_chunks: List[str] = []
-    for rel_name in shared_css_files:
-        css_path = source_dir / rel_name
-        if not css_path.exists():
-            raise FileNotFoundError(f"CDN bundle shared CSS file not found: {css_path}")
-        css_chunks.append(minify_css(css_path.read_text(encoding="utf-8")))
-
-    for plugin_slug in plugin_slugs:
-        plugin_dir = source_dir / plugin_slug
-        if not plugin_dir.exists():
-            raise FileNotFoundError(f"CDN bundle plugin directory not found: {plugin_dir}")
-        for css_file in sorted(plugin_dir.glob("*.css")):
-            css_chunks.append(minify_css(css_file.read_text(encoding="utf-8")))
-
-    js_chunks: List[str] = []
-    for rel_name in prepend_js_files:
-        js_path = source_dir / rel_name
-        if not js_path.exists():
-            raise FileNotFoundError(f"CDN bundle prepend JS file not found: {js_path}")
-        js_chunks.append(minify_js(js_path.read_text(encoding="utf-8")))
-
-    for plugin_slug in plugin_slugs:
-        plugin_dir = source_dir / plugin_slug
-        for js_file in sorted(plugin_dir.glob("*.js")):
-            js_chunks.append(
-                wrap_plugin_runtime(
-                    minify_js(js_file.read_text(encoding="utf-8")),
-                    plugin_slug,
-                )
-            )
-
-    output_css = dist_dir / f"{bundle_name}.min.css"
-    output_js = dist_dir / f"{bundle_name}.min.js"
-    output_css.write_text("".join(css_chunks), encoding="utf-8")
-    output_js.write_text("".join(js_chunks), encoding="utf-8")
-    print(f"Created CDN CSS bundle: {output_css}")
-    print(f"Created CDN JS bundle: {output_js}")
-
-    if not bundle_config.get("cdn_embed", False):
-        return
-
-    github_repo = bundle_config.get("github_repo", "")
-    if not github_repo:
-        return
-
-    version = read_version(repo_root)
-    cdn_ref = bundle_config.get("cdn_ref", version)
-    cdn_base = f"https://cdn.jsdelivr.net/gh/{github_repo}@{cdn_ref}/dist"
-
-    combined_html = "\n".join([
-        build_html_banner(f"{bundle_name.replace('-', ' ').title()} CDN", version),
-        "<!-- Head -->",
-        "<style>",
-        HEADER_NAV_CRITICAL_CSS,
-        "</style>",
-        f'<link rel="stylesheet" href="{cdn_base}/{bundle_name}.min.css">',
-        "",
-        "<!-- Body End -->",
-        f'<script src="{cdn_base}/{bundle_name}.min.js"></script>',
-        "",
-    ])
-
-    for stale_path in [
-        dist_dir / f"{bundle_name}-cdn-head.html",
-        dist_dir / f"{bundle_name}-cdn-body.html",
-    ]:
-        if stale_path.exists():
-            stale_path.unlink()
-
-    combined_path = dist_dir / f"{bundle_name}-cdn.html"
-    combined_path.write_text(combined_html, encoding="utf-8")
-    print(f"Created CDN embed: {combined_path}")
-
-
-def build_cdn_base(repo_root: Path) -> str:
-    bundle_config = load_bundle_config(repo_root).get("cdn_bundle", {})
-    github_repo = bundle_config.get("github_repo", "popskraft/carrd-v2")
-    version = read_version(repo_root)
-    cdn_ref = bundle_config.get("cdn_ref", version)
-    return f"https://cdn.jsdelivr.net/gh/{github_repo}@{cdn_ref}/dist"
-
-
-def wrap_plugin_runtime(source: str, plugin_slug: str) -> str:
-    """Isolate plugin init failures while keeping them observable."""
-    label = json.dumps(plugin_slug)
-    return (
-        "(function(){try{"
-        + source
-        + "}catch(error){"
-        + "var runtime=typeof globalThis!=='undefined'?globalThis:{};"
-        + "var errors=runtime.CarrdPluginRuntimeErrors||(runtime.CarrdPluginRuntimeErrors=[]);"
-        + "errors.push({plugin:"
-        + label
-        + ",error:String(error)});"
-        + "if(runtime.console&&typeof runtime.console.error==='function'){"
-        + "runtime.console.error('[CarrdPluginRuntime] '+"
-        + label
-        + "+' failed',error);"
-        + "}}})();"
-    )
-
-
-def create_plugin_cdn_embed(
-    repo_root: Path,
-    plugin_slug: str,
-    plugin_title: str,
-    target_dir: Path,
-    version: str,
-    has_css: bool,
-    has_js: bool,
-) -> None:
-    cdn_base = build_cdn_base(repo_root)
-    plugin_base = f"{cdn_base}/{plugin_slug}"
-
-    parts: List[str] = [build_html_banner(f"{plugin_title} CDN", version)]
-
-    if has_css:
-        parts.extend([
-            "<!-- Head -->",
-        ])
-        if plugin_slug == "header-nav":
-            parts.extend([
-                "<style>",
-                HEADER_NAV_CRITICAL_CSS,
-                "</style>",
-            ])
-        parts.extend([
-            f'<link rel="stylesheet" href="{plugin_base}/{plugin_slug}.min.css">',
-            ""
-        ])
-
-    if has_js:
-        placement = plugin_script_placement(plugin_slug)
-        parts.extend([
-            f"<!-- {placement} -->",
-            f'<script src="{plugin_base}/{plugin_slug}.min.js"></script>',
-            ""
-        ])
-
-    if plugin_slug == DESIGN_PALETTE_SLUG:
-        parts.extend([
-            "<!-- Visible: place in a visible embed where the palette should appear -->",
-            DESIGN_PALETTE_TARGET_MARKUP,
-            "",
-        ])
-
-    if len(parts) == 1:
-        return
-
-    combined_path = target_dir / f"{plugin_slug}-cdn.html"
-    combined_path.write_text("\n".join(parts) + "\n", encoding="utf-8")
-    print(f"Created Plugin CDN embed: {combined_path}")
-
 def run(source_dir: Path, dist_dir: Path, docs_only: bool) -> None:
     if dist_dir.exists():
         # shutil.rmtree(dist_dir) # Don't nuke mostly for safety/speed unless needed
@@ -574,7 +339,6 @@ def run(source_dir: Path, dist_dir: Path, docs_only: bool) -> None:
         create_theme_packages(plugin_sources, dist_dir, source_dir, version, build_date)
         copy_shared_theme_assets(dist_dir, source_dir)
         create_theme_design_system_embed(dist_dir, source_dir, version)
-        create_cdn_bundle(repo_root, source_dir, dist_dir)
 
     write_root_readme(dist_dir, repo_root, version, build_date)
 
@@ -730,17 +494,6 @@ def process_plugin(
                 output_embed.write_text("\n".join(embed_parts) + "\n", encoding="utf-8")
                 print(f"Created Embed: {output_embed}")
 
-        if plugin_dir.name not in INLINE_ONLY_PLUGIN_SLUGS:
-            create_plugin_cdn_embed(
-                repo_root,
-                plugin_dir.name,
-                plugin_name,
-                target_dir,
-                version,
-                output_css.exists(),
-                output_js.exists(),
-            )
-        
     # Recurse for nested plugins (like themes/mini)
     for sub in plugin_dir.iterdir():
         if sub.is_dir():
@@ -895,21 +648,12 @@ def cleanup_stale_dist_outputs(source_dir: Path, dist_dir: Path, docs_only: bool
 
     keep_root_files = {"README.md", "CHANGELOG.md"}
     if not docs_only:
-        bundle_root = load_bundle_config(source_dir.parent)
-        bundle_name = bundle_root.get("cdn_bundle", {}).get("name", "theme-runtime")
-        compat_bundle_name = bundle_root.get("compat_bundle", {}).get("name", "theme-core")
         keep_root_files.update({
             "theme-design-system.html",
             "theme-design-tokens.css",
             "theme-design-tokens-embed.html",
             "theme-ui.css",
-            "theme-ui-runtime.css",
-            f"{bundle_name}.min.css",
-            f"{bundle_name}.min.js",
-            f"{bundle_name}-cdn.html",
-            f"{compat_bundle_name}.min.css",
-            f"{compat_bundle_name}.min.js",
-            f"{compat_bundle_name}-cdn.html",
+            "theme-ui-embed.html",
         })
 
     for child in dist_dir.iterdir():

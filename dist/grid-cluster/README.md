@@ -2,22 +2,9 @@
 
 Groups consecutive Carrd containers into one responsive CSS Grid with a dynamic `1–6` track count and an independent span for every item.
 
-Version: `2.1.0`
+Version: `2.0.0`
 
 ## Install
-
-Choose one method.
-
-### CDN Bundle (recommended)
-
-`theme-runtime` already includes this plugin. Install the bundle from the [root guide](../README.md), then continue with **Carrd Setup** below.
-
-### CDN Individual
-
-1. Install the shared theme files once using **CDN Individual** in the [root guide](../README.md).
-2. Open `grid-cluster-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
 
 ### Inline Embed
 

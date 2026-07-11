@@ -36,7 +36,6 @@ def snapshot_tree(root: Path) -> dict[str, str]:
 def expected_dist_files(repo_root: Path) -> set[str]:
     expected: set[str] = {"README.md"}
     src_dir = repo_root / "src"
-    bundle_config = build.load_bundle_config(repo_root).get("cdn_bundle", {})
 
     if (repo_root / "CHANGELOG.md").exists():
         expected.add("CHANGELOG.md")
@@ -46,18 +45,7 @@ def expected_dist_files(repo_root: Path) -> set[str]:
         expected.add("theme-design-system.html")
     if (src_dir / "theme-ui.css").exists():
         expected.add("theme-ui.css")
-        expected.add("theme-ui-runtime.css")
-    if bundle_config.get("enabled", False):
-        bundle_name = bundle_config.get("name", "theme-runtime")
-        expected.add(f"{bundle_name}.min.css")
-        expected.add(f"{bundle_name}.min.js")
-        expected.add(f"{bundle_name}-cdn.html")
-    compat_bundle = build.load_bundle_config(repo_root).get("compat_bundle", {})
-    if compat_bundle.get("enabled", False):
-        compat_name = compat_bundle.get("name", "theme-core")
-        expected.add(f"{compat_name}.min.css")
-        expected.add(f"{compat_name}.min.js")
-        expected.add(f"{compat_name}-cdn.html")
+        expected.add("theme-ui-embed.html")
 
     for entry in sorted(src_dir.iterdir(), key=lambda path: path.name):
         if not entry.is_dir() or entry.name.startswith("."):
@@ -75,8 +63,6 @@ def expected_dist_files(repo_root: Path) -> set[str]:
             expected.add(f"{entry.name}/{entry.name}.min.css")
         if has_js:
             expected.add(f"{entry.name}/{entry.name}.min.js")
-        if (has_css or has_js) and entry.name not in build.INLINE_ONLY_PLUGIN_SLUGS:
-            expected.add(f"{entry.name}/{entry.name}-cdn.html")
         if has_css or has_js:
             expected.add(f"{entry.name}/{entry.name}-embed.html")
 

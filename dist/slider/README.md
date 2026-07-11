@@ -6,22 +6,9 @@ of a hand-rolled drag/transform loop. Evaluate via `demo.html` first if you
 like; see `docs/specs/slider-v2-plan.md` for the full spec, design history,
 and open-question log (kept under its original filename for continuity).
 
-Version: `2.1.0`
+Version: `2.0.0`
 
 ## Install
-
-Choose one method.
-
-### CDN Bundle (recommended)
-
-`theme-runtime` already includes this plugin. Install the bundle from the [root guide](../README.md), then continue with **Carrd Setup** below.
-
-### CDN Individual
-
-1. Install the shared theme files once using **CDN Individual** in the [root guide](../README.md).
-2. Open `slider-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
 
 ### Inline Embed
 

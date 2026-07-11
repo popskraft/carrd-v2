@@ -6,97 +6,45 @@ All install files are in `dist/`. Open the plugin folder you need and follow its
 
 ## Quick Start
 
-Use the CDN Bundle for new sites.
+All install files are inline Carrd embeds. There is no CDN/jsDelivr delivery — everything is pasted directly into Carrd.
 
-1. Open `dist/theme-runtime-cdn.html`.
-2. Paste the `Head` part into `Hidden → Head`.
-3. Paste the `Body End` part into `Hidden → Body End`.
-4. Paste `dist/theme-design-tokens-embed.html` into a separate `Hidden → Head` embed.
-5. Edit token values inside that embed for the project brand.
-6. Publish and refresh.
-7. Open each plugin folder you use and complete the Carrd-side setup from that plugin `README.md`.
+1. Paste `dist/theme-design-system.html` into `Hidden → Head` once per site. This carries the shared design tokens and base UI styles.
+2. Open each plugin folder you use and paste its `*-embed.html` into `Hidden → Body End` (see that plugin's `README.md` for the exact placement — some plugins, like `no-loadwaiting`, belong in `Head`).
+3. For `shopping-cart` and `slider`, paste `*-embed-part1.html` and `*-embed-part2.html`, in that order, as two separate `Body End` embeds.
+4. Publish and refresh.
 
-Bundle plugins:
+Included plugins:
 
-| Plugin | Included in `theme-runtime` bundle |
+| Plugin | Notes |
 |---|---|
-| Accordeon | Yes |
-| Cards | Yes |
-| FAQ | Yes |
-| Floating CTA | Yes |
-| Grid Cluster | Yes |
-| Header Nav | Yes |
-| Modal | Yes |
-| Slider | Yes |
-| Switcher | Yes |
-| Typography | Yes |
-| Cookie Banner | No, add separately |
-| Design Palette | No, add separately |
-| No-loadwaiting | No, add separately |
-| Shopping Cart | No, add separately |
+| Accordeon | |
+| Cards | |
+| Cookie Banner | |
+| Design Palette | Visible embed, paste where the palette should appear |
+| FAQ | |
+| Floating CTA | |
+| Grid Cluster | |
+| Header Nav | |
+| Modal | |
+| No-loadwaiting | Paste into `Head`, not `Body End` |
+| Shopping Cart | Split embed: part1 + part2 |
+| Slider | Split embed: part1 + part2 |
+| Switcher | |
+| Typography | |
 
 ## Install Paths
 
-### CDN Bundle
+### Inline Embed (only path)
 
-Recommended for most sites.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-runtime.min.css">
-<script src="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-runtime.min.js"></script>
-```
-
-Use `dist/theme-runtime-cdn.html` as the copy source.
-Then paste `dist/theme-design-tokens-embed.html` into a separate `Head` embed and edit the values there.
-Do not point new installs at mutable refs such as `@main`.
-
-### Compatibility Bundle
-
-Use this only to keep existing `@main` sites stable while they still rely on legacy token names or the old one-file bundle contract.
-
-- Artifact: `dist/theme-core-cdn.html`
-- Runtime files: `theme-core.min.css` + `theme-core.min.js`
-- Behavior: ships default tokens plus a legacy token bridge for old site-owned overrides
-- New installs: do not use this path
-
-### Bundle Add-ons
-
-If your site already uses the bundle and you need a plugin that is not inside it, add that plugin separately with its own `*-cdn.html` or `*-embed.html`.
-
-This applies to:
-- `cookie-banner`
-- `design-palette`
-- `no-loadwaiting`
-- `shopping-cart`
-
-### CDN Individual
-
-Use this when you want only selected plugins instead of the full bundle.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@2.1.0/dist/theme-ui-runtime.css">
-```
-
-Then open each plugin `*-cdn.html` file and:
-- Paste the `<!-- Head -->` part into `Hidden → Head`.
-- Paste the `<!-- Body End -->` part into `Hidden → Body End` when present.
-
-Paste `dist/theme-design-tokens-embed.html` into a separate `Head` embed and edit the values there.
-Use `dist/theme-design-tokens.css` as the reference contract when you need to inspect the full token list.
-
-`no-loadwaiting` is a special case: its script belongs in `Head`.
-
-### Inline Embed
-
-Use this when you do not want CDN files.
-
-1. Paste `dist/theme-design-system.html` into `Hidden → Head`.
+1. Paste `dist/theme-design-system.html` into `Hidden → Head` once. This combines `theme-design-tokens.css` and `theme-ui.css`.
+   - To edit token values only, you can instead paste `dist/theme-design-tokens-embed.html` (tokens) and `dist/theme-ui-embed.html` (base UI styles) as two separate `Head` embeds.
+   - Use `dist/theme-design-tokens.css` and `dist/theme-ui.css` as the plain-CSS reference contract when you need to inspect the full rule set.
 2. Paste each plugin `*-embed.html` into `Hidden → Body End`.
 3. For `shopping-cart` and `slider`, use `*-embed-part1.html` and `*-embed-part2.html` in that order.
 
 ## Custom Code
 
-Do not edit jsDelivr files. Add custom code in separate Carrd embeds.
+Do not edit generated `dist/` files directly — they are overwritten on every build. Add custom code in separate Carrd embeds.
 
 - Brand or theme changes: use a `Head` embed with `:root { --theme-* }`.
 - Plugin defaults ship with each plugin CSS; override its `--theme-<plugin>-*` tokens in the same `Head` embed when needed.
@@ -127,7 +75,7 @@ Example per-instance plugin configuration:
 
 ## Placement Rules
 
-- `Hidden → Head`: theme files, CDN CSS, token overrides, site CSS, and any plugin snippet that explicitly says `Head`.
+- `Hidden → Head`: theme embeds, token overrides, site CSS, and any plugin snippet that explicitly says `Head`.
 - `Hidden → Body End`: plugin scripts, plugin embeds, documented `window.CarrdPluginOptions`, and site custom JS.
 
 ## Troubleshooting

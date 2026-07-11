@@ -36,8 +36,6 @@
     "test": "npm run check:legacy && npm run check:clean-contract && npm run test:py && npm run test:js && npm run test:cardbuilder",
     "release:check": "python3 scripts/check_release.py",
     "check:published": "python3 scripts/check_published_site.py",
-    "release:prepare": "npm run build && npm run validate && npm run release:check",
-    "cdn:purge": "python3 scripts/purge_jsdelivr.py",
-    "cdn:purge:main": "python3 scripts/purge_jsdelivr.py --ref main"
+    "release:prepare": "npm run build && npm run validate && npm run release:check"
   }
 }

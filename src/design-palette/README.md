@@ -10,14 +10,6 @@ Use this as a temporary visual helper while designing a page.
 2. Paste the inline embed code into that element. It already includes the `<div data-design-palette></div>` target, so the palette renders in that exact spot.
 3. Publish and refresh.
 
-For CDN installs, `design-palette-cdn.html` has three marked blocks: `Head` and `Body End` go into hidden embeds (load the plugin once), and the `Visible` block at the end:
-
-```html
-<div data-design-palette></div>
-```
-
-goes into a visible embed where the palette should appear.
-
 ## Configuration
 
 Defaults show the global color tokens from `theme-design-tokens.css`. To change the title or token list, add this above the plugin:

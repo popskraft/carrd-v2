@@ -9,41 +9,5 @@
       "_bundle/**",
       "no-loadwaiting/script.js"
     ]
-  },
-  "cdn_bundle": {
-    "enabled": true,
-    "name": "theme-runtime",
-    "github_repo": "popskraft/carrd-v2",
-    "cdn_embed": true,
-    "shared_css": [
-      "theme-ui.css"
-    ],
-    "prepend_js": [
-      "theme-config.js"
-    ],
-    "plugins": [
-      "accordeon",
-      "cards",
-      "faq",
-      "floating-cta",
-      "grid-cluster",
-      "header-nav",
-      "modal",
-      "slider",
-      "stacker",
-      "switcher",
-      "typography"
-    ]
-  },
-  "compat_bundle": {
-    "enabled": true,
-    "name": "theme-core",
-    "github_repo": "popskraft/carrd-v2",
-    "cdn_embed": true,
-    "shared_css": [
-      "theme-design-tokens.css",
-      "theme-compat.css",
-      "theme-ui.css"
-    ]
   }
 }

@@ -2,27 +2,9 @@
 
 Renders a compact color-token palette on the page so the active Carrd theme colors can be inspected visually.
 
-Version: `2.1.0`
+Version: `2.0.0`
 
 ## Install
-
-Choose one method.
-
-### Bundle Add-on (recommended when the bundle is installed)
-
-`theme-runtime` does not include this plugin.
-
-1. Install `theme-runtime` from the [root guide](../README.md).
-2. Open `design-palette-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
-
-### CDN Individual
-
-1. Install the shared theme files once using **CDN Individual** in the [root guide](../README.md).
-2. Open `design-palette-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
 
 ### Inline Embed
 
@@ -38,14 +20,6 @@ Use this as a temporary visual helper while designing a page.
 1. Add a visible **Embed** element where the palette should appear.
 2. Paste the inline embed code into that element. It already includes the `<div data-design-palette></div>` target, so the palette renders in that exact spot.
 3. Publish and refresh.
-
-For CDN installs, `design-palette-cdn.html` has three marked blocks: `Head` and `Body End` go into hidden embeds (load the plugin once), and the `Visible` block at the end:
-
-```html
-<div data-design-palette></div>
-```
-
-goes into a visible embed where the palette should appear.
 
 ## Configuration
 

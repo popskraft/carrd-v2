@@ -7,8 +7,5 @@
     "switcher": 12000,
     "modal": 12000
   },
-  "bundles": {
-    "theme-core.min.js": 100000,
-    "theme-core-compat.min.js": 120000
-  }
+  "bundles": {}
 }

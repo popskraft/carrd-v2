@@ -5,7 +5,6 @@ const path = require('node:path');
 
 const SRC = path.resolve(__dirname, '..', 'src');
 const TOKENS_FILE = path.join(SRC, 'theme-design-tokens.css');
-const COMPAT_FILE = path.join(SRC, 'theme-compat.css');
 const UI_FILE = path.join(SRC, 'theme-ui.css');
 const LEGACY_MINI_PREFIX = ['--', 'mini-'].join('');
 const LEGACY_TOKEN_DENYLIST = [
@@ -52,22 +51,6 @@ const RUNTIME_INJECTED_TOKENS = {
   'grid-cluster': new Set(['--theme-grid-desktop-template']),
 };
 
-const COMPAT_MAPPINGS = {
-  '--theme-color-primary-focus': 'var(--theme-color-primary-hover)',
-  '--theme-color-dark': 'var(--theme-color-primary-dark, #222222)',
-  '--theme-color-heading': 'var(--theme-color-headlines, var(--theme-color-primary-dark, #222222))',
-  '--theme-color-surface': 'var(--theme-color-bg, #FFFFFF)',
-  '--theme-color-surface-muted': 'var(--theme-card-bg-default, var(--theme-color-primary-light, #F8F8F8))',
-  '--theme-focus-ring-color': 'var(--theme-color-primary-focus, var(--theme-color-primary-hover, #AD3624))',
-  '--theme-button-primary-bg': 'var(--theme-btn-primary-bg, var(--theme-color-primary, #EF4444))',
-  '--theme-button-primary-bg-hover': 'var(--theme-btn-primary-hover-bg, var(--theme-color-primary-hover, #AD3624))',
-  '--theme-button-primary-text': 'var(--theme-btn-text, #FFFFFF)',
-  '--theme-link-color-hover': 'var(--theme-link-hover-color, var(--theme-color-primary-hover, #AD3624))',
-  '--theme-nav-color': 'var(--theme-color-headlines, var(--theme-color-primary-dark, #222222))',
-  '--theme-color-success': 'var(--theme-color-brand-green, #10B981)',
-  '--theme-shopcart-danger': 'var(--theme-color-danger, var(--theme-color-brand-red, #EF4444))',
-};
-
 function read(file) {
   return fs.readFileSync(file, 'utf-8');
 }
@@ -88,11 +71,6 @@ function extractVarRefs(content) {
 
 function extractDefinitions(content) {
   return new Set([...content.matchAll(/(--theme-[\w-]+)\s*:/g)].map(match => match[1]));
-}
-
-function extractDeclarations(content) {
-  return new Map([...content.matchAll(/(--theme-[\w-]+)\s*:\s*([^;]+);/g)]
-    .map(match => [match[1], match[2].trim()]));
 }
 
 function isCoreToken(token) {
@@ -203,11 +181,6 @@ test('legacy token names are isolated to the compatibility bridge', () => {
   });
 
   assert.deepEqual(violations, [], `Legacy tokens leaked into canonical source:\n${violations.join('\n')}`);
-});
-
-test('compatibility bridge preserves every approved mapping exactly', () => {
-  const actual = extractDeclarations(read(COMPAT_FILE));
-  assert.deepEqual(Object.fromEntries(actual), COMPAT_MAPPINGS);
 });
 
 test('no legacy mini token prefix exists in plugin CSS or JS', () => {

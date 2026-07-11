@@ -131,20 +131,15 @@ test('grid-cluster uses canonical data-grid markers and cols/span contract', () 
   assert.equal(wrapper.style.getPropertyValue('--grid-cols'), '3');
 });
 
-test('grid-cluster is included in the stable theme bundle', () => {
-  const config = JSON.parse(fs.readFileSync(
-    path.resolve(__dirname, '..', 'bundle.config.json'),
-    'utf8'
-  ));
-  const runtimeJs = fs.readFileSync(
-    path.resolve(__dirname, '..', 'dist/theme-runtime.min.js'),
+test('grid-cluster embed uses the canonical dynamic span contract', () => {
+  const embedJs = fs.readFileSync(
+    path.resolve(__dirname, '..', 'dist/grid-cluster/grid-cluster.min.js'),
     'utf8'
   );
 
-  assert.ok(config.cdn_bundle.plugins.includes('grid-cluster'));
-  assert.ok(runtimeJs.includes('data-grid-span'));
-  assert.ok(runtimeJs.includes('data-grid-cols'));
-  assert.ok(!runtimeJs.includes('gridCluster2'));
+  assert.ok(embedJs.includes('data-grid-span'));
+  assert.ok(embedJs.includes('data-grid-cols'));
+  assert.ok(!embedJs.includes('gridCluster2'));
 });
 
 test('grid-cluster publishes standard dist artifacts for active delivery', () => {
@@ -152,8 +147,8 @@ test('grid-cluster publishes standard dist artifacts for active delivery', () =>
   const readme = fs.readFileSync(path.join(pluginDir, 'README.md'), 'utf8');
 
   assert.ok(fs.existsSync(path.join(pluginDir, 'grid-cluster-embed.html')));
-  assert.ok(fs.existsSync(path.join(pluginDir, 'grid-cluster-cdn.html')));
-  assert.match(readme, /CDN Bundle \(recommended\)|CDN Individual/);
+  assert.ok(!fs.existsSync(path.join(pluginDir, 'grid-cluster-cdn.html')));
+  assert.match(readme, /### Inline Embed/);
 });
 
 test('grid-cluster CSS owns dynamic tracks, spans, breakpoints, and image containment', () => {

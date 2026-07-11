@@ -5,7 +5,6 @@ const path = require('node:path');
 const {
   createDom,
   loadScript,
-  click,
   triggerDomReady,
   mockViewport,
   mockResizeObserver,
@@ -14,9 +13,8 @@ const {
 } = require('./helpers');
 
 const dist = (...parts) => path.resolve(__dirname, '..', 'dist', ...parts);
-const VERSION = fs.readFileSync(path.resolve(__dirname, '..', 'VERSION'), 'utf-8').trim();
 
-test('required dist artifacts exist for every published plugin', () => {
+test('required dist artifacts exist for every published plugin (embed-only contract)', () => {
   const topLevelFiles = [
     'README.md',
     'CHANGELOG.md',
@@ -24,15 +22,25 @@ test('required dist artifacts exist for every published plugin', () => {
     'theme-design-tokens.css',
     'theme-design-tokens-embed.html',
     'theme-ui.css',
-    'theme-ui-runtime.css',
-    'theme-runtime.min.css',
-    'theme-runtime.min.js',
-    'theme-core.min.css',
-    'theme-core.min.js'
+    'theme-ui-embed.html'
   ];
 
   topLevelFiles.forEach(file => {
     assert.ok(fs.existsSync(dist(file)), `${file} should exist in dist/`);
+  });
+
+  const forbiddenTopLevelFiles = [
+    'theme-runtime.min.css',
+    'theme-runtime.min.js',
+    'theme-runtime-cdn.html',
+    'theme-core.min.css',
+    'theme-core.min.js',
+    'theme-core-cdn.html',
+    'theme-ui-runtime.css'
+  ];
+
+  forbiddenTopLevelFiles.forEach(file => {
+    assert.ok(!fs.existsSync(dist(file)), `${file} must not be published (embed-only distribution)`);
   });
 
   const publishedPlugins = {
@@ -64,8 +72,8 @@ test('required dist artifacts exist for every published plugin', () => {
       assert.ok(fs.existsSync(dist(plugin, `${plugin}.min.js`)), `${plugin}.min.js should exist`);
     }
     assert.ok(
-      fs.existsSync(dist(plugin, `${plugin}-cdn.html`)),
-      `${plugin}-cdn.html should exist`
+      !fs.existsSync(dist(plugin, `${plugin}-cdn.html`)),
+      `${plugin}-cdn.html must not be published (embed-only distribution)`
     );
   });
 });
@@ -101,53 +109,16 @@ test('slider split embeds assemble and initialize in Carrd order', () => {
   assert.equal(dom.window.document.querySelectorAll('.theme-slider-wrapper').length, 1);
 });
 
-test('per-plugin CDN snippets point to standalone jsDelivr assets', () => {
-  const publishedPlugins = {
-    'accordeon': { css: true, js: true },
-    'cards': { css: true, js: true },
-    'cookie-banner': { css: true, js: true },
-    'faq': { css: true, js: true },
-    'floating-cta': { css: true, js: true },
-    'grid-cluster': { css: true, js: true },
-    'header-nav': { css: true, js: true },
-    'modal': { css: true, js: true },
-    'no-loadwaiting': { css: false, js: true, jsPlacement: 'head' },
-    'shopping-cart': { css: true, js: true },
-    'slider': { css: true, js: true },
-    'switcher': { css: true, js: true },
-    'typography': { css: true, js: true }
-  };
+test('header-nav embed includes no-flash critical CSS ahead of script', () => {
+  const embed = fs.readFileSync(dist('header-nav', 'header-nav-embed.html'), 'utf-8');
 
-  Object.entries(publishedPlugins).forEach(([plugin, assets]) => {
-    const pluginBase = `https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@${VERSION}/dist/${plugin}`;
-    const cdn = fs.readFileSync(dist(plugin, `${plugin}-cdn.html`), 'utf-8');
-
-    if (assets.css) {
-      assert.ok(cdn.includes(`href="${pluginBase}/${plugin}.min.css"`));
-      assert.ok(cdn.includes('<!-- Head -->'));
-    }
-
-    if (assets.js) {
-      assert.ok(cdn.includes(`src="${pluginBase}/${plugin}.min.js"`));
-      const placementLabel = assets.jsPlacement === 'head' ? '<!-- Head -->' : '<!-- Body End -->';
-      assert.ok(cdn.includes(placementLabel));
-    }
-    assert.ok(!cdn.includes('theme-core.min.js'));
-    assert.ok(!cdn.includes('theme-core.min.css'));
-  });
-});
-
-test('header-nav CDN snippet includes no-flash critical CSS in Head', () => {
-  const cdn = fs.readFileSync(dist('header-nav', 'header-nav-cdn.html'), 'utf-8');
-
-  assert.ok(cdn.includes('<!-- Head -->'));
-  assert.ok(cdn.includes('<style>'));
+  assert.ok(embed.includes('<style>'));
   assert.ok(
-    cdn.includes(
-      '#header:not(.is-nav-open) :is(.header-mobile-hide, .header-mobile-el-collapsing)'
+    embed.includes(
+      '#header:not(.is-nav-open) :is(.header-mobile-hide,.header-mobile-el-collapsing)'
     )
   );
-  assert.ok(cdn.indexOf('<style>') < cdn.indexOf('header-nav.min.css'));
+  assert.ok(embed.indexOf('<style>') < embed.indexOf('<script>'));
 });
 
 test('header-nav toggle is stacked above floating CTA by default', () => {
@@ -198,143 +169,32 @@ test('excluded dist outputs are not published', () => {
   assert.ok(!fs.existsSync(dist('theme-config.js')), 'dist/theme-config.js should not be published');
 });
 
-test('theme-runtime CDN bundle includes selected plugin defaults but no global or add-on token definitions', () => {
-  const jsPath = dist('theme-runtime.min.js');
-  const cssPath = dist('theme-runtime.min.css');
-
-  assert.ok(fs.existsSync(jsPath), 'theme-runtime.min.js should exist');
-  assert.ok(fs.existsSync(cssPath), 'theme-runtime.min.css should exist');
-
-  const js = fs.readFileSync(jsPath, 'utf-8');
-  const css = fs.readFileSync(cssPath, 'utf-8');
-
-  [
-    'window.CarrdPluginOptions',
-    'CarrdAccordeon',
-    'CarrdSlider',
-    'CarrdModal',
-    'CarrdTypography',
-    'CarrdSwitcher',
-    'theme-header-nav',
-    'theme-floating-cta'
-  ].forEach(marker => {
-    assert.ok(js.includes(marker), `theme-runtime.min.js should contain "${marker}"`);
-  });
-
-  [
-    '.bg-primary',
-    '.theme-modal-close',
-    '.theme-accordeon-toggle',
-    '.theme-slider-nav',
-    '.theme-faq-question',
-    '.theme-card-item',
-    '.theme-header-nav-toggle',
-    '.theme-switcher-button'
-  ].forEach(marker => {
-    assert.ok(css.includes(marker), `theme-runtime.min.css should contain "${marker}"`);
-  });
-
-  const tokenDefs = [...css.matchAll(/(--theme-[\w-]+)\s*:/g)].map(match => match[1]);
-  const globalPrefixes = [
-    '--theme-color-', '--theme-focus-', '--theme-overlay-', '--theme-font-',
-    '--theme-line-height-', '--theme-button-', '--theme-link-', '--theme-nav-', '--theme-ui-',
-  ];
-  assert.ok(tokenDefs.includes('--theme-accordeon-toggle-duration'));
-  assert.ok(tokenDefs.includes('--theme-slider-arrow-size'));
-  assert.ok(tokenDefs.includes('--theme-modal-close-size'));
-  assert.ok(!tokenDefs.some(token => globalPrefixes.some(prefix => token.startsWith(prefix))), 'runtime should not define global tokens');
-  assert.ok(!tokenDefs.some(token => token.startsWith('--theme-shopcart-')), 'runtime should not define add-on tokens');
-});
-
-test('theme bundles isolate plugin initialization failures and expose runtime errors', () => {
-  for (const bundle of ['theme-runtime.min.js', 'theme-core.min.js']) {
-    const source = fs.readFileSync(dist(bundle), 'utf8');
-    assert.match(source, /CarrdPluginRuntimeErrors/);
-    assert.match(source, /\[CarrdPluginRuntime\]/);
-  }
-});
-
-test('theme-core compatibility bundle keeps token defaults and legacy bridge definitions', () => {
-  const css = fs.readFileSync(dist('theme-core.min.css'), 'utf-8');
-  assert.match(css, /:root\{[^}]*--theme-color-primary:/, 'theme-core.min.css should ship token defaults');
-  assert.match(css, /--theme-color-heading:var\(--theme-color-headlines,/, 'theme-core.min.css should ship the legacy token bridge');
-  assert.match(css, /--theme-slider-arrow-size:/, 'theme-core.min.css should include bundled plugin defaults');
-});
-
-test('theme-runtime CDN bundle initializes clean data contracts by default', () => {
-  const dom = createDom(
-    '<a id="acc" href="#data-accordeon-ppf" role="button">Toggle</a>' +
-    '<div data-accordeon="ppf">Panel</div>' +
-    '<div data-cards><div class="wrapper"><div class="inner"><div>A</div><div>B</div></div></div></div>' +
-    '<div data-faq="main"><hr class="divider-component"><h2>Q1</h2><p>A1</p><hr class="divider-component"></div>' +
-    '<button data-modal-open="contact">Open modal</button>' +
-    '<div data-modal="contact" class="container-component"><div class="wrapper"><div class="inner"><h2>Contact</h2></div></div></div>' +
-    '<div data-slider="gallery">Slide 1</div><div data-slider="gallery">Slide 2</div>'
-  );
-  const timers = useFakeTimers(dom);
-  mockViewport(dom, 1280);
-  mockResizeObserver(dom);
-  mockMutationObserver(dom);
-  dom.window.globalThis.requestAnimationFrame = dom.window.requestAnimationFrame;
-
-  loadScript(dom, 'dist/theme-runtime.min.js');
-  triggerDomReady(dom);
-  timers.flush();
-
-  const doc = dom.window.document;
-  assert.equal(doc.querySelector('[data-accordeon="ppf"]').hidden, true);
-  click(dom, doc.getElementById('acc'));
-  timers.flush();
-  assert.equal(doc.querySelector('[data-accordeon="ppf"]').hidden, false);
-  assert.equal(doc.querySelectorAll('.theme-card-item').length, 2);
-  assert.equal(doc.querySelectorAll('.theme-faq-question').length, 1);
-  assert.equal(doc.querySelectorAll('.theme-slider-wrapper').length, 1);
-  assert.equal(doc.querySelector('[data-modal="contact"]').dataset.modalInitialized, 'true');
-
-  timers.restore();
-});
-
-test('README recommends version-pinned runtime bundle and full token embed', () => {
+test('README documents the single inline-embed install path', () => {
   const readme = fs.readFileSync(path.resolve(__dirname, '..', 'README.md'), 'utf-8');
-  assert.ok(readme.includes('dist/theme-runtime-cdn.html'));
-  assert.ok(readme.includes('dist/theme-design-tokens-embed.html'));
-  const mutableRuntimeCss = ['https://cdn.jsdelivr.net/gh/popskraft/carrd-v2@main', '/dist/theme-runtime.min.css'].join('');
-  assert.ok(!readme.includes(mutableRuntimeCss));
+  assert.ok(readme.includes('theme-design-system.html'));
+  assert.ok(!readme.includes('cdn.jsdelivr.net'), 'README must not reference jsDelivr/CDN delivery');
 });
 
-test('main-template migration automation uses version-pinned runtime assets', () => {
-  const automation = fs.readFileSync(
-    path.resolve(__dirname, '..', 'cardbuilder/projects/main-template/automation/migrate-clean-runtime.mjs'),
-    'utf-8'
-  );
-  assert.ok(automation.includes('theme-runtime.min.css'));
-  assert.ok(automation.includes('theme-runtime.min.js'));
-  assert.match(automation, /carrd-v2@\$\{VERSION\}\/dist\/theme-runtime\.min\.css/);
-  assert.match(automation, /carrd-v2@\$\{VERSION\}\/dist\/theme-runtime\.min\.js/);
-  assert.ok(!automation.includes(['@main', '/dist/theme-runtime.min.css'].join('')));
-  assert.ok(!automation.includes(['@main', '/dist/theme-runtime.min.js'].join('')));
-  assert.ok(!automation.includes('@main/dist/theme-core.min.css'));
-  assert.ok(!automation.includes('@main/dist/theme-core.min.js'));
-});
+test('no dist artifact references jsDelivr CDN', () => {
+  const walk = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    let files = [];
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files = files.concat(walk(full));
+      } else {
+        files.push(full);
+      }
+    }
+    return files;
+  };
 
-test('canonical install surfaces never reference compatibility-only theme-ui.css', () => {
-  const files = [
-    path.resolve(__dirname, '..', 'README.md'),
-    dist('theme-runtime-cdn.html'),
-    ...fs.readdirSync(dist())
-      .filter(name => fs.statSync(dist(name)).isDirectory())
-      .flatMap(name => {
-        const directory = dist(name);
-        return fs.readdirSync(directory)
-          .filter(file => file.endsWith('-cdn.html'))
-          .map(file => path.join(directory, file));
-      }),
-  ];
-
-  files.forEach(file => {
-    assert.ok(!fs.readFileSync(file, 'utf-8').includes('/dist/theme-ui.css'), `${file} should not reference compatibility theme-ui.css`);
+  const htmlFiles = walk(dist()).filter(file => file.endsWith('.html'));
+  htmlFiles.forEach(file => {
+    const content = fs.readFileSync(file, 'utf-8');
+    assert.ok(!content.includes('cdn.jsdelivr.net'), `${file} must not reference jsDelivr CDN`);
   });
-  assert.match(fs.readFileSync(dist('theme-ui.css'), 'utf-8'), /Compatibility-only artifact/);
 });
 
 test('published dist scripts execute in a jsdom smoke harness', () => {

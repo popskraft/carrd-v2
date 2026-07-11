@@ -83,49 +83,28 @@ class MinifyPluginsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "one short summary paragraph"):
             m.validate_plugin_readme_contract(content, "demo")
 
-    def test_build_plugin_installation_uses_bundle_config_as_source_of_truth(self):
+    def test_build_plugin_installation_is_inline_embed_only(self):
         with TemporaryDirectory() as temp_dir:
             repo_root = Path(temp_dir)
             plugin_dir = repo_root / "src" / "demo"
             plugin_dir.mkdir(parents=True)
-            (repo_root / "bundle.config.json").write_text(
-                '{"cdn_bundle":{"enabled":true,"name":"theme-core","plugins":["demo"]}}',
-                encoding="utf-8",
-            )
 
-            bundled = m.build_plugin_installation(repo_root, plugin_dir, True, True)
-            self.assertIn("`theme-core` already includes this plugin", bundled)
-            self.assertNotIn("Bundle Add-on", bundled)
+            install = m.build_plugin_installation(repo_root, plugin_dir, True, True)
+            self.assertIn("### Inline Embed", install)
+            self.assertNotIn("CDN Bundle", install)
+            self.assertNotIn("CDN Individual", install)
+            self.assertNotIn("Bundle Add-on", install)
 
-            plugin_dir = repo_root / "src" / "add-on"
-            plugin_dir.mkdir()
-            add_on = m.build_plugin_installation(repo_root, plugin_dir, True, True)
-            self.assertIn("Bundle Add-on", add_on)
-            self.assertIn("`theme-core` does not include this plugin", add_on)
-
-            (repo_root / "bundle.config.json").write_text(
-                '{"cdn_bundle":{"enabled":false,"name":"theme-core","plugins":[]}}',
-                encoding="utf-8",
-            )
-            no_bundle = m.build_plugin_installation(repo_root, plugin_dir, True, True)
-            self.assertNotIn("CDN Bundle", no_bundle)
-            self.assertNotIn("Bundle Add-on", no_bundle)
-            self.assertIn("CDN Individual", no_bundle)
-
-    def test_grid_cluster_install_uses_active_bundle_contract(self):
+    def test_grid_cluster_install_is_inline_embed_only(self):
         with TemporaryDirectory() as temp_dir:
             repo_root = Path(temp_dir)
             plugin_dir = repo_root / "src" / "grid-cluster"
             plugin_dir.mkdir(parents=True)
-            (repo_root / "bundle.config.json").write_text(
-                '{"cdn_bundle":{"enabled":true,"name":"theme-runtime","plugins":["grid-cluster"]}}',
-                encoding="utf-8",
-            )
 
             install = m.build_plugin_installation(repo_root, plugin_dir, True, True)
 
-            self.assertIn("`theme-runtime` already includes this plugin", install)
-            self.assertIn("CDN Individual", install)
+            self.assertIn("### Inline Embed", install)
+            self.assertNotIn("CDN Individual", install)
             self.assertNotIn("Bundle Add-on", install)
 
     def test_inline_installation_uses_special_placement_and_split_files(self):
@@ -150,11 +129,8 @@ class MinifyPluginsTests(unittest.TestCase):
                     readme_path.parent.name,
                 )
 
-    def test_repo_generated_readmes_match_bundle_contract(self):
+    def test_repo_generated_readmes_match_embed_only_contract(self):
         repo_root = Path(__file__).resolve().parent.parent
-        bundle_plugins = set(
-            m.load_bundle_config(repo_root).get("cdn_bundle", {}).get("plugins", [])
-        )
 
         for source_readme in sorted((repo_root / "src").glob("*/README.md")):
             plugin_slug = source_readme.parent.name
@@ -165,21 +141,17 @@ class MinifyPluginsTests(unittest.TestCase):
             with self.subTest(plugin=plugin_slug):
                 self.assertNotIn("Build date", content)
                 self.assertNotIn("[[", content)
+                self.assertNotIn("CDN", content)
                 if plugin_slug in m.INLINE_ONLY_PLUGIN_SLUGS:
                     self.assertIn("inline-only", content)
                     self.assertIn("Inline Embed (required for testing)", content)
-                    self.assertNotIn("Bundle Add-on", content)
-                elif plugin_slug in bundle_plugins:
-                    self.assertIn("already includes this plugin", content)
-                    self.assertNotIn("Bundle Add-on", content)
                 else:
-                    self.assertIn("does not include this plugin", content)
-                    self.assertIn("Bundle Add-on", content)
+                    self.assertIn("### Inline Embed", content)
 
         no_load = (repo_root / "dist" / "no-loadwaiting" / "README.md").read_text(
             encoding="utf-8"
         )
-        self.assertIn("Paste the marked block into `Hidden → Head`", no_load)
+        self.assertIn("Paste the full file into `Code → Hidden → Head`", no_load)
         self.assertNotIn("Hidden → Body End", no_load)
 
         for plugin_slug in m.SPLIT_EMBED_PLUGINS:
@@ -215,14 +187,6 @@ class MinifyPluginsTests(unittest.TestCase):
         src = "return\\n/a\\\\/b/;"
         out = m.minify_js(src)
         self.assertIn("return\\n/a\\\\/b/;", out)
-
-    def test_wrap_plugin_runtime_isolates_and_reports_init_failure(self):
-        wrapped = m.wrap_plugin_runtime("throw new Error('boom')", "demo")
-
-        self.assertIn("CarrdPluginRuntimeErrors", wrapped)
-        self.assertIn('plugin:\"demo\"', wrapped)
-        self.assertIn("console.error", wrapped)
-        self.assertTrue(wrapped.startswith("(function(){try{"))
 
     def test_minify_css_removes_comments(self):
         src = "/*comment*/ .a { color: red; }"

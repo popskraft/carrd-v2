@@ -2,26 +2,9 @@
 
 Removes Carrd's loading delay so page content appears immediately.
 
-Version: `2.1.0`
+Version: `2.0.0`
 
 ## Install
-
-Choose one method.
-
-### Bundle Add-on (recommended when the bundle is installed)
-
-`theme-runtime` does not include this plugin.
-
-1. Install `theme-runtime` from the [root guide](../README.md).
-2. Open `no-loadwaiting-cdn.html`.
-3. Paste the marked block into `Hidden → Head`.
-4. Publish and refresh.
-
-### CDN Individual
-
-1. Open `no-loadwaiting-cdn.html`.
-2. Paste the marked block into `Hidden → Head`.
-3. Publish and refresh.
 
 ### Inline Embed
 

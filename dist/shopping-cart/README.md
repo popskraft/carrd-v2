@@ -2,27 +2,9 @@
 
 Adds a floating cart and writes the order summary into a Carrd checkout form.
 
-Version: `2.1.0`
+Version: `2.0.0`
 
 ## Install
-
-Choose one method.
-
-### Bundle Add-on (recommended when the bundle is installed)
-
-`theme-runtime` does not include this plugin.
-
-1. Install `theme-runtime` from the [root guide](../README.md).
-2. Open `shopping-cart-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
-
-### CDN Individual
-
-1. Install the shared theme files once using **CDN Individual** in the [root guide](../README.md).
-2. Open `shopping-cart-cdn.html`.
-3. Paste the `Head` and `Body End` blocks into the matching Carrd locations.
-4. Publish and refresh.
 
 ### Inline Embed
 

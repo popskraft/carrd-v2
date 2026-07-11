@@ -10,14 +10,13 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 - Vanilla JS и CSS
 - Node.js + pnpm
 - Python 3 build scripts
-- ESLint, jsdom, jsDelivr, Carrd
+- ESLint, jsdom, Carrd
 
 ## Commands
-- `npm run build` — пересобрать `dist/` из `src/` (минификация, README, embeds, `theme-core` bundle)
+- `npm run build` — пересобрать `dist/` из `src/` (минификация, README, per-plugin и theme embeds)
 - `npm run validate` — полная проверка: verify:dist + bundle-budget + clean-contract + dead-code + tests + `src/**` coverage + `cardbuilder/**` coverage + lint
 - `npm run test:js` — только jsdom-тесты плагинов
 - `npm run release:prepare` — пересобрать `dist/`, выполнить `validate` и проверить новую release version без commit/push/tag
-- `npm run cdn:purge` — сброс jsDelivr-кэша для `dist/` assets
 - Release/publish — только по `docs/specs/release-contract.md`; универсальный автодеплой запрещён
 
 ## Structure
@@ -43,17 +42,17 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 - `src/<plugin>/README.md` is the source for public plugin guidance; `dist/<plugin>/README.md` is generated.
 - `scripts/templates/root_readme.md` and `scripts/templates/plugin_readme.md` own the shared README scaffolding.
 - Plugin README install sections are generated from `bundle.config.json`, source asset presence, and shared placement helpers; never hardcode bundle status in `src/<plugin>/README.md`.
-- Pre-release theme contract is split between repo-owned delivery assets and site-owned custom layers: repo delivery owns theme/plugin assets in `dist/`, while per-site token overrides, site CSS overrides, `window.CarrdPluginOptions`, and site custom JS are added in Carrd and are never shipped from `dist/` as custom CDN artifacts.
+- Pre-release theme contract is split between repo-owned delivery assets and site-owned custom layers: repo delivery owns theme/plugin embed assets in `dist/`, while per-site token overrides, site CSS overrides, `window.CarrdPluginOptions`, and site custom JS are added directly in Carrd and are never shipped from `dist/`.
 - `cardbuilder/data/sites.json` is the active site registry for Carrd Builder automation.
 - `admincarrd/app/config/config.php` is tracked only as a sanitized default config; runtime logs, sessions, uploads, and local secrets stay out of git.
 - Keep secrets, tokens, cookies, and `.env` values out of docs.
 - Validate the touched surface with the repository's native checks.
-- Sold templates use only immutable SemVer CDN refs; never move or overwrite a published release tag.
+- Distribution is inline-embed-only: sold and delivered templates paste `dist/*-embed.html` / `dist/theme-design-system.html` directly into Carrd. There is no CDN/jsDelivr delivery (removed in `2.0.0`; see `docs/specs/release-contract.md`). Previously published release tags (e.g. `v2.1.0`) stay in git history untouched for provenance, but are not referenced by new deliveries.
 
 ## Glossary
 - `theme` → shared Carrd foundation (`theme-design-system.html`, `theme-core`)
 - `plugin` → one `src/<slug>/` / `dist/<slug>/` pair
-- `bundle` → generated CDN bundle assets in `dist/`
+- `bundle` → generated embed-only theme/plugin assets in `dist/` (no CDN bundle since `2.0.0`)
 - `source` → editable `src/`
 - `delivery` → generated `dist/`
 - `repo-owned assets` → versioned delivery files shipped from `dist/`
