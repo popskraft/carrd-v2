@@ -76,6 +76,9 @@
   - stale published inventory that still described inline `v0.1.15` assets
   - stale MCP target metadata that still carried `data-switcher-v2-mode=cluster`
   - tab-resolution bug where MCP sync could pick the published tab before the Builder tab
+- Current live structure remap:
+  - the `2026-07-11` live top-level container map is now reflected in `cardbuilder/projects/main-template/data/inventories/container-registry.json`
+  - this report still describes the historical `2026-07-07` scan snapshot and should be read as historical context, not the current structural map
 - Remaining note:
   - `template-instance-dom-audit.json` and `template-instance-style-map.json` were not re-captured in this pass
 

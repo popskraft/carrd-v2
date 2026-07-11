@@ -32,66 +32,91 @@ Machine-readable reference file:
 - `site-header-container`
   - live: `container02`
   - current element id: `SiteHeader`
-  - purpose: logo + top navigation links
+  - purpose: logo, top navigation links, and the header CTA
 
-### Main Intro
+### Hero
 
 - `hero-content-container`
-  - live: `container01`
-  - purpose: main hero/content showcase with heading stack, body text, CTA, and support links
+  - live: `container27`
+  - purpose: live hero heading and lead paragraph
 
-### Cards
+### Stacker
 
+- `stacker-card-1`
+  - live: `container23`
+- `stacker-card-2`
+  - live: `container24`
+  - classes: `container-bg-red-light`
+- `stacker-card-3`
+  - live: `container22`
+  - classes: `container-bg-green-light`
+
+These three containers form the live stacker demo run.
+
+### Columns + Ecommerce
+
+- `columns-ecommerce-intro-container`
+  - live: `container28`
 - `quick-order-cards-container`
   - live: `container06`
-  - classes: `cards`
   - purpose: quick-order cards block with shopping-cart buttons
 
 ### Grid Cluster
 
+- `grid-cluster-intro-container`
+  - live: `container25`
 - `grid-feature-card-1`
   - live: `container13`
-  - classes: `grid-2`
 - `grid-feature-card-2`
   - live: `container14`
-  - classes: `grid-2`
 - `grid-feature-card-3`
   - live: `container15`
-  - classes: `grid-2`
 - `grid-feature-card-reversed`
   - live: `container04`
-  - classes: `grid-2`
   - note: reversed text/image layout
 
-These four containers currently form the grid-cluster demo set. Because their content is placeholder-level duplicated, numeric suffixes are currently required.
+These four containers currently form the grid-cluster demo set. Because their content is placeholder-level duplicated, numeric suffixes are still required.
 
 ### Slider
 
 - `slider-card-1`
   - live: `container11`
-  - classes: `slider`
 - `slider-card-reversed`
   - live: `container05`
-  - classes: `slider`
   - note: reversed text/image layout
 - `slider-card-2`
   - live: `container07`
-  - classes: `slider`
 - `slider-card-3`
   - live: `container08`
-  - classes: `slider`
 - `slider-card-4`
-  - live: `container09`
-  - classes: `slider`
+  - live: `container16`
+  - note: this replaced the retired `container09` reference
 
 These five containers currently form the slider demo set.
+
+### Switchers
+
+- `switcher-intro-container`
+  - live: `container26`
+- `switcher-case-1`
+  - live: `container20`
+- `switcher-case-2`
+  - live: `container21`
+- `switcher-case-3`
+  - live: `container19`
 
 ### FAQ
 
 - `faq-container`
   - live: `container03`
-  - classes: `FAQContainer`
   - purpose: FAQ heading and Q/A content
+
+### Typography Demo
+
+- `typography-demo-container`
+  - live: `container01`
+  - classes: `txt`
+  - purpose: long rich-content showcase block and design-palette embed
 
 ### Shopping Cart
 
@@ -99,22 +124,28 @@ These five containers currently form the slider demo set.
   - live: `container10`
   - purpose: order form immediately after the `#shopping-cart` section break
 
+### Footer
+
+- `footer-container`
+  - live: `container18`
+  - purpose: dedicated footer content
+
 ### Modal
 
 - `modal-contact-container`
   - live: `container12`
   - current element id: `modalContact`
-  - classes: `modal`
   - purpose: modal body content for the contact/modal flow
+
+### Cookie Banner
+
+- `cookie-banner-container`
+  - live: `container17`
+  - purpose: cookie notice and accept action
 
 ## Important Current Absence
 
-The current scan package does not show a dedicated footer content container.
-
-That means:
-
-- `footer-container` is not part of the current recorded snapshot
-- if such a container is added later, it can receive a new semantic name at that time if a fresh container-mapping task is requested
+The current live template now includes a dedicated footer content container.
 
 ## Status
 

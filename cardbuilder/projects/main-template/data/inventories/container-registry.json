@@ -5,7 +5,7 @@
     "templateId": "main-template",
     "builderUrl": "https://carrd.co/dashboard/4155176224428477/build",
     "publishedUrl": "https://mini.crd.co/",
-    "generatedAt": "2026-04-06T17:14:13Z",
+    "generatedAt": "2026-07-11T08:10:07Z",
     "sourceArtifacts": [
       "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json",
       "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/snapshots/template-instance-dom-audit.json",
@@ -16,8 +16,9 @@
       "idLifecycle": "Canonical ids stay stable across scans. New containers receive new canonical ids; removed containers are marked removed rather than renumbering older records."
     },
     "currentNotes": [
-      "The active template has no dedicated footer content container in the current scan package.",
-      "Grid-cluster and slider demo items are materially duplicated placeholder cards, so numeric suffixes are currently required inside those semantic groups."
+      "The live template now includes dedicated hero, stacker, columns/ecommerce, switcher, typography/demo, footer, modal, and cookie sections in addition to the existing header, cards, grid-cluster, slider, and FAQ blocks.",
+      "Grid-cluster and slider demo items are still materially duplicated placeholder cards, so numeric suffixes remain necessary inside those semantic groups.",
+      "The old slider-card-4 live reference at container09 has been retired; the current fourth/final live slider item is container16."
     ]
   },
   "items": [
@@ -31,42 +32,117 @@
       "semanticGroup": "site-header",
       "classes": [],
       "status": "active",
-      "childCount": 2,
+      "childCount": 3,
       "childIds": [
         "image01",
-        "links02"
+        "links02",
+        "buttons04"
       ],
       "evidence": [
-        "Contains the logo image and the primary navigation links About / Services / Modal Window.",
-        "Appears before the Header End control."
+        "Contains the logo image, the primary navigation links About / Services / Modal Window, and the header CTA.",
+        "Appears first in the live top-level order."
       ]
     },
     {
       "canonicalId": "hero-content-container",
-      "liveDataId": "container01",
+      "liveDataId": "container27",
       "currentElementId": "",
       "proposedElementId": "hero-content-container",
-      "topLevelIndex": 2,
+      "topLevelIndex": 1,
       "sectionScope": "main",
       "semanticGroup": "hero",
       "classes": [],
       "status": "active",
-      "childCount": 10,
+      "childCount": 2,
       "childIds": [
-        "text03",
-        "text06",
-        "text07",
-        "text02",
-        "list01",
-        "text04",
-        "text05",
-        "text10",
-        "buttons01",
-        "links01"
+        "text44",
+        "text50"
       ],
       "evidence": [
-        "Contains the main heading stack, body copy, lead text, CTA button, and supporting navigation links.",
-        "Serves as the main introductory content block after the header marker."
+        "Contains the live hero heading \"What is minigree plugins?\" and the lead paragraph.",
+        "Is now the first content block after the header in the remapped structure."
+      ]
+    },
+    {
+      "canonicalId": "stacker-card-1",
+      "liveDataId": "container23",
+      "currentElementId": "",
+      "proposedElementId": "stacker-card-1",
+      "topLevelIndex": 2,
+      "sectionScope": "main",
+      "semanticGroup": "stacker",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text48",
+        "text45"
+      ],
+      "evidence": [
+        "Starts the live stacker group and contains the section heading \"Stacker\".",
+        "The paired lead paragraph keeps the section title + intro together in the first stacked card."
+      ]
+    },
+    {
+      "canonicalId": "stacker-card-2",
+      "liveDataId": "container24",
+      "currentElementId": "",
+      "proposedElementId": "stacker-card-2",
+      "topLevelIndex": 3,
+      "sectionScope": "main",
+      "semanticGroup": "stacker",
+      "classes": [
+        "container-bg-red-light"
+      ],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text46"
+      ],
+      "evidence": [
+        "Second stacked demo card in the contiguous stacker run.",
+        "Carries the red-light demo background class in the live builder state."
+      ]
+    },
+    {
+      "canonicalId": "stacker-card-3",
+      "liveDataId": "container22",
+      "currentElementId": "",
+      "proposedElementId": "stacker-card-3",
+      "topLevelIndex": 4,
+      "sectionScope": "main",
+      "semanticGroup": "stacker",
+      "classes": [
+        "container-bg-green-light"
+      ],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text26"
+      ],
+      "evidence": [
+        "Third stacked demo card in the contiguous stacker run.",
+        "Carries the green-light demo background class in the live builder state."
+      ]
+    },
+    {
+      "canonicalId": "columns-ecommerce-intro-container",
+      "liveDataId": "container28",
+      "currentElementId": "",
+      "proposedElementId": "columns-ecommerce-intro-container",
+      "topLevelIndex": 5,
+      "sectionScope": "main",
+      "semanticGroup": "cards",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text32",
+        "text51"
+      ],
+      "evidence": [
+        "Introduces the columns / ecommerce demo block immediately before the cards section.",
+        "Keeps the section heading and lead paragraph together as a standalone content container."
       ]
     },
     {
@@ -74,12 +150,10 @@
       "liveDataId": "container06",
       "currentElementId": "",
       "proposedElementId": "quick-order-cards-container",
-      "topLevelIndex": 5,
+      "topLevelIndex": 6,
       "sectionScope": "main",
       "semanticGroup": "cards",
-      "classes": [
-        "cards"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 5,
       "childIds": [
@@ -90,8 +164,28 @@
         "buttons02"
       ],
       "evidence": [
-        "Follows the labels Columns (for single container) and + Shopping-cart buttons.",
-        "Contains quick-order button elements and carries the cards class."
+        "Contains the quick-order buttons and the cards plugin target content.",
+        "This is the live cards demo block after the columns/ecommerce intro."
+      ]
+    },
+    {
+      "canonicalId": "grid-cluster-intro-container",
+      "liveDataId": "container25",
+      "currentElementId": "",
+      "proposedElementId": "grid-cluster-intro-container",
+      "topLevelIndex": 7,
+      "sectionScope": "main",
+      "semanticGroup": "grid-cluster",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text27",
+        "text49"
+      ],
+      "evidence": [
+        "Introduces the grid-cluster demo block with the \"Grid\" heading.",
+        "Acts as the standalone intro before the repeated grid cards."
       ]
     },
     {
@@ -99,21 +193,20 @@
       "liveDataId": "container13",
       "currentElementId": "",
       "proposedElementId": "grid-feature-card-1",
-      "topLevelIndex": 7,
+      "topLevelIndex": 8,
       "sectionScope": "main",
       "semanticGroup": "grid-cluster",
-      "classes": [
-        "grid-2"
-      ],
+      "classes": [],
       "status": "active",
-      "childCount": 2,
+      "childCount": 3,
       "childIds": [
         "image08",
-        "text29"
+        "text29",
+        "text37"
       ],
       "evidence": [
-        "Appears immediately after the label Columns (for multi-containers).",
-        "Two-column placeholder card with image-left / text-right layout."
+        "First live grid-cluster card in the contiguous demo run.",
+        "Uses the data-grid contract with cols, responsive cols, and justify enabled."
       ]
     },
     {
@@ -121,21 +214,20 @@
       "liveDataId": "container14",
       "currentElementId": "",
       "proposedElementId": "grid-feature-card-2",
-      "topLevelIndex": 8,
+      "topLevelIndex": 9,
       "sectionScope": "main",
       "semanticGroup": "grid-cluster",
-      "classes": [
-        "grid-2"
-      ],
+      "classes": [],
       "status": "active",
-      "childCount": 2,
+      "childCount": 3,
       "childIds": [
         "image09",
-        "text30"
+        "text30",
+        "text38"
       ],
       "evidence": [
         "Second duplicated grid-cluster demo item under the multi-container group.",
-        "Two-column placeholder card with image-left / text-right layout."
+        "Still uses the same feature-grid target with the second price variation."
       ]
     },
     {
@@ -143,12 +235,10 @@
       "liveDataId": "container15",
       "currentElementId": "",
       "proposedElementId": "grid-feature-card-3",
-      "topLevelIndex": 9,
+      "topLevelIndex": 10,
       "sectionScope": "main",
       "semanticGroup": "grid-cluster",
-      "classes": [
-        "grid-2"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -157,7 +247,7 @@
       ],
       "evidence": [
         "Third duplicated grid-cluster demo item under the multi-container group.",
-        "Two-column placeholder card with image-left / text-right layout."
+        "Keeps the image-left / text-right layout in the same live run."
       ]
     },
     {
@@ -165,12 +255,10 @@
       "liveDataId": "container04",
       "currentElementId": "",
       "proposedElementId": "grid-feature-card-reversed",
-      "topLevelIndex": 10,
+      "topLevelIndex": 11,
       "sectionScope": "main",
       "semanticGroup": "grid-cluster",
-      "classes": [
-        "grid-2"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -178,8 +266,8 @@
         "image05"
       ],
       "evidence": [
-        "Part of the same grid-cluster demo run as containers 13-15.",
-        "Uses reversed text-left / image-right layout, so it can avoid a fourth numeric suffix."
+        "Fourth grid-cluster card in the current run with reversed text/image order.",
+        "This is the only one that avoids the standard image-left layout."
       ]
     },
     {
@@ -190,9 +278,7 @@
       "topLevelIndex": 12,
       "sectionScope": "main",
       "semanticGroup": "slider",
-      "classes": [
-        "slider"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -200,8 +286,8 @@
         "text28"
       ],
       "evidence": [
-        "Appears immediately after the Slider label.",
-        "Carries the slider class and uses image-left / text-right layout."
+        "Starts the live slider run.",
+        "Carries the expected image-left / text-right demo layout."
       ]
     },
     {
@@ -212,9 +298,7 @@
       "topLevelIndex": 13,
       "sectionScope": "main",
       "semanticGroup": "slider",
-      "classes": [
-        "slider"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -222,7 +306,8 @@
         "image04"
       ],
       "evidence": [
-        "Part of the slider run and uniquely uses reversed text-left / image-right layout."
+        "Second live slider card and the only reversed one.",
+        "Keeps the text-left / image-right variation in the slider demo run."
       ]
     },
     {
@@ -233,9 +318,7 @@
       "topLevelIndex": 14,
       "sectionScope": "main",
       "semanticGroup": "slider",
-      "classes": [
-        "slider"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -243,7 +326,8 @@
         "text18"
       ],
       "evidence": [
-        "Duplicate slider demo card with image-left / text-right layout."
+        "Third live slider card in the current run.",
+        "Still uses the standard image-left layout."
       ]
     },
     {
@@ -254,9 +338,7 @@
       "topLevelIndex": 15,
       "sectionScope": "main",
       "semanticGroup": "slider",
-      "classes": [
-        "slider"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
@@ -264,28 +346,105 @@
         "text19"
       ],
       "evidence": [
-        "Duplicate slider demo card with image-left / text-right layout."
+        "Fourth live slider card in the current run.",
+        "Still uses the standard image-left layout."
       ]
     },
     {
       "canonicalId": "slider-card-4",
-      "liveDataId": "container09",
+      "liveDataId": "container16",
       "currentElementId": "",
       "proposedElementId": "slider-card-4",
       "topLevelIndex": 16,
       "sectionScope": "main",
       "semanticGroup": "slider",
-      "classes": [
-        "slider"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 2,
       "childIds": [
-        "image07",
-        "text20"
+        "image11",
+        "text33"
       ],
       "evidence": [
-        "Duplicate slider demo card with image-left / text-right layout."
+        "Fifth and final live slider card in the current run.",
+        "This replaced the retired container09 reference and should be treated as the live remap target."
+      ]
+    },
+    {
+      "canonicalId": "switcher-intro-container",
+      "liveDataId": "container26",
+      "currentElementId": "",
+      "proposedElementId": "switcher-intro-container",
+      "topLevelIndex": 17,
+      "sectionScope": "main",
+      "semanticGroup": "switcher",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text43",
+        "text10"
+      ],
+      "evidence": [
+        "Introduces the switcher demo block with the \"Switchers\" heading.",
+        "Keeps the section intro separate from the switcher tabs themselves."
+      ]
+    },
+    {
+      "canonicalId": "switcher-case-1",
+      "liveDataId": "container20",
+      "currentElementId": "",
+      "proposedElementId": "switcher-case-1",
+      "topLevelIndex": 18,
+      "sectionScope": "main",
+      "semanticGroup": "switcher",
+      "classes": [],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text41"
+      ],
+      "evidence": [
+        "First switcher target in the live cases demo.",
+        "Holds the \"Swither tabs\" content for tab 1."
+      ]
+    },
+    {
+      "canonicalId": "switcher-case-2",
+      "liveDataId": "container21",
+      "currentElementId": "",
+      "proposedElementId": "switcher-case-2",
+      "topLevelIndex": 19,
+      "sectionScope": "main",
+      "semanticGroup": "switcher",
+      "classes": [],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text42"
+      ],
+      "evidence": [
+        "Second switcher target in the live cases demo.",
+        "Holds the tab 2 content."
+      ]
+    },
+    {
+      "canonicalId": "switcher-case-3",
+      "liveDataId": "container19",
+      "currentElementId": "",
+      "proposedElementId": "switcher-case-3",
+      "topLevelIndex": 20,
+      "sectionScope": "main",
+      "semanticGroup": "switcher",
+      "classes": [],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text12"
+      ],
+      "evidence": [
+        "Third switcher target in the live cases demo.",
+        "Holds the tab 3 content."
       ]
     },
     {
@@ -293,16 +452,13 @@
       "liveDataId": "container03",
       "currentElementId": "",
       "proposedElementId": "faq-container",
-      "topLevelIndex": 17,
+      "topLevelIndex": 21,
       "sectionScope": "main",
       "semanticGroup": "faq",
-      "classes": [
-        "FAQContainer"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 11,
       "childIds": [
-        "text12",
         "divider02",
         "text14",
         "text15",
@@ -312,11 +468,44 @@
         "divider03",
         "text13",
         "divider01",
-        "text23"
+        "text23",
+        "text40"
       ],
       "evidence": [
         "Contains the FAQ section heading and question-answer content.",
-        "Carries the FAQContainer class used by the FAQ plugin."
+        "The live FAQ target still depends on the divider + heading pattern rather than a class name."
+      ]
+    },
+    {
+      "canonicalId": "typography-demo-container",
+      "liveDataId": "container01",
+      "currentElementId": "",
+      "proposedElementId": "typography-demo-container",
+      "topLevelIndex": 22,
+      "sectionScope": "main",
+      "semanticGroup": "typography",
+      "classes": [
+        "txt"
+      ],
+      "status": "active",
+      "childCount": 12,
+      "childIds": [
+        "text03",
+        "text06",
+        "text07",
+        "text02",
+        "list01",
+        "text04",
+        "text05",
+        "links01",
+        "buttons05",
+        "text47",
+        "text34",
+        "embed01"
+      ],
+      "evidence": [
+        "This is now the long typography / rich-content showcase block, not the hero.",
+        "It includes the design-palette embed at the bottom of the demo content."
       ]
     },
     {
@@ -324,7 +513,7 @@
       "liveDataId": "container10",
       "currentElementId": "",
       "proposedElementId": "shopping-cart-order-form-container",
-      "topLevelIndex": 19,
+      "topLevelIndex": 23,
       "sectionScope": "shopping-cart",
       "semanticGroup": "shopping-cart",
       "classes": [],
@@ -334,8 +523,27 @@
         "form01"
       ],
       "evidence": [
-        "Lives immediately after the #shopping-cart section break.",
-        "Contains the order form fields Email / Name / Order Details / Submit."
+        "Lives immediately after the shopping-cart section break.",
+        "Contains the order form fields for the cart workflow."
+      ]
+    },
+    {
+      "canonicalId": "footer-container",
+      "liveDataId": "container18",
+      "currentElementId": "",
+      "proposedElementId": "footer-container",
+      "topLevelIndex": 24,
+      "sectionScope": "footer",
+      "semanticGroup": "footer",
+      "classes": [],
+      "status": "active",
+      "childCount": 1,
+      "childIds": [
+        "text25"
+      ],
+      "evidence": [
+        "This is the dedicated footer content container now present in the live structure.",
+        "The old \"no footer container\" note is no longer valid."
       ]
     },
     {
@@ -343,20 +551,38 @@
       "liveDataId": "container12",
       "currentElementId": "modalContact",
       "proposedElementId": "modal-contact-container",
-      "topLevelIndex": 22,
+      "topLevelIndex": 25,
       "sectionScope": "utility-modal",
       "semanticGroup": "modal",
-      "classes": [
-        "modal"
-      ],
+      "classes": [],
       "status": "active",
       "childCount": 1,
       "childIds": [
-        "text25"
+        "text36"
       ],
       "evidence": [
-        "Carries the modal class and the live element id modalContact.",
-        "Contains the modal body content used by the contact/modal demo flow."
+        "Carries the modal target container for the contact flow.",
+        "The modal content remains a distinct utility block in the live tree."
+      ]
+    },
+    {
+      "canonicalId": "cookie-banner-container",
+      "liveDataId": "container17",
+      "currentElementId": "",
+      "proposedElementId": "cookie-banner-container",
+      "topLevelIndex": 26,
+      "sectionScope": "utility-cookie",
+      "semanticGroup": "cookie-banner",
+      "classes": [],
+      "status": "active",
+      "childCount": 2,
+      "childIds": [
+        "text35",
+        "icons01"
+      ],
+      "evidence": [
+        "Holds the live cookie notice content and accept action.",
+        "This is a separate utility block in the live structure."
       ]
     }
   ]
