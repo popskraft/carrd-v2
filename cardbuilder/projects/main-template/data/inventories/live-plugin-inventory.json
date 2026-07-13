@@ -2,10 +2,16 @@
   "meta": {
     "domain": "template-instance",
     "templateId": "main-template",
-    "generatedAt": "2026-07-07T19:20:21.058Z",
-    "builderScan": "live builder embed/runtime contract read",
+    "generatedAt": "2026-07-13T09:26:30.228Z",
+    "builderScan": "2026-07-13 final Builder draft baseline after MBX reinstall and id cleanup",
     "publishedScan": "/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/inventories/published-site-plugin-scan.json",
-    "method": "bundle-aware-runtime-contract-inventory"
+    "method": "builder-embed-contract-remap",
+    "notes": [
+      "This inventory reflects the live Builder draft after the 2026-07-13 MBX reinstall and final id cleanup.",
+      "Published-site evidence remains historical until operator-approved save/publish is proven.",
+      "embed03 is a site-owned custom HEAD slot and is not mapped to dist.",
+      "cards is intentionally absent from the Builder draft; no data-cards markup remains in the current live state."
+    ]
   },
   "plugins": [
     {
@@ -19,8 +25,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed04 accordeon"
         },
         {
           "source": "published:bundle",
@@ -30,29 +36,24 @@
           "source": "published:global",
           "detail": "CarrdAccordeon"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "cards",
-      "detectedInBuilderScan": true,
+      "detectedInBuilderScan": false,
       "detectedInPublishedScan": true,
       "builderGlobals": [],
       "publishedGlobals": [],
       "confidence": "high",
-      "evidence": [
-        {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
-        },
-        {
-          "source": "published:bundle",
-          "detail": "theme-runtime"
-        },
-        {
-          "source": "published:marker",
-          "detail": "cards:1"
-        }
-      ]
+      "evidence": [],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "cookie-banner",
@@ -84,7 +85,29 @@
           "source": "published:marker",
           "detail": "cookieBanner:1"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "design-palette",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed18 design-palette"
+        }
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "faq",
@@ -95,8 +118,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed06 faq"
         },
         {
           "source": "published:bundle",
@@ -106,7 +129,11 @@
           "source": "published:marker",
           "detail": "faq:1"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "floating-cta",
@@ -114,17 +141,21 @@
       "detectedInPublishedScan": true,
       "builderGlobals": [],
       "publishedGlobals": [],
-      "confidence": "medium",
+      "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed07 floating-cta"
         },
         {
           "source": "published:bundle",
           "detail": "theme-runtime"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "grid-cluster",
@@ -135,8 +166,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed08 grid-cluster"
         },
         {
           "source": "published:bundle",
@@ -146,7 +177,11 @@
           "source": "published:marker",
           "detail": "gridCluster:5"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "header-nav",
@@ -157,8 +192,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed09 header-nav"
         },
         {
           "source": "published:bundle",
@@ -168,7 +203,11 @@
           "source": "published:marker",
           "detail": "headerNav:2"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "modal",
@@ -181,8 +220,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed10 modal"
         },
         {
           "source": "published:bundle",
@@ -196,7 +235,11 @@
           "source": "published:marker",
           "detail": "modal:1"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "no-loadwaiting",
@@ -208,7 +251,7 @@
       "evidence": [
         {
           "source": "builder:embed",
-          "detail": "embed08 no-loadwaiting"
+          "detail": "embed01 no-loadwaiting head"
         },
         {
           "source": "published:script",
@@ -218,7 +261,11 @@
           "source": "published:marker",
           "detail": "noLoadwaiting:1"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "shopping-cart",
@@ -232,7 +279,11 @@
       "evidence": [
         {
           "source": "builder:embed",
-          "detail": "embed04 shopping-cart"
+          "detail": "embed11 shopping-cart part1"
+        },
+        {
+          "source": "builder:embed",
+          "detail": "embed12 shopping-cart part2"
         },
         {
           "source": "published:script",
@@ -246,7 +297,11 @@
           "source": "published:global",
           "detail": "CarrdShoppingCart"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "slider",
@@ -259,8 +314,12 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed13 slider part1"
+        },
+        {
+          "source": "builder:embed",
+          "detail": "embed14 slider part2"
         },
         {
           "source": "published:bundle",
@@ -274,7 +333,11 @@
           "source": "published:marker",
           "detail": "slider:7"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "stacker",
@@ -287,8 +350,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed15 stacker"
         },
         {
           "source": "published:bundle",
@@ -302,7 +365,11 @@
           "source": "published:marker",
           "detail": "stacker:3"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "switcher",
@@ -315,8 +382,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed16 switcher"
         },
         {
           "source": "published:bundle",
@@ -330,7 +397,11 @@
           "source": "published:marker",
           "detail": "switcher:10"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
     },
     {
       "plugin": "typography",
@@ -343,8 +414,8 @@
       "confidence": "high",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed17 typography"
         },
         {
           "source": "published:bundle",
@@ -354,7 +425,47 @@
           "source": "published:global",
           "detail": "CarrdTypography"
         }
-      ]
+      ],
+      "existsInSrc": true,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "theme-design-system",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "high",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed02 theme-design-system head"
+        }
+      ],
+      "existsInSrc": false,
+      "existsInDist": true,
+      "mismatchType": "none",
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "theme-customizing-slot",
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "builderGlobals": [],
+      "publishedGlobals": [],
+      "confidence": "medium",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed03 custom site-owned head slot"
+        }
+      ],
+      "existsInSrc": false,
+      "existsInDist": false,
+      "mismatchType": "site-owned-custom-slot",
+      "recommendedNextAction": "preserve as site-owned custom layer; do not overwrite from dist"
     }
   ]
 }

@@ -2,23 +2,19 @@
 
 ## Purpose
 
-Translate the current scan package into exact live Builder replacement targets before any plugin refresh or `columns` migration is attempted.
+Translate the current scan package into exact live Builder replacement targets for the post-`2026-07-13` MBX reinstall baseline.
 
-## Why This Exists
+## Status
 
-The active template is not simply missing `grid-cluster`.
+The old legacy refresh map is no longer valid.
 
-It is currently running a broader legacy inline plugin layer:
+Observed live draft on `2026-07-13`:
 
-- old inline plugin embeds
-- old `--mini-*` token layer in HEAD
-- a combined legacy `Columns` embed that also contains the old cards behavior
-
-This means the safe order is:
-
-1. introduce a compatible HEAD foundation
-2. replace the legacy `Columns` embed with the prepared `cards + grid-cluster` replacement
-3. optionally refresh the other active legacy plugin embeds to the current `dist` outputs
+- `122` Builder components
+- `18` embed elements
+- all active plugin embeds are now inline, individually titled, and mostly aligned with current `dist`
+- `embed03` is no longer a plugin slot; it is a site-owned `Head` customization placeholder
+- `cards` has been intentionally removed from the current Builder draft
 
 ## Current Live Targets
 
@@ -26,71 +22,47 @@ This means the safe order is:
 
 | Embed | Current title | Current role | Target replacement |
 |---|---|---|---|
-| `embed02` | `Theme CSS Variables in HEAD` | legacy `--mini-*` token layer | [head-theme-foundation-0.1.15.html](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/head-theme-foundation-0.1.15.html) |
-| `embed08` | `No Load Waiting in HEAD` | legacy inline plugin | [no-loadwaiting-embed.html](/Users/popskraft/Projects/carrd-v2/dist/no-loadwaiting/no-loadwaiting-embed.html) |
+| `embed01` | `No Loadwaiting (HEAD)` | active plugin slot | [no-loadwaiting-embed.html](/Users/popskraft/Projects/carrd-v2/dist/no-loadwaiting/no-loadwaiting-embed.html) |
+| `embed02` | `Theme Design System (HEAD)` | active theme slot | [theme-design-system.html](/Users/popskraft/Projects/carrd-v2/dist/theme-design-system.html) |
+| `embed03` | `Theme Customizing (HEAD)` | site-owned custom layer | preserve as-is; no repo-owned replacement |
 
 ### BODY END
 
 | Embed | Current title | Current role | Target replacement |
 |---|---|---|---|
-| `embed01` | `FAQ` | legacy inline plugin | [faq-embed.html](/Users/popskraft/Projects/carrd-v2/dist/faq/faq-embed.html) |
-| `embed03` | `Shopping Card JS` | legacy split JS half | [shopping-cart-embed.html](/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed.html) |
-| `embed04` | `Shopping Card CSS` | legacy split CSS half | [shopping-cart-embed.html](/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed.html) |
-| `embed05` | `Columns` | legacy combined `columns + cards` | [embed05-cards-grid-cluster-0.1.15.html](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/embed05-cards-grid-cluster-0.1.15.html) |
-| `embed06` | `Slider` | legacy inline plugin | [slider-embed.html](/Users/popskraft/Projects/carrd-v2/dist/slider/slider-embed.html) |
-| `embed07` | `Modal` | legacy inline plugin | [modal-embed.html](/Users/popskraft/Projects/carrd-v2/dist/modal/modal-embed.html) |
+| `embed04` | `Accordeon` | active plugin slot | [accordeon-embed.html](/Users/popskraft/Projects/carrd-v2/dist/accordeon/accordeon-embed.html) |
+| `embed05` | `Cookie Banner` | active plugin slot | [cookie-banner-embed.html](/Users/popskraft/Projects/carrd-v2/dist/cookie-banner/cookie-banner-embed.html) |
+| `embed06` | `Faq` | active plugin slot | [faq-embed.html](/Users/popskraft/Projects/carrd-v2/dist/faq/faq-embed.html) |
+| `embed07` | `Floating Cta` | active plugin slot | [floating-cta-embed.html](/Users/popskraft/Projects/carrd-v2/dist/floating-cta/floating-cta-embed.html) |
+| `embed08` | `Grid Cluster` | active plugin slot | [grid-cluster-embed.html](/Users/popskraft/Projects/carrd-v2/dist/grid-cluster/grid-cluster-embed.html) |
+| `embed09` | `Header Nav` | active plugin slot | [header-nav-embed.html](/Users/popskraft/Projects/carrd-v2/dist/header-nav/header-nav-embed.html) |
+| `embed10` | `Modal` | active plugin slot | [modal-embed.html](/Users/popskraft/Projects/carrd-v2/dist/modal/modal-embed.html) |
+| `embed11` | `Shopping Cart 1/2` | active split part 1 | [shopping-cart-embed-part1.html](/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed-part1.html) |
+| `embed12` | `Shopping Cart 2/2` | active split part 2 | [shopping-cart-embed-part2.html](/Users/popskraft/Projects/carrd-v2/dist/shopping-cart/shopping-cart-embed-part2.html) |
+| `embed13` | `Slider 1/2` | active split part 1 | [slider-embed-part1.html](/Users/popskraft/Projects/carrd-v2/dist/slider/slider-embed-part1.html) |
+| `embed14` | `Slider 2/2` | active split part 2 | [slider-embed-part2.html](/Users/popskraft/Projects/carrd-v2/dist/slider/slider-embed-part2.html) |
+| `embed15` | `Stacker` | active plugin slot | [stacker-embed.html](/Users/popskraft/Projects/carrd-v2/dist/stacker/stacker-embed.html) |
+| `embed16` | `Switcher` | active plugin slot | [switcher-embed.html](/Users/popskraft/Projects/carrd-v2/dist/switcher/switcher-embed.html) |
+| `embed17` | `Typography` | active plugin slot | [typography-embed.html](/Users/popskraft/Projects/carrd-v2/dist/typography/typography-embed.html) |
+| `embed18` | `Design Palette` | active visible helper embed | [design-palette-embed.html](/Users/popskraft/Projects/carrd-v2/dist/design-palette/design-palette-embed.html) |
 
-## Primary Migration Target
+## Remap Note
 
-The critical swap for the approved baseline change started with:
+The current Builder draft is close to a stable inline canon, but not fully green:
 
-- current live target: `embed05` titled `Columns`
-- prepared replacement: [embed05-cards-grid-cluster-0.1.15.html](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/embed05-cards-grid-cluster-0.1.15.html)
+- `embed02` and `embed12` differ from repo `dist` only by formatting reflow introduced by Carrd/MBX
+- `embed03` is intentionally outside repo-owned plugin automation
+- `container23` no longer carries the temporary `why` anchor
 
-Important detail:
+## Recommended Next Action
 
-- the current live `embed05` contains both grid clustering and cards behavior
-- therefore the replacement must provide both:
-  - `cards`
-  - `grid-cluster`
+1. Treat this embed layout as the current Builder draft canon.
+2. Use `embed03` only as a site-owned custom `Head` slot.
+3. Do not declare persistent canon for all mutation classes until the remaining save/reload/readback checks succeed.
 
-Removing `Columns` without replacing both layers would be an incomplete migration.
+## Save Boundary
 
-## Final Desired Live Structure
-
-After the migration draft is normalized, the target BODY END structure is:
-
-- `embed05` titled `Cards`
-  - target asset: [cards-embed.html](/Users/popskraft/Projects/carrd-v2/dist/cards/cards-embed.html)
-- a following embed titled `Grid Cluster`
-  - current draft component id: `embed09`
-  - target asset: [grid-cluster-embed.html](/Users/popskraft/Projects/carrd-v2/dist/grid-cluster/grid-cluster-embed.html)
-
-This split structure is now the preferred operational shape over the temporary combined replacement.
-
-## HEAD Compatibility Step
-
-Before or together with the `embed05` swap, the safer HEAD replacement is:
-
-- [head-theme-foundation-0.1.15.html](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/head-theme-foundation-0.1.15.html)
-
-Why:
-
-- current live plugins use `--mini-*`
-- current distributive plugins use `--theme-*`
-- the prepared HEAD file preserves the live palette and spacing values while also exposing the newer token names
-
-This makes staged replacement safer and avoids false regressions caused only by token-layer mismatch.
-
-## Recommended Execution Order In Builder
-
-1. Replace `embed02` with the prepared HEAD foundation file.
-2. Replace `embed05` with the prepared `cards + grid-cluster` replacement file or directly normalize it into separate `Cards` and `Grid Cluster` embeds.
-3. Validate Builder state and published view for all grid/card sections.
-4. If desired, continue with the broader refresh of `FAQ`, `Shopping Cart`, `Slider`, `Modal`, and `No Load Waiting`.
-
-## Machine-Readable Map
-
-See:
-
-- [live-embed-replacement-map.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/migration/live-embed-replacement-map.json)
+- This file maps the remapped Builder state.
+- Safe persistence probes for custom `data-*` on stable `container18` and custom `id` on safe `container28` have already been proven live.
+- A real product attr probe on `2026-07-13` failed the full boundary: `container12` kept `data-modal-close-on-overlay=off` in Builder after publish, but published `mini.crd.co` did not expose that attr on `#data-modal-contact`.
+- Do not declare canonical PASS until the remaining mutation classes, especially real product attrs, embed edits, and structural edits, also pass save/reload/readback on the actual Builder surface.

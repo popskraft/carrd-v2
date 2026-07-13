@@ -2,10 +2,14 @@
   "meta": {
     "domain": "template-instance",
     "templateId": "main-template",
-    "generatedAt": "2026-07-07T19:20:21.061Z",
+    "generatedAt": "2026-07-13T09:26:30.228Z",
     "pluginSourceRoot": "/Users/popskraft/Projects/carrd-v2/src",
     "pluginDistRoot": "/Users/popskraft/Projects/carrd-v2/dist",
-    "method": "bundle-aware-runtime-contract-sync-diff"
+    "method": "builder-embed-contract-sync-diff",
+    "notes": [
+      "Compared against the 2026-07-13 final Builder draft baseline after id cleanup.",
+      "Published-site evidence is historical and not used for PASS decisions in this diff."
+    ]
   },
   "plugins": [
     {
@@ -18,8 +22,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed04 accordeon"
         },
         {
           "source": "published:bundle",
@@ -36,24 +40,11 @@
       "plugin": "cards",
       "existsInSrc": true,
       "existsInDist": true,
-      "detectedLive": true,
-      "detectedInBuilderScan": true,
+      "detectedLive": false,
+      "detectedInBuilderScan": false,
       "detectedInPublishedScan": true,
       "mismatchType": "none",
-      "evidence": [
-        {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
-        },
-        {
-          "source": "published:bundle",
-          "detail": "theme-runtime"
-        },
-        {
-          "source": "published:marker",
-          "detail": "cards:1"
-        }
-      ],
+      "evidence": [],
       "recommendedNextAction": "none"
     },
     {
@@ -89,6 +80,22 @@
       "recommendedNextAction": "none"
     },
     {
+      "plugin": "design-palette",
+      "existsInSrc": true,
+      "existsInDist": true,
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed18 design-palette"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
       "plugin": "faq",
       "existsInSrc": true,
       "existsInDist": true,
@@ -98,8 +105,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed06 faq"
         },
         {
           "source": "published:bundle",
@@ -122,8 +129,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed07 floating-cta"
         },
         {
           "source": "published:bundle",
@@ -142,8 +149,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed08 grid-cluster"
         },
         {
           "source": "published:bundle",
@@ -166,8 +173,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed09 header-nav"
         },
         {
           "source": "published:bundle",
@@ -190,8 +197,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed10 modal"
         },
         {
           "source": "published:bundle",
@@ -219,7 +226,7 @@
       "evidence": [
         {
           "source": "builder:embed",
-          "detail": "embed08 no-loadwaiting"
+          "detail": "embed01 no-loadwaiting head"
         },
         {
           "source": "published:script",
@@ -243,7 +250,11 @@
       "evidence": [
         {
           "source": "builder:embed",
-          "detail": "embed04 shopping-cart"
+          "detail": "embed11 shopping-cart part1"
+        },
+        {
+          "source": "builder:embed",
+          "detail": "embed12 shopping-cart part2"
         },
         {
           "source": "published:script",
@@ -270,8 +281,12 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed13 slider part1"
+        },
+        {
+          "source": "builder:embed",
+          "detail": "embed14 slider part2"
         },
         {
           "source": "published:bundle",
@@ -298,8 +313,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed15 stacker"
         },
         {
           "source": "published:bundle",
@@ -326,8 +341,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed16 switcher"
         },
         {
           "source": "published:bundle",
@@ -354,8 +369,8 @@
       "mismatchType": "none",
       "evidence": [
         {
-          "source": "builder:bundle",
-          "detail": "theme-runtime"
+          "source": "builder:embed",
+          "detail": "embed17 typography"
         },
         {
           "source": "published:bundle",
@@ -367,6 +382,38 @@
         }
       ],
       "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "theme-design-system",
+      "existsInSrc": false,
+      "existsInDist": true,
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "mismatchType": "none",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed02 theme-design-system head"
+        }
+      ],
+      "recommendedNextAction": "none"
+    },
+    {
+      "plugin": "theme-customizing-slot",
+      "existsInSrc": false,
+      "existsInDist": false,
+      "detectedLive": true,
+      "detectedInBuilderScan": true,
+      "detectedInPublishedScan": false,
+      "mismatchType": "site-owned-custom-slot",
+      "evidence": [
+        {
+          "source": "builder:embed",
+          "detail": "embed03 custom site-owned head slot"
+        }
+      ],
+      "recommendedNextAction": "preserve as site-owned custom layer; do not overwrite from dist"
     }
   ]
 }

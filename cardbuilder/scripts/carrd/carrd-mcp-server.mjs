@@ -9,6 +9,7 @@ import {
   syncProfile,
   updateTarget
 } from "./lib/control-core.mjs";
+import { planCanonicalMigration, writeMigrationPlanReport } from "./lib/migration-core.mjs";
 import { checkProfileDeep, onboardSite } from "./lib/onboarding-core.mjs";
 
 const SERVER_INFO = {
@@ -60,6 +61,9 @@ function toolTextSummary(name, payload) {
   }
   if (name === "resolve_target") {
     return `Target resolution: ${payload.resolution.status}`;
+  }
+  if (name === "plan_migration") {
+    return `Migration plan ${payload.planStatus} source=${payload.source.sourceRef || "unknown"}`;
   }
   if (name === "read_target") {
     return `Read target ${payload.resolution?.target?.semanticKey || "unknown"}`;
@@ -167,6 +171,28 @@ const TOOL_DEFINITIONS = [
     }
   },
   {
+    name: "plan_migration",
+    description:
+      "Compile a dry-run canonical migration plan from a source inventory or source site snapshot toward the miniGree canon. Never mutates Carrd, never saves, never publishes.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sourceSite: { type: "string" },
+        sourceFile: { type: "string" },
+        canonSite: { type: "string" },
+        runId: { type: "string" },
+        outputPath: { type: "string" }
+      },
+      additionalProperties: false
+    },
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false
+    }
+  },
+  {
     name: "resolve_target",
     description: "Resolve a semantic target deterministically from semanticKey, componentId, or a fuzzy query.",
     inputSchema: {
@@ -248,6 +274,13 @@ async function handleToolCall(params) {
       return syncProfile(args);
     case "onboard_site":
       return onboardSite(args);
+    case "plan_migration": {
+      const payload = planCanonicalMigration(args);
+      if (args.outputPath) {
+        writeMigrationPlanReport(payload, args.outputPath);
+      }
+      return payload;
+    }
     case "resolve_target":
       return resolveTarget(args);
     case "read_target":

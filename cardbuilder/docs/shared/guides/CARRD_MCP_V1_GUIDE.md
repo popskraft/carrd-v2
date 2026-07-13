@@ -95,6 +95,25 @@ Drift handling: re-run `onboard_site`. semanticKeys are preserved by componentId
 added components get new keys, removed ones are reported in `removedTargets`.
 `check_profile` reports `contract-drift` per probe instead of raising on the next read.
 
+## Canonical Migration Dry Run
+
+Pre-live migration planning now exists as a separate dry-run layer:
+
+```bash
+npm run plan:migration -- --source-site <site-ref> --canon-site main-template
+npm run plan:migration -- --source-file <inventory-or-builder-scan.json> --canon-site main-template
+```
+
+The planner:
+
+- freezes the current canon from the target site's `mcp-targets.json`
+- normalizes the source inventory from either the new onboarding format or the older `template-instance-builder-scan.json` shape
+- compiles a deterministic dry-run operation list
+- records approval gates and verification gates before any future live apply
+
+This command never mutates Carrd, never saves, and never publishes. Its job is to
+prepare the live test boundary, not to cross it.
+
 ## Tool Surface
 
 - `list_profiles`
@@ -104,6 +123,8 @@ added components get new keys, removed ones are reported in `removedTargets`.
     `coverage` (live components vs target map), and `readinessStatus` with reasons
 - `onboard_site`
   - full auto-onboarding as above; `dryRun=true` by default reports without writing files
+- `plan_migration`
+  - freeze the `miniGree` canon, normalize a source inventory, and compile a dry-run migration plan with approvals and verification gates
 - `sync_profile`
   - read live Builder state for known targets and optionally persist refreshed target metadata
 - `resolve_target`
@@ -138,6 +159,7 @@ The server does not:
 - [control-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/control-core.mjs)
 - [readiness-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/readiness-core.mjs)
 - [onboarding-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/onboarding-core.mjs)
+- [migration-core.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/migration-core.mjs)
 - [keygen.mjs](/Users/popskraft/Projects/carrd-v2/cardbuilder/scripts/carrd/lib/keygen.mjs)
 - [mutation-catalog.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/data/mutation-catalog.json)
 - [mcp-targets.json](/Users/popskraft/Projects/carrd-v2/cardbuilder/projects/main-template/data/manifests/mcp-targets.json)
@@ -146,6 +168,7 @@ The server does not:
 
 - `npm run test:cardbuilder --silent`
 - `npm run onboard:site -- --site main-template --dry-run`
+- `npm run plan:migration -- --source-site main-template --canon-site main-template`
 - `node cardbuilder/scripts/carrd/carrd-mcp-server.mjs`
 - `node cardbuilder/scripts/carrd/sync-mcp-profile.mjs --site main-template`
 - `node cardbuilder/scripts/carrd/check-site-readiness.mjs --site main-template --no-fail`

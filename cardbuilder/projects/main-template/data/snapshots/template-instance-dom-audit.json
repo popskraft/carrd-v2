@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-04-06T15:45:28.785Z",
+    "generatedAt": "2026-07-13T09:26:30.654Z",
     "url": "https://carrd.co/dashboard/4155176224428477/build",
     "title": "minigree - My Sites - Dashboard - Carrd",
-    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
     "viewport": {
-      "width": 1920,
-      "height": 934
+      "width": 1662,
+      "height": 850
     }
   },
   "root": {
@@ -311,10 +311,1424 @@
   },
   "propertiesPanel": {
     "exists": true,
-    "className": "panel properties",
-    "visible": false,
-    "tabs": [],
-    "sections": []
+    "className": "panel properties container visible image is-changing",
+    "visible": true,
+    "tabs": [
+      {
+        "index": 0,
+        "text": "Container",
+        "active": true
+      },
+      {
+        "index": 1,
+        "text": "Appearance",
+        "active": false
+      },
+      {
+        "index": 2,
+        "text": "Animation",
+        "active": false
+      },
+      {
+        "index": 3,
+        "text": "Settings",
+        "active": false
+      }
+    ],
+    "sections": [
+      {
+        "index": 0,
+        "active": true,
+        "fieldCount": 25,
+        "fields": [
+          {
+            "tag": "select",
+            "type": null,
+            "name": "container_mode",
+            "id": "container-container_mode",
+            "className": "",
+            "valuePreview": "columns"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "width_1000",
+            "id": "width_1000",
+            "className": "",
+            "valuePreview": "20"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "index_1000",
+            "id": "index_1000",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastWidth_1000",
+            "id": "lastWidth_1000",
+            "className": "",
+            "valuePreview": "20"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastSpacer_1000",
+            "id": "lastSpacer_1000",
+            "className": "",
+            "valuePreview": "false"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "title_1000",
+            "id": "title_1000",
+            "className": "",
+            "valuePreview": "20% (Left)"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "align_1000",
+            "id": "align_1000",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "spacer_1000",
+            "id": "spacer_1000",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "prioritize_1000",
+            "id": "prioritize_1000",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "width_1001",
+            "id": "width_1001",
+            "className": "",
+            "valuePreview": "60"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "index_1001",
+            "id": "index_1001",
+            "className": "",
+            "valuePreview": "1"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastWidth_1001",
+            "id": "lastWidth_1001",
+            "className": "",
+            "valuePreview": "60"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastSpacer_1001",
+            "id": "lastSpacer_1001",
+            "className": "",
+            "valuePreview": "false"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "title_1001",
+            "id": "title_1001",
+            "className": "",
+            "valuePreview": "60% (Middle)"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "align_1001",
+            "id": "align_1001",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "spacer_1001",
+            "id": "spacer_1001",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "prioritize_1001",
+            "id": "prioritize_1001",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "width_1002",
+            "id": "width_1002",
+            "className": "",
+            "valuePreview": "20"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "index_1002",
+            "id": "index_1002",
+            "className": "",
+            "valuePreview": "2"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastWidth_1002",
+            "id": "lastWidth_1002",
+            "className": "",
+            "valuePreview": "20"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "lastSpacer_1002",
+            "id": "lastSpacer_1002",
+            "className": "",
+            "valuePreview": "false"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "title_1002",
+            "id": "title_1002",
+            "className": "",
+            "valuePreview": "20% (Right)"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "align_1002",
+            "id": "align_1002",
+            "className": "",
+            "valuePreview": "right"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "spacer_1002",
+            "id": "spacer_1002",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "prioritize_1002",
+            "id": "prioritize_1002",
+            "className": "",
+            "valuePreview": ""
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "active": false,
+        "fieldCount": 106,
+        "fields": [
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_width",
+            "id": "container-appearance_width",
+            "className": "",
+            "valuePreview": "101"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_height",
+            "id": "container-appearance_height",
+            "className": "",
+            "valuePreview": "14"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_padding_vertical",
+            "id": "container-appearance_padding_vertical",
+            "className": "",
+            "valuePreview": "0.75"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_padding_horizontal",
+            "id": "container-appearance_padding_horizontal",
+            "className": "",
+            "valuePreview": "0.75"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_gutters",
+            "id": "container-appearance_gutters",
+            "className": "",
+            "valuePreview": "1"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_margins_top",
+            "id": "container-appearance_margins_top",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_margins_bottom",
+            "id": "container-appearance_margins_bottom",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_cornerRounding_radius",
+            "id": "container-appearance_cornerRounding_radius",
+            "className": "",
+            "valuePreview": "1.75"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_cornerRounding_topLeft",
+            "id": "container-appearance_cornerRounding_topLeft",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_cornerRounding_topRight",
+            "id": "container-appearance_cornerRounding_topRight",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_cornerRounding_bottomLeft",
+            "id": "container-appearance_cornerRounding_bottomLeft",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_cornerRounding_bottomRight",
+            "id": "container-appearance_cornerRounding_bottomRight",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_align",
+            "id": "container-appearance_align",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_contents_position",
+            "id": "container-appearance_contents_position",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_contents_width",
+            "id": "container-appearance_contents_width",
+            "className": "",
+            "valuePreview": "14"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_contents_align_horizontal",
+            "id": "container-appearance_contents_align_horizontal",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_contents_align_vertical",
+            "id": "container-appearance_contents_align_vertical",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_contents_spacing",
+            "id": "container-appearance_contents_spacing",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_style",
+            "id": "container-appearance_background_style",
+            "className": "",
+            "valuePreview": "color"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_color_color",
+            "id": "container-appearance_background_color_color",
+            "className": "",
+            "valuePreview": "#FFFFFFD4"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_gradient_style",
+            "id": "container-appearance_background_gradient_style",
+            "className": "",
+            "valuePreview": "linear"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_background_gradient_reverse",
+            "id": "container-appearance_background_gradient_reverse",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_gradient_stop1_color",
+            "id": "container-appearance_background_gradient_stop1_color",
+            "className": "left",
+            "valuePreview": "#D9B2B2"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_stop1_position",
+            "id": "container-appearance_background_gradient_stop1_position",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_gradient_stop2_color",
+            "id": "container-appearance_background_gradient_stop2_color",
+            "className": "left",
+            "valuePreview": "#96A9EB"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_stop2_position",
+            "id": "container-appearance_background_gradient_stop2_position",
+            "className": "",
+            "valuePreview": "60"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_gradient_stop3_color",
+            "id": "container-appearance_background_gradient_stop3_color",
+            "className": "left",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_stop3_position",
+            "id": "container-appearance_background_gradient_stop3_position",
+            "className": "",
+            "valuePreview": "100"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_angle",
+            "id": "container-appearance_background_gradient_angle",
+            "className": "",
+            "valuePreview": "45"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_width",
+            "id": "container-appearance_background_gradient_width",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_height",
+            "id": "container-appearance_background_gradient_height",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_left",
+            "id": "container-appearance_background_gradient_left",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_gradient_top",
+            "id": "container-appearance_background_gradient_top",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "container_appearance_background_image_assetId",
+            "id": "container-container_appearance_background_image_assetId",
+            "className": "id",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "container_appearance_background_image_assetData",
+            "id": "container-container_appearance_background_image_assetData",
+            "className": "data",
+            "valuePreview": ""
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_image_position",
+            "id": "container-appearance_background_image_position",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_image_tile",
+            "id": "container-appearance_background_image_tile",
+            "className": "",
+            "valuePreview": "both"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_image_size",
+            "id": "container-appearance_background_image_size",
+            "className": "",
+            "valuePreview": "fill"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_image_sizeValue",
+            "id": "container-appearance_background_image_sizeValue",
+            "className": "",
+            "valuePreview": "25"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_image_parallax",
+            "id": "container-appearance_background_image_parallax",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_image_colorBG",
+            "id": "container-appearance_background_image_colorBG",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "container_appearance_background_image_optimizable",
+            "id": "container-container_appearance_background_image_optimizable",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "container_appearance_background_image_preserve",
+            "id": "container-container_appearance_background_image_preserve",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "container_appearance_background_video_assetId",
+            "id": "container-container_appearance_background_video_assetId",
+            "className": "id",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "container_appearance_background_video_assetData",
+            "id": "container-container_appearance_background_video_assetData",
+            "className": "data",
+            "valuePreview": ""
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_video_position",
+            "id": "container-appearance_background_video_position",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_background_video_loop",
+            "id": "container-appearance_background_video_loop",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "assetId_1000",
+            "id": "assetId_1000",
+            "className": "id",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "assetData_1000",
+            "id": "assetData_1000",
+            "className": "data",
+            "valuePreview": ""
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "position_1000",
+            "id": "position_1000",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "motion_1000",
+            "id": "motion_1000",
+            "className": "",
+            "valuePreview": "none"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "speed_1000",
+            "id": "speed_1000",
+            "className": "",
+            "valuePreview": "2"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "caption_1000",
+            "id": "caption_1000",
+            "className": "",
+            "valuePreview": "Untitled"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_slideshow_transition_style",
+            "id": "container-appearance_background_slideshow_transition_style",
+            "className": "",
+            "valuePreview": "crossfade"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_slideshow_transition_delay",
+            "id": "container-appearance_background_slideshow_transition_delay",
+            "className": "",
+            "valuePreview": "6000"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_slideshow_transition_speed",
+            "id": "container-appearance_background_slideshow_transition_speed",
+            "className": "",
+            "valuePreview": "1000"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_slideshow_order",
+            "id": "container-appearance_background_slideshow_order",
+            "className": "",
+            "valuePreview": "default"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_slideshow_colorBG",
+            "id": "container-appearance_background_slideshow_colorBG",
+            "className": "",
+            "valuePreview": "#000000"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "container_appearance_background_slideshow_optimizable",
+            "id": "container-container_appearance_background_slideshow_optimizable",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "container_appearance_background_slideshow_defer",
+            "id": "container-container_appearance_background_slideshow_defer",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_blur",
+            "id": "container-appearance_background_blur",
+            "className": "",
+            "valuePreview": "2.75"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_overlay_style",
+            "id": "container-appearance_background_overlay_style",
+            "className": "",
+            "valuePreview": "none"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_overlay_color_color",
+            "id": "container-appearance_background_overlay_color_color",
+            "className": "",
+            "valuePreview": "#000000C0"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_background_overlay_gradient_style",
+            "id": "container-appearance_background_overlay_gradient_style",
+            "className": "",
+            "valuePreview": "linear"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_background_overlay_gradient_reverse",
+            "id": "container-appearance_background_overlay_gradient_reverse",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_overlay_gradient_stop1_color",
+            "id": "container-appearance_background_overlay_gradient_stop1_color",
+            "className": "left",
+            "valuePreview": "#A15C5CC0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_stop1_position",
+            "id": "container-appearance_background_overlay_gradient_stop1_position",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_overlay_gradient_stop2_color",
+            "id": "container-appearance_background_overlay_gradient_stop2_color",
+            "className": "left",
+            "valuePreview": "#425FC7C0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_stop2_position",
+            "id": "container-appearance_background_overlay_gradient_stop2_position",
+            "className": "",
+            "valuePreview": "60"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_overlay_gradient_stop3_color",
+            "id": "container-appearance_background_overlay_gradient_stop3_color",
+            "className": "left",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_stop3_position",
+            "id": "container-appearance_background_overlay_gradient_stop3_position",
+            "className": "",
+            "valuePreview": "100"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_angle",
+            "id": "container-appearance_background_overlay_gradient_angle",
+            "className": "",
+            "valuePreview": "45"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_width",
+            "id": "container-appearance_background_overlay_gradient_width",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_height",
+            "id": "container-appearance_background_overlay_gradient_height",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_left",
+            "id": "container-appearance_background_overlay_gradient_left",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_overlay_gradient_top",
+            "id": "container-appearance_background_overlay_gradient_top",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "hidden",
+            "name": "appearance_background_pattern_style",
+            "id": "container-appearance_background_pattern_style",
+            "className": "",
+            "valuePreview": "none"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_background_pattern_color",
+            "id": "container-appearance_background_pattern_color",
+            "className": "",
+            "valuePreview": "#00000080"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_pattern_size",
+            "id": "container-appearance_background_pattern_size",
+            "className": "",
+            "valuePreview": "50"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_background_pattern_thickness",
+            "id": "container-appearance_background_pattern_thickness",
+            "className": "",
+            "valuePreview": "3"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_border_color",
+            "id": "container-appearance_border_color",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_border_width",
+            "id": "container-appearance_border_width",
+            "className": "",
+            "valuePreview": "1"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_border_style",
+            "id": "container-appearance_border_style",
+            "className": "",
+            "valuePreview": "1"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_border_top",
+            "id": "container-appearance_border_top",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_border_sides",
+            "id": "container-appearance_border_sides",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_border_bottom",
+            "id": "container-appearance_border_bottom",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_border_gutters",
+            "id": "container-appearance_border_gutters",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_border_flush",
+            "id": "container-appearance_border_flush",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "appearance_shadow_color",
+            "id": "container-appearance_shadow_color",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_shadow_angle",
+            "id": "container-appearance_shadow_angle",
+            "className": "",
+            "valuePreview": "90"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_shadow_size",
+            "id": "container-appearance_shadow_size",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_shadow_distance",
+            "id": "container-appearance_shadow_distance",
+            "className": "",
+            "valuePreview": "1.75"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_shadow_blur",
+            "id": "container-appearance_shadow_blur",
+            "className": "",
+            "valuePreview": "2"
+          },
+          {
+            "tag": "input",
+            "type": "radio",
+            "name": "appearance_mobile_settings",
+            "id": "container-appearance_mobile_settings_auto",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "input",
+            "type": "radio",
+            "name": "appearance_mobile_settings",
+            "id": "container-appearance_mobile_settings_manual",
+            "className": "checked",
+            "valuePreview": "manual"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_mobile_layout",
+            "id": "container-appearance_mobile_layout",
+            "className": "",
+            "valuePreview": "stack"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "appearance_mobile_layoutTablet",
+            "id": "container-appearance_mobile_layoutTablet",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_height",
+            "id": "container-appearance_mobile_height",
+            "className": "",
+            "valuePreview": "14"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_padding_vertical",
+            "id": "container-appearance_mobile_padding_vertical",
+            "className": "",
+            "valuePreview": "1.25"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_padding_horizontal",
+            "id": "container-appearance_mobile_padding_horizontal",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_gutters",
+            "id": "container-appearance_mobile_gutters",
+            "className": "",
+            "valuePreview": "2"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_margins_top",
+            "id": "container-appearance_mobile_margins_top",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_margins_bottom",
+            "id": "container-appearance_mobile_margins_bottom",
+            "className": "",
+            "valuePreview": "-0.125"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_mobile_align",
+            "id": "container-appearance_mobile_align",
+            "className": "",
+            "valuePreview": "auto"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "appearance_mobile_contents_alignHorizontal",
+            "id": "container-appearance_mobile_contents_alignHorizontal",
+            "className": "",
+            "valuePreview": "center"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "appearance_mobile_contents_spacing",
+            "id": "container-appearance_mobile_contents_spacing",
+            "className": "",
+            "valuePreview": "-0.125"
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "active": false,
+        "fieldCount": 14,
+        "fields": [
+          {
+            "tag": "select",
+            "type": null,
+            "name": "animation_onvisible_style",
+            "id": "container-animation_onvisible_style",
+            "className": "",
+            "valuePreview": "fade-in"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisible_speed",
+            "id": "container-animation_onvisible_speed",
+            "className": "",
+            "valuePreview": "1000"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisible_intensity",
+            "id": "container-animation_onvisible_intensity",
+            "className": "",
+            "valuePreview": "5"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisible_delay",
+            "id": "container-animation_onvisible_delay",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisible_threshold",
+            "id": "container-animation_onvisible_threshold",
+            "className": "",
+            "valuePreview": "1"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "animation_onvisible_color",
+            "id": "container-animation_onvisible_color",
+            "className": "",
+            "valuePreview": "#000000"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "animation_onvisible_replay",
+            "id": "container-animation_onvisible_replay",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "animation_onvisibleContents_style",
+            "id": "container-animation_onvisibleContents_style",
+            "className": "",
+            "valuePreview": "none"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisibleContents_speed",
+            "id": "container-animation_onvisibleContents_speed",
+            "className": "",
+            "valuePreview": "1000"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisibleContents_intensity",
+            "id": "container-animation_onvisibleContents_intensity",
+            "className": "",
+            "valuePreview": "5"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisibleContents_delay",
+            "id": "container-animation_onvisibleContents_delay",
+            "className": "",
+            "valuePreview": "0"
+          },
+          {
+            "tag": "input",
+            "type": "range",
+            "name": "animation_onvisibleContents_threshold",
+            "id": "container-animation_onvisibleContents_threshold",
+            "className": "",
+            "valuePreview": "3"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "animation_onvisibleContents_replay",
+            "id": "container-animation_onvisibleContents_replay",
+            "className": "",
+            "valuePreview": "on"
+          },
+          {
+            "tag": "input",
+            "type": "checkbox",
+            "name": "animation_onvisibleTrigger",
+            "id": "container-animation_onvisibleTrigger",
+            "className": "",
+            "valuePreview": "on"
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "active": false,
+        "fieldCount": 9,
+        "fields": [
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "settings_element_id",
+            "id": "container-settings_element_id",
+            "className": "",
+            "valuePreview": "header-content"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_classes",
+            "id": "container-settings_element_classes",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_attributes",
+            "id": "container-settings_element_attributes",
+            "className": "",
+            "valuePreview": "data-header-position=fixed"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": null,
+            "id": "container-settings_element_attributes_1000_1000",
+            "className": "",
+            "valuePreview": "data-header-position=fixed"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "settings_element_visibility",
+            "id": "container-settings_element_visibility",
+            "className": "",
+            "valuePreview": "normal"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_container",
+            "id": "container-settings_styles_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_mobile_container",
+            "id": "container-settings_styles_mobile_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "active": false,
+        "fieldCount": 5,
+        "fields": [
+          {
+            "tag": "input",
+            "type": "text",
+            "name": "settings_element_id",
+            "id": "container-settings_element_id",
+            "className": "",
+            "valuePreview": "header-content"
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_classes",
+            "id": "container-settings_element_classes",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_element_attributes",
+            "id": "container-settings_element_attributes",
+            "className": "",
+            "valuePreview": "data-header-position=fixed"
+          },
+          {
+            "tag": "input",
+            "type": "text",
+            "name": null,
+            "id": "container-settings_element_attributes_1000_1000",
+            "className": "",
+            "valuePreview": "data-header-position=fixed"
+          },
+          {
+            "tag": "select",
+            "type": null,
+            "name": "settings_element_visibility",
+            "id": "container-settings_element_visibility",
+            "className": "",
+            "valuePreview": "normal"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "active": false,
+        "fieldCount": 4,
+        "fields": [
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_container",
+            "id": "container-settings_styles_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          },
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_mobile_container",
+            "id": "container-settings_styles_mobile_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "active": false,
+        "fieldCount": 2,
+        "fields": [
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_container",
+            "id": "container-settings_styles_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "active": false,
+        "fieldCount": 2,
+        "fields": [
+          {
+            "tag": "textarea",
+            "type": null,
+            "name": "settings_styles_mobile_container",
+            "id": "container-settings_styles_mobile_container",
+            "className": "",
+            "valuePreview": ""
+          },
+          {
+            "tag": "div",
+            "type": null,
+            "name": null,
+            "id": null,
+            "className": "input-facade textarea",
+            "valuePreview": ""
+          }
+        ]
+      }
+    ]
   },
   "sections": [
     {
@@ -333,13 +1747,6 @@
     },
     {
       "index": 2,
-      "dataId": "control01",
-      "text": "(#exclude-section-bellow-the-line)",
-      "className": "component-wrapper full screen",
-      "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]"
-    },
-    {
-      "index": 3,
       "dataId": "control02",
       "text": "Footer Start",
       "className": "component-wrapper full screen",
@@ -347,18 +1754,19 @@
     }
   ],
   "components": {
-    "total": 80,
+    "total": 122,
     "byType": {
-      "container": 15,
+      "container": 27,
       "image": 10,
       "links": 2,
-      "control": 4,
-      "text": 32,
-      "list": 1,
-      "buttons": 3,
+      "buttons": 7,
+      "control": 3,
+      "text": 49,
       "divider": 3,
+      "list": 1,
+      "embed": 18,
       "form": 1,
-      "embed": 9
+      "icons": 1
     },
     "items": [
       {
@@ -366,8 +1774,8 @@
         "dataType": "container",
         "className": "component-wrapper max is-first is-last",
         "parentDataId": null,
-        "childWrapperCount": 2,
-        "textSample": "AboutServicesModal Window",
+        "childWrapperCount": 3,
+        "textSample": "Why it worksOfferGet template Get the template",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container02\"]"
       },
       {
@@ -385,8 +1793,17 @@
         "className": "component-wrapper is-first is-last",
         "parentDataId": "container02",
         "childWrapperCount": 0,
-        "textSample": "AboutServicesModal Window",
+        "textSample": "Why it worksOfferGet template",
         "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"links02\"]"
+      },
+      {
+        "dataId": "buttons04",
+        "dataType": "buttons",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container02",
+        "childWrapperCount": 0,
+        "textSample": "Get the template",
+        "selector": "div.component > div.--container-component.--instance-container02 > div.--wrapper > div.--inner > div > div[data-id=\"buttons04\"]"
       },
       {
         "dataId": "control04",
@@ -398,121 +1815,121 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control04\"]"
       },
       {
-        "dataId": "container01",
+        "dataId": "container27",
         "dataType": "container",
-        "className": "component-wrapper max is-first",
+        "className": "component-wrapper full max is-first",
         "parentDataId": null,
-        "childWrapperCount": 10,
-        "textSample": "AboutServicesGet a quoteHeading Level (h1) bold part link in headingHeading Level (h2) bold part link in headingHeading Level (h3) bold part link in headingHeading Level (h4) bold ",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container01\"]"
+        "childWrapperCount": 2,
+        "textSample": "A Carrd demo that sells the plugin systemThis page is intentionally long. It shows the full stack, explains why each plugin exists, and gives buyers a direct path from curiosity to",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container27\"]"
       },
       {
-        "dataId": "links01",
-        "dataType": "links",
+        "dataId": "text44",
+        "dataType": "text",
         "className": "component-wrapper is-first",
-        "parentDataId": "container01",
+        "parentDataId": "container27",
         "childWrapperCount": 0,
-        "textSample": "AboutServicesGet a quote",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"links01\"]"
+        "textSample": "A Carrd demo that sells the plugin system",
+        "selector": "div.component > div.--container-component.--instance-container27 > div.--wrapper > div.--inner > div > div[data-id=\"text44\"]"
       },
       {
-        "dataId": "text03",
+        "dataId": "text50",
         "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "Heading Level (h1) bold part link in heading",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text03\"]"
-      },
-      {
-        "dataId": "text06",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "Heading Level (h2) bold part link in heading",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text06\"]"
-      },
-      {
-        "dataId": "text07",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "Heading Level (h3) bold part link in heading",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text07\"]"
-      },
-      {
-        "dataId": "text04",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "Heading Level (h4) bold part link in heading",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text04\"]"
-      },
-      {
-        "dataId": "text10",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text10\"]"
-      },
-      {
-        "dataId": "text02",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "(Body) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. Line he",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text02\"]"
-      },
-      {
-        "dataId": "list01",
-        "dataType": "list",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.Line height, le",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"list01\"]"
-      },
-      {
-        "dataId": "text05",
-        "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": "container01",
-        "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text05\"]"
-      },
-      {
-        "dataId": "buttons01",
-        "dataType": "buttons",
         "className": "component-wrapper is-last",
-        "parentDataId": "container01",
+        "parentDataId": "container27",
         "childWrapperCount": 0,
-        "textSample": "Button Primary",
-        "selector": "div[data-id=\"container01\"] > div.component.hover > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons01\"]"
+        "textSample": "This page is intentionally long. It shows the full stack, explains why each plugin exists, and gives buyers a direct path from curiosity to purchase.",
+        "selector": "div.component > div.--container-component.--instance-container27 > div.--wrapper > div.--inner > div > div[data-id=\"text50\"]"
       },
       {
-        "dataId": "text32",
-        "dataType": "text",
-        "className": "component-wrapper",
+        "dataId": "container23",
+        "dataType": "container",
+        "className": "component-wrapper max",
         "parentDataId": null,
+        "childWrapperCount": 2,
+        "textSample": "Why the funnel worksLead with proof, then introduce the offer, then close with a clear CTA.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container23\"]"
+      },
+      {
+        "dataId": "text48",
+        "dataType": "text",
+        "className": "component-wrapper is-first",
+        "parentDataId": "container23",
         "childWrapperCount": 0,
-        "textSample": "Columns (for single container)",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text32\"]"
+        "textSample": "Why the funnel works",
+        "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"text48\"]"
+      },
+      {
+        "dataId": "text45",
+        "dataType": "text",
+        "className": "component-wrapper is-last",
+        "parentDataId": "container23",
+        "childWrapperCount": 0,
+        "textSample": "Lead with proof, then introduce the offer, then close with a clear CTA.",
+        "selector": "div.component > div.--container-component.--instance-container23 > div.--wrapper > div.--inner > div > div[data-id=\"text45\"]"
+      },
+      {
+        "dataId": "container24",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Proof first",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container24\"]"
+      },
+      {
+        "dataId": "text46",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container24",
+        "childWrapperCount": 0,
+        "textSample": "Proof first",
+        "selector": "div[data-id=\"container24\"] > div.component > div.--container-component.--instance-container24 > div.--wrapper > div.--inner > div[data-id=\"text46\"]"
+      },
+      {
+        "dataId": "container22",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Offer second",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container22\"]"
       },
       {
         "dataId": "text26",
         "dataType": "text",
-        "className": "component-wrapper",
-        "parentDataId": null,
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container22",
         "childWrapperCount": 0,
-        "textSample": "+ Shopping-cart buttons",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text26\"]"
+        "textSample": "Offer second",
+        "selector": "div[data-id=\"container22\"] > div.component > div.--container-component.--instance-container22 > div.--wrapper > div.--inner > div[data-id=\"text26\"]"
+      },
+      {
+        "dataId": "container28",
+        "dataType": "container",
+        "className": "component-wrapper full max",
+        "parentDataId": null,
+        "childWrapperCount": 2,
+        "textSample": "Choose your versionKeep the full showcase for teaching and selling, or strip it down into a lightweight clone.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container28\"]"
+      },
+      {
+        "dataId": "text32",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container28",
+        "childWrapperCount": 0,
+        "textSample": "Choose your version",
+        "selector": "div.component > div.--container-component.--instance-container28 > div.--wrapper > div.--inner > div > div[data-id=\"text32\"]"
+      },
+      {
+        "dataId": "text51",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container28",
+        "childWrapperCount": 0,
+        "textSample": "Keep the full showcase for teaching and selling, or strip it down into a lightweight clone.",
+        "selector": "div.component > div.--container-component.--instance-container28 > div.--wrapper > div.--inner > div > div[data-id=\"text51\"]"
       },
       {
         "dataId": "container06",
@@ -520,7 +1937,7 @@
         "className": "component-wrapper max",
         "parentDataId": null,
         "childWrapperCount": 5,
-        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.(Lea",
+        "textSample": "Full demo packThe extended version with explanation, examples, and conversion copy. Buy full demo packLightweight clone Buy lightweight clone",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container06\"]"
       },
       {
@@ -529,7 +1946,7 @@
         "className": "component-wrapper is-first is-last",
         "parentDataId": "container06",
         "childWrapperCount": 0,
-        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "textSample": "Full demo pack",
         "selector": "div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text21\"]"
       },
       {
@@ -538,7 +1955,7 @@
         "className": "component-wrapper is-first",
         "parentDataId": "container06",
         "childWrapperCount": 0,
-        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "textSample": "The extended version with explanation, examples, and conversion copy.",
         "selector": "div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text22\"]"
       },
       {
@@ -547,7 +1964,7 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container06",
         "childWrapperCount": 0,
-        "textSample": "Quick order product 1",
+        "textSample": "Buy full demo pack",
         "selector": "div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"buttons03\"]"
       },
       {
@@ -556,7 +1973,7 @@
         "className": "component-wrapper is-first",
         "parentDataId": "container06",
         "childWrapperCount": 0,
-        "textSample": "(Lead) This is a description paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen.",
+        "textSample": "Lightweight clone",
         "selector": "div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"text01\"]"
       },
       {
@@ -565,25 +1982,52 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container06",
         "childWrapperCount": 0,
-        "textSample": "Quick order product 2",
+        "textSample": "Buy lightweight clone",
         "selector": "div.component > div.--container-component.--instance-container06 > div.--wrapper > div.--inner > div > div[data-id=\"buttons02\"]"
+      },
+      {
+        "dataId": "container25",
+        "dataType": "container",
+        "className": "component-wrapper full max",
+        "parentDataId": null,
+        "childWrapperCount": 2,
+        "textSample": "What the stack includesEach card below is a reusable layer inside the same system.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container25\"]"
       },
       {
         "dataId": "text27",
         "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container25",
+        "childWrapperCount": 0,
+        "textSample": "What the stack includes",
+        "selector": "div.component > div.--container-component.--instance-container25 > div.--wrapper > div.--inner > div > div[data-id=\"text27\"]"
+      },
+      {
+        "dataId": "text49",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container25",
+        "childWrapperCount": 0,
+        "textSample": "Each card below is a reusable layer inside the same system.",
+        "selector": "div.component > div.--container-component.--instance-container25 > div.--wrapper > div.--inner > div > div[data-id=\"text49\"]"
+      },
+      {
+        "dataId": "buttons07",
+        "dataType": "buttons",
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Columns (for multi-containers)",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text27\"]"
+        "textSample": "Full demoLite clone",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"buttons07\"]"
       },
       {
         "dataId": "container13",
         "dataType": "container",
         "className": "component-wrapper",
         "parentDataId": null,
-        "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "childWrapperCount": 3,
+        "textSample": "Full demoLite clone",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container13\"]"
       },
       {
@@ -596,12 +2040,21 @@
         "selector": "div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"image08\"]"
       },
       {
+        "dataId": "text37",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container13",
+        "childWrapperCount": 0,
+        "textSample": "Full demo",
+        "selector": "div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"text37\"]"
+      },
+      {
         "dataId": "text29",
         "dataType": "text",
         "className": "component-wrapper is-last",
         "parentDataId": "container13",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Lite clone",
         "selector": "div[data-id=\"container13\"] > div.component > div.--container-component.--instance-container13 > div.--wrapper > div.--inner > div[data-id=\"text29\"]"
       },
       {
@@ -609,8 +2062,8 @@
         "dataType": "container",
         "className": "component-wrapper",
         "parentDataId": null,
-        "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "childWrapperCount": 3,
+        "textSample": "Explains every plugin and keeps the long-form sales narrative.Keeps the plugin behavior and removes the extra words.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container14\"]"
       },
       {
@@ -623,12 +2076,21 @@
         "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"image09\"]"
       },
       {
+        "dataId": "text38",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container14",
+        "childWrapperCount": 0,
+        "textSample": "Explains every plugin and keeps the long-form sales narrative.",
+        "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"text38\"]"
+      },
+      {
         "dataId": "text30",
         "dataType": "text",
         "className": "component-wrapper is-last",
         "parentDataId": "container14",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Keeps the plugin behavior and removes the extra words.",
         "selector": "div[data-id=\"container14\"] > div.component > div.--container-component.--instance-container14 > div.--wrapper > div.--inner > div[data-id=\"text30\"]"
       },
       {
@@ -637,7 +2099,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Resellable layers",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container15\"]"
       },
       {
@@ -655,7 +2117,7 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container15",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Resellable layers",
         "selector": "div[data-id=\"container15\"] > div.component > div.--container-component.--instance-container15 > div.--wrapper > div.--inner > div[data-id=\"text31\"]"
       },
       {
@@ -664,7 +2126,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "The same structure works as a demo, a template, or a separate marketing landing.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container04\"]"
       },
       {
@@ -682,8 +2144,17 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container04",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "The same structure works as a demo, a template, or a separate marketing landing.",
         "selector": "div[data-id=\"container04\"] > div.component > div.--container-component.--instance-container04 > div.--wrapper > div.--inner > div[data-id=\"text08\"]"
+      },
+      {
+        "dataId": "buttons06",
+        "dataType": "buttons",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Full demoLite clone",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"buttons06\"]"
       },
       {
         "dataId": "text24",
@@ -691,7 +2162,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Slider",
+        "textSample": "How the same build ships three ways",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"text24\"]"
       },
       {
@@ -700,7 +2171,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Extended demo: explains every plugin and keeps the teaching copy.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container11\"]"
       },
       {
@@ -718,7 +2189,7 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container11",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Extended demo: explains every plugin and keeps the teaching copy.",
         "selector": "div[data-id=\"container11\"] > div.component > div.--container-component.--instance-container11 > div.--wrapper > div.--inner > div[data-id=\"text28\"]"
       },
       {
@@ -727,7 +2198,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Lean clone: keeps the plugin behavior and removes the extra words.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container05\"]"
       },
       {
@@ -745,7 +2216,7 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container05",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Lean clone: keeps the plugin behavior and removes the extra words.",
         "selector": "div[data-id=\"container05\"] > div.component > div.--container-component.--instance-container05 > div.--wrapper > div.--inner > div[data-id=\"text11\"]"
       },
       {
@@ -754,7 +2225,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Template pack: a reusable starter for new client or product pages.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container07\"]"
       },
       {
@@ -772,7 +2243,7 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container07",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Template pack: a reusable starter for new client or product pages.",
         "selector": "div[data-id=\"container07\"] > div.component > div.--container-component.--instance-container07 > div.--wrapper > div.--inner > div[data-id=\"text18\"]"
       },
       {
@@ -781,7 +2252,7 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Network landing: the outer sales layer for the mini-template direction.",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container08\"]"
       },
       {
@@ -799,53 +2270,143 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container08",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
+        "textSample": "Network landing: the outer sales layer for the mini-template direction.",
         "selector": "div[data-id=\"container08\"] > div.component > div.--container-component.--instance-container08 > div.--wrapper > div.--inner > div[data-id=\"text19\"]"
       },
       {
-        "dataId": "container09",
+        "dataId": "container16",
         "dataType": "container",
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 2,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container09\"]"
+        "textSample": "Production footer: the final CTA, form, and trust layer.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container16\"]"
       },
       {
-        "dataId": "image07",
+        "dataId": "image11",
         "dataType": "image",
         "className": "component-wrapper full is-first",
-        "parentDataId": "container09",
+        "parentDataId": "container16",
         "childWrapperCount": 0,
         "textSample": "",
-        "selector": "div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"image07\"]"
+        "selector": "div[data-id=\"container16\"] > div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div[data-id=\"image11\"]"
       },
       {
-        "dataId": "text20",
+        "dataId": "text33",
         "dataType": "text",
         "className": "component-wrapper is-last",
-        "parentDataId": "container09",
+        "parentDataId": "container16",
         "childWrapperCount": 0,
-        "textSample": "(Body Small) This is a regular paragraph. It contains several sentences that demonstrate the default text style. The goal is to show how readable the body text appears on screen. L",
-        "selector": "div[data-id=\"container09\"] > div.component > div.--container-component.--instance-container09 > div.--wrapper > div.--inner > div[data-id=\"text20\"]"
+        "textSample": "Production footer: the final CTA, form, and trust layer.",
+        "selector": "div[data-id=\"container16\"] > div.component > div.--container-component.--instance-container16 > div.--wrapper > div.--inner > div[data-id=\"text33\"]"
       },
       {
-        "dataId": "container03",
+        "dataId": "container26",
         "dataType": "container",
-        "className": "component-wrapper max is-last",
+        "className": "component-wrapper full max",
         "parentDataId": null,
-        "childWrapperCount": 11,
-        "textSample": "FAQ sectionQ. What is this FAQ Toggle?It's a special script for Carrd. It automatically transforms your list of questions and answers into a clean, interactive \"accordion\" (where a",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container03\"]"
+        "childWrapperCount": 2,
+        "textSample": "Choose the angleSame stack, different market message.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container26\"]"
+      },
+      {
+        "dataId": "text43",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container26",
+        "childWrapperCount": 0,
+        "textSample": "Choose the angle",
+        "selector": "div.component > div.--container-component.--instance-container26 > div.--wrapper > div.--inner > div > div[data-id=\"text43\"]"
+      },
+      {
+        "dataId": "text10",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container26",
+        "childWrapperCount": 0,
+        "textSample": "Same stack, different market message.",
+        "selector": "div.component > div.--container-component.--instance-container26 > div.--wrapper > div.--inner > div > div[data-id=\"text10\"]"
+      },
+      {
+        "dataId": "buttons01",
+        "dataType": "buttons",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Full demoLite cloneTemplate network",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"buttons01\"]"
+      },
+      {
+        "dataId": "container20",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Use the full demo when the site needs teaching, proof, and conversion in one place.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container20\"]"
+      },
+      {
+        "dataId": "text41",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container20",
+        "childWrapperCount": 0,
+        "textSample": "Use the full demo when the site needs teaching, proof, and conversion in one place.",
+        "selector": "div[data-id=\"container20\"] > div.component > div.--container-component.--instance-container20 > div.--wrapper > div.--inner > div[data-id=\"text41\"]"
+      },
+      {
+        "dataId": "container21",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Use the lite clone when you want a cleaner page with fewer words.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container21\"]"
+      },
+      {
+        "dataId": "text42",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container21",
+        "childWrapperCount": 0,
+        "textSample": "Use the lite clone when you want a cleaner page with fewer words.",
+        "selector": "div[data-id=\"container21\"] > div.component > div.--container-component.--instance-container21 > div.--wrapper > div.--inner > div[data-id=\"text42\"]"
+      },
+      {
+        "dataId": "container19",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Use the template network when the site itself becomes the product line.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container19\"]"
       },
       {
         "dataId": "text12",
         "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container19",
+        "childWrapperCount": 0,
+        "textSample": "Use the template network when the site itself becomes the product line.",
+        "selector": "div[data-id=\"container19\"] > div.component > div.--container-component.--instance-container19 > div.--wrapper > div.--inner > div[data-id=\"text12\"]"
+      },
+      {
+        "dataId": "container03",
+        "dataType": "container",
+        "className": "component-wrapper max",
+        "parentDataId": null,
+        "childWrapperCount": 11,
+        "textSample": "FAQCan I reuse this template as-is?Yes. The demo version can stay educational, while the lite clone can remove the long explanations.What changes in the slim version?Add data-faq=m",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container03\"]"
+      },
+      {
+        "dataId": "text40",
+        "dataType": "text",
         "className": "component-wrapper is-first",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "FAQ section",
-        "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text12\"]"
+        "textSample": "FAQ",
+        "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text40\"]"
       },
       {
         "dataId": "divider02",
@@ -862,7 +2423,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "Q. What is this FAQ Toggle?",
+        "textSample": "Can I reuse this template as-is?",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text14\"]"
       },
       {
@@ -871,7 +2432,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "It's a special script for Carrd. It automatically transforms your list of questions and answers into a clean, interactive \"accordion\" (where answers smoothly appear when you click ",
+        "textSample": "Yes. The demo version can stay educational, while the lite clone can remove the long explanations.",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text15\"]"
       },
       {
@@ -889,7 +2450,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "Q. How do I format my content?",
+        "textSample": "What changes in the slim version?",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text17\"]"
       },
       {
@@ -898,7 +2459,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "It's simple. You must wrap the entire block in a class=\"FAQContainer\". Then, insert a divider-component before each question (your H1-H3 heading) and after each answer (your text/n",
+        "textSample": "Add data-faq=main to the container and keep the questions in order. The plugin handles the interaction.",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text23\"]"
       },
       {
@@ -907,7 +2468,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "It's simple. You must wrap the entire block in a class=\"FAQContainer\". Then, insert a divider-component before each question (your H1-H3 heading) and after each answer (your text/n",
+        "textSample": "Add data-faq=main to the container and keep the questions in order. The plugin handles the interaction.",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text16\"]"
       },
       {
@@ -925,7 +2486,7 @@
         "className": "component-wrapper",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "Q. How do I add the script to my Carrd site?",
+        "textSample": "Can I sell the mini-template network separately?",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text13\"]"
       },
       {
@@ -934,8 +2495,125 @@
         "className": "component-wrapper is-last",
         "parentDataId": "container03",
         "childWrapperCount": 0,
-        "textSample": "You can use the CDN method. Add one Embed (Style: Hidden) element to the Head section for the CSS file. Then, add a second Embed (Style: Hidden) element to the Body End section for",
+        "textSample": "Keep the plugin runtime, trim the narrative copy, and leave the conversion blocks in place.",
         "selector": "div[data-id=\"container03\"] > div.component > div.--container-component.--instance-container03 > div.--wrapper > div.--inner > div[data-id=\"text09\"]"
+      },
+      {
+        "dataId": "container01",
+        "dataType": "container",
+        "className": "component-wrapper max is-last",
+        "parentDataId": null,
+        "childWrapperCount": 12,
+        "textSample": "DemoPricingFAQThis page is the proof-of-work and the product page.It shows the stack, the selling path, and the reusable layout.That makes the demo useful even before a buyer click",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container01\"]"
+      },
+      {
+        "dataId": "links01",
+        "dataType": "links",
+        "className": "component-wrapper is-first",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "DemoPricingFAQ",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"links01\"]"
+      },
+      {
+        "dataId": "text03",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "This page is the proof-of-work and the product page.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text03\"]"
+      },
+      {
+        "dataId": "text06",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "It shows the stack, the selling path, and the reusable layout.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text06\"]"
+      },
+      {
+        "dataId": "text07",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "That makes the demo useful even before a buyer clicks through.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text07\"]"
+      },
+      {
+        "dataId": "text04",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "What ships in the full kit",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text04\"]"
+      },
+      {
+        "dataId": "text47",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "Use this area for proof, policy, or a longer explanation of the system.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text47\"]"
+      },
+      {
+        "dataId": "text02",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "A good template does three jobs: it teaches, it sells, and it can be reused without rebuilding the structure.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text02\"]"
+      },
+      {
+        "dataId": "text34",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "The layout stays readable even when the page carries more selling logic.",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text34\"]"
+      },
+      {
+        "dataId": "list01",
+        "dataType": "list",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "A second paragraph may contain bold text, italic text, and even bold italic text to test emphasis styles. Inline elements such as Underline or highlighted phrases can also appear i",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"list01\"]"
+      },
+      {
+        "dataId": "text05",
+        "dataType": "text",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "## Reuse termsThis template is built to be reused. Keep the data contracts, replace the copy, and ship the version that matches the brand.### What stays- Plugin runtime- Section st",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"text05\"]"
+      },
+      {
+        "dataId": "buttons05",
+        "dataType": "buttons",
+        "className": "component-wrapper",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "Get access",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"buttons05\"]"
+      },
+      {
+        "dataId": "embed18",
+        "dataType": "embed",
+        "className": "component-wrapper is-last",
+        "parentDataId": "container01",
+        "childWrapperCount": 0,
+        "textSample": "Design Palette",
+        "selector": "div[data-id=\"container01\"] > div.component > div.--container-component.--instance-container01 > div.--wrapper > div.--inner > div[data-id=\"embed18\"]"
       },
       {
         "dataId": "control03",
@@ -952,7 +2630,7 @@
         "className": "component-wrapper max is-first is-last",
         "parentDataId": null,
         "childWrapperCount": 1,
-        "textSample": "EmailName (optional)Order DetailsSubmit",
+        "textSample": "EmailName (optional)What do you want to build?Request access",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container10\"]"
       },
       {
@@ -961,17 +2639,8 @@
         "className": "component-wrapper is-first is-last",
         "parentDataId": "container10",
         "childWrapperCount": 0,
-        "textSample": "EmailName (optional)Order DetailsSubmit",
+        "textSample": "EmailName (optional)What do you want to build?Request access",
         "selector": "div[data-id=\"container10\"] > div.component > div.--container-component.--instance-container10 > div.--wrapper > div.--inner > div[data-id=\"form01\"]"
-      },
-      {
-        "dataId": "control01",
-        "dataType": "control",
-        "className": "component-wrapper full screen",
-        "parentDataId": null,
-        "childWrapperCount": 0,
-        "textSample": "(#exclude-section-bellow-the-line)",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control01\"]"
       },
       {
         "dataId": "control02",
@@ -983,22 +2652,76 @@
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"control02\"]"
       },
       {
-        "dataId": "container12",
+        "dataId": "container18",
         "dataType": "container",
-        "className": "component-wrapper is-first",
+        "className": "component-wrapper max is-first",
         "parentDataId": null,
         "childWrapperCount": 1,
-        "textSample": "Modal 1 Content is here",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container12\"]"
+        "textSample": "Footer",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container18\"]"
       },
       {
         "dataId": "text25",
         "dataType": "text",
         "className": "component-wrapper is-first is-last",
+        "parentDataId": "container18",
+        "childWrapperCount": 0,
+        "textSample": "Footer",
+        "selector": "div[data-id=\"container18\"] > div.component > div.--container-component.--instance-container18 > div.--wrapper > div.--inner > div[data-id=\"text25\"]"
+      },
+      {
+        "dataId": "container12",
+        "dataType": "container",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 1,
+        "textSample": "Request access to the full kit.",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container12\"]"
+      },
+      {
+        "dataId": "text36",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
         "parentDataId": "container12",
         "childWrapperCount": 0,
-        "textSample": "Modal 1 Content is here",
-        "selector": "div[data-id=\"container12\"] > div.component > div.--container-component.--instance-container12 > div.--wrapper > div.--inner > div[data-id=\"text25\"]"
+        "textSample": "Request access to the full kit.",
+        "selector": "div[data-id=\"container12\"] > div.component > div.--container-component.--instance-container12 > div.--wrapper > div.--inner > div[data-id=\"text36\"]"
+      },
+      {
+        "dataId": "container17",
+        "dataType": "container",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 2,
+        "textSample": "This site uses cookies to improve your experience check",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"container17\"]"
+      },
+      {
+        "dataId": "text35",
+        "dataType": "text",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container17",
+        "childWrapperCount": 0,
+        "textSample": "This site uses cookies to improve your experience",
+        "selector": "div.component > div.--container-component.--instance-container17 > div.--wrapper > div.--inner > div > div[data-id=\"text35\"]"
+      },
+      {
+        "dataId": "icons01",
+        "dataType": "icons",
+        "className": "component-wrapper is-first is-last",
+        "parentDataId": "container17",
+        "childWrapperCount": 0,
+        "textSample": "check",
+        "selector": "div.component > div.--container-component.--instance-container17 > div.--wrapper > div.--inner > div > div[data-id=\"icons01\"]"
+      },
+      {
+        "dataId": "embed01",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "No Loadwaiting (HEAD)",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed01\"]"
       },
       {
         "dataId": "embed02",
@@ -1006,26 +2729,8 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Theme CSS Variables in HEAD",
+        "textSample": "Theme Design System (HEAD)",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed02\"]"
-      },
-      {
-        "dataId": "embed08",
-        "dataType": "embed",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 0,
-        "textSample": "No Load Waiting in HEAD",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed08\"]"
-      },
-      {
-        "dataId": "embed04",
-        "dataType": "embed",
-        "className": "component-wrapper",
-        "parentDataId": null,
-        "childWrapperCount": 0,
-        "textSample": "Shopping Card CSS",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed04\"]"
       },
       {
         "dataId": "embed03",
@@ -1033,17 +2738,17 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Shopping Card JS",
+        "textSample": "Theme Customizing (HEAD)",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed03\"]"
       },
       {
-        "dataId": "embed06",
+        "dataId": "embed04",
         "dataType": "embed",
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Slider",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed06\"]"
+        "textSample": "Accordeon",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed04\"]"
       },
       {
         "dataId": "embed05",
@@ -1051,17 +2756,17 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Cards",
+        "textSample": "Cookie Banner",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed05\"]"
       },
       {
-        "dataId": "embed09",
+        "dataId": "embed06",
         "dataType": "embed",
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Grid Cluster",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed09\"]"
+        "textSample": "Faq",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed06\"]"
       },
       {
         "dataId": "embed07",
@@ -1069,17 +2774,98 @@
         "className": "component-wrapper",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "Modal",
+        "textSample": "Floating Cta",
         "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed07\"]"
       },
       {
-        "dataId": "embed01",
+        "dataId": "embed08",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Grid Cluster",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed08\"]"
+      },
+      {
+        "dataId": "embed09",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Header Nav",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed09\"]"
+      },
+      {
+        "dataId": "embed10",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Modal",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed10\"]"
+      },
+      {
+        "dataId": "embed11",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Shopping Cart 1/2",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed11\"]"
+      },
+      {
+        "dataId": "embed12",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Shopping Cart 2/2",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed12\"]"
+      },
+      {
+        "dataId": "embed13",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Slider 1/2",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed13\"]"
+      },
+      {
+        "dataId": "embed14",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Slider 2/2",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed14\"]"
+      },
+      {
+        "dataId": "embed15",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Stacker",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed15\"]"
+      },
+      {
+        "dataId": "embed16",
+        "dataType": "embed",
+        "className": "component-wrapper",
+        "parentDataId": null,
+        "childWrapperCount": 0,
+        "textSample": "Switcher",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed16\"]"
+      },
+      {
+        "dataId": "embed17",
         "dataType": "embed",
         "className": "component-wrapper is-last",
         "parentDataId": null,
         "childWrapperCount": 0,
-        "textSample": "FAQ",
-        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed01\"]"
+        "textSample": "Typography",
+        "selector": "div.canvas-wrapper > div.--body > div.--site-wrapper > div.--site-main > div.--inner > div[data-id=\"embed17\"]"
       }
     ]
   }

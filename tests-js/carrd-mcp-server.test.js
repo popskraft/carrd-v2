@@ -73,6 +73,7 @@ test("MCP server supports discover, initialize, tools/list, and read-only tool c
     "check_profile",
     "sync_profile",
     "onboard_site",
+    "plan_migration",
     "resolve_target",
     "read_target",
     "update_target"
@@ -100,4 +101,42 @@ test("MCP server supports discover, initialize, tools/list, and read-only tool c
     resolved.result.structuredContent.resolution.target.semanticKey,
     "hero-title-text"
   );
+
+  const tempDir = require("node:fs").mkdtempSync(require("node:path").join(require("node:os").tmpdir(), "carrd-plan-"));
+  const sourceFile = require("node:path").join(tempDir, "source.json");
+  require("node:fs").writeFileSync(
+    sourceFile,
+    JSON.stringify({
+      generatedAt: "2026-07-13T10:00:00.000Z",
+      canvasOrder: ["container01"],
+      components: [
+        {
+          componentId: "container01",
+          componentType: "container",
+          elementId: "",
+          classes: ["txt"],
+          attributes: "",
+          childIds: [],
+          topLevelIndex: 0,
+          textSnippet: "",
+          listCounts: {},
+          tabs: []
+        }
+      ]
+    })
+  );
+  const planned = await server.request(6, "tools/call", {
+    name: "plan_migration",
+    arguments: {
+      sourceFile,
+      canonSite: "main-template"
+    }
+  });
+  assert.equal(
+    ["ready-for-live-testing", "manual-resolution-required"].includes(
+      planned.result.structuredContent.planStatus
+    ),
+    true
+  );
+  assert.equal(Boolean(planned.result.structuredContent.canonSnapshot.snapshotId), true);
 });

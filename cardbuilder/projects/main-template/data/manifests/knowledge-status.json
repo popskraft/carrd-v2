@@ -14,15 +14,15 @@
     },
     "templateInstance": {
       "status": "mcp-bootstrap-synced",
-      "lastScanAt": "2026-07-07T19:22:09.216Z",
-      "notes": "On 2026-07-07 the operational truth package for main-template was refreshed: builder snapshot now records 106 live Builder elements across 11 types with 6 embed elements, the deterministic MCP target map was re-synced against live Builder state, and the published-site scan plus bundle-aware live inventory/sync diff were rebuilt for mini.crd.co on version-pinned theme-runtime@2.1.0 with add-on no-loadwaiting/shopping-cart/cookie-banner assets."
+      "lastScanAt": "2026-07-13T09:26:30.228Z",
+      "notes": "On 2026-07-13 the canonical Builder draft baseline was finalized after the MBX reinstall and anchor cleanup: fresh builder snapshot records 122 live Builder elements across 11 types with 18 embed elements, fresh tabs/dom/style scans were captured, the deterministic MCP target map was re-synced, cards was intentionally removed from the Builder draft, and the temporary why anchor was removed from container23. Live persistence proof was extended the same day: a temporary custom data-* probe on stable container18 survived Save -> Reload -> Readback and cleanup survived Publish -> Reload -> Published Readback; a temporary custom id probe on safe container28 also survived Publish -> Builder Readback -> Published HTML and its cleanup survived the same path. A real modal product attr probe then showed the current boundary more honestly: container12 kept data-modal-close-on-overlay=off in Builder after publish, but published mini.crd.co did not expose that attr on #data-modal-contact. Structural embed persistence is still not fully proven."
     }
   },
   "fullScanCompletedAt": "2026-04-06T15:47:35.060Z",
-  "lastPartialScanAt": "2026-07-07T19:22:09.216Z",
+  "lastPartialScanAt": "2026-07-13T09:26:30.228Z",
   "publicCarrdDocsIndexLastSeenAt": "2026-03-21T06:04:42.105Z",
   "status": "mcp-bootstrap-synced",
-  "reason": "Remote-control readiness was preserved while the canonical main-template operational truth was refreshed: new tabs snapshot, new builder snapshot, new bundle-aware published/live plugin inventories, and a re-synced deterministic MCP target map were captured without automated save or publish.",
+  "reason": "Builder draft operational truth was refreshed and finalized after the 2026-07-13 MBX reinstall and id cleanup. Stable-container custom data-* persistence, safe custom id persistence, and cleanup publish flow were proven live, but a real modal product attr still failed to cross the full Builder-to-published boundary, so persistent canonical version still needs proof for additional mutation classes such as other product attrs, embed edits, and broader structural changes.",
   "requiredArtifacts": [
     "builder-static knowledge manifest",
     "builder-components snapshot",

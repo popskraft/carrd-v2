@@ -5,13 +5,15 @@
 - Template id: `main-template`
 - Builder URL: `https://carrd.co/dashboard/4155176224428477/build`
 - Published URL: `https://mini.crd.co/`
-- Refresh date: `2026-07-07`
-- Refresh mode: `read-only operational truth refresh`
+- Refresh date: `2026-07-13`
+- Refresh mode: `read-only canonical remap after full MBX reinstall`
 
 ## Inputs
 
 - `template-instance-builder-scan.json`
-- `template-instance-element-tabs-map-2026-07-07.json`
+- `template-instance-element-tabs-map-2026-07-13.json`
+- `template-instance-dom-audit.json`
+- `template-instance-style-map.json`
 - `published-site-plugin-scan.json`
 - `live-plugin-inventory.json`
 - `template-vs-repo-plugin-sync.json`
@@ -19,76 +21,71 @@
 
 ## Builder Summary
 
-- Total components: `106`
-- Component types: `container=25`, `image=11`, `links=2`, `buttons=7`, `control=3`, `text=46`, `list=1`, `divider=3`, `form=1`, `icons=1`, `embed=6`
-- Embed elements: `6`
+- Total components: `122`
+- Component types: `container=27`, `image=10`, `links=2`, `buttons=7`, `control=3`, `text=49`, `list=1`, `divider=3`, `form=1`, `icons=1`, `embed=18`
+- Embed elements: `18`
 - Tabs map status: `refreshed`
 - Deterministic MCP target map status: `re-synced`
 
 ## Runtime Contract Summary
 
 - Builder draft embed contract:
-  - `embed08` — `no-loadwaiting` CDN script in `Head`
-  - `embed03` — `theme-design-tokens` inline `Head` embed
-  - `embed14` — critical mobile header CSS + `theme-runtime.min.css` in `Head`
-  - `embed02` — `theme-runtime.min.js` in `Body End`
-  - `embed04` — `shopping-cart` CDN CSS + JS in `Body End`
-  - `embed05` — `cookie-banner` CDN CSS + JS in `Body End`
+  - `embed01` — `No Loadwaiting (HEAD)`
+  - `embed02` — `Theme Design System (HEAD)`
+  - `embed03` — site-owned `Theme Customizing (HEAD)` slot with placeholder `<!-- Custom code here -->`
+  - `embed04..10` — `Accordeon`, `Cookie Banner`, `Faq`, `Floating Cta`, `Grid Cluster`, `Header Nav`, `Modal`
+  - `embed11/12` — `Shopping Cart 1/2`, `Shopping Cart 2/2`
+  - `embed13/14` — `Slider 1/2`, `Slider 2/2`
+  - `embed15..17` — `Stacker`, `Switcher`, `Typography`
+  - `embed18` — `Design Palette`
 - Published asset contract:
-  - scripts: `no-loadwaiting`, `theme-runtime`, `shopping-cart`, `cookie-banner`
-  - styles: `theme-runtime`, `shopping-cart`, `cookie-banner`
-  - mutable `@main` references: `0`
-  - legacy `data-*-v2` markers: `0`
+  - still historical and not re-approved as canonical in this pass
+  - save/publish boundary remains unproven
+  - published evidence is retained only as drift context, not as a PASS signal
 
 ## Live Plugin Inventory
 
-- Bundled via `theme-runtime`: `accordeon`, `cards`, `faq`, `floating-cta`, `grid-cluster`, `header-nav`, `modal`, `slider`, `stacker`, `switcher`, `typography`
-- Added separately: `no-loadwaiting`, `shopping-cart`, `cookie-banner`
-- Published runtime globals observed: `CarrdAccordeon`, `CarrdCookieBanner`, `CarrdModal`, `CarrdShoppingCart`, `CarrdSlider`, `CarrdStacker`, `CarrdSwitcher`, `CarrdTypography`
-- Direct published markup markers observed:
-  - `cards=1`
-  - `faq=1`
-  - `gridCluster=5`
-  - `headerNav=2`
-  - `modal=1`
-  - `noLoadwaiting=1`
-  - `slider=7`
-  - `stacker=3`
-  - `switcher=10`
-  - `cookieBanner=1`
-- Provisioned without direct page markers in this scan:
-  - `accordeon`
-  - `floating-cta`
-  - `shopping-cart`
-  - `typography`
+- Builder draft embeds that normalized to current `dist`: `embed01`, `embed04..11`, `embed13..18`
+- Formatting-only drift still observed against raw `dist` text:
+  - `embed02` — Carrd/MBX removed CSS indentation from `theme-design-system.html`
+  - `embed12` — Carrd/MBX collapsed indentation inside the `shopping-cart` part 2 template literal
+- Builder draft contract note:
+  - `cards` is intentionally absent from the current Builder draft and `data-cards=*` markup is no longer present
+- Site-owned custom layer:
+  - `embed03` is reserved as a custom `Head` slot and must not be auto-overwritten from `dist`
 
 ## Repo Sync Result
 
-- Repo plugin roots with current live runtime coverage: `14/14`
+- Repo plugin roots with current Builder draft coverage: `14/16` repo plugins are installed in the draft, plus `theme-design-system` and the site-owned `embed03` customization slot
 - `src/` vs `dist/`: no missing plugin distributives detected
-- Bundle/add-on sync status on `mini.crd.co`: `match`
-- Current sync model: bundle-aware runtime contract, not legacy per-embed plugin-title matching
+- Current intentional absences:
+  - `cards` is not installed in the current Builder draft
+- Current sync model:
+  - per-embed inline contract for the Builder draft
+  - historical published scan kept only as context
 
 ## Drift Summary
 
 - Resolved during this refresh:
-  - tabs snapshot drift between `96` and `106` elements
-  - stale published inventory that still described inline `v0.1.15` assets
-  - stale MCP target metadata that still carried `data-switcher-v2-mode=cluster`
-  - tab-resolution bug where MCP sync could pick the published tab before the Builder tab
-- Current live structure remap:
-  - the `2026-07-11` live top-level container map is now reflected in `cardbuilder/projects/main-template/data/inventories/container-registry.json`
-  - this report still describes the historical `2026-07-07` scan snapshot and should be read as historical context, not the current structural map
-- Remaining note:
-  - `template-instance-dom-audit.json` and `template-instance-style-map.json` were not re-captured in this pass
+  - stale `106/6` tabs snapshot and builder scan
+  - stale MCP target sync metadata
+  - stale live inventory that still described the pre-reinstall contract
+  - wrong `refresh-builder-plugins.mjs` mapping that still treated `embed03/04` as legacy Shopping Cart JS/CSS
+- Remaining blockers:
+  - `check:tabs-drift` still reports drift because the previous baseline was `2026-07-07`
+  - full persistence matrix is still incomplete: stable-container custom `data-*` and safe custom `id` are proven, but a real modal product attr (`data-modal-close-on-overlay=off` on `container12`) persisted in Builder and did not appear in published HTML on `2026-07-13`
+  - embed edits and broader structural persistence are not yet proven
 
 ## Final Assessment
 
-- Template-instance operational truth: `current`
-- Builder draft vs published runtime contract: `aligned`
-- Ready for deterministic read/write tooling: `yes, for the refreshed target map and current runtime contract`
+- Template-instance operational truth: `current for Builder draft only`
+- Builder draft vs published runtime contract: `partially proven with a real product-attr publish failure`
+- Ready for deterministic read/write tooling: `yes for controlled persistence probes on safe targets; no PASS yet for real product attrs, embed-level, or general structural apply/persistence`
 - Current evidence owners:
-  - `cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-07-07.json`
+  - `cardbuilder/projects/main-template/data/snapshots/template-instance-builder-scan.json`
+  - `cardbuilder/projects/main-template/data/snapshots/template-instance-element-tabs-map-2026-07-13.json`
+  - `cardbuilder/projects/main-template/data/snapshots/template-instance-dom-audit.json`
+  - `cardbuilder/projects/main-template/data/style-maps/template-instance-style-map.json`
   - `cardbuilder/projects/main-template/data/inventories/published-site-plugin-scan.json`
   - `cardbuilder/projects/main-template/data/inventories/live-plugin-inventory.json`
   - `cardbuilder/projects/main-template/data/diffs/template-vs-repo-plugin-sync.json`

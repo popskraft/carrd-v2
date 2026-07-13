@@ -8,7 +8,7 @@
       "This file is the deterministic MCP target map for main-template.",
       "semanticKey is the primary stable handle; proposedClass is the preferred persistent Carrd marking when operator policy allows rollout."
     ],
-    "lastSyncedAt": "2026-07-07T19:18:32.579Z",
+    "lastSyncedAt": "2026-07-13T09:26:30.228Z",
     "targetCount": 10,
     "liveBuilderUrl": "https://carrd.co/dashboard/4155176224428477/build"
   },
@@ -50,13 +50,13 @@
       ],
       "notes": "Logo + primary navigation wrapper.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container02",
         "componentType": "container",
-        "elementId": "",
+        "elementId": "header-content",
         "classes": [],
-        "attributes": "",
+        "attributes": "data-header-position=fixed",
         "childIds": [
           "image01",
           "links02",
@@ -107,7 +107,7 @@
       ],
       "notes": "Main intro block after the header marker.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container01",
         "componentType": "container",
@@ -124,12 +124,13 @@
           "list01",
           "text04",
           "text05",
-          "text10",
           "links01",
+          "buttons05",
+          "text47",
           "text34",
-          "buttons05"
+          "embed18"
         ],
-        "topLevelIndex": 2,
+        "topLevelIndex": 27,
         "tabs": [
           "Container",
           "Appearance",
@@ -172,13 +173,13 @@
       ],
       "notes": "Quick-order shopping cards demo container.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container06",
         "componentType": "container",
         "elementId": "",
         "classes": [],
-        "attributes": "data-cards=cards\ndata-cards-color-1=#ff9bd9\ndata-cards-color-2=#9bdaff\ndata-cards-color-3=#fff259",
+        "attributes": "",
         "childIds": [
           "text21",
           "text22",
@@ -186,7 +187,7 @@
           "text01",
           "buttons02"
         ],
-        "topLevelIndex": 9,
+        "topLevelIndex": 7,
         "tabs": [
           "Container",
           "Appearance",
@@ -228,7 +229,7 @@
       ],
       "notes": "FAQ container with heading and answer blocks.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container03",
         "componentType": "container",
@@ -248,7 +249,7 @@
           "text23",
           "text40"
         ],
-        "topLevelIndex": 29,
+        "topLevelIndex": 26,
         "tabs": [
           "Container",
           "Appearance",
@@ -291,17 +292,17 @@
       ],
       "notes": "Order form container after the shopping-cart section break.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container10",
         "componentType": "container",
-        "elementId": "",
+        "elementId": "contact",
         "classes": [],
         "attributes": "",
         "childIds": [
           "form01"
         ],
-        "topLevelIndex": 31,
+        "topLevelIndex": 29,
         "tabs": [
           "Container",
           "Appearance",
@@ -344,17 +345,17 @@
       ],
       "notes": "Modal body container used by contact modal flow.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "container12",
         "componentType": "container",
-        "elementId": "",
+        "elementId": "data-modal-contact",
         "classes": [],
         "attributes": "data-modal=contact",
         "childIds": [
           "text36"
         ],
-        "topLevelIndex": 34,
+        "topLevelIndex": 32,
         "tabs": [
           "Container",
           "Appearance",
@@ -409,15 +410,15 @@
       ],
       "notes": "Header logo image.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "image01",
         "componentType": "image",
-        "elementId": "",
+        "elementId": "header-primary-section",
         "classes": [],
-        "attributes": "",
+        "attributes": "data-header-primary-section",
         "childIds": [],
-        "topLevelIndex": -1,
+        "topLevelIndex": null,
         "tabs": [
           "Image",
           "Appearance",
@@ -492,17 +493,17 @@
       ],
       "notes": "Header navigation links element.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "links02",
         "componentType": "links",
         "elementId": "",
         "classes": [
-          "header-mobile-el-collapsing"
+          "header-mobile-hide"
         ],
         "attributes": "",
         "childIds": [],
-        "topLevelIndex": -1,
+        "topLevelIndex": null,
         "tabs": [
           "Links",
           "Appearance",
@@ -557,7 +558,7 @@
       ],
       "notes": "Primary CTA button inside the hero block.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "buttons01",
         "componentType": "buttons",
@@ -565,7 +566,7 @@
         "classes": [],
         "attributes": "data-switcher=cases",
         "childIds": [],
-        "topLevelIndex": 25,
+        "topLevelIndex": 22,
         "tabs": [
           "Buttons",
           "Appearance",
@@ -615,7 +616,7 @@
       ],
       "notes": "Main H1 text element inside the hero block.",
       "live": {
-        "syncedAt": "2026-07-07T19:18:32.579Z",
+        "syncedAt": "2026-07-13T09:26:30.228Z",
         "exists": true,
         "componentId": "text03",
         "componentType": "text",
@@ -623,7 +624,7 @@
         "classes": [],
         "attributes": "",
         "childIds": [],
-        "topLevelIndex": -1,
+        "topLevelIndex": null,
         "tabs": [
           "Text",
           "Appearance",
