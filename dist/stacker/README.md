@@ -22,6 +22,8 @@ Version: `2.0.0`
 
 Containers in one group must follow each other directly. If the sequence is interrupted by other content, each contiguous run stacks on its own.
 
+Keep every container in a group on the same Carrd width setting: content width, `Full`, or `Full Screen`. Stacker preserves that setting on the whole group. If a group mixes width settings, Stacker leaves it unchanged and logs a warning instead of resizing its containers.
+
 Optional attributes:
 
 | Attribute | Result |

@@ -66,8 +66,8 @@
 
 ## Status (2026-07-07)
 - P1 (задачи 1–6): done. `src/stacker/` реализован, dist собран, `data-stacked` работает как alias, overflow-fix через `.theme-stacker-overflow-fix` (селектор `.site-wrapper` + computed-check остальных предков).
-- P2 (задачи 7–9): done. 14 jsdom-тестов в `tests-js/stacker.test.js`, включая smoke на реальном `carrd-source/index.html`.
-- P3 (задачи 10–12): done. Live-тест оператором на `mini.crd.co` пройден; уточнение по итогам: default offset не пишется inline, `:root`-переопределение `--theme-stacker-offset` работает.
+- P2 (задачи 7–9): done. 18 jsdom-тестов в `tests-js/stacker.test.js`, включая smoke на реальном `carrd-source/index.html`, сохранение Carrd `content` / `Full` / `Full Screen` width-mode и fail-safe для mixed-width групп.
+- P3 (задачи 10–12): исходный live-тест оператором на `mini.crd.co` пройден; уточнение по итогам: default offset не пишется inline, `:root`-переопределение `--theme-stacker-offset` работает. Инспекция `2026-07-13` выявила, что deployed wrapper сужает `Full Screen` до content width; repo-side fix готов и ждёт установки обновлённого inline embed, operator publish и повторного desktop/mobile width-smoke.
 - P4: README done; rollout into the version-pinned runtime delivery is still pending operator publish/purge. Опциональные scale/dim эффекты — не начаты.
 
 ## Open Questions

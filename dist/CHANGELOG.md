@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Stacker**: Preserve Carrd content, `Full`, and `Full Screen` width modes after grouped containers are moved into the sticky wrapper; mixed-width groups now fail safe without changing container layout.
+
 ## [2.0.0] - 2026-07-11
 
 ### Versioning note

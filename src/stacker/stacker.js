@@ -55,6 +55,35 @@
     return (value || '').trim();
   }
 
+  function readWidthMode(element) {
+    if (element.classList.contains('full') && element.classList.contains('screen')) {
+      return 'full-screen';
+    }
+    if (element.classList.contains('full')) {
+      return 'full';
+    }
+    return 'content';
+  }
+
+  function resolveWidthMode(run) {
+    const widthMode = readWidthMode(run.items[0]);
+    const mismatch = run.items.find(element => readWidthMode(element) !== widthMode);
+    if (mismatch) {
+      warn(`group "${run.name}" mixes Carrd width modes; stacking skipped`, mismatch);
+      return null;
+    }
+    return widthMode;
+  }
+
+  function applyWidthMode(wrapper, widthMode) {
+    if (widthMode === 'full' || widthMode === 'full-screen') {
+      wrapper.classList.add('full');
+    }
+    if (widthMode === 'full-screen') {
+      wrapper.classList.add('screen');
+    }
+  }
+
   function normalizeOffset(value) {
     if (typeof value === 'number' && isFinite(value)) {
       return `${value}px`;
@@ -143,9 +172,13 @@
     const config = getConfig(run.name);
     if (config.enabled === false) return null;
 
+    const widthMode = resolveWidthMode(run);
+    if (widthMode === null) return null;
+
     const first = run.items[0];
     const wrapper = document.createElement('div');
     wrapper.className = CLASSNAMES.group;
+    applyWidthMode(wrapper, widthMode);
     wrapper.setAttribute('data-stacker-group', run.name);
     const offsetValue = resolveOffset(run, config);
     if (offsetValue !== null) {

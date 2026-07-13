@@ -4,9 +4,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createDom, loadScript, setPluginOptions, triggerDomReady } = require('./helpers');
 
-function container(id, attrs = '') {
+function container(id, attrs = '', classes = '') {
   return (
-    `<div id="${id}" class="container-component" ${attrs}>` +
+    `<div id="${id}" class="container-component${classes ? ` ${classes}` : ''}" ${attrs}>` +
     '<div class="wrapper"><div class="inner"><h2>Item</h2></div></div>' +
     '</div>'
   );
@@ -19,6 +19,15 @@ function stackMarkup(attribute = 'data-stacker', name = 'stack') {
     container('c2', `${attribute}="${name}"`) +
     container('c3', `${attribute}="${name}"`) +
     '</div></section>'
+  );
+}
+
+function carrdWidthMarkup(classes) {
+  return (
+    '<div class="site-main"><div class="inner"><section>' +
+    container('c1', 'data-stacker="stack"', classes) +
+    container('c2', 'data-stacker="stack"', classes) +
+    '</section></div></div>'
   );
 }
 
@@ -52,6 +61,58 @@ test('stacker supports legacy data-stacked alias', () => {
   const wrappers = dom.window.document.querySelectorAll('.theme-stacker-group');
   assert.equal(wrappers.length, 1);
   assert.equal(wrappers[0].children.length, 3);
+});
+
+test('stacker keeps content-width groups on the native Carrd content width', () => {
+  const dom = createDom(stackMarkup());
+  loadScript(dom, 'src/stacker/stacker.js');
+  triggerDomReady(dom);
+
+  const wrapper = dom.window.document.querySelector('.theme-stacker-group');
+  assert.equal(wrapper.classList.contains('full'), false);
+  assert.equal(wrapper.classList.contains('screen'), false);
+});
+
+test('stacker promotes the Carrd full width mode to the group wrapper', () => {
+  const dom = createDom(carrdWidthMarkup('full'));
+  loadScript(dom, 'src/stacker/stacker.js');
+  triggerDomReady(dom);
+
+  const wrapper = dom.window.document.querySelector('.theme-stacker-group');
+  assert.ok(wrapper.classList.contains('full'));
+  assert.equal(wrapper.classList.contains('screen'), false);
+  assert.ok(wrapper.matches('.site-main > .inner > * > .full'));
+  assert.equal(wrapper.querySelectorAll(':scope > .theme-stacker-item.full').length, 2);
+});
+
+test('stacker promotes the Carrd full screen width mode to the group wrapper', () => {
+  const dom = createDom(carrdWidthMarkup('full screen'));
+  loadScript(dom, 'src/stacker/stacker.js');
+  triggerDomReady(dom);
+
+  const wrapper = dom.window.document.querySelector('.theme-stacker-group');
+  assert.ok(wrapper.classList.contains('full'));
+  assert.ok(wrapper.classList.contains('screen'));
+  assert.ok(wrapper.matches('.site-main > .inner > * > .full.screen'));
+  assert.equal(wrapper.querySelectorAll(':scope > .theme-stacker-item.full.screen').length, 2);
+});
+
+test('stacker skips mixed Carrd width modes without changing the containers', () => {
+  const dom = createDom(
+    '<section><div class="inner">' +
+    container('c1', 'data-stacker="stack"') +
+    container('c2', 'data-stacker="stack"', 'full screen') +
+    '</div></section>'
+  );
+  const warnings = [];
+  dom.window.console.warn = (...args) => warnings.push(args.join(' '));
+  loadScript(dom, 'src/stacker/stacker.js');
+  triggerDomReady(dom);
+
+  const doc = dom.window.document;
+  assert.equal(doc.querySelectorAll('.theme-stacker-group').length, 0);
+  assert.equal(doc.querySelectorAll('.theme-stacker-item').length, 0);
+  assert.ok(warnings.some(message => message.includes('mixes Carrd width modes')));
 });
 
 test('stacker is idempotent on repeated init', () => {
