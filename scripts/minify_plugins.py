@@ -94,25 +94,28 @@ def build_inline_install_steps(
     if plugin_slug in SPLIT_EMBED_PLUGINS:
         steps.extend([
             f"Open `{plugin_slug}-embed-part1.html` and `{plugin_slug}-embed-part2.html`.",
-            "Add two `Code → Hidden → Body End` embeds.",
+            "Add two new elements: `+ Add an element` → `Embed`, both placed at the end of the page.",
+            "Set `Code → Hidden → Body End` on both embeds.",
             "Paste part 1 into the first embed and part 2 into the second.",
-            "Keep that order, publish, and refresh.",
+            "Give each Embed element a Title, keep that order, publish, and refresh.",
         ])
         return markdown_steps(steps)
 
     if plugin_slug == "design-palette":
         steps.extend([
             f"Open `{plugin_slug}-embed.html`.",
-            "Paste the full file into a visible `Code → Embed` element where the palette should appear.",
-            "Publish and refresh.",
+            "Add a new element: `+ Add an element` → `Embed`, where the palette should appear.",
+            "Paste the full file into that `Code → Embed` element.",
+            "Give the new Embed element a Title, then publish and refresh.",
         ])
         return markdown_steps(steps)
 
     placement = plugin_script_placement(plugin_slug, has_js)
     steps.extend([
         f"Open `{plugin_slug}-embed.html`.",
+        "Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.",
         f"Paste the full file into `Code → Hidden → {placement}`.",
-        "Publish and refresh.",
+        "Give the new Embed element a Title, then publish and refresh.",
     ])
     return markdown_steps(steps)
 

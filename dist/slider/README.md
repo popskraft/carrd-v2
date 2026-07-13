@@ -1,10 +1,7 @@
 # Slider
 
 Native CSS scroll-snap slider — turns consecutive Carrd containers into a
-touch/trackpad/mouse carousel using the browser's own scroll physics instead
-of a hand-rolled drag/transform loop. Evaluate via `demo.html` first if you
-like; see `docs/specs/slider-v2-plan.md` for the full spec, design history,
-and open-question log (kept under its original filename for continuity).
+touch/trackpad/mouse carousel using the browser's own scroll physics.
 
 Version: `2.0.0`
 
@@ -14,9 +11,10 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `slider-embed-part1.html` and `slider-embed-part2.html`.
-3. Add two `Code → Hidden → Body End` embeds.
-4. Paste part 1 into the first embed and part 2 into the second.
-5. Keep that order, publish, and refresh.
+3. Add two new elements: `+ Add an element` → `Embed`, both placed at the end of the page.
+4. Set `Code → Hidden → Body End` on both embeds.
+5. Paste part 1 into the first embed and part 2 into the second.
+6. Give each Embed element a Title, keep that order, publish, and refresh.
 
 ## Carrd Setup
 
@@ -96,9 +94,3 @@ If nothing moves, confirm all slides are consecutive and share the same
 `data-slider` value. If a numeric attribute (`spv`, `gap`, `autoplay`) is
 ignored, check the browser console for a `[slider]` warning — invalid
 values fall back to the default rather than breaking the slider.
-
-This engine replaced the earlier hand-rolled drag/transform implementation
-(archived at `docs/_archive/slider-v1-source/`) once the owner accepted its
-mechanics and it was promoted to the sole `slider` plugin. See
-`docs/specs/slider-v2-plan.md` for that decision history and
-`OPEN-QUESTIONS.md`'s "Решённые" section (Q012/Q013/Q014) for the closing notes.

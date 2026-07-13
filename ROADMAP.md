@@ -5,6 +5,8 @@
 
 Важно: это repo-side изменение build pipeline. Уже опубликованные live-сайты (`main-template`/`mini.crd.co`, `faktura`) всё ещё физически используют старые `@2.1.0` CDN-embeds внутри Carrd Builder — они продолжат работать (jsDelivr отдаёт immutable `v2.1.0` вечно), но требуют отдельной operator-миграции на новые inline embeds из текущего `dist/`, если владелец решит их обновить. Это не сделано автоматически и не входит в этот repo-side коммит.
 
+Package-manager cleanup update `2026-07-12`: active repo commands, AGENTS/runbooks и nested `cardbuilder/projects/faktura/automation` приведены к `pnpm`; `validate` дополнительно нормализован под `pnpm`-поведение, чтобы `knip`/`eslint` больше не получали лишний `--silent`.
+
 ## Текущий readiness status — 2026-07-11
 
 Технический runtime и release pipeline проходят полный локальный `npm run validate`. Прямой live-check `2026-07-11` подтвердил, что Carrd Builder reachable/authenticated, но не снял launch blockers: published `mini.crd.co` всё ещё тянет `no-loadwaiting@b910f70`, прямой `quickPublish()` из Builder завершился `Publish Failed :(`, а пробный write/readback новых `data-*` attrs (`control03`, `container12`, `container11`) не пережил `location.reload()`. Для self-service продажи проект пока не готов: нужен рабочий publish path, закрытие Q015/Q022, buyer-facing install/support/legal/privacy пакет и воспроизводимый test purchase/delivery flow. Ограниченный owner-assisted pilot допустим только после ручного подтверждения этих P1-гейтов. Полный разбор: `docs/reports/2026-07-11-project-readiness-audit.md`.
@@ -92,3 +94,4 @@ Next step: восстановить рабочий operator-approved publish pat
 | 75 | Собрать launch package для продажи: определить included/excluded scope, install ownership, support/troubleshooting flow, privacy/legal/refund terms и buyer compatibility matrix; отдельно зафиксировать, что `shopping-cart` — client-side order UI/form serializer, а не полноценный ecommerce backend | active |
 | 76 | Доказать full published browser smoke для canonical sales surface после закрытия drift: critical desktop/mobile journeys, console/network failures, asset refs, keyboard/touch, modal/cart/slider/header flows | active |
 | 77 | Усилить non-runtime launch hygiene: добавить formal quality gate для `admincarrd/**` и убрать абсолютные локальные пути из active docs/knowledge package там, где они не требуются для локальной эксплуатации | active |
+| 78 | Зафиксировать canonical migration contract для `arbitrary site -> miniGree` и подготовить `cardbuilder` к реализации через frozen live canon, dry-run-only planning, approval gates, persistence proof и no-false-pass verdict contract | active |

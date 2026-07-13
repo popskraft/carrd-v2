@@ -115,7 +115,7 @@
 Сборка свежего installer-пакета после правок:
 
 ```bash
-npm run build:admincarrd-installer
+pnpm run build:admincarrd-installer
 ```
 
 Команда создаёт:

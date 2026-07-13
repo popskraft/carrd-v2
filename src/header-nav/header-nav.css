@@ -1,4 +1,10 @@
 :where(:root) {
+  /* Fixed / sticky header (data-header-position). */
+  --theme-header-nav-fixed-z-index: 9000;
+  --theme-header-nav-fixed-shadow: none;
+  --theme-header-nav-fixed-offset: 0rem;
+  --theme-header-nav-sticky-top: 0px;
+
   --theme-header-nav-toggle-position: fixed;
   --theme-header-nav-toggle-top: 1rem;
   --theme-header-nav-toggle-right: 1rem;
@@ -101,6 +107,41 @@
     position: relative;
   }
 
+  /* ---------------------------------------------------------------- *
+   * FIXED / STICKY HEADER: center the toggle on the logo row.
+   *
+   * When the header opts into data-header-position, it pins to the top and
+   * the toggle rides along with it, so a viewport-fixed toggle is no longer
+   * needed. Instead the toggle centers vertically on the primary (logo) row
+   * and stays roughly centered as the logo height changes.
+   *
+   * A NORMAL header (no data-header-position) keeps the viewport-fixed toggle
+   * from the base rule above: that is the correct behavior when the header
+   * scrolls off-screen, so it is intentionally left untouched.
+   *
+   * data-header-nav-toggle-top is reused here as a +/- nudge FROM the center
+   * (default 0). The token is reset to 0 for this mode; the per-header
+   * attribute writes an inline style on #header (higher priority) that still
+   * overrides it. Centering uses top:50% + translateY(-50%); the nudge is a
+   * margin-top (no calc -> minifier-safe; margin on an absolute box does not
+   * reflow, so the anti-jump contract holds). */
+  #header[data-header-position="fixed"],
+  #header[data-header-position="sticky"],
+  #header:has(> [data-header-position="fixed"]),
+  #header:has(> [data-header-position="sticky"]) {
+    --theme-header-nav-toggle-top: 0rem;
+  }
+
+  #header[data-header-position="fixed"] .theme-header-nav-toggle,
+  #header[data-header-position="sticky"] .theme-header-nav-toggle,
+  #header:has(> [data-header-position="fixed"]) .theme-header-nav-toggle,
+  #header:has(> [data-header-position="sticky"]) .theme-header-nav-toggle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: var(--theme-header-nav-toggle-top);
+  }
+
   /* Hide flagged elements ONLY while the menu is closed. We scope the rule to
    * `#header:not(.is-nav-open)`, so when the menu opens this selector simply
    * stops matching and the plugin applies ZERO overrides to the element; its
@@ -134,6 +175,45 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * COLLAPSED SINGLE-ROW CENTERING.
+ *
+ * Carrd separates the header's columns with a vertical gutter that it applies
+ * as PADDING on each column (and, when element spacing is set, as MARGIN on the
+ * column content). The first column gets only bottom spacing, the last only
+ * top. Because the plugin injects the hamburger as the last child, the primary
+ * section stays the first column and keeps its bottom gutter. When every other
+ * column is hidden on mobile, that leftover bottom padding (e.g. 16px) pushes
+ * the lone logo up and leaves a gap below it — the row looks off-centre.
+ *
+ * While the menu is closed we zero the primary section's own vertical padding
+ * (and its content's vertical margins) to restore symmetry against the
+ * container's own padding. `!important` is required because Carrd sets the
+ * gutter with `!important`. Scoped to `:not(.is-nav-open)`: when the mobile
+ * menu opens the rule lifts and the spacing that separates the stacked rows
+ * returns. Only the primary section is touched; other columns keep their
+ * spacing.
+ *
+ * Scoped to the mobile breakpoint: this reset only makes sense while the
+ * header is collapsed and the primary section is the lone visible cell. On
+ * desktop (and whenever the primary section is a MIDDLE cell, which carries
+ * both top and bottom gutter), the element must keep its native Carrd padding,
+ * so the reset must never leak above the breakpoint.
+ * ------------------------------------------------------------------ */
+
+@media (max-width: 736px) {
+  #header:not(.is-nav-open) .theme-header-nav-primary-section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #header:not(.is-nav-open)
+    .theme-header-nav-primary-section > :not(.theme-header-nav-toggle) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Hamburger icon -> X animation.
  * ------------------------------------------------------------------ */
 
@@ -146,4 +226,68 @@
 #header.is-nav-open .theme-header-nav-toggle-bar:nth-child(2) {
   opacity: 1;
   transform: none;
+}
+
+/* ------------------------------------------------------------------ *
+ * FIXED / STICKY HEADER
+ *
+ * Opt in with `data-header-position` on the header container
+ * (`#header > .container-component`) or on `#header` itself:
+ *
+ *   data-header-position="fixed"   The whole #header pins to the top of the
+ *                                  viewport from first paint and stays there.
+ *
+ *   data-header-position="sticky"  The header scrolls up until the container
+ *                                  that carries the attribute reaches the top,
+ *                                  then pins. Rows above it (e.g. a topnav)
+ *                                  scroll away first. JS sets
+ *                                  --theme-header-nav-sticky-top to a negative
+ *                                  offset equal to the height above that row.
+ *
+ * Mechanism: position:sticky (not fixed) on purpose. The header stays in
+ * normal document flow, so:
+ *   - it reserves its own space -> no content jump, no JS spacer;
+ *   - Carrd's width modifiers on the inner container (max / full "Edge to
+ *     Edge" / full.screen "Full bleed") keep their exact widths, because the
+ *     breakout math still resolves against the same ancestors.
+ * JS only sets scroll-padding-top (so in-page anchors clear the bar) and, for
+ * sticky mode, the negative top offset.
+ *
+ * Gap from the top edge: --theme-header-nav-fixed-offset (any CSS length,
+ * default 0). It shifts the pinned bar down and is added to the anchor scroll
+ * offset. Works for both fixed and sticky.
+ * ------------------------------------------------------------------ */
+
+/* Carrd wraps the page in `.site-wrapper { overflow: hidden }`, which turns
+ * the wrapper into the sticky scroll container and stops the header from
+ * sticking to the viewport. `clip` keeps the clipping without creating a
+ * scroll container (the same fix the stacker plugin uses). Scoped with :has()
+ * so it only applies when a fixed/sticky header is present. */
+.site-wrapper:has(#header[data-header-position="fixed"]),
+.site-wrapper:has(#header[data-header-position="sticky"]),
+.site-wrapper:has(#header > [data-header-position="fixed"]),
+.site-wrapper:has(#header > [data-header-position="sticky"]) {
+  overflow: clip !important;
+}
+
+/* Pin the whole header. `top:0` for fixed; the JS-provided negative offset for
+ * sticky so the flagged row lands flush at the top after earlier rows leave. */
+#header[data-header-position="fixed"],
+#header:has(> [data-header-position="fixed"]) {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--theme-header-nav-fixed-offset);
+  z-index: var(--theme-header-nav-fixed-z-index);
+  box-shadow: var(--theme-header-nav-fixed-shadow);
+}
+
+#header[data-header-position="sticky"],
+#header:has(> [data-header-position="sticky"]) {
+  position: -webkit-sticky;
+  position: sticky;
+  /* JS folds --theme-header-nav-fixed-offset into this value (no CSS calc, so
+   * the minifier cannot break the required whitespace around the operator). */
+  top: var(--theme-header-nav-sticky-top);
+  z-index: var(--theme-header-nav-fixed-z-index);
+  box-shadow: var(--theme-header-nav-fixed-shadow);
 }

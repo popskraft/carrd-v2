@@ -32,7 +32,7 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
-The `instances` key must match the `data-switcher` value.
+The `instances` key must match the `data-switcher` value. `data-switcher-default-index` on the controller wins over both `instances` and the global `defaultIndex`.
 
 | Option | Default | Result |
 |---|---|---|
@@ -52,6 +52,8 @@ The `instances` key must match the `data-switcher` value.
 4. If two controllers share a name, confirm they stay synchronized.
 
 If nothing switches, compare controller, target, and index values exactly.
+
+Legacy markup that used indexed classes (`.pricing-1`, `.pricing-2`, …) or a shared `.pricing` class still resolves to a target index without any `data-switcher-target`/`data-switcher-index` attributes — kept for backward compatibility, not recommended for new setups.
 
 ## Design
 

@@ -56,6 +56,8 @@ Add a separate `Head` style embed after the theme files:
   --theme-faq-spacing: 0.75rem;
   --theme-faq-icon-size: 1.75rem;
   --theme-faq-icon-color: var(--theme-color-primary);
+  --theme-faq-heading-color: var(--theme-color-heading);
+  --theme-faq-focus-color: var(--theme-focus-ring-color);
 }
 </style>
 ```

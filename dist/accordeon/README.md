@@ -10,15 +10,16 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `accordeon-embed.html`.
-3. Paste the full file into `Code → Hidden → Body End`.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste the full file into `Code → Hidden → Body End`.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 
 1. Add a **Buttons** element.
-2. Set its link to `#data-accordeon-ppf`.
-3. Add `data-accordeon=ppf` to every container in the group.
-4. Replace `ppf` with any short group name.
+2. Set its link to `#data-accordeon-group`.
+3. Add `data-accordeon=group` to every container in the group.
+4. Replace `group` with any short group name.
 
 The link suffix and every target value must match exactly.
 
@@ -40,15 +41,20 @@ window.CarrdPluginOptions = {
 
 | Option | Default | Result |
 |---|---|---|
-| `enabled` | `true` | Set `false` to disable the plugin globally |
 | `defaultOpen` | `false` | Opens every group on load |
 | `scrollOnOpen` | `true` | Scrolls to a group when it opens |
-| `scrollBehavior` | `'smooth'` | Scroll behavior passed to `scrollIntoView` |
-| `scrollBlock` | `'start'` | Vertical alignment passed to `scrollIntoView` |
-| `hashPrefix` | `'#data-accordeon-'` | URL hash prefix that auto-opens a matching group on load |
-| `linkPrefix` | `'#data-accordeon-'` | Href prefix used to find each group's trigger link |
-| `linkSelector` | `null` | Overrides trigger-link discovery with a custom selector instead of `linkPrefix` |
-| `targetAttributes` | `['data-accordeon']` | Attribute names checked on target containers |
+| `scrollBehavior` | `'smooth'` | Scroll behavior passed to `scrollIntoView` (`'smooth'` or `'auto'`) |
+| `scrollBlock` | `'start'` | Vertical alignment passed to `scrollIntoView` (`'start'`, `'center'`, `'end'`, `'nearest'`) |
+| `enabled` | `true` | Set `false` to disable the plugin globally |
+
+Per-container overrides win over the global config above. Add any of these to one container in a group:
+
+| Attribute | Values | Result |
+|---|---|---|
+| `data-accordeon-default-open` | `on` \| `off` | Overrides `defaultOpen` for that group |
+| `data-accordeon-scroll` | `on` \| `off` | Overrides `scrollOnOpen` for that group |
+| `data-accordeon-scroll-behavior` | `smooth` \| `auto` | Overrides `scrollBehavior` for that group |
+| `data-accordeon-scroll-block` | `start` \| `center` \| `end` \| `nearest` | Overrides `scrollBlock` for that group |
 
 ## Verify
 
@@ -56,7 +62,7 @@ window.CarrdPluginOptions = {
 2. Confirm the marked containers start closed.
 3. Click the button twice and confirm the group opens, then closes.
 
-If nothing happens, compare `#data-accordeon-ppf` with `data-accordeon=ppf`.
+If nothing happens, compare `#data-accordeon-group` with `data-accordeon=group`.
 
 ## Design
 
@@ -68,6 +74,7 @@ Add a separate `Head` style embed after the theme files:
   --theme-accordeon-toggle-duration: 0.25s;
   --theme-accordeon-animation-duration: 0.28s;
   --theme-accordeon-animation-distance: 0.5rem;
+  --theme-accordeon-animation-easing: ease-out;
 }
 </style>
 ```
@@ -75,8 +82,8 @@ Add a separate `Head` style embed after the theme files:
 ## API
 
 ```javascript
-CarrdAccordeon.open('ppf');
-CarrdAccordeon.close('ppf');
-CarrdAccordeon.toggle('ppf');
+CarrdAccordeon.open('group');
+CarrdAccordeon.close('group');
+CarrdAccordeon.toggle('group');
 CarrdAccordeon.refresh();
 ```

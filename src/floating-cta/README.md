@@ -49,7 +49,7 @@ window.CarrdPluginOptions = {
 2. Scroll past the configured threshold.
 3. Confirm the original element stays in place and its fixed copy appears.
 
-If no copy appears, check `data-floating`, the scroll distance, and any `data-floating-hide` value.
+If no copy appears, check `data-floating`, the scroll distance, and any `data-floating-hide` value. A copy also stays hidden on desktop whenever the page has a fixed header (`.site-header.header-fixed`) — that combination is treated as already having a persistent CTA.
 
 ## Design
 

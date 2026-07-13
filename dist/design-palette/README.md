@@ -10,8 +10,9 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `design-palette-embed.html`.
-3. Paste the full file into a visible `Code → Embed` element where the palette should appear.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, where the palette should appear.
+4. Paste the full file into that `Code → Embed` element.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 

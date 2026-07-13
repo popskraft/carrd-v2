@@ -40,6 +40,15 @@ window.CarrdPluginOptions = {
 | `hashPrefix` | `'#data-modal-'` | URL hash prefix used to open a modal via a link |
 | `legacyHashTargets` | `true` | Set `false` to stop matching legacy hash targets |
 
+Per-modal overrides win over the global config above. Add any of these directly to a `data-modal` container:
+
+| Attribute | Values | Result |
+|---|---|---|
+| `data-modal-close-on-overlay` | `on` \| `off` | Overrides `closeOnOverlay` for that modal |
+| `data-modal-close-on-escape` | `on` \| `off` | Overrides `closeOnEscape` for that modal |
+| `data-modal-show-close` | `on` \| `off` | Overrides `showCloseButton` for that modal |
+| `data-modal-lock-scroll` | `on` \| `off` | Overrides `lockBodyScroll` for that modal |
+
 ## Verify
 
 1. Publish the page and open the trigger.

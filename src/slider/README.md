@@ -1,10 +1,7 @@
 # Slider
 
 Native CSS scroll-snap slider — turns consecutive Carrd containers into a
-touch/trackpad/mouse carousel using the browser's own scroll physics instead
-of a hand-rolled drag/transform loop. Evaluate via `demo.html` first if you
-like; see `docs/specs/slider-v2-plan.md` for the full spec, design history,
-and open-question log (kept under its original filename for continuity).
+touch/trackpad/mouse carousel using the browser's own scroll physics.
 
 ## Carrd Setup
 
@@ -84,9 +81,3 @@ If nothing moves, confirm all slides are consecutive and share the same
 `data-slider` value. If a numeric attribute (`spv`, `gap`, `autoplay`) is
 ignored, check the browser console for a `[slider]` warning — invalid
 values fall back to the default rather than breaking the slider.
-
-This engine replaced the earlier hand-rolled drag/transform implementation
-(archived at `docs/_archive/slider-v1-source/`) once the owner accepted its
-mechanics and it was promoted to the sole `slider` plugin. See
-`docs/specs/slider-v2-plan.md` for that decision history and
-`OPEN-QUESTIONS.md`'s "Решённые" section (Q012/Q013/Q014) for the closing notes.

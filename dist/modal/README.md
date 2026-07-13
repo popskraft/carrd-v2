@@ -10,8 +10,9 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `modal-embed.html`.
-3. Paste the full file into `Code → Hidden → Body End`.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste the full file into `Code → Hidden → Body End`.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 
@@ -50,6 +51,15 @@ window.CarrdPluginOptions = {
 | `legacyTriggerAttribute` | `'data-modal-target'` | Legacy alias of `triggerAttribute` |
 | `hashPrefix` | `'#data-modal-'` | URL hash prefix used to open a modal via a link |
 | `legacyHashTargets` | `true` | Set `false` to stop matching legacy hash targets |
+
+Per-modal overrides win over the global config above. Add any of these directly to a `data-modal` container:
+
+| Attribute | Values | Result |
+|---|---|---|
+| `data-modal-close-on-overlay` | `on` \| `off` | Overrides `closeOnOverlay` for that modal |
+| `data-modal-close-on-escape` | `on` \| `off` | Overrides `closeOnEscape` for that modal |
+| `data-modal-show-close` | `on` \| `off` | Overrides `showCloseButton` for that modal |
+| `data-modal-lock-scroll` | `on` \| `off` | Overrides `lockBodyScroll` for that modal |
 
 ## Verify
 

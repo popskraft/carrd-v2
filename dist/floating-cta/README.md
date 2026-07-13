@@ -10,8 +10,9 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `floating-cta-embed.html`.
-3. Paste the full file into `Code → Hidden → Body End`.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste the full file into `Code → Hidden → Body End`.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 
@@ -60,7 +61,7 @@ window.CarrdPluginOptions = {
 2. Scroll past the configured threshold.
 3. Confirm the original element stays in place and its fixed copy appears.
 
-If no copy appears, check `data-floating`, the scroll distance, and any `data-floating-hide` value.
+If no copy appears, check `data-floating`, the scroll distance, and any `data-floating-hide` value. A copy also stays hidden on desktop whenever the page has a fixed header (`.site-header.header-fixed`) — that combination is treated as already having a persistent CTA.
 
 ## Design
 

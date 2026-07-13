@@ -7,7 +7,7 @@ Shows a fixed consent banner and remembers the visitor's choice.
 1. Add a **Container** for the banner.
 2. Add `data-cookie=consent` to the container.
 3. Add the policy text and an accept button inside it.
-4. Use a Carrd **Buttons** element or add `role=button` to the accept link.
+4. Use a Carrd **Buttons** element, add `role=button` to the accept link, or add `data-cookie-accept` to the exact element that should accept.
 5. Style the container in Carrd.
 
 ## Configuration
@@ -57,4 +57,4 @@ Per-container `data-cookie-*` attributes override these global values.
 2. Confirm the banner appears.
 3. Accept, refresh, and confirm it stays hidden.
 
-If the button does not work, use a **Buttons** element or add `role=button`.
+If the button does not work, use a **Buttons** element, add `role=button`, or add `data-cookie-accept` directly on the intended element.

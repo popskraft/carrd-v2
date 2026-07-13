@@ -13,10 +13,10 @@ Carrd Plugins — репозиторий с `src/`-плагинами для Car
 - ESLint, jsdom, Carrd
 
 ## Commands
-- `npm run build` — пересобрать `dist/` из `src/` (минификация, README, per-plugin и theme embeds)
-- `npm run validate` — полная проверка: verify:dist + bundle-budget + clean-contract + dead-code + tests + `src/**` coverage + `cardbuilder/**` coverage + lint
-- `npm run test:js` — только jsdom-тесты плагинов
-- `npm run release:prepare` — пересобрать `dist/`, выполнить `validate` и проверить новую release version без commit/push/tag
+- `pnpm run build` — пересобрать `dist/` из `src/` (минификация, README, per-plugin и theme embeds)
+- `pnpm run validate` — полная проверка: verify:dist + bundle-budget + clean-contract + dead-code + tests + `src/**` coverage + `cardbuilder/**` coverage + lint
+- `pnpm run test:js` — только jsdom-тесты плагинов
+- `pnpm run release:prepare` — пересобрать `dist/`, выполнить `validate` и проверить новую release version без commit/push/tag
 - Release/publish — только по `docs/specs/release-contract.md`; универсальный автодеплой запрещён
 
 ## Structure

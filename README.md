@@ -9,9 +9,11 @@ All install files are in `dist/`. Open the plugin folder you need and follow its
 All install files are inline Carrd embeds. There is no CDN/jsDelivr delivery — everything is pasted directly into Carrd.
 
 1. Paste `dist/theme-design-system.html` into `Hidden → Head` once per site. This carries the shared design tokens and base UI styles.
-2. Open each plugin folder you use and paste its `*-embed.html` into `Hidden → Body End` (see that plugin's `README.md` for the exact placement — some plugins, like `no-loadwaiting`, belong in `Head`).
-3. For `shopping-cart` and `slider`, paste `*-embed-part1.html` and `*-embed-part2.html`, in that order, as two separate `Body End` embeds.
-4. Publish and refresh.
+2. Open each plugin folder you use.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste that plugin's `*-embed.html` into `Hidden → Body End` on the new element (see that plugin's `README.md` for the exact placement — some plugins, like `no-loadwaiting`, belong in `Head`).
+5. For `shopping-cart` and `slider`, add two Embed elements and paste `*-embed-part1.html` and `*-embed-part2.html`, in that order, as two separate `Body End` embeds.
+6. Give each new Embed element a Title, then publish and refresh.
 
 Included plugins:
 
@@ -39,8 +41,9 @@ Included plugins:
 1. Paste `dist/theme-design-system.html` into `Hidden → Head` once. This combines `theme-design-tokens.css` and `theme-ui.css`.
    - To edit token values only, you can instead paste `dist/theme-design-tokens-embed.html` (tokens) and `dist/theme-ui-embed.html` (base UI styles) as two separate `Head` embeds.
    - Use `dist/theme-design-tokens.css` and `dist/theme-ui.css` as the plain-CSS reference contract when you need to inspect the full rule set.
-2. Paste each plugin `*-embed.html` into `Hidden → Body End`.
-3. For `shopping-cart` and `slider`, use `*-embed-part1.html` and `*-embed-part2.html` in that order.
+2. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+3. Paste each plugin `*-embed.html` into `Hidden → Body End` on that element, give it a Title.
+4. For `shopping-cart` and `slider`, add a second Embed element and use `*-embed-part1.html` and `*-embed-part2.html` in that order.
 
 ## Custom Code
 

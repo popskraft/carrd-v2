@@ -10,8 +10,9 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `switcher-embed.html`.
-3. Paste the full file into `Code → Hidden → Body End`.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste the full file into `Code → Hidden → Body End`.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 
@@ -43,7 +44,7 @@ window.CarrdPluginOptions = {
 </script>
 ```
 
-The `instances` key must match the `data-switcher` value.
+The `instances` key must match the `data-switcher` value. `data-switcher-default-index` on the controller wins over both `instances` and the global `defaultIndex`.
 
 | Option | Default | Result |
 |---|---|---|
@@ -63,6 +64,8 @@ The `instances` key must match the `data-switcher` value.
 4. If two controllers share a name, confirm they stay synchronized.
 
 If nothing switches, compare controller, target, and index values exactly.
+
+Legacy markup that used indexed classes (`.pricing-1`, `.pricing-2`, …) or a shared `.pricing` class still resolves to a target index without any `data-switcher-target`/`data-switcher-index` attributes — kept for backward compatibility, not recommended for new setups.
 
 ## Design
 

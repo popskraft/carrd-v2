@@ -10,9 +10,10 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `shopping-cart-embed-part1.html` and `shopping-cart-embed-part2.html`.
-3. Add two `Code → Hidden → Body End` embeds.
-4. Paste part 1 into the first embed and part 2 into the second.
-5. Keep that order, publish, and refresh.
+3. Add two new elements: `+ Add an element` → `Embed`, both placed at the end of the page.
+4. Set `Code → Hidden → Body End` on both embeds.
+5. Paste part 1 into the first embed and part 2 into the second.
+6. Give each Embed element a Title, keep that order, publish, and refresh.
 
 ## Carrd Setup
 
@@ -48,6 +49,8 @@ Positions: `top-right`, `top-left`, `bottom-right`, `bottom-left`, or `bottom-ce
 | `storageKey` | `'carrd_cart_v1'` | `localStorage` key used to persist the cart |
 | `orderInputSelector` | `'[data-shopping-cart-output="order-details"]'` | Selector for the checkout field the order summary is written into |
 | `checkoutTargetId` | `'shopping-cart'` | Section id scrolled to on checkout |
+
+Add `data-shopping-cart-checkout-target` to any element to override `checkoutTargetId` without touching the config block; its value is used as the scroll-target id instead.
 
 ## Verify
 
@@ -99,6 +102,11 @@ texts: {
 
 ```javascript
 CarrdShoppingCart.add('Product', 29.99);
+CarrdShoppingCart.add('Product', 29.99, {
+  id: 'sku-123',        // explicit line-item key instead of the name+price+source hash
+  sourceLabel: 'Combo',  // groups/labels the item when the same name is added from different sources
+  displayName: 'Product (Combo)' // overrides the name shown in the cart UI
+});
 CarrdShoppingCart.remove('Product');
 CarrdShoppingCart.clear();
 CarrdShoppingCart.getCart();

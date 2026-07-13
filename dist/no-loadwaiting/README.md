@@ -9,8 +9,9 @@ Version: `2.0.0`
 ### Inline Embed
 
 1. Open `no-loadwaiting-embed.html`.
-2. Paste the full file into `Code → Hidden → Head`.
-3. Publish and refresh.
+2. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+3. Paste the full file into `Code → Hidden → Head`.
+4. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 

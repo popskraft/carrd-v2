@@ -37,6 +37,8 @@ Positions: `top-right`, `top-left`, `bottom-right`, `bottom-left`, or `bottom-ce
 | `orderInputSelector` | `'[data-shopping-cart-output="order-details"]'` | Selector for the checkout field the order summary is written into |
 | `checkoutTargetId` | `'shopping-cart'` | Section id scrolled to on checkout |
 
+Add `data-shopping-cart-checkout-target` to any element to override `checkoutTargetId` without touching the config block; its value is used as the scroll-target id instead.
+
 ## Verify
 
 1. Publish and add a product.
@@ -87,6 +89,11 @@ texts: {
 
 ```javascript
 CarrdShoppingCart.add('Product', 29.99);
+CarrdShoppingCart.add('Product', 29.99, {
+  id: 'sku-123',        // explicit line-item key instead of the name+price+source hash
+  sourceLabel: 'Combo',  // groups/labels the item when the same name is added from different sources
+  displayName: 'Product (Combo)' // overrides the name shown in the cart UI
+});
 CarrdShoppingCart.remove('Product');
 CarrdShoppingCart.clear();
 CarrdShoppingCart.getCart();

@@ -10,15 +10,16 @@ Version: `2.0.0`
 
 1. Install `theme-design-system.html` once in `Hidden → Head` using the [root guide](../README.md).
 2. Open `cookie-banner-embed.html`.
-3. Paste the full file into `Code → Hidden → Body End`.
-4. Publish and refresh.
+3. Add a new element: `+ Add an element` → `Embed`, placed at the end of the page.
+4. Paste the full file into `Code → Hidden → Body End`.
+5. Give the new Embed element a Title, then publish and refresh.
 
 ## Carrd Setup
 
 1. Add a **Container** for the banner.
 2. Add `data-cookie=consent` to the container.
 3. Add the policy text and an accept button inside it.
-4. Use a Carrd **Buttons** element or add `role=button` to the accept link.
+4. Use a Carrd **Buttons** element, add `role=button` to the accept link, or add `data-cookie-accept` to the exact element that should accept.
 5. Style the container in Carrd.
 
 ## Configuration
@@ -68,4 +69,4 @@ Per-container `data-cookie-*` attributes override these global values.
 2. Confirm the banner appears.
 3. Accept, refresh, and confirm it stays hidden.
 
-If the button does not work, use a **Buttons** element or add `role=button`.
+If the button does not work, use a **Buttons** element, add `role=button`, or add `data-cookie-accept` directly on the intended element.
